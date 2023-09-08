@@ -10,5 +10,6 @@ import Foundation
 struct SearchModuleHelpers {
     enum Constants: String {
         case searchPromptText = "Explore your new experience"
+        case title = "Search"
     }
 }
