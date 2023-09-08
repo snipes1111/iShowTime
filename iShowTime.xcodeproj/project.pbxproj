@@ -13,6 +13,7 @@
 		CEBAAEA82A13E828001F59A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEBAAEA72A13E828001F59A6 /* Assets.xcassets */; };
 		CEF455FA2AAB305E00D5A397 /* SearchSeriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF455F92AAB305E00D5A397 /* SearchSeriesView.swift */; };
 		CEF456002AAB472600D5A397 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEBAAEA92A13E828001F59A6 /* LaunchScreen.storyboard */; };
+		CEF456022AAB4BDD00D5A397 /* SearchModuleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF456012AAB4BDD00D5A397 /* SearchModuleConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		CEBAAEAA2A13E828001F59A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEBAAEAC2A13E828001F59A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEF455F92AAB305E00D5A397 /* SearchSeriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSeriesView.swift; sourceTree = "<group>"; };
+		CEF456012AAB4BDD00D5A397 /* SearchModuleConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModuleConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,6 @@
 			children = (
 				CEBAAE9E2A13E824001F59A6 /* AppDelegate.swift */,
 				CEBAAEA02A13E824001F59A6 /* SceneDelegate.swift */,
-				CEF455FD2AAB439600D5A397 /* Helpers */,
 				CEF455FC2AAB307C00D5A397 /* SearchModule */,
 				CEBAAEA72A13E828001F59A6 /* Assets.xcassets */,
 				CEBAAEA92A13E828001F59A6 /* LaunchScreen.storyboard */,
@@ -86,6 +87,7 @@
 		CEF455FC2AAB307C00D5A397 /* SearchModule */ = {
 			isa = PBXGroup;
 			children = (
+				CEF455FD2AAB439600D5A397 /* Helpers */,
 				CEF455F82AAB302900D5A397 /* ViewControllers */,
 				CEF455FB2AAB306500D5A397 /* Views */,
 			);
@@ -95,6 +97,7 @@
 		CEF455FD2AAB439600D5A397 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CEF456012AAB4BDD00D5A397 /* SearchModuleConstants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF456022AAB4BDD00D5A397 /* SearchModuleConstants.swift in Sources */,
 				CEBAAEA32A13E824001F59A6 /* SearchSeriesViewController.swift in Sources */,
 				CEF455FA2AAB305E00D5A397 /* SearchSeriesView.swift in Sources */,
 				CEBAAE9F2A13E824001F59A6 /* AppDelegate.swift in Sources */,

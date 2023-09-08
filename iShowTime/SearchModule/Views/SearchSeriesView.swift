@@ -9,15 +9,24 @@ import UIKit
 
 class SearchSeriesView: UIView {
     
-    var color: UIColor?
+    let searchPromptLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = SearchModuleHelpers.Constants.searchPromptText.rawValue
+        label.font = .systemFont(ofSize: 24, weight: .semibold)
+        label.textColor = .systemGray
+        return label
+    }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = .gray
+    override func layoutSubviews() {
+        backgroundColor = .white
+        setupSearchPromptLabelConstraints()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func setupSearchPromptLabelConstraints() {
+        addSubview(searchPromptLabel)
+        searchPromptLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        searchPromptLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
 }
