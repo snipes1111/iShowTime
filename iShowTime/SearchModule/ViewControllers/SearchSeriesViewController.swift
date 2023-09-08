@@ -7,13 +7,13 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchSeriesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let searchView = SearchSeriesView()
+        searchView.frame = view.frame
         self.view = searchView
-        
     }
     
 }
