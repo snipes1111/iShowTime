@@ -81,8 +81,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				CEF455F72AAB2E0F00D5A397 /* PBXTargetDependency */,
 			);
 			name = iShowTime;
+			packageProductDependencies = (
+			);
 			productName = iShowTime;
 			productReference = CEBAAE9B2A13E824001F59A6 /* iShowTime.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +114,9 @@
 				Base,
 			);
 			mainGroup = CEBAAE922A13E823001F59A6;
+			packageReferences = (
+				CEF455F52AAB2DED00D5A397 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+			);
 			productRefGroup = CEBAAE9C2A13E824001F59A6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -145,6 +151,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CEF455F72AAB2E0F00D5A397 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = CEF455F62AAB2E0F00D5A397 /* SwiftLintPlugin */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CEBAAEA42A13E824001F59A6 /* Main.storyboard */ = {
@@ -368,6 +381,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CEF455F52AAB2DED00D5A397 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.52.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CEF455F62AAB2E0F00D5A397 /* SwiftLintPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEF455F52AAB2DED00D5A397 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintPlugin";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CEBAAE932A13E823001F59A6 /* Project object */;
 }
