@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchSeriesViewController: UIViewController {
-    
+
     private var searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
@@ -18,5 +18,4 @@ class SearchSeriesViewController: UIViewController {
         self.view = searchView
         navigationItem.searchController = searchController
     }
-    
 }
