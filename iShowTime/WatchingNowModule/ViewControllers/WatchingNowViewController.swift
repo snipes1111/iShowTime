@@ -11,5 +11,8 @@ class WatchingNowViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let watchingNowView = WatchingNowView()
+        watchingNowView.frame = view.frame
+        view = watchingNowView
     }
 }

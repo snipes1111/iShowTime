@@ -7,6 +7,13 @@
 
 import UIKit
 
-class WatchingNowVie: UIView {
-    
+class WatchingNowView: UIView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .systemGray2
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
