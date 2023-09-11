@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE1A6B4A2AAF4D6B00B495EB /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B492AAF4D6B00B495EB /* CustomTabBarController.swift */; };
+		CE1A6B4D2AAF515000B495EB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B4C2AAF515000B495EB /* Colors.swift */; };
 		CEBAAE9F2A13E824001F59A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBAAE9E2A13E824001F59A6 /* AppDelegate.swift */; };
 		CEBAAEA12A13E824001F59A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBAAEA02A13E824001F59A6 /* SceneDelegate.swift */; };
 		CEBAAEA32A13E824001F59A6 /* SearchSeriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBAAEA22A13E824001F59A6 /* SearchSeriesViewController.swift */; };
@@ -15,13 +17,14 @@
 		CEF456002AAB472600D5A397 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEBAAEA92A13E828001F59A6 /* LaunchScreen.storyboard */; };
 		CEF456022AAB4BDD00D5A397 /* SearchModuleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF456012AAB4BDD00D5A397 /* SearchModuleConstants.swift */; };
 		CEF456042AAB547B00D5A397 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF456032AAB547B00D5A397 /* MainTabBarController.swift */; };
-		CEF456082AAB732900D5A397 /* FontsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF456072AAB732900D5A397 /* FontsFactory.swift */; };
+		CEF456082AAB732900D5A397 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF456072AAB732900D5A397 /* Fonts.swift */; };
 		CEF4560B2AAB75A300D5A397 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4560A2AAB75A200D5A397 /* Images.swift */; };
 		CEF4560E2AAB7A1E00D5A397 /* NavVCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4560D2AAB7A1E00D5A397 /* NavVCBuilder.swift */; };
-		CEF456112AAB7CDA00D5A397 /* UITabBarController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF456102AAB7CDA00D5A397 /* UITabBarController+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE1A6B492AAF4D6B00B495EB /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		CE1A6B4C2AAF515000B495EB /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CEBAAE9B2A13E824001F59A6 /* iShowTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iShowTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEBAAE9E2A13E824001F59A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEBAAEA02A13E824001F59A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,10 +35,9 @@
 		CEF455F92AAB305E00D5A397 /* SearchSeriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSeriesView.swift; sourceTree = "<group>"; };
 		CEF456012AAB4BDD00D5A397 /* SearchModuleConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModuleConstants.swift; sourceTree = "<group>"; };
 		CEF456032AAB547B00D5A397 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		CEF456072AAB732900D5A397 /* FontsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsFactory.swift; sourceTree = "<group>"; };
+		CEF456072AAB732900D5A397 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		CEF4560A2AAB75A200D5A397 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		CEF4560D2AAB7A1E00D5A397 /* NavVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NavVCBuilder.swift; path = ../../../../NavVCBuilder.swift; sourceTree = "<group>"; };
-		CEF456102AAB7CDA00D5A397 /* UITabBarController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +51,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE1A6B4B2AAF513800B495EB /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				CE1A6B4C2AAF515000B495EB /* Colors.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		CE1A6B4F2AAF56C900B495EB /* Preferences & Style */ = {
+			isa = PBXGroup;
+			children = (
+				CEF456092AAB758E00D5A397 /* Images */,
+				CE1A6B4B2AAF513800B495EB /* Colors */,
+				CEF456062AAB731200D5A397 /* Fonts */,
+			);
+			path = "Preferences & Style";
+			sourceTree = "<group>";
+		};
 		CEBAAE922A13E823001F59A6 = {
 			isa = PBXGroup;
 			children = (
@@ -70,10 +90,9 @@
 			children = (
 				CEBAAE9E2A13E824001F59A6 /* AppDelegate.swift */,
 				CEBAAEA02A13E824001F59A6 /* SceneDelegate.swift */,
-				CEF4560F2AAB7CC600D5A397 /* Extensions */,
 				CEF4560C2AAB791900D5A397 /* Builders */,
-				CEF456062AAB731200D5A397 /* Fonts */,
-				CEF456092AAB758E00D5A397 /* Images */,
+				CEF4560F2AAB7CC600D5A397 /* Extensions */,
+				CE1A6B4F2AAF56C900B495EB /* Preferences & Style */,
 				CEF456052AAB725F00D5A397 /* MainTabBarModule */,
 				CEF455FC2AAB307C00D5A397 /* SearchModule */,
 				CEBAAEA72A13E828001F59A6 /* Assets.xcassets */,
@@ -128,7 +147,7 @@
 		CEF456062AAB731200D5A397 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				CEF456072AAB732900D5A397 /* FontsFactory.swift */,
+				CEF456072AAB732900D5A397 /* Fonts.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -152,7 +171,7 @@
 		CEF4560F2AAB7CC600D5A397 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CEF456102AAB7CDA00D5A397 /* UITabBarController+Extensions.swift */,
+				CE1A6B492AAF4D6B00B495EB /* CustomTabBarController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -233,14 +252,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEF456082AAB732900D5A397 /* FontsFactory.swift in Sources */,
+				CEF456082AAB732900D5A397 /* Fonts.swift in Sources */,
+				CE1A6B4D2AAF515000B495EB /* Colors.swift in Sources */,
 				CEF456022AAB4BDD00D5A397 /* SearchModuleConstants.swift in Sources */,
 				CEBAAEA32A13E824001F59A6 /* SearchSeriesViewController.swift in Sources */,
 				CEF456042AAB547B00D5A397 /* MainTabBarController.swift in Sources */,
 				CEF455FA2AAB305E00D5A397 /* SearchSeriesView.swift in Sources */,
+				CE1A6B4A2AAF4D6B00B495EB /* CustomTabBarController.swift in Sources */,
 				CEF4560E2AAB7A1E00D5A397 /* NavVCBuilder.swift in Sources */,
 				CEF4560B2AAB75A300D5A397 /* Images.swift in Sources */,
-				CEF456112AAB7CDA00D5A397 /* UITabBarController+Extensions.swift in Sources */,
 				CEBAAE9F2A13E824001F59A6 /* AppDelegate.swift in Sources */,
 				CEBAAEA12A13E824001F59A6 /* SceneDelegate.swift in Sources */,
 			);

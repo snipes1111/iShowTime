@@ -7,14 +7,13 @@
 
 import UIKit
 
-class MainTabBarController: UITabBarController {
+class MainTabBarController: CustomTabBarController {
 
     let builder = NavVCBuilder()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setViewControllers()
-        setTabBarAppearence()
     }
 }
 
