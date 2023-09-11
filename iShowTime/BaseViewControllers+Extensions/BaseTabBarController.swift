@@ -31,6 +31,10 @@ class BaseTabBarController: UITabBarController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        animateSelectedItem(item)
+    }
 }
 
 extension BaseTabBarController {
@@ -54,6 +58,14 @@ extension BaseTabBarController {
         tabBar.items?.forEach { item in
             item.titlePositionAdjustment = .init(horizontal: 0, vertical: titleInset)
             item.setTitleTextAttributes(Fonts.tabItemTextAttributes, for: .normal)
+        }
+    }
+
+    func animateSelectedItem(_ item: UITabBarItem) {
+        guard let barItemView = item.value(forKey: "view") as? UIView else { return }
+        UIView.animate(withDuration: 0.5) {
+            barItemView.transform = CGAffineTransform(scaleX: 0.4, y: 0.4)
+            barItemView.transform = .identity
         }
     }
 }

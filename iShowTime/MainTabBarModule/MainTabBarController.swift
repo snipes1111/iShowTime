@@ -25,5 +25,6 @@ extension MainTabBarController {
             builder.createWatchingNowVc(),
             builder.createFinishedVc()
         ]
+        
     }
 }
