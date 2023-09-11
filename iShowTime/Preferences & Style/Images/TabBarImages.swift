@@ -10,4 +10,5 @@ import UIKit
 struct TabBarImages {
     static let searchImage = UIImage.designedImage(.search, 32)
     static let watchingNowImage = UIImage.designedImage(.watchingNow, 32)
+    static let finishedImage = UIImage.designedImage(.finished, 32)
 }

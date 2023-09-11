@@ -12,6 +12,7 @@ extension UIImage {
     enum TabItemImages: String {
         case search = "magnifyingglass"
         case watchingNow = "popcorn"
+        case finished = "film.stack"
     }
 
     static func designedImage(_ systemName: TabItemImages, _ size: CGFloat) -> UIImage? {
