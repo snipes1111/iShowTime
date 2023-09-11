@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainTabBarController: CustomTabBarController {
+class MainTabBarController: BaseTabBarController {
 
     let builder = NavVCBuilder()
 

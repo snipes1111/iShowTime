@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomTabBarController: UITabBarController {
+class BaseTabBarController: UITabBarController {
     private let tabBarWidthInset: CGFloat = 10
     private let tabBarHeightInset: CGFloat = 14
     private let bottomInset: CGFloat = 16
@@ -33,7 +33,7 @@ class CustomTabBarController: UITabBarController {
     }
 }
 
-extension CustomTabBarController {
+extension BaseTabBarController {
     private func addCustomLayerWithColor(_ color: CGColor) {
         let roundLayer = CAShapeLayer()
         roundLayer.path = makeBezierPath()
