@@ -26,6 +26,7 @@ class BaseTabBarController: UITabBarController {
         tabBar.tintColor = AppColors.tabItemColor
         addCustomLayerWithColor(AppColors.tabBarColor)
         customizeItemTitle()
+        makeTabBarTranslucent()
     }
 
     required init?(coder: NSCoder) {
@@ -38,6 +39,13 @@ class BaseTabBarController: UITabBarController {
 }
 
 extension BaseTabBarController {
+
+    private func makeTabBarTranslucent() {
+        tabBar.backgroundColor = .clear
+        tabBar.backgroundImage = UIImage()
+        tabBar.shadowImage = UIImage()
+    }
+
     private func addCustomLayerWithColor(_ color: CGColor) {
         let roundLayer = CAShapeLayer()
         roundLayer.path = makeBezierPath()
