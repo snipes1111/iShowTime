@@ -11,6 +11,8 @@ class WatchingNowView: UIView {
 
     private let tableView: UITableView
 
+    private let reuseIdentifier = "cell"
+
     var viewModel: WatchingNowViewModelProtocol!
 
     override init(frame: CGRect) {
@@ -30,7 +32,7 @@ extension WatchingNowView: UITableViewDataSource, UITableViewDelegate {
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(WatchingNowSeriesCell.self, forCellReuseIdentifier: reuseIdentifier)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,13 +40,12 @@ extension WatchingNowView: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.contentView.backgroundColor = .red
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        bounds.height / 4
+        bounds.height / 5
     }
 }
 
