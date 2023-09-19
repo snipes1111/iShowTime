@@ -79,7 +79,7 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
-		CE1A6B4F2AAF56C900B495EB /* Preferences & Style */ = {
+		CE1A6B4F2AAF56C900B495EB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				CEF455FD2AAB439600D5A397 /* Constants */,
@@ -88,7 +88,7 @@
 				CEF456062AAB731200D5A397 /* Fonts */,
 				CEBAAEA72A13E828001F59A6 /* Assets.xcassets */,
 			);
-			path = "Preferences & Style";
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		CE1A6B502AAF5C5500B495EB /* SystemFiles */ = {
@@ -201,7 +201,7 @@
 				CE1A6B5A2AAF66AD00B495EB /* Extensions */,
 				CEF4560C2AAB791900D5A397 /* Builders */,
 				CEF4560F2AAB7CC600D5A397 /* BaseViewControllers+Extensions */,
-				CE1A6B4F2AAF56C900B495EB /* Preferences & Style */,
+				CE1A6B4F2AAF56C900B495EB /* Resources */,
 				CEF456052AAB725F00D5A397 /* MainTabBarModule */,
 				CEF455FC2AAB307C00D5A397 /* SearchModule */,
 				CE1A6B512AAF5E0E00B495EB /* WatchingNowModule */,
