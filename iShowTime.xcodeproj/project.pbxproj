@@ -11,6 +11,14 @@
 		CE1A6B4D2AAF515000B495EB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B4C2AAF515000B495EB /* Colors.swift */; };
 		CE1A6B532AAF5F4700B495EB /* WatchingNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B522AAF5F4700B495EB /* WatchingNowViewController.swift */; };
 		CE1A6B562AAF5F6800B495EB /* WatchingNowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B552AAF5F6800B495EB /* WatchingNowView.swift */; };
+		CE1A6B592AAF646900B495EB /* WatchingNowConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B582AAF646900B495EB /* WatchingNowConstants.swift */; };
+		CE1A6B5C2AAF66BD00B495EB /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B5B2AAF66BD00B495EB /* UIImage+Extensions.swift */; };
+		CE1A6B5E2AAF6C0F00B495EB /* FinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B5D2AAF6C0F00B495EB /* FinishedViewController.swift */; };
+		CE1A6B602AAF6C3E00B495EB /* FinishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B5F2AAF6C3E00B495EB /* FinishedView.swift */; };
+		CE1A6B652AAF6D1E00B495EB /* FinishedConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B642AAF6D1E00B495EB /* FinishedConstants.swift */; };
+		CE1A6B672AB08C9D00B495EB /* SeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B662AB08C9D00B495EB /* SeriesModel.swift */; };
+		CE1A6B6A2AB0921D00B495EB /* WatchingNowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B692AB0921D00B495EB /* WatchingNowViewModel.swift */; };
+		CEA1A86E2AB0A5220012630D /* WatchingNowSeriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA1A86D2AB0A5220012630D /* WatchingNowSeriesCell.swift */; };
 		CEBAAE9F2A13E824001F59A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBAAE9E2A13E824001F59A6 /* AppDelegate.swift */; };
 		CEBAAEA12A13E824001F59A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBAAEA02A13E824001F59A6 /* SceneDelegate.swift */; };
 		CEBAAEA32A13E824001F59A6 /* SearchSeriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBAAEA22A13E824001F59A6 /* SearchSeriesViewController.swift */; };
@@ -20,7 +28,7 @@
 		CEF456022AAB4BDD00D5A397 /* SearchModuleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF456012AAB4BDD00D5A397 /* SearchModuleConstants.swift */; };
 		CEF456042AAB547B00D5A397 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF456032AAB547B00D5A397 /* MainTabBarController.swift */; };
 		CEF456082AAB732900D5A397 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF456072AAB732900D5A397 /* Fonts.swift */; };
-		CEF4560B2AAB75A300D5A397 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4560A2AAB75A200D5A397 /* Images.swift */; };
+		CEF4560B2AAB75A300D5A397 /* TabBarImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4560A2AAB75A200D5A397 /* TabBarImages.swift */; };
 		CEF4560E2AAB7A1E00D5A397 /* NavVCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4560D2AAB7A1E00D5A397 /* NavVCBuilder.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +37,14 @@
 		CE1A6B4C2AAF515000B495EB /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CE1A6B522AAF5F4700B495EB /* WatchingNowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingNowViewController.swift; sourceTree = "<group>"; };
 		CE1A6B552AAF5F6800B495EB /* WatchingNowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingNowView.swift; sourceTree = "<group>"; };
+		CE1A6B582AAF646900B495EB /* WatchingNowConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingNowConstants.swift; sourceTree = "<group>"; };
+		CE1A6B5B2AAF66BD00B495EB /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		CE1A6B5D2AAF6C0F00B495EB /* FinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedViewController.swift; sourceTree = "<group>"; };
+		CE1A6B5F2AAF6C3E00B495EB /* FinishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedView.swift; sourceTree = "<group>"; };
+		CE1A6B642AAF6D1E00B495EB /* FinishedConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedConstants.swift; sourceTree = "<group>"; };
+		CE1A6B662AB08C9D00B495EB /* SeriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesModel.swift; sourceTree = "<group>"; };
+		CE1A6B692AB0921D00B495EB /* WatchingNowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingNowViewModel.swift; sourceTree = "<group>"; };
+		CEA1A86D2AB0A5220012630D /* WatchingNowSeriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingNowSeriesCell.swift; sourceTree = "<group>"; };
 		CEBAAE9B2A13E824001F59A6 /* iShowTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iShowTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEBAAE9E2A13E824001F59A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEBAAEA02A13E824001F59A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,7 +56,7 @@
 		CEF456012AAB4BDD00D5A397 /* SearchModuleConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModuleConstants.swift; sourceTree = "<group>"; };
 		CEF456032AAB547B00D5A397 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CEF456072AAB732900D5A397 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
-		CEF4560A2AAB75A200D5A397 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		CEF4560A2AAB75A200D5A397 /* TabBarImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarImages.swift; sourceTree = "<group>"; };
 		CEF4560D2AAB7A1E00D5A397 /* NavVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NavVCBuilder.swift; path = ../../../../NavVCBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +86,7 @@
 				CEF456092AAB758E00D5A397 /* Images */,
 				CE1A6B4B2AAF513800B495EB /* Colors */,
 				CEF456062AAB731200D5A397 /* Fonts */,
+				CEBAAEA72A13E828001F59A6 /* Assets.xcassets */,
 			);
 			path = "Preferences & Style";
 			sourceTree = "<group>";
@@ -87,6 +104,7 @@
 		CE1A6B512AAF5E0E00B495EB /* WatchingNowModule */ = {
 			isa = PBXGroup;
 			children = (
+				CE1A6B6B2AB0922600B495EB /* ViewModels */,
 				CE1A6B542AAF5F5000B495EB /* ViewControllers */,
 				CE1A6B572AAF5F7E00B495EB /* Views */,
 			);
@@ -105,8 +123,58 @@
 			isa = PBXGroup;
 			children = (
 				CE1A6B552AAF5F6800B495EB /* WatchingNowView.swift */,
+				CEA1A86D2AB0A5220012630D /* WatchingNowSeriesCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CE1A6B5A2AAF66AD00B495EB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE1A6B5B2AAF66BD00B495EB /* UIImage+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CE1A6B612AAF6C4300B495EB /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE1A6B5D2AAF6C0F00B495EB /* FinishedViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CE1A6B622AAF6C5200B495EB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE1A6B5F2AAF6C3E00B495EB /* FinishedView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE1A6B632AAF6C5B00B495EB /* FinishedModule */ = {
+			isa = PBXGroup;
+			children = (
+				CE1A6B612AAF6C4300B495EB /* ViewControllers */,
+				CE1A6B622AAF6C5200B495EB /* View */,
+			);
+			path = FinishedModule;
+			sourceTree = "<group>";
+		};
+		CE1A6B682AB08CA900B495EB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE1A6B662AB08C9D00B495EB /* SeriesModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE1A6B6B2AB0922600B495EB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				CE1A6B692AB0921D00B495EB /* WatchingNowViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		CEBAAE922A13E823001F59A6 = {
@@ -128,14 +196,16 @@
 		CEBAAE9D2A13E824001F59A6 /* iShowTime */ = {
 			isa = PBXGroup;
 			children = (
+				CE1A6B682AB08CA900B495EB /* Model */,
 				CE1A6B502AAF5C5500B495EB /* SystemFiles */,
+				CE1A6B5A2AAF66AD00B495EB /* Extensions */,
 				CEF4560C2AAB791900D5A397 /* Builders */,
 				CEF4560F2AAB7CC600D5A397 /* BaseViewControllers+Extensions */,
 				CE1A6B4F2AAF56C900B495EB /* Preferences & Style */,
-				CEBAAEA72A13E828001F59A6 /* Assets.xcassets */,
 				CEF456052AAB725F00D5A397 /* MainTabBarModule */,
 				CEF455FC2AAB307C00D5A397 /* SearchModule */,
 				CE1A6B512AAF5E0E00B495EB /* WatchingNowModule */,
+				CE1A6B632AAF6C5B00B495EB /* FinishedModule */,
 				CEBAAEAC2A13E828001F59A6 /* Info.plist */,
 			);
 			path = iShowTime;
@@ -170,6 +240,8 @@
 			isa = PBXGroup;
 			children = (
 				CEF456012AAB4BDD00D5A397 /* SearchModuleConstants.swift */,
+				CE1A6B582AAF646900B495EB /* WatchingNowConstants.swift */,
+				CE1A6B642AAF6D1E00B495EB /* FinishedConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -193,7 +265,7 @@
 		CEF456092AAB758E00D5A397 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				CEF4560A2AAB75A200D5A397 /* Images.swift */,
+				CEF4560A2AAB75A200D5A397 /* TabBarImages.swift */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -293,16 +365,24 @@
 				CEF456082AAB732900D5A397 /* Fonts.swift in Sources */,
 				CE1A6B4D2AAF515000B495EB /* Colors.swift in Sources */,
 				CEF456022AAB4BDD00D5A397 /* SearchModuleConstants.swift in Sources */,
+				CE1A6B5E2AAF6C0F00B495EB /* FinishedViewController.swift in Sources */,
+				CEA1A86E2AB0A5220012630D /* WatchingNowSeriesCell.swift in Sources */,
 				CEBAAEA32A13E824001F59A6 /* SearchSeriesViewController.swift in Sources */,
 				CEF456042AAB547B00D5A397 /* MainTabBarController.swift in Sources */,
 				CEF455FA2AAB305E00D5A397 /* SearchSeriesView.swift in Sources */,
 				CE1A6B532AAF5F4700B495EB /* WatchingNowViewController.swift in Sources */,
+				CE1A6B592AAF646900B495EB /* WatchingNowConstants.swift in Sources */,
 				CE1A6B4A2AAF4D6B00B495EB /* BaseTabBarController.swift in Sources */,
 				CEF4560E2AAB7A1E00D5A397 /* NavVCBuilder.swift in Sources */,
-				CEF4560B2AAB75A300D5A397 /* Images.swift in Sources */,
+				CEF4560B2AAB75A300D5A397 /* TabBarImages.swift in Sources */,
 				CEBAAE9F2A13E824001F59A6 /* AppDelegate.swift in Sources */,
+				CE1A6B5C2AAF66BD00B495EB /* UIImage+Extensions.swift in Sources */,
+				CE1A6B6A2AB0921D00B495EB /* WatchingNowViewModel.swift in Sources */,
+				CE1A6B672AB08C9D00B495EB /* SeriesModel.swift in Sources */,
 				CE1A6B562AAF5F6800B495EB /* WatchingNowView.swift in Sources */,
+				CE1A6B652AAF6D1E00B495EB /* FinishedConstants.swift in Sources */,
 				CEBAAEA12A13E824001F59A6 /* SceneDelegate.swift in Sources */,
+				CE1A6B602AAF6C3E00B495EB /* FinishedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

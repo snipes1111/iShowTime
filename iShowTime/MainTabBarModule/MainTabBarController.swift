@@ -21,7 +21,9 @@ extension MainTabBarController {
 
     private func setViewControllers() {
         viewControllers = [
-            builder.createSearchVc()
+            builder.createSearchVc(),
+            builder.createWatchingNowVc(),
+            builder.createFinishedVc()
         ]
     }
 }
