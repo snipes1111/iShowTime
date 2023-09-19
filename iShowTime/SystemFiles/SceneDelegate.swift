@@ -13,9 +13,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: scene)
-        window?.rootViewController = MainTabBarController()
-        window?.backgroundColor = .white
-        window?.makeKeyAndVisible()
+        let window = UIWindow(windowScene: scene)
+        let builder = Builder()
+        let width = window.screen.bounds.width
+        let height = window.screen.bounds.height / 13
+        let mainTabBarController = builder.buildMainTabController(height, width)
+        window.rootViewController = mainTabBarController
+        window.makeKeyAndVisible()
+        self.window = window
     }
 }
