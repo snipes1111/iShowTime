@@ -9,23 +9,28 @@ import UIKit
 
 class SearchSeriesView: UIView {
 
-    let searchPromptLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = SearchModuleConstants.searchPromptText
-        label.font = .systemFont(ofSize: 24, weight: .semibold)
-        label.textColor = .systemGray
-        return label
-    }()
+    var searchPromptLabel: UILabel!
+    var viewModel: SearchSeriesViewModelProtocol!
 
-    override func layoutSubviews() {
-        backgroundColor = .white
-        setupSearchPromptLabelConstraints()
+    init(viewModel: SearchSeriesViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
+        setupUI()
+        setSearchPromptLabelText()
+        subscribeToViewModel()
     }
 
-    func setupSearchPromptLabelConstraints() {
-        addSubview(searchPromptLabel)
-        searchPromptLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        searchPromptLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func subscribeToViewModel() {
+        viewModel.viewModelDidChange = { [unowned self] _ in
+            setSearchPromptLabelText()
+        }
+    }
+
+    func setSearchPromptLabelText() {
+        searchPromptLabel.text = viewModel.promptText
     }
 }

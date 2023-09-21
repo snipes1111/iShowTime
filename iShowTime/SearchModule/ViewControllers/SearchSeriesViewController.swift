@@ -9,13 +9,23 @@ import UIKit
 
 class SearchSeriesViewController: UIViewController {
 
+    var viewModel: SearchSeriesViewModel!
+
     private var searchController = UISearchController(searchResultsController: nil)
+    var searchView: SearchSeriesView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let searchView = SearchSeriesView()
         searchView.frame = view.frame
-        self.view = searchView
+        view = searchView
         navigationItem.searchController = searchController
+        searchController.searchBar.delegate = self
+    }
+}
+
+extension SearchSeriesViewController: UISearchBarDelegate {
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        viewModel.searchStarted()
+        return true
     }
 }

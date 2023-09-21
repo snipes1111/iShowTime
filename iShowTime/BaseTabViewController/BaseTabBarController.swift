@@ -18,7 +18,7 @@ class BaseTabBarController: UITabBarController {
 
     override func viewDidLayoutSubviews() {
         prepareTabBarForLayer()
-        addCustomLayerWithColor(AppColors.tabBarColor)
+        addCustomLayerWithColor(Colors.tabBarColor)
         customizeItemTitle()
     }
 
@@ -38,7 +38,7 @@ extension BaseTabBarController {
         tabBar.backgroundColor = .clear
         tabBar.backgroundImage = UIImage()
         tabBar.shadowImage = UIImage()
-        tabBar.tintColor = AppColors.tabItemColor
+        tabBar.tintColor = Colors.tabItemColor
     }
 
     private func addCustomLayerWithColor(_ color: CGColor) {
