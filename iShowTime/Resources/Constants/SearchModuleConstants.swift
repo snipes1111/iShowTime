@@ -8,6 +8,7 @@
 import Foundation
 
 struct SearchModuleConstants {
-    static let searchPromptText = "Explore your new experience"
+    static let startSearchPromptText = "Explore your new experience"
+    static let loadingSearchPromptText = "Searching for results..."
     static let title = "Search"
 }

@@ -9,14 +9,17 @@ import UIKit
 
 class SearchSeriesView: UIView {
 
+    var shouldSetupConstraints = true
+
     var searchPromptLabel: UILabel!
+    var spinner: UIActivityIndicatorView!
+    var tableView: UITableView!
     var viewModel: SearchSeriesViewModelProtocol!
 
     init(viewModel: SearchSeriesViewModelProtocol) {
         self.viewModel = viewModel
         super.init(frame: .zero)
         setupUI()
-        setSearchPromptLabelText()
         subscribeToViewModel()
     }
 
@@ -24,13 +27,35 @@ class SearchSeriesView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func updateConstraints() {
+        updateSubviewsConstraints()
+        super.updateConstraints()
+    }
+
     func subscribeToViewModel() {
         viewModel.viewModelDidChange = { [unowned self] _ in
-            setSearchPromptLabelText()
+            tableView.reloadData()
+        }
+        bindWithIsLoadingState()
+    }
+
+    func bindWithIsLoadingState() {
+        viewModel.isLoading.bind { [unowned self] isLoading in
+            updateSearchPromptLabel()
+            manageSpinner(isLoading)
         }
     }
 
-    func setSearchPromptLabelText() {
-        searchPromptLabel.text = viewModel.promptText
+    func updateSearchPromptLabel() {
+        searchPromptLabel.isHidden = viewModel.promptLabelIsHidden
+        searchPromptLabel.text = viewModel.promptLabelText
+    }
+
+    func manageSpinner(_ isLoading: Bool) {
+        if isLoading {
+            spinner.startAnimating()
+        } else {
+            spinner.stopAnimating()
+        }
     }
 }
