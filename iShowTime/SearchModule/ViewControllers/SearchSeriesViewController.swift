@@ -9,13 +9,39 @@ import UIKit
 
 class SearchSeriesViewController: UIViewController {
 
-    private var searchController = UISearchController(searchResultsController: nil)
+    var viewModel: SearchSeriesViewModel!
+    var searchView: SearchSeriesView!
+
+    private var searchController: UISearchController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let searchView = SearchSeriesView()
+        createSearchView()
+        createSearchBar()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        navigationItem.hidesSearchBarWhenScrolling = true
+    }
+
+    func createSearchView() {
         searchView.frame = view.frame
-        self.view = searchView
+        view.addSubview(searchView)
+    }
+
+    func createSearchBar() {
+        searchController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchController
+        searchController.searchBar.delegate = self
+    }
+}
+
+extension SearchSeriesViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.fetchSeries(searchText)
     }
 }

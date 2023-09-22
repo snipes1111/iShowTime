@@ -9,23 +9,53 @@ import UIKit
 
 class SearchSeriesView: UIView {
 
-    let searchPromptLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = SearchModuleConstants.searchPromptText
-        label.font = .systemFont(ofSize: 24, weight: .semibold)
-        label.textColor = .systemGray
-        return label
-    }()
+    var shouldSetupConstraints = true
 
-    override func layoutSubviews() {
-        backgroundColor = .white
-        setupSearchPromptLabelConstraints()
+    var searchPromptLabel: UILabel!
+    var spinner: UIActivityIndicatorView!
+    var tableView: UITableView!
+    var viewModel: SearchSeriesViewModelProtocol!
+
+    init(viewModel: SearchSeriesViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
+        setupUI()
+        subscribeToViewModel()
     }
 
-    func setupSearchPromptLabelConstraints() {
-        addSubview(searchPromptLabel)
-        searchPromptLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        searchPromptLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func updateConstraints() {
+        updateSubviewsConstraints()
+        super.updateConstraints()
+    }
+
+    func subscribeToViewModel() {
+        viewModel.viewModelDidChange = { [unowned self] _ in
+            tableView.reloadData()
+        }
+        bindWithIsLoadingState()
+    }
+
+    func bindWithIsLoadingState() {
+        viewModel.isLoading.bind { [unowned self] isLoading in
+            updateSearchPromptLabel()
+            manageSpinner(isLoading)
+        }
+    }
+
+    func updateSearchPromptLabel() {
+        searchPromptLabel.isHidden = viewModel.promptLabelIsHidden
+        searchPromptLabel.text = viewModel.promptLabelText
+    }
+
+    func manageSpinner(_ isLoading: Bool) {
+        if isLoading {
+            spinner.startAnimating()
+        } else {
+            spinner.stopAnimating()
+        }
     }
 }

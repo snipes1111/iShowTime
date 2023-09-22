@@ -9,12 +9,13 @@ import UIKit
 
 class WatchingNowViewController: UIViewController {
 
+    var watchingNowView: WatchingNowView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        let watchingNowView = WatchingNowView()
-        let series = SeriesModel.getSeries()
-        watchingNowView.viewModel = WatchingNowViewModel(series: series)
+        navigationItem.searchController = UISearchController(searchResultsController: nil)
         watchingNowView.frame = view.frame
         view = watchingNowView
+
     }
 }

@@ -8,29 +8,18 @@
 import UIKit
 
 class BaseTabBarController: UITabBarController {
-    private let tabBarWidthInset: CGFloat = 10
-    private let tabBarHeightInset: CGFloat = 14
-    private let bottomInset: CGFloat = 16
-    private let titleInset: CGFloat = 8
 
-    private var tabBarWidth: CGFloat {
-        tabBar.bounds.width - tabBarWidthInset * 2
+    var viewModel: BaseTabBarViewModelProtocol!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        makeTabBarTranslucentAndSetItemColor()
     }
 
-    private var tabBarHeight: CGFloat {
-        tabBar.bounds.height + tabBarHeightInset * 2
-    }
-
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        tabBar.tintColor = AppColors.tabItemColor
-        addCustomLayerWithColor(AppColors.tabBarColor)
+    override func viewDidLayoutSubviews() {
+        prepareTabBarForLayer()
+        addCustomLayerWithColor(Colors.tabBarColor)
         customizeItemTitle()
-        makeTabBarTranslucent()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -40,10 +29,16 @@ class BaseTabBarController: UITabBarController {
 
 extension BaseTabBarController {
 
-    private func makeTabBarTranslucent() {
+    private func prepareTabBarForLayer() {
+        tabBar.frame.size.height = viewModel.estimatedTabBarHeight()
+        tabBar.frame.origin.y = view.frame.height - viewModel.estimatedTabBarHeight()
+    }
+
+    private func makeTabBarTranslucentAndSetItemColor() {
         tabBar.backgroundColor = .clear
         tabBar.backgroundImage = UIImage()
         tabBar.shadowImage = UIImage()
+        tabBar.tintColor = Colors.tabItemColor
     }
 
     private func addCustomLayerWithColor(_ color: CGColor) {
@@ -54,8 +49,10 @@ extension BaseTabBarController {
     }
 
     private func makeBezierPath() -> CGPath {
-        let startPointX = tabBarWidthInset
-        let startPointY = tabBar.bounds.minY - bottomInset
+        let startPointX = viewModel.tabBarWidthInset
+        let startPointY = tabBar.bounds.minY - viewModel.tabBarHeightInset
+        let tabBarWidth = viewModel.estimatedTabBarWidth()
+        let tabBarHeight = viewModel.estimatedTabBarHeight()
         let roundedRect = CGRect(x: startPointX, y: startPointY,
                                  width: tabBarWidth, height: tabBarHeight)
         return UIBezierPath(roundedRect: roundedRect,
@@ -64,16 +61,13 @@ extension BaseTabBarController {
 
     private func customizeItemTitle() {
         tabBar.items?.forEach { item in
-            item.titlePositionAdjustment = .init(horizontal: 0, vertical: titleInset)
+            item.titlePositionAdjustment = .init(horizontal: .zero, vertical: viewModel.tabItemTitleInset)
             item.setTitleTextAttributes(Fonts.tabItemTextAttributes, for: .normal)
         }
     }
 
     func animateSelectedItem(_ item: UITabBarItem) {
         guard let barItemView = item.value(forKey: "view") as? UIView else { return }
-        UIView.animate(withDuration: 0.5) {
-            barItemView.transform = CGAffineTransform(scaleX: 0.4, y: 0.4)
-            barItemView.transform = .identity
-        }
+        barItemView.addSpringAnimation(0.5)
     }
 }

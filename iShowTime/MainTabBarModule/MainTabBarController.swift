@@ -9,21 +9,22 @@ import UIKit
 
 class MainTabBarController: BaseTabBarController {
 
-    let builder = NavVCBuilder()
+    var builder: BuilderProtocol!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setViewControllers()
     }
+
 }
 
 extension MainTabBarController {
-
     private func setViewControllers() {
+        guard let builder = builder else { return }
         viewControllers = [
-            builder.createSearchVc(),
-            builder.createWatchingNowVc(),
-            builder.createFinishedVc()
+            builder.buildSearchViewController(),
+            builder.buildWatchingNowViewController(),
+            builder.buildFinishedViewController()
         ]
     }
 }

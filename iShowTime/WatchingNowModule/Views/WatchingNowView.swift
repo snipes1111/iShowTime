@@ -7,11 +7,11 @@
 
 import UIKit
 
+let reuseIdentifier = "cell"
+
 class WatchingNowView: UIView {
 
     private let tableView: UITableView
-
-    private let reuseIdentifier = "cell"
 
     var viewModel: WatchingNowViewModelProtocol!
 
