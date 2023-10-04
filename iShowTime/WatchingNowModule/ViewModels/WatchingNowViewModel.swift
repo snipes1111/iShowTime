@@ -11,7 +11,7 @@ protocol WatchingNowViewModelProtocol {
 
     var numberOfSeries: Int { get }
 
-    init(series: [SeriesModel])
+    init(series: [Series])
 
 }
 
@@ -21,9 +21,9 @@ class WatchingNowViewModel: WatchingNowViewModelProtocol {
         series.count
     }
 
-    private let series: [SeriesModel]
+    private let series: [Series]
 
-    required init(series: [SeriesModel]) {
+    required init(series: [Series]) {
         self.series = series
     }
 

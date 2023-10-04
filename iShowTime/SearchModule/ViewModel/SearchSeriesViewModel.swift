@@ -18,7 +18,7 @@ protocol SearchSeriesViewModelProtocol {
 
 class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
 
-    private var series: [SeriesModel] = []
+    private var series: [Series] = []
 
     var viewModelDidChange: ((SearchSeriesViewModelProtocol) -> Void)?
     var isLoading: Box<Bool> = Box(value: false)
@@ -34,7 +34,6 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
         Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
             self.promptLabelIsHidden = true
             self.isLoading.value.toggle()
-            self.series = SeriesModel.getSeries()
             self.viewModelDidChange?(self)
         }
     }

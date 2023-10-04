@@ -13,6 +13,8 @@ class SearchSeriesViewController: UIViewController {
     var searchView: SearchSeriesView!
 
     private var searchController: UISearchController!
+    let networkManager = NetworkService()
+    let decoder = SeriesDecoder()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,14 @@ class SearchSeriesViewController: UIViewController {
 
 extension SearchSeriesViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.fetchSeries(searchText)
+        //viewModel.fetchSeries(searchText)
+        guard searchText.count > 6 else { return }
+        Task {
+            let data = try? await networkManager.fetchSeriesData(searchText)
+            if let data = data {
+                let series = decoder.decodeSeriesFromData(data)
+                print(series)
+            }
+        }
     }
 }

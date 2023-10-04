@@ -39,6 +39,9 @@
 		CEF456042AAB547B00D5A397 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF456032AAB547B00D5A397 /* MainTabBarController.swift */; };
 		CEF456082AAB732900D5A397 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF456072AAB732900D5A397 /* Fonts.swift */; };
 		CEF4560B2AAB75A300D5A397 /* TabBarImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4560A2AAB75A200D5A397 /* TabBarImages.swift */; };
+		CEF502F92ACDB32400DFB431 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF502F82ACDB32400DFB431 /* APIService.swift */; };
+		CEF502FB2ACDD17A00DFB431 /* AccessInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEF502FA2ACDD17A00DFB431 /* AccessInfo.plist */; };
+		CEF502FD2ACDD1F100DFB431 /* PlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF502FC2ACDD1F100DFB431 /* PlistManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +79,9 @@
 		CEF456032AAB547B00D5A397 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CEF456072AAB732900D5A397 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		CEF4560A2AAB75A200D5A397 /* TabBarImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarImages.swift; sourceTree = "<group>"; };
+		CEF502F82ACDB32400DFB431 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		CEF502FA2ACDD17A00DFB431 /* AccessInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AccessInfo.plist; sourceTree = "<group>"; };
+		CEF502FC2ACDD1F100DFB431 /* PlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,7 @@
 				CE1A6B4B2AAF513800B495EB /* Colors */,
 				CEF456062AAB731200D5A397 /* Fonts */,
 				CEBAAEA72A13E828001F59A6 /* Assets.xcassets */,
+				CEF502FA2ACDD17A00DFB431 /* AccessInfo.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -209,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				CEA1A8CF2ABC6D580012630D /* Box.swift */,
+				CEF502FC2ACDD1F100DFB431 /* PlistManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -254,6 +262,7 @@
 			children = (
 				CEBB0FB82AC5E8CE00A45074 /* NetworkService.swift */,
 				CEBB0FBA2AC5EE1500A45074 /* SeriesDecoder.swift */,
+				CEF502F82ACDB32400DFB431 /* APIService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -403,6 +412,7 @@
 			files = (
 				CEF456002AAB472600D5A397 /* LaunchScreen.storyboard in Resources */,
 				CEBAAEA82A13E828001F59A6 /* Assets.xcassets in Resources */,
+				CEF502FB2ACDD17A00DFB431 /* AccessInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,12 +443,14 @@
 				CE1A6B5C2AAF66BD00B495EB /* UIImage+Extensions.swift in Sources */,
 				CEA1A8C42AB9D7C20012630D /* BaseTabBarViewModel.swift in Sources */,
 				CEA1A8D02ABC6D580012630D /* Box.swift in Sources */,
+				CEF502FD2ACDD1F100DFB431 /* PlistManager.swift in Sources */,
 				CE1A6B6A2AB0921D00B495EB /* WatchingNowViewModel.swift in Sources */,
 				CEA1A8D22ABC81270012630D /* UILabel+Extensions.swift in Sources */,
 				CE1A6B672AB08C9D00B495EB /* SeriesModel.swift in Sources */,
 				CE65E9642ABCC209009E38E8 /* Builder.swift in Sources */,
 				CE1A6B562AAF5F6800B495EB /* WatchingNowView.swift in Sources */,
 				CE1A6B652AAF6D1E00B495EB /* FinishedConstants.swift in Sources */,
+				CEF502F92ACDB32400DFB431 /* APIService.swift in Sources */,
 				CEBAAEA12A13E824001F59A6 /* SceneDelegate.swift in Sources */,
 				CEBB0FB92AC5E8CE00A45074 /* NetworkService.swift in Sources */,
 				CE1A6B602AAF6C3E00B495EB /* FinishedView.swift in Sources */,

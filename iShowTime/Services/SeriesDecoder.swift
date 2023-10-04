@@ -8,17 +8,24 @@
 import Foundation
 
 protocol SeriesDecoderProtocol {
-    func decodeSeriesFromData(_ data: Data) -> [SeriesModel]
+    func decodeSeriesFromData(_ data: Data) -> [Series]?
 }
 
 class SeriesDecoder: JSONDecoder, SeriesDecoderProtocol {
+
     override init() {
         super.init()
         self.keyDecodingStrategy = .convertFromSnakeCase
     }
 
-    func decodeSeriesFromData(_ data: Data) -> [SeriesModel] {
-        guard let series = try? decode([SeriesModel].self, from: data) else { return [] }
-        return series
+    func decodeSeriesFromData(_ data: Data) -> [Series]? {
+        do {
+            let page = try decode(Page.self, from: data)
+            let series = page.results
+            return series
+        } catch {
+            print("Error to fetch json: \(error)")
+        }
+        return nil
     }
 }

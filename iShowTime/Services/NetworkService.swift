@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
-    func fetchSeries(with name: String) -> [SeriesModel]
+    func fetchSeries(with name: String) -> [Series]
 }
 
 final class NetworkService {
@@ -17,12 +17,12 @@ final class NetworkService {
         case invalidUrl
     }
 
-    private init() {}
+    private let apiService = APIService()
 
-    private func fetchSeriesData(_ urlString: String) async throws -> Data {
-        guard let url = URL(string: urlString) else { throw NetworkErrors.invalidUrl }
+    func fetchSeriesData(_ urlString: String) async throws -> Data {
+        guard let urlRequest = apiService.buildUrlRequest(with: urlString) else { throw NetworkErrors.invalidUrl }
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
+            let (data, _) = try await URLSession.shared.data(for: urlRequest)
             return data
         } catch {
             throw NetworkErrors.badResponse

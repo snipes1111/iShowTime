@@ -7,29 +7,19 @@
 
 import Foundation
 
-struct SeriesModel: Codable {
-    let name: String
-    let numberOfSeasons: Int
-    let numberOfSeries: Int
-    let image: String
-    let currentSeason: Int
-    let currentEpisode: Int
+struct Page: Codable {
+    let page: Double?
+    let results: [Series]?
+    let totalPages: Double?
+    let totalResults: Double?
 }
 
-extension SeriesModel {
-    static func getCurrentEpisode() -> SeriesModel {
-        return SeriesModel(name: "Title of series", numberOfSeasons: 5, numberOfSeries: 20,
-                           image: "film", currentSeason: 2, currentEpisode: 5)
-    }
-
-    static func getSeries() -> [SeriesModel] {
-        return [
-            SeriesModel(name: "Lost", numberOfSeasons: 5, numberOfSeries: 20,
-                        image: "film", currentSeason: 2, currentEpisode: 5),
-            SeriesModel(name: "Game of the thrones", numberOfSeasons: 10, numberOfSeries: 15,
-                        image: "film", currentSeason: 1, currentEpisode: 10),
-            SeriesModel(name: "Sherlock", numberOfSeasons: 2, numberOfSeries: 32,
-                        image: "film", currentSeason: 7, currentEpisode: 8)
-        ]
-    }
+struct Series: Codable {
+    let id: Double?
+    let name: String?
+    let overview: String?
+    let posterPath: String?
+    let voteAverage: Double?
+    let numberOfEpisodes: Double?
+    let numberOfSeasons: Double?
 }
