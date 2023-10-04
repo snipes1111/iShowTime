@@ -8,10 +8,10 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
-    func fetchSeries(with name: String) -> [Series]
+    func fetchSeriesData(_ urlString: String) async throws -> Data
 }
 
-final class NetworkService {
+final class NetworkService: NetworkServiceProtocol {
     enum NetworkErrors: Error {
         case badResponse
         case invalidUrl

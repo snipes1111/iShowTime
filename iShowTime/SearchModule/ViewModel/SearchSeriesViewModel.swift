@@ -19,6 +19,8 @@ protocol SearchSeriesViewModelProtocol {
 class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
 
     private var series: [Series] = []
+    let networkManager: NetworkServiceProtocol = NetworkService()
+    let decoder: SeriesDecoderProtocol = SeriesDecoder()
 
     var viewModelDidChange: ((SearchSeriesViewModelProtocol) -> Void)?
     var isLoading: Box<Bool> = Box(value: false)
@@ -31,10 +33,18 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
     func fetchSeries(_ searchText: String?) {
         guard let searchText = searchText, !searchText.isEmpty else { return }
         isLoading.value.toggle()
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-            self.promptLabelIsHidden = true
-            self.isLoading.value.toggle()
-            self.viewModelDidChange?(self)
+        Task {
+            do {
+                let data = try await networkManager.fetchSeriesData(searchText)
+                guard let series = decoder.decodeSeriesFromData(data) else { return }
+                self.series = series
+                print("Success_________: \(series)")
+                self.promptLabelIsHidden = true
+                self.isLoading.value.toggle()
+                self.viewModelDidChange?(self)
+            } catch {
+                print("Error: \(error)")
+            }
         }
     }
 }

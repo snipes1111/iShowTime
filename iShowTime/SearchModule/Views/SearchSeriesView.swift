@@ -34,15 +34,19 @@ class SearchSeriesView: UIView {
 
     func subscribeToViewModel() {
         viewModel.viewModelDidChange = { [unowned self] _ in
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
         bindWithIsLoadingState()
     }
 
     func bindWithIsLoadingState() {
         viewModel.isLoading.bind { [unowned self] isLoading in
-            updateSearchPromptLabel()
-            manageSpinner(isLoading)
+            DispatchQueue.main.async {
+                self.updateSearchPromptLabel()
+                self.manageSpinner(isLoading)
+            }
         }
     }
 

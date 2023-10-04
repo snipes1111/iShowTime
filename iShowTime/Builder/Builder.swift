@@ -39,7 +39,7 @@ class Builder: BuilderProtocol {
 
     func buildWatchingNowViewController() -> UIViewController {
         let view = WatchingNowView()
-        let viewModel = WatchingNowViewModel(series: SeriesModel.getSeries())
+        let viewModel = WatchingNowViewModel(series: [])
         view.viewModel = viewModel
         let viewController = WatchingNowViewController()
         viewController.watchingNowView = view
