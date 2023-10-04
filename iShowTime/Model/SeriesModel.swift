@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SeriesModel {
+struct SeriesModel: Codable {
     let name: String
     let numberOfSeasons: Int
     let numberOfSeries: Int

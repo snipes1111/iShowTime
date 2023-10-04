@@ -31,6 +31,8 @@
 		CEBAAEA12A13E824001F59A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBAAEA02A13E824001F59A6 /* SceneDelegate.swift */; };
 		CEBAAEA32A13E824001F59A6 /* SearchSeriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBAAEA22A13E824001F59A6 /* SearchSeriesViewController.swift */; };
 		CEBAAEA82A13E828001F59A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEBAAEA72A13E828001F59A6 /* Assets.xcassets */; };
+		CEBB0FB92AC5E8CE00A45074 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB0FB82AC5E8CE00A45074 /* NetworkService.swift */; };
+		CEBB0FBB2AC5EE1500A45074 /* SeriesDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB0FBA2AC5EE1500A45074 /* SeriesDecoder.swift */; };
 		CEF455FA2AAB305E00D5A397 /* SearchSeriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF455F92AAB305E00D5A397 /* SearchSeriesView.swift */; };
 		CEF456002AAB472600D5A397 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEBAAEA92A13E828001F59A6 /* LaunchScreen.storyboard */; };
 		CEF456022AAB4BDD00D5A397 /* SearchModuleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF456012AAB4BDD00D5A397 /* SearchModuleConstants.swift */; };
@@ -67,6 +69,8 @@
 		CEBAAEA72A13E828001F59A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEBAAEAA2A13E828001F59A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEBAAEAC2A13E828001F59A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEBB0FB82AC5E8CE00A45074 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		CEBB0FBA2AC5EE1500A45074 /* SeriesDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDecoder.swift; sourceTree = "<group>"; };
 		CEF455F92AAB305E00D5A397 /* SearchSeriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSeriesView.swift; sourceTree = "<group>"; };
 		CEF456012AAB4BDD00D5A397 /* SearchModuleConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModuleConstants.swift; sourceTree = "<group>"; };
 		CEF456032AAB547B00D5A397 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -228,8 +232,9 @@
 		CEBAAE9D2A13E824001F59A6 /* iShowTime */ = {
 			isa = PBXGroup;
 			children = (
-				CEA1A8CE2ABC6D440012630D /* Helpers */,
+				CEBB0FB72AC5E89A00A45074 /* Services */,
 				CE1A6B502AAF5C5500B495EB /* SystemFiles */,
+				CEA1A8CE2ABC6D440012630D /* Helpers */,
 				CE1A6B5A2AAF66AD00B495EB /* Extensions */,
 				CE1A6B4F2AAF56C900B495EB /* Resources */,
 				CEF4560C2AAB791900D5A397 /* Builder */,
@@ -242,6 +247,15 @@
 				CEBAAEAC2A13E828001F59A6 /* Info.plist */,
 			);
 			path = iShowTime;
+			sourceTree = "<group>";
+		};
+		CEBB0FB72AC5E89A00A45074 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB0FB82AC5E8CE00A45074 /* NetworkService.swift */,
+				CEBB0FBA2AC5EE1500A45074 /* SeriesDecoder.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		CEF455F82AAB302900D5A397 /* ViewControllers */ = {
@@ -412,6 +426,7 @@
 				CEF455FA2AAB305E00D5A397 /* SearchSeriesView.swift in Sources */,
 				CE1A6B532AAF5F4700B495EB /* WatchingNowViewController.swift in Sources */,
 				CE1A6B592AAF646900B495EB /* WatchingNowConstants.swift in Sources */,
+				CEBB0FBB2AC5EE1500A45074 /* SeriesDecoder.swift in Sources */,
 				CE1A6B4A2AAF4D6B00B495EB /* BaseTabBarController.swift in Sources */,
 				CEF4560B2AAB75A300D5A397 /* TabBarImages.swift in Sources */,
 				CEBAAE9F2A13E824001F59A6 /* AppDelegate.swift in Sources */,
@@ -425,6 +440,7 @@
 				CE1A6B562AAF5F6800B495EB /* WatchingNowView.swift in Sources */,
 				CE1A6B652AAF6D1E00B495EB /* FinishedConstants.swift in Sources */,
 				CEBAAEA12A13E824001F59A6 /* SceneDelegate.swift in Sources */,
+				CEBB0FB92AC5E8CE00A45074 /* NetworkService.swift in Sources */,
 				CE1A6B602AAF6C3E00B495EB /* FinishedView.swift in Sources */,
 				CEA1A8D42ABC9B3E0012630D /* SearchSeriesViewController+TableView.swift in Sources */,
 			);

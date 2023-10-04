@@ -17,7 +17,7 @@ class BaseTabBarController: UITabBarController {
     }
 
     override func viewDidLayoutSubviews() {
-        updateTabBarFrame()
+        prepareTabBarForLayer()
         addCustomLayerWithColor(Colors.tabBarColor)
         customizeItemTitle()
     }
@@ -29,7 +29,7 @@ class BaseTabBarController: UITabBarController {
 
 extension BaseTabBarController {
 
-    private func updateTabBarFrame() {
+    private func prepareTabBarForLayer() {
         tabBar.frame.size.height = viewModel.estimatedTabBarHeight()
         tabBar.frame.origin.y = view.frame.height - viewModel.estimatedTabBarHeight()
     }
