@@ -45,7 +45,7 @@ extension WatchingNowView: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        bounds.height / 5
+        bounds.height / 4
     }
 }
 

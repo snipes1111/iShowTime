@@ -43,6 +43,12 @@
 		CEF502FB2ACDD17A00DFB431 /* AccessInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEF502FA2ACDD17A00DFB431 /* AccessInfo.plist */; };
 		CEF502FD2ACDD1F100DFB431 /* PlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF502FC2ACDD1F100DFB431 /* PlistManager.swift */; };
 		CEF502FF2ACEFEDF00DFB431 /* Task+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF502FE2ACEFEDF00DFB431 /* Task+Extensions.swift */; };
+		CEF503012ACF0BC800DFB431 /* SearchSeriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF503002ACF0BC800DFB431 /* SearchSeriesCell.swift */; };
+		CEF503032ACF0BF900DFB431 /* SearchSeriesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF503022ACF0BF900DFB431 /* SearchSeriesCellViewModel.swift */; };
+		CEF503072ACF13B400DFB431 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF503062ACF13B400DFB431 /* BaseTableViewCell.swift */; };
+		CEF503092ACF24C500DFB431 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF503082ACF24C400DFB431 /* String+Extensions.swift */; };
+		CEF5030B2ACF298700DFB431 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF5030A2ACF298700DFB431 /* Double+Extensions.swift */; };
+		CEF5030D2ACF334500DFB431 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF5030C2ACF334500DFB431 /* UIImageView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +90,12 @@
 		CEF502FA2ACDD17A00DFB431 /* AccessInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AccessInfo.plist; sourceTree = "<group>"; };
 		CEF502FC2ACDD1F100DFB431 /* PlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistManager.swift; sourceTree = "<group>"; };
 		CEF502FE2ACEFEDF00DFB431 /* Task+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Extensions.swift"; sourceTree = "<group>"; };
+		CEF503002ACF0BC800DFB431 /* SearchSeriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSeriesCell.swift; sourceTree = "<group>"; };
+		CEF503022ACF0BF900DFB431 /* SearchSeriesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSeriesCellViewModel.swift; sourceTree = "<group>"; };
+		CEF503062ACF13B400DFB431 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		CEF503082ACF24C400DFB431 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		CEF5030A2ACF298700DFB431 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
+		CEF5030C2ACF334500DFB431 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +174,9 @@
 				CEA1A8D12ABC81270012630D /* UILabel+Extensions.swift */,
 				CEA1A8C52AB9F55B0012630D /* UIView+Extensions.swift */,
 				CEF502FE2ACEFEDF00DFB431 /* Task+Extensions.swift */,
+				CEF503082ACF24C400DFB431 /* String+Extensions.swift */,
+				CEF5030A2ACF298700DFB431 /* Double+Extensions.swift */,
+				CEF5030C2ACF334500DFB431 /* UIImageView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -243,6 +258,7 @@
 		CEBAAE9D2A13E824001F59A6 /* iShowTime */ = {
 			isa = PBXGroup;
 			children = (
+				CEF503052ACF139100DFB431 /* BaseTableViewCell */,
 				CE1A6B502AAF5C5500B495EB /* SystemFiles */,
 				CEBB0FB72AC5E89A00A45074 /* Services */,
 				CEA1A8CE2ABC6D440012630D /* Helpers */,
@@ -284,6 +300,7 @@
 				CEF455F92AAB305E00D5A397 /* SearchSeriesView.swift */,
 				CEA1A8C72ABB37890012630D /* SearchSeriesView+Extensions.swift */,
 				CEA1A8D32ABC9B3D0012630D /* SearchSeriesViewController+TableView.swift */,
+				CEF503042ACF0EFA00DFB431 /* SearchSeriesCell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -347,6 +364,23 @@
 				CEA1A8C32AB9D7C20012630D /* BaseTabBarViewModel.swift */,
 			);
 			path = BaseTabViewController;
+			sourceTree = "<group>";
+		};
+		CEF503042ACF0EFA00DFB431 /* SearchSeriesCell */ = {
+			isa = PBXGroup;
+			children = (
+				CEF503002ACF0BC800DFB431 /* SearchSeriesCell.swift */,
+				CEF503022ACF0BF900DFB431 /* SearchSeriesCellViewModel.swift */,
+			);
+			path = SearchSeriesCell;
+			sourceTree = "<group>";
+		};
+		CEF503052ACF139100DFB431 /* BaseTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CEF503062ACF13B400DFB431 /* BaseTableViewCell.swift */,
+			);
+			path = BaseTableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,10 +460,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF5030D2ACF334500DFB431 /* UIImageView+Extensions.swift in Sources */,
 				CEF456082AAB732900D5A397 /* Fonts.swift in Sources */,
+				CEF5030B2ACF298700DFB431 /* Double+Extensions.swift in Sources */,
 				CEA1A8C82ABB37890012630D /* SearchSeriesView+Extensions.swift in Sources */,
 				CE1A6B4D2AAF515000B495EB /* Colors.swift in Sources */,
 				CEF456022AAB4BDD00D5A397 /* SearchModuleConstants.swift in Sources */,
+				CEF503072ACF13B400DFB431 /* BaseTableViewCell.swift in Sources */,
 				CEA1A8CA2ABB46030012630D /* SearchSeriesViewModel.swift in Sources */,
 				CE1A6B5E2AAF6C0F00B495EB /* FinishedViewController.swift in Sources */,
 				CEA1A86E2AB0A5220012630D /* WatchingNowSeriesCell.swift in Sources */,
@@ -437,6 +474,7 @@
 				CEA1A8C62AB9F55C0012630D /* UIView+Extensions.swift in Sources */,
 				CEF456042AAB547B00D5A397 /* MainTabBarController.swift in Sources */,
 				CEF455FA2AAB305E00D5A397 /* SearchSeriesView.swift in Sources */,
+				CEF503092ACF24C500DFB431 /* String+Extensions.swift in Sources */,
 				CE1A6B532AAF5F4700B495EB /* WatchingNowViewController.swift in Sources */,
 				CE1A6B592AAF646900B495EB /* WatchingNowConstants.swift in Sources */,
 				CEBB0FBB2AC5EE1500A45074 /* SeriesDecoder.swift in Sources */,
@@ -446,10 +484,12 @@
 				CE1A6B5C2AAF66BD00B495EB /* UIImage+Extensions.swift in Sources */,
 				CEA1A8C42AB9D7C20012630D /* BaseTabBarViewModel.swift in Sources */,
 				CEA1A8D02ABC6D580012630D /* Box.swift in Sources */,
+				CEF503012ACF0BC800DFB431 /* SearchSeriesCell.swift in Sources */,
 				CEF502FD2ACDD1F100DFB431 /* PlistManager.swift in Sources */,
 				CE1A6B6A2AB0921D00B495EB /* WatchingNowViewModel.swift in Sources */,
 				CEA1A8D22ABC81270012630D /* UILabel+Extensions.swift in Sources */,
 				CE1A6B672AB08C9D00B495EB /* SeriesModel.swift in Sources */,
+				CEF503032ACF0BF900DFB431 /* SearchSeriesCellViewModel.swift in Sources */,
 				CE65E9642ABCC209009E38E8 /* Builder.swift in Sources */,
 				CE1A6B562AAF5F6800B495EB /* WatchingNowView.swift in Sources */,
 				CE1A6B652AAF6D1E00B495EB /* FinishedConstants.swift in Sources */,

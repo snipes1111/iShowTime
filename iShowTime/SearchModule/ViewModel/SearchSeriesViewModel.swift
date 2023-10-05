@@ -14,6 +14,7 @@ protocol SearchSeriesViewModelProtocol {
     var promptLabelIsHidden: Bool { get }
     var numberOfRows: Int { get }
     func fetchSeries(_ searchText: String?)
+    func configureCell(_ searchCell: SearchSeriesCell, _ indexPath: IndexPath)
 }
 
 class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
@@ -41,8 +42,8 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
         let task = Task.delayed(byTimeInterval: 3) { [unowned self] in
             await self.fetchAndDecodeData(searchText)
             self.promptLabelIsHidden = true
-            self.viewModelDidChange?(self)
             self.isLoading.value = false
+            self.viewModelDidChange?(self)
         }
         currentTask = task
     }
@@ -55,5 +56,10 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
         } catch {
             print("Error: \(error)")
         }
+    }
+
+    func configureCell(_ searchCell: SearchSeriesCell, _ indexPath: IndexPath) {
+        let seriesViewModel = SearchSeriesCellViewModel(series: series[indexPath.item])
+        searchCell.viewModel = seriesViewModel
     }
 }

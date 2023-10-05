@@ -33,4 +33,9 @@ class APIService {
         return urlComponents?.url
     }
 
+    func buildImageUrl(_ imagePath: String) -> URL? {
+        let baseUrlString = "https://image.tmdb.org/t/p/w500\(imagePath)"
+        return URL(string: baseUrlString)
+    }
+
 }

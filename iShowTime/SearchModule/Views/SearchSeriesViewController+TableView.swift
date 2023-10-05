@@ -12,7 +12,7 @@ extension SearchSeriesView {
         tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(WatchingNowSeriesCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(SearchSeriesCell.self, forCellReuseIdentifier: SearchModuleConstants.cellIdentifier)
         addTableView()
     }
 
@@ -36,13 +36,15 @@ extension SearchSeriesView: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchModuleConstants.cellIdentifier, for: indexPath) as? SearchSeriesCell
+        else { return UITableViewCell() }
+        viewModel.configureCell(cell, indexPath)
         return cell
     }
 }
 
 extension SearchSeriesView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        100
+        UITableView.automaticDimension
     }
 }
