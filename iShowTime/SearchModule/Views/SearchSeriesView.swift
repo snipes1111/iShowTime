@@ -46,6 +46,7 @@ class SearchSeriesView: UIView {
             DispatchQueue.main.async {
                 self.updateSearchPromptLabel()
                 self.manageSpinner(isLoading)
+                self.tableView.reloadData()
             }
         }
     }

@@ -30,21 +30,30 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
     var promptLabelIsHidden: Bool = false
     var numberOfRows: Int { series.count }
 
+    private var currentTask: Task<Void, Error>?
+
     func fetchSeries(_ searchText: String?) {
         guard let searchText = searchText, !searchText.isEmpty else { return }
-        isLoading.value.toggle()
-        Task {
-            do {
-                let data = try await networkManager.fetchSeriesData(searchText)
-                guard let series = decoder.decodeSeriesFromData(data) else { return }
-                self.series = series
-                print("Success_________: \(series)")
-                self.promptLabelIsHidden = true
-                self.isLoading.value.toggle()
-                self.viewModelDidChange?(self)
-            } catch {
-                print("Error: \(error)")
-            }
+        currentTask?.cancel()
+        series.removeAll()
+        promptLabelIsHidden = false
+        isLoading.value = true
+        let task = Task.delayed(byTimeInterval: 3) { [unowned self] in
+            await self.fetchAndDecodeData(searchText)
+            self.promptLabelIsHidden = true
+            self.viewModelDidChange?(self)
+            self.isLoading.value = false
+        }
+        currentTask = task
+    }
+
+    private func fetchAndDecodeData(_ searchText: String) async {
+        do {
+            let data = try await networkManager.fetchSeriesData(searchText)
+            guard let series = decoder.decodeSeriesFromData(data) else { return }
+            self.series = series
+        } catch {
+            print("Error: \(error)")
         }
     }
 }
