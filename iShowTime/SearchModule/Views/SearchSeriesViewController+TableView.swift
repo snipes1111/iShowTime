@@ -45,6 +45,6 @@ extension SearchSeriesView: UITableViewDataSource {
 
 extension SearchSeriesView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        UITableView.automaticDimension
+        165
     }
 }

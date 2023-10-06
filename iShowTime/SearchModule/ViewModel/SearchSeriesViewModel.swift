@@ -40,10 +40,10 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
         promptLabelIsHidden = false
         isLoading.value = true
         let task = Task.delayed(byTimeInterval: 3) { [unowned self] in
-            await self.fetchAndDecodeData(searchText)
-            self.promptLabelIsHidden = true
-            self.isLoading.value = false
-            self.viewModelDidChange?(self)
+            await fetchAndDecodeData(searchText)
+            promptLabelIsHidden = true
+            isLoading.value = false
+            viewModelDidChange?(self)
         }
         currentTask = task
     }
@@ -53,8 +53,12 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
             let data = try await networkManager.fetchSeriesData(searchText)
             guard let series = decoder.decodeSeriesFromData(data) else { return }
             self.series = series
+        } catch NetworkService.NetworkErrors.invalidUrl {
+            print("Invalid URL")
+        } catch NetworkService.NetworkErrors.badResponse {
+            print("Bad Response")
         } catch {
-            print("Error: \(error)")
+            print("Undifined error: \(error)")
         }
     }
 

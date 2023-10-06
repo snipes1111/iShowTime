@@ -12,4 +12,5 @@ struct SearchModuleConstants {
     static let loadingSearchPromptText = "Searching for results..."
     static let title = "Search"
     static let cellIdentifier = "SearchSeriesCell"
+    static let stubSeriesPoster = "movie"
 }
