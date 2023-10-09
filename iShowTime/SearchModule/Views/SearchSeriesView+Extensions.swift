@@ -18,16 +18,18 @@ extension SearchSeriesView {
     }
 
     func createAndAddSearchPromptLabel() {
-        let label = UILabel()
-        label.font = Fonts.searchModulePromptLabelFont
-        label.textColor = Colors.searchModulePromptTextColor
+        let label = UILabel(with: Fonts.searchModulePromptLabelFont, and: Colors.searchModulePromptTextColor)
+        label.textAlignment = .center
         searchPromptLabel = label
         tableView.addSubview(searchPromptLabel)
     }
 
-    func setupSearchPromptLabelConstraints() {
+    func setupSearchPromptLabelConstraints(sideInsets: CGFloat) {
         searchPromptLabel.translatesAutoresizingMaskIntoConstraints = false
-        searchPromptLabel.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
+        searchPromptLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                                   constant: sideInsets).isActive = true
+        searchPromptLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                                    constant: -sideInsets).isActive = true
         searchPromptLabel.centerYAnchor.constraint(equalTo: tableView.centerYAnchor,
                                                    constant: -calculatedNavBarSize()).isActive = true
     }
@@ -58,7 +60,7 @@ extension SearchSeriesView {
 
     func updateSubviewsConstraints() {
         if shouldSetupConstraints {
-            setupSearchPromptLabelConstraints()
+            setupSearchPromptLabelConstraints(sideInsets: 16)
             setupSpinnerConstraints()
             shouldSetupConstraints = false
         }

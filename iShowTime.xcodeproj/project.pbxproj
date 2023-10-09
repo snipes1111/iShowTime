@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE0589C52AD4543300DE987F /* ImageCachingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589C42AD4543300DE987F /* ImageCachingManager.swift */; };
 		CE1A6B4A2AAF4D6B00B495EB /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B492AAF4D6B00B495EB /* BaseTabBarController.swift */; };
 		CE1A6B4D2AAF515000B495EB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B4C2AAF515000B495EB /* Colors.swift */; };
 		CE1A6B532AAF5F4700B495EB /* WatchingNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B522AAF5F4700B495EB /* WatchingNowViewController.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE0589C42AD4543300DE987F /* ImageCachingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCachingManager.swift; sourceTree = "<group>"; };
 		CE1A6B492AAF4D6B00B495EB /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		CE1A6B4C2AAF515000B495EB /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CE1A6B522AAF5F4700B495EB /* WatchingNowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingNowViewController.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 			children = (
 				CEA1A8CF2ABC6D580012630D /* Box.swift */,
 				CEF502FC2ACDD1F100DFB431 /* PlistManager.swift */,
+				CE0589C42AD4543300DE987F /* ImageCachingManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				CEA1A8D22ABC81270012630D /* UILabel+Extensions.swift in Sources */,
 				CE1A6B672AB08C9D00B495EB /* SeriesModel.swift in Sources */,
 				CE2E1FC22AD011BD00E0FC3B /* VerticalStackView.swift in Sources */,
+				CE0589C52AD4543300DE987F /* ImageCachingManager.swift in Sources */,
 				CEF503032ACF0BF900DFB431 /* SearchSeriesCellViewModel.swift in Sources */,
 				CE65E9642ABCC209009E38E8 /* Builder.swift in Sources */,
 				CE1A6B562AAF5F6800B495EB /* WatchingNowView.swift in Sources */,

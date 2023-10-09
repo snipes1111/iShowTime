@@ -14,7 +14,7 @@ class SearchSeriesCell: BaseTableViewCell {
             seriesSecondaryLabel.text = viewModel?.secondaryLabelTitle
             seriesTertiaryLabel.text = viewModel?.tertiaryLabelTitle
             seriesProgressView.isHidden = viewModel?.progressViewIsVisible ?? true
-            posterImageView.getImage(with: viewModel?.imageUrl ?? "")
+            posterImageView.getImage(viewModel?.imageUrl ?? "")
         }
     }
 }

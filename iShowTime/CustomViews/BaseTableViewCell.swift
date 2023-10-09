@@ -8,7 +8,7 @@
 import UIKit
 
 class BaseTableViewCell: UITableViewCell {
-    var posterImageView: UIImageView!
+    var posterImageView: SeriesImageView!
     var seriesTitleLabel: UILabel!
     var seriesSecondaryLabel: UILabel!
     var seriesTertiaryLabel: UILabel!

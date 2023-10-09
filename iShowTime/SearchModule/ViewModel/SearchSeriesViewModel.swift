@@ -7,12 +7,18 @@
 
 import Foundation
 
+enum LoadingState {
+    case initial
+    case loading
+    case finished
+}
+
 protocol SearchSeriesViewModelProtocol {
     var viewModelDidChange: ((SearchSeriesViewModelProtocol) -> Void)? { get set }
-    var isLoading: Box<Bool> { get }
     var promptLabelText: String { get }
     var promptLabelIsHidden: Bool { get }
     var numberOfRows: Int { get }
+    var loadingState: Box<LoadingState> { get }
     func fetchSeries(_ searchText: String?)
     func configureCell(_ searchCell: SearchSeriesCell, _ indexPath: IndexPath)
 }
@@ -24,12 +30,12 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
     let decoder: SeriesDecoderProtocol = SeriesDecoder()
 
     var viewModelDidChange: ((SearchSeriesViewModelProtocol) -> Void)?
-    var isLoading: Box<Bool> = Box(value: false)
     var promptLabelText: String {
-        !isLoading.value ? SearchModuleConstants.startSearchPromptText : SearchModuleConstants.loadingSearchPromptText
+        setPromptLabelText()
     }
     var promptLabelIsHidden: Bool = false
     var numberOfRows: Int { series.count }
+    var loadingState: Box<LoadingState> = Box(value: LoadingState.initial)
 
     private var currentTask: Task<Void, Error>?
 
@@ -37,13 +43,13 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
         guard let searchText = searchText, !searchText.isEmpty else { return }
         currentTask?.cancel()
         series.removeAll()
+        loadingState.value = .loading
         promptLabelIsHidden = false
-        isLoading.value = true
         let task = Task.delayed(byTimeInterval: 3) { [unowned self] in
             await fetchAndDecodeData(searchText)
-            promptLabelIsHidden = true
-            isLoading.value = false
+            promptLabelIsHidden = !series.isEmpty
             viewModelDidChange?(self)
+            loadingState.value = .finished
         }
         currentTask = task
     }
@@ -59,6 +65,14 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
             print("Bad Response")
         } catch {
             print("Undifined error: \(error)")
+        }
+    }
+
+    private func setPromptLabelText() -> String {
+        switch loadingState.value {
+        case .initial: return SearchModuleConstants.startSearchPromptText
+        case .loading: return SearchModuleConstants.loadingSearchPromptText
+        case .finished: return SearchModuleConstants.finishedSearchPromptText
         }
     }
 

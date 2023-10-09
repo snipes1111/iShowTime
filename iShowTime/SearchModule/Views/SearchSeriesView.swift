@@ -38,14 +38,14 @@ class SearchSeriesView: UIView {
                 self.tableView.reloadData()
             }
         }
-        bindWithIsLoadingState()
+        bindWithLoadingState()
     }
 
-    func bindWithIsLoadingState() {
-        viewModel.isLoading.bind { [unowned self] isLoading in
+    func bindWithLoadingState() {
+        viewModel.loadingState.bind { loadingState in
             DispatchQueue.main.async {
                 self.updateSearchPromptLabel()
-                self.manageSpinner(isLoading)
+                self.manageSpinner(loadingState)
                 self.tableView.reloadData()
             }
         }
@@ -56,8 +56,8 @@ class SearchSeriesView: UIView {
         searchPromptLabel.text = viewModel.promptLabelText
     }
 
-    func manageSpinner(_ isLoading: Bool) {
-        if isLoading {
+    func manageSpinner(_ loadingState: LoadingState) {
+        if loadingState == .loading {
             spinner.startAnimating()
         } else {
             spinner.stopAnimating()
