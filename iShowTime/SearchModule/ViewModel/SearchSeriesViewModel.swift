@@ -38,6 +38,7 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
     var loadingState: Box<LoadingState> = Box(value: LoadingState.initial)
 
     private var currentTask: Task<Void, Error>?
+    private var countries: [Country]?
 
     func fetchSeries(_ searchText: String?) {
         guard let searchText = searchText, !searchText.isEmpty else { return }
@@ -54,17 +55,30 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
         currentTask = task
     }
 
+    func configureCell(_ searchCell: SearchSeriesCell, _ indexPath: IndexPath) {
+        let seriesAtIndexPath = series[indexPath.item]
+        let countries = decodeCountries(seriesAtIndexPath)
+        let seriesViewModel = SearchSeriesCellViewModel(series: seriesAtIndexPath, countries: countries)
+        searchCell.viewModel = seriesViewModel
+    }
+}
+
+extension SearchSeriesViewModel {
+
     private func fetchAndDecodeData(_ searchText: String) async {
         do {
-            let data = try await networkManager.fetchSeriesData(searchText)
-            guard let series = decoder.decodeSeriesFromData(data) else { return }
+            let seriesData = try await networkManager.fetchSeriesData(searchText)
+            let countriesData = try await networkManager.fetchCountryList()
+            guard let series = decoder.decodeSeriesFromData(seriesData) else { return }
             self.series = series
+            guard let countries = decoder.decodeCountryList(countriesData) else { return }
+            self.countries = countries
         } catch NetworkService.NetworkErrors.invalidUrl {
             print("Invalid URL")
         } catch NetworkService.NetworkErrors.badResponse {
             print("Bad Response")
         } catch {
-            print("Undifined error: \(error)")
+            print("Undefined error: \(error)")
         }
     }
 
@@ -76,8 +90,15 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
         }
     }
 
-    func configureCell(_ searchCell: SearchSeriesCell, _ indexPath: IndexPath) {
-        let seriesViewModel = SearchSeriesCellViewModel(series: series[indexPath.item])
-        searchCell.viewModel = seriesViewModel
+    private func decodeCountries(_ series: Series) -> [Country] {
+        var filteredCountries = [Country]()
+        guard let encodedISO = series.originCountry,
+        let countries = countries else { return filteredCountries }
+        encodedISO.forEach { iso in
+            if let country = countries.first(where: { $0.iso == iso }) {
+                filteredCountries.append(country)
+            }
+        }
+        return filteredCountries
     }
 }

@@ -18,6 +18,7 @@ protocol SeriesCellViewModelProtocol {
 class SearchSeriesCellViewModel: SeriesCellViewModelProtocol {
 
     private var series: Series
+    private var countries: [Country]
 
     var seriesTitle: String {
         series.name ?? "Unknown"
@@ -29,9 +30,9 @@ class SearchSeriesCellViewModel: SeriesCellViewModelProtocol {
     }
 
     var tertiaryLabelTitle: String {
-        let countries = "\(series.originCountry?.joined(separator: ", ") ?? "Unknown")"
+        let countryNames = countries.compactMap { $0.englishName }.joined(separator: ", ")
         let year = " • \(series.firstAirDate?.extractYear() ?? "Unknown")"
-        return countries + year
+        return countryNames + year
     }
 
     var progressViewIsVisible: Bool {
@@ -42,7 +43,8 @@ class SearchSeriesCellViewModel: SeriesCellViewModelProtocol {
         series.posterPath ?? "Unknown path"
     }
 
-    init(series: Series) {
+    init(series: Series, countries: [Country]) {
         self.series = series
+        self.countries = countries
     }
 }

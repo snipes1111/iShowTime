@@ -9,6 +9,7 @@ import Foundation
 
 protocol SeriesDecoderProtocol {
     func decodeSeriesFromData(_ data: Data) -> [Series]?
+    func decodeCountryList(_ data: Data) -> [Country]?
 }
 
 class SeriesDecoder: JSONDecoder, SeriesDecoderProtocol {
@@ -19,10 +20,25 @@ class SeriesDecoder: JSONDecoder, SeriesDecoderProtocol {
     }
 
     func decodeSeriesFromData(_ data: Data) -> [Series]? {
+        if let page: Page = decode(data) {
+            return page.results
+        }
+        return nil
+    }
+
+    func decodeCountryList(_ data: Data) -> [Country]? {
+        if let countries: [Country] = decode(data) {
+            return countries
+        }
+        return nil
+    }
+
+
+
+    private func decode<T: Codable>(_ data: Data) -> T? {
         do {
-            let page = try decode(Page.self, from: data)
-            let series = page.results
-            return series
+            let json = try decode(T.self, from: data)
+            return json
         } catch {
             print("Error to fetch json: \(error)")
         }
