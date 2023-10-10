@@ -11,7 +11,7 @@ extension SearchSeriesView {
 
     func setupUI() {
         backgroundColor = .white
-        createTableView()
+        createTableView(bottomInset: 32)
         createAndAddSearchPromptLabel()
         createAndAddSpinner()
         updateSearchPromptLabel()

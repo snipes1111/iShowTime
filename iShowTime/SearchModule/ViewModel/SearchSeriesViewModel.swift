@@ -19,8 +19,10 @@ protocol SearchSeriesViewModelProtocol {
     var promptLabelIsHidden: Bool { get }
     var numberOfRows: Int { get }
     var loadingState: Box<LoadingState> { get }
+    init(router: RouterProtocol)
     func fetchSeries(_ searchText: String?)
     func configureCell(_ searchCell: SearchSeriesCell, _ indexPath: IndexPath)
+    func showDetails()
 }
 
 class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
@@ -39,6 +41,11 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
 
     private var currentTask: Task<Void, Error>?
     private var countries: [Country]?
+    private var router: RouterProtocol
+
+    required init(router: RouterProtocol) {
+        self.router = router
+    }
 
     func fetchSeries(_ searchText: String?) {
         guard let searchText = searchText, !searchText.isEmpty else { return }
@@ -60,6 +67,10 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
         let countries = decodeCountries(seriesAtIndexPath)
         let seriesViewModel = SearchSeriesCellViewModel(series: seriesAtIndexPath, countries: countries)
         searchCell.viewModel = seriesViewModel
+    }
+
+    func showDetails() {
+        router.showDetailSeriesViewController(seriesID: "123")
     }
 }
 

@@ -26,7 +26,8 @@ class Builder: BuilderProtocol {
 
     func buildSearchViewController() -> UIViewController {
         let viewController = SearchSeriesViewController()
-        let viewModel = SearchSeriesViewModel()
+        let router = Router(viewController: viewController)
+        let viewModel = SearchSeriesViewModel(router: router)
         let view = SearchSeriesView(viewModel: viewModel)
         viewController.searchView = view
         viewController.viewModel = viewModel

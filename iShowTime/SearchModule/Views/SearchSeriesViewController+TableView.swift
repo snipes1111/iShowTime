@@ -8,10 +8,11 @@
 import UIKit
 
 extension SearchSeriesView {
-    func createTableView() {
+    func createTableView(bottomInset: CGFloat = 0) {
         tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.contentInset = .init(top: 0, left: 0, bottom: bottomInset, right: 0)
         tableView.register(SearchSeriesCell.self, forCellReuseIdentifier: SearchModuleConstants.cellIdentifier)
         addTableView()
     }
@@ -47,5 +48,9 @@ extension SearchSeriesView: UITableViewDataSource {
 extension SearchSeriesView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         165
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.showDetails()
     }
 }
