@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PlistManager {
+final class PlistManager {
     static func getValue(from key: String) -> String? {
         guard let path = Bundle.main.path(forResource: "AccessInfo", ofType: "plist"),
               let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else { return nil }

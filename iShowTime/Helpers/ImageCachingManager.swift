@@ -12,15 +12,12 @@ protocol ImageCachingManagerProtocol {
     func clearCache()
 }
 
-class ImageCachingManager: ImageCachingManagerProtocol {
-
-    enum ImageFetchErrors: Error {
-        case noData
-    }
+final class ImageCachingManager: ImageCachingManagerProtocol {
 
     static let shared = ImageCachingManager()
     private let imageCache = NSCache<AnyObject, AnyObject>()
     private let apiService = APIService()
+    private let networkService: NetworkServiceProtocol = NetworkService()
 
     private init() {}
 
@@ -32,10 +29,10 @@ class ImageCachingManager: ImageCachingManagerProtocol {
             do {
                 let data = try await downloadImage(imagePath)
                 return data
-            } catch ImageFetchErrors.noData {
-                print("No image data was found")
+            } catch NetworkService.NetworkErrors.badResponse {
+                print("No response when fetching image")
             } catch {
-                print("Unknown Error: \(error)")
+                print("Error to fetch image: \(error)")
             }
         }
         return nil
@@ -43,7 +40,6 @@ class ImageCachingManager: ImageCachingManagerProtocol {
 
     func clearCache() {
         imageCache.removeAllObjects()
-
     }
 
     private func loadImageFromCache(_ url: URL) -> Data? {
@@ -53,13 +49,10 @@ class ImageCachingManager: ImageCachingManagerProtocol {
     }
 
     private func downloadImage(_ url: URL) async throws -> Data {
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            let cachedKey = NSString(string: url.absoluteString)
-            imageCache.setObject(data as NSData, forKey: cachedKey)
-            return data
-        } catch {
-            throw ImageFetchErrors.noData
-        }
+        let urlRequest = URLRequest(url: url)
+        let data = try await networkService.fetchData(with: urlRequest)
+        let cachedKey = NSString(string: url.absoluteString)
+        imageCache.setObject(data as NSData, forKey: cachedKey)
+        return data
     }
 }

@@ -12,10 +12,10 @@ protocol SeriesCellViewModelProtocol {
     var secondaryLabelTitle: String { get }
     var tertiaryLabelTitle: String { get }
     var progressViewIsVisible: Bool { get }
-    var imageUrl: String { get }
+    var imageUrl: String? { get }
 }
 
-class SearchSeriesCellViewModel: SeriesCellViewModelProtocol {
+final class SearchSeriesCellViewModel: SeriesCellViewModelProtocol {
 
     private var series: Series
     private var countries: [Country]
@@ -39,8 +39,8 @@ class SearchSeriesCellViewModel: SeriesCellViewModelProtocol {
         true
     }
 
-    var imageUrl: String {
-        series.posterPath ?? "Unknown path"
+    var imageUrl: String? {
+        series.posterPath
     }
 
     init(series: Series, countries: [Country]) {

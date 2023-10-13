@@ -7,14 +7,14 @@
 
 import UIKit
 
-class SearchSeriesCell: BaseTableViewCell {
+final class SearchSeriesCell: BaseTableViewCell {
     var viewModel: SeriesCellViewModelProtocol? {
         didSet {
             seriesTitleLabel.text = viewModel?.seriesTitle
             seriesSecondaryLabel.text = viewModel?.secondaryLabelTitle
             seriesTertiaryLabel.text = viewModel?.tertiaryLabelTitle
             seriesProgressView.isHidden = viewModel?.progressViewIsVisible ?? true
-            posterImageView.getImage(viewModel?.imageUrl ?? "")
+            posterImageView.getImage(viewModel?.imageUrl)
         }
     }
 }

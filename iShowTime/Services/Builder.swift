@@ -12,9 +12,11 @@ protocol BuilderProtocol {
     func buildSearchViewController() -> UIViewController
     func buildWatchingNowViewController() -> UIViewController
     func buildFinishedViewController() -> UIViewController
+    func buildSearchSeriesDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController
 }
 
-class Builder: BuilderProtocol {
+final class Builder: BuilderProtocol {
+
     func buildMainTabController(_ tabBarHeight: CGFloat, _ viewWidth: CGFloat) -> MainTabBarController {
         let viewController = MainTabBarController()
         let viewModel = BaseTabBarViewModel(tabBarHeight: tabBarHeight,
@@ -58,7 +60,17 @@ class Builder: BuilderProtocol {
             image: TabBarImages.finishedImage
         )
     }
+
+    func buildSearchSeriesDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController {
+        let viewController = SearchSeriesDetailViewController(title: seriesName)
+        let viewModel = SearchDetailViewModel(seriesId: seriesId)
+        let view = SearchDetailView(viewModel: viewModel)
+        viewController.searchDetailView = view
+        viewController.viewModel = viewModel
+        return viewController
+    }
 }
+
 extension Builder {
     private func createNavController(viewController: UIViewController,
                                      title: String,

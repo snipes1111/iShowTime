@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SeriesProgressView: UIProgressView {
+final class SeriesProgressView: UIProgressView {
     init(_ height: CGFloat) {
         super.init(frame: .zero)
         progress = 0.5

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainTabBarController: BaseTabBarController {
+final class MainTabBarController: BaseTabBarController {
 
     var builder: BuilderProtocol!
 

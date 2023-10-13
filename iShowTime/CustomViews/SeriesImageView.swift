@@ -7,13 +7,12 @@
 
 import UIKit
 
-class SeriesImageView: UIImageView {
+final class SeriesImageView: UIImageView {
 
     private let imageCacheManager = ImageCachingManager.shared
 
     init() {
         super.init(frame: .zero)
-        image = UIImage(named: SearchModuleConstants.stubSeriesPoster)
         contentMode = .scaleToFill
         translatesAutoresizingMaskIntoConstraints = false
     }
@@ -22,11 +21,12 @@ class SeriesImageView: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func getImage(_ path: String) {
-        Task {
-            guard let data = await imageCacheManager.loadImage(with: path) else { return }
-            image = UIImage(data: data)
+    func getImage(_ path: String?) {
+        image = UIImage(named: AssetsImages.noImage)
+        guard let path = path else { return }
+            Task {
+                guard let data = await imageCacheManager.loadImage(with: path) else { return }
+                image = UIImage(data: data)
+            }
         }
-    }
-
 }

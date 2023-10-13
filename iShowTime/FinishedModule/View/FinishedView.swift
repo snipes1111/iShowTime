@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FinishedView: UIView {
+final class FinishedView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemMint

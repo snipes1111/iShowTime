@@ -9,10 +9,11 @@ import Foundation
 
 protocol SeriesDecoderProtocol {
     func decodeSeriesFromData(_ data: Data) -> [Series]?
+    func decodeSeriesDetailsFromData(_ data: Data) -> Series?
     func decodeCountryList(_ data: Data) -> [Country]?
 }
 
-class SeriesDecoder: JSONDecoder, SeriesDecoderProtocol {
+final class SeriesDecoder: JSONDecoder, SeriesDecoderProtocol {
 
     override init() {
         super.init()
@@ -26,14 +27,19 @@ class SeriesDecoder: JSONDecoder, SeriesDecoderProtocol {
         return nil
     }
 
+    func decodeSeriesDetailsFromData(_ data: Data) -> Series? {
+        if let seriesDetails: Series = decode(data) {
+            return seriesDetails
+        }
+        return nil
+    }
+
     func decodeCountryList(_ data: Data) -> [Country]? {
         if let countries: [Country] = decode(data) {
             return countries
         }
         return nil
     }
-
-
 
     private func decode<T: Codable>(_ data: Data) -> T? {
         do {

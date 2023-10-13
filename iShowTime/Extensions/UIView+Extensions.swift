@@ -23,4 +23,11 @@ extension UIView {
             return nil
         }
     }
+    func fillSuperView(_ superView: UIView, padding: CGFloat = 0) {
+        translatesAutoresizingMaskIntoConstraints = false
+        topAnchor.constraint(equalTo: superView.topAnchor, constant: padding).isActive = true
+        bottomAnchor.constraint(equalTo: superView.bottomAnchor, constant: -padding).isActive = true
+        leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: padding).isActive = true
+        trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -padding).isActive = true
+    }
 }

@@ -7,31 +7,38 @@
 
 import Foundation
 
-class APIService {
+final class APIService {
 
-    enum RequestType {
-        case searchSeries
-        case countryList
+    enum RequestType: String {
+        case searchSeries = "/search/tv"
+        case countryList = "/configuration/countries"
+        case seriesDetails = "/tv"
     }
 
     private let mainUrl = "https://api.themoviedb.org/3"
-    private let searchPath = "/search/tv"
-    private let countryListPath = "/configuration/countries"
     private let apiKey = PlistManager.getValue(from: "Bearer") ?? ""
     private let accept = "application/json"
 
     private var header: [String: String] {
         ["accept": accept,
-        "Authorization": apiKey]
+         "Authorization": apiKey]
     }
 
     func buildSearchUrlRequest(with searchText: String) -> URLRequest? {
-        guard let url = buildUrl(with: "query", equals: searchText, for: .searchSeries) else { return nil }
+
+        guard let url = buildUrl(for: .searchSeries, and: "query", equals: searchText) else { return nil }
         return buildUrlRequest(url)
     }
 
     func buildCountryListUrlRequest() -> URLRequest? {
-        guard let url = buildUrl(with: "language", equals: "en-US", for: .countryList) else { return nil }
+
+        guard let url = buildUrl(for: .countryList, and: "language", equals: "en-US") else { return nil }
+        return buildUrlRequest(url)
+    }
+
+    func buildSeriesDetailsRequest(_ seriesId: Double) -> URLRequest? {
+        guard let url = buildUrl(for: .seriesDetails, with: seriesId,
+                                 and: "language", equals: "en-US") else { return nil }
         return buildUrlRequest(url)
     }
 
@@ -47,12 +54,14 @@ class APIService {
         return request
     }
 
-    private func buildUrl(with query: String, equals to: String, for request: RequestType) -> URL? {
+    private func buildUrl(for request: RequestType, with seriesId: Double? = nil,
+                          and query: String, equals value: String) -> URL? {
         var urlComponents = URLComponents(string: mainUrl)
-        let pathModifier = request == .searchSeries ? searchPath : countryListPath
-        urlComponents?.path += pathModifier
-        let queryItem = URLQueryItem(name: query, value: to)
+        urlComponents?.path += request.rawValue
+        if let seriesId = seriesId { urlComponents?.path += "/\(seriesId)" }
+        let queryItem = URLQueryItem(name: query, value: value)
         urlComponents?.queryItems = [queryItem]
         return urlComponents?.url
     }
+
 }

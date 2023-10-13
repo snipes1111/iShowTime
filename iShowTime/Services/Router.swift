@@ -9,20 +9,19 @@ import UIKit
 
 protocol RouterProtocol {
     init(viewController: UIViewController)
-    func showDetailSeriesViewController(seriesID: String)
+    func showDetailSeriesViewController(_ seriesID: Double, _ seriesName: String)
 }
 
-class Router: RouterProtocol {
+final class Router: RouterProtocol {
     private var viewController: UIViewController
+    private var builder = Builder()
 
     required init(viewController: UIViewController) {
         self.viewController = viewController
     }
 
-    func showDetailSeriesViewController(seriesID: String) {
-        let newViewController = UIViewController()
-        newViewController.title = seriesID
-        newViewController.view.backgroundColor = .white
-        viewController.navigationController?.pushViewController(newViewController, animated: true)
+    func showDetailSeriesViewController(_ seriesID: Double, _ seriesName: String) {
+        let seriesDetailVc = builder.buildSearchSeriesDetailViewController(seriesID, seriesName)
+        viewController.navigationController?.pushViewController(seriesDetailVc, animated: true)
     }
 }

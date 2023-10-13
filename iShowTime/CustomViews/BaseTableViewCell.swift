@@ -16,7 +16,7 @@ class BaseTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupViews()
+        setupView()
     }
 
     required init?(coder: NSCoder) {
@@ -25,13 +25,8 @@ class BaseTableViewCell: UITableViewCell {
 }
 
 extension BaseTableViewCell {
-    private func setupViews() {
-        setupImageView()
-        setupTitleLabel()
-        setupSecondaryLabel()
-        setupTertiaryLabel()
-        setupSeriesProgressView()
-
+    private func setupView() {
+        setupSubViews()
         let vStack = VerticalStackView(arrangedSubviews: [seriesTitleLabel,
                                                           seriesSecondaryLabel,
                                                           seriesTertiaryLabel,
@@ -45,11 +40,15 @@ extension BaseTableViewCell {
 
     private func makeConstraints(_ view: UIView) {
         posterImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
-        view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
-        view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
-        view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
+        view.fillSuperView(contentView, padding: 8)
+    }
+
+    private func setupSubViews() {
+        setupImageView()
+        setupTitleLabel()
+        setupSecondaryLabel()
+        setupTertiaryLabel()
+        setupSeriesProgressView()
     }
 }
 

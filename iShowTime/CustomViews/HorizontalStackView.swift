@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HorizontalStackView: UIStackView {
+final class HorizontalStackView: UIStackView {
     init(arrangedSubviews: [UIView]) {
         super.init(frame: .zero)
         arrangedSubviews.forEach { addArrangedSubview($0) }

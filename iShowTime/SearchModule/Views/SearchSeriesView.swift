@@ -7,14 +7,14 @@
 
 import UIKit
 
-class SearchSeriesView: UIView {
+final class SearchSeriesView: UIView {
 
     var shouldSetupConstraints = true
 
     var searchPromptLabel: UILabel!
     var spinner: UIActivityIndicatorView!
     var tableView: UITableView!
-    var viewModel: SearchSeriesViewModelProtocol!
+    var viewModel: SearchSeriesViewModelProtocol
 
     init(viewModel: SearchSeriesViewModelProtocol) {
         self.viewModel = viewModel
@@ -33,20 +33,20 @@ class SearchSeriesView: UIView {
     }
 
     func subscribeToViewModel() {
-        viewModel.viewModelDidChange = { [unowned self] _ in
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        viewModel.viewModelDidChange = { _ in
+            DispatchQueue.main.async { [unowned self] in
+                tableView.reloadData()
             }
         }
         bindWithLoadingState()
     }
 
     func bindWithLoadingState() {
-        viewModel.loadingState.bind { loadingState in
-            DispatchQueue.main.async {
-                self.updateSearchPromptLabel()
-                self.manageSpinner(loadingState)
-                self.tableView.reloadData()
+        viewModel.loadingState.bind { _ in
+            DispatchQueue.main.async { [unowned self] in
+                updateSearchPromptLabel()
+                manageSpinner()
+                tableView.reloadData()
             }
         }
     }
@@ -56,11 +56,10 @@ class SearchSeriesView: UIView {
         searchPromptLabel.text = viewModel.promptLabelText
     }
 
-    func manageSpinner(_ loadingState: LoadingState) {
-        if loadingState == .loading {
-            spinner.startAnimating()
-        } else {
-            spinner.stopAnimating()
+    func manageSpinner() {
+        switch viewModel.loadingState.value {
+        case .loading: spinner.startAnimating()
+        default: spinner.stopAnimating()
         }
     }
 }

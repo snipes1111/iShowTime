@@ -7,13 +7,13 @@
 
 import UIKit
 
-class VerticalStackView: UIStackView {
-    init(arrangedSubviews: [UIView]) {
+final class VerticalStackView: UIStackView {
+    init(spacing: CGFloat = 4, arrangedSubviews: [UIView]) {
         super.init(frame: .zero)
         arrangedSubviews.forEach { addArrangedSubview($0) }
         axis = .vertical
         alignment = .fill
-        spacing = 4
+        self.spacing = spacing
     }
 
     required init(coder: NSCoder) {

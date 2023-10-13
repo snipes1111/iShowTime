@@ -7,29 +7,24 @@
 
 import Foundation
 
-enum LoadingState {
-    case initial
-    case loading
-    case finished
-}
-
 protocol SearchSeriesViewModelProtocol {
     var viewModelDidChange: ((SearchSeriesViewModelProtocol) -> Void)? { get set }
     var promptLabelText: String { get }
     var promptLabelIsHidden: Bool { get }
     var numberOfRows: Int { get }
-    var loadingState: Box<LoadingState> { get }
+    var heightForRow: Int { get }
+    var loadingState: Box<NetworkService.LoadingState> { get }
     init(router: RouterProtocol)
     func fetchSeries(_ searchText: String?)
     func configureCell(_ searchCell: SearchSeriesCell, _ indexPath: IndexPath)
-    func showDetails()
+    func showDetails(at indexPath: IndexPath)
 }
 
-class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
+final class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
 
     private var series: [Series] = []
-    let networkManager: NetworkServiceProtocol = NetworkService()
-    let decoder: SeriesDecoderProtocol = SeriesDecoder()
+    private let networkManager: NetworkServiceProtocol = NetworkService()
+    private let decoder: SeriesDecoderProtocol = SeriesDecoder()
 
     var viewModelDidChange: ((SearchSeriesViewModelProtocol) -> Void)?
     var promptLabelText: String {
@@ -37,7 +32,8 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
     }
     var promptLabelIsHidden: Bool = false
     var numberOfRows: Int { series.count }
-    var loadingState: Box<LoadingState> = Box(value: LoadingState.initial)
+    var heightForRow: Int { 165 }
+    var loadingState: Box<NetworkService.LoadingState> = Box(value: NetworkService.LoadingState.initial)
 
     private var currentTask: Task<Void, Error>?
     private var countries: [Country]?
@@ -69,8 +65,11 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
         searchCell.viewModel = seriesViewModel
     }
 
-    func showDetails() {
-        router.showDetailSeriesViewController(seriesID: "123")
+    func showDetails(at indexPath: IndexPath) {
+        let series = series[indexPath.item]
+        guard let id = series.id,
+        let seriesName = series.name else { return }
+        router.showDetailSeriesViewController(id, seriesName)
     }
 }
 
