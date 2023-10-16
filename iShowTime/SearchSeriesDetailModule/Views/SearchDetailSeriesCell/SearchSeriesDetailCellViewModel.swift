@@ -7,9 +7,18 @@
 
 import Foundation
 
+enum ScoreRatingColor {
+    case red
+    case yellow
+    case green
+    case black
+}
+
 protocol SearchSeriesDetailCellViewModelProtocol {
     var seriesName: String { get }
-    var seriesRating: String { get }
+    var seriesRatingIs: String { get }
+    var seriesScoreRating: String { get }
+    var scoreRatingColor: ScoreRatingColor { get }
     var genreAndYear: String { get }
     var countryAndSeasonsCount: String { get }
     var overview: String { get }
@@ -20,22 +29,35 @@ protocol SearchSeriesDetailCellViewModelProtocol {
 final class SearchSeriesDetailCellViewModel: SearchSeriesDetailCellViewModelProtocol {
 
     private var series: Series
+    private var countryService: CountryService = CountryService.shared
 
     var seriesName: String { series.name ?? "Unknown name" }
-    var seriesRating: String {
+    var seriesRatingIs: String {
+        return "Rating MovieDB: "
+    }
+    var seriesScoreRating: String {
         guard let rating = series.voteAverage, rating != 0 else { return "No rating yet" }
         let roundedRating = String(format: "%.2f", rating)
-        return "Rating MovieDB: \(roundedRating)"
+        return roundedRating
+    }
+    var scoreRatingColor: ScoreRatingColor {
+        guard let rating = series.voteAverage else { return .black }
+        switch rating {
+        case 0: return .black
+        case 0..<5.5: return .red
+        case 5.5..<7: return .yellow
+        default: return .green
+        }
     }
     var genreAndYear: String {
         let genre = receiveGenres()
         return "\(genre)"
     }
     var countryAndSeasonsCount: String {
-        let countries = series.originCountry?.joined(separator: ", ")
+        let countries = countryService.getCountryNames(from: series)
         let seasonsCount = Int(series.numberOfSeasons ?? 1)
         let year = "\(series.firstAirDate?.extractYear() ?? "Unknown year")"
-        return "\(countries ?? "Unknown countries"), seasons: \(seasonsCount) • \(year)"
+        return "\(countries), seasons: \(seasonsCount) • \(year)"
     }
     var overview: String {
         series.overview ?? "No any overview yet"

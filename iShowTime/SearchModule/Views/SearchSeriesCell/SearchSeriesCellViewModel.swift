@@ -18,7 +18,7 @@ protocol SeriesCellViewModelProtocol {
 final class SearchSeriesCellViewModel: SeriesCellViewModelProtocol {
 
     private var series: Series
-    private var countries: [Country]
+    private var countryService: CountryService = CountryService.shared
 
     var seriesTitle: String {
         series.name ?? "Unknown"
@@ -30,7 +30,7 @@ final class SearchSeriesCellViewModel: SeriesCellViewModelProtocol {
     }
 
     var tertiaryLabelTitle: String {
-        let countryNames = countries.compactMap { $0.englishName }.joined(separator: ", ")
+        let countryNames = countryService.getCountryNames(from: series)
         let year = " • \(series.firstAirDate?.extractYear() ?? "Unknown")"
         return countryNames + year
     }
@@ -43,8 +43,7 @@ final class SearchSeriesCellViewModel: SeriesCellViewModelProtocol {
         series.posterPath
     }
 
-    init(series: Series, countries: [Country]) {
+    init(series: Series) {
         self.series = series
-        self.countries = countries
     }
 }

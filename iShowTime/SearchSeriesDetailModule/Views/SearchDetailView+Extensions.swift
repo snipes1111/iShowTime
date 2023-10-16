@@ -8,24 +8,25 @@
 import UIKit
 
 extension SearchDetailView {
-    func createBlurBackgroundView() {
-        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
-        tableView.backgroundView?.addSubview(blurView)
-        blurView.fillSuperView(self)
-        sendSubviewToBack(blurView)
-        blurBackgroundView = blurView
+
+    func setupUI() {
+        createTableView()
+        createLoadingView()
+        createSpinner()
     }
 
-    func createBackDropImageView() {
-        let imageView = SeriesImageView()
-        imageView.backgroundColor = .white
-        addSubview(imageView)
-        imageView.fillSuperView(self)
-        sendSubviewToBack(imageView)
-        backDropImageView = imageView
+    func createLoadingView() {
+        let view = UIView()
+        view.backgroundColor = .black
+        addSubview(view)
+        view.fillSuperView(self)
+        loadingView = view
     }
 
-    func updateBackDropImageView() {
-        backDropImageView.getImage(viewModel.backDropImageUrl)
+    func createSpinner() {
+        let spinner = SpinnerView()
+        addSubview(spinner)
+        spinner.fillSuperView(self)
+        self.spinner = spinner
     }
 }

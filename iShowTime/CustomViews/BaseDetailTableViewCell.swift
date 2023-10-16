@@ -10,7 +10,8 @@ import UIKit
 class BaseDetailTableViewCell: UITableViewCell {
     var posterImageView: SeriesImageView!
     var seriesNameLabel: UILabel!
-    var seriesRatingLabel: UILabel!
+    var seriesRatingIsLabel: UILabel!
+    var seriesRatingScoreLabel: UILabel!
     var seriesGenreLabel: UILabel!
     var seriesCountryAndSeasonsCountAndYearLabel: UILabel!
     var seriesOverviewLabel: UILabel!
@@ -27,21 +28,21 @@ class BaseDetailTableViewCell: UITableViewCell {
 
     func setupView() {
         setupSubViews()
+        let hStack = UIStackView(arrangedSubviews: [seriesRatingIsLabel, seriesRatingScoreLabel])
         let vStack = VerticalStackView(spacing: 8, arrangedSubviews: [posterImageView,
                                                                       seriesNameLabel,
-                                                                      seriesRatingLabel,
+                                                                      hStack,
                                                                       seriesGenreLabel,
                                                                       seriesCountryAndSeasonsCountAndYearLabel,
                                                                       seriesOverviewLabel,
                                                                       UIView()])
-        vStack.distribution = .fill
         vStack.alignment = .center
         contentView.addSubview(vStack)
         makeConstraints(vStack)
     }
 
     func makeConstraints(_ view: UIView) {
-        posterImageView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        posterImageView.heightAnchor.constraint(equalToConstant: 300).isActive = true
         posterImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         seriesNameLabel.heightAnchor.constraint(equalToConstant: 75).isActive = true
         view.fillSuperView(contentView, padding: 32)
@@ -50,7 +51,8 @@ class BaseDetailTableViewCell: UITableViewCell {
     func setupSubViews() {
         createPosterImageView()
         createSeriesNameLabel()
-        createSeriesRatingLabel()
+        createSeriesRatingIsLabel()
+        createSeriesRatingScoreLabel()
         createSeriesGenreLabel()
         createSeriesCountryAndSeasonsCountAndYearLabel()
         createSeriesOverviewLabel()
@@ -58,32 +60,41 @@ class BaseDetailTableViewCell: UITableViewCell {
 
     func createPosterImageView() {
         let imageView = SeriesImageView()
-        imageView.backgroundColor = .systemBlue
+        imageView.addShadow()
         posterImageView = imageView
     }
 
     func createSeriesNameLabel() {
-        let label = UILabel(with: Fonts.searchDetailModuleSeriesNameLabel)
+        let label = UILabel(font: Fonts.SearchDetailModule.seriesNameLabel)
+        label.textAlignment = .center
         seriesNameLabel = label
     }
 
-    func createSeriesRatingLabel() {
-        let label = UILabel(with: Fonts.searchDetailModuleSeriesRatingLabel)
-        seriesRatingLabel = label
+    func createSeriesRatingIsLabel() {
+        let label = UILabel(font: Fonts.SearchDetailModule.seriesRatingIsLabel,
+                            numberOfLines: 1)
+        seriesRatingIsLabel = label
+    }
+
+    func createSeriesRatingScoreLabel() {
+        let label = UILabel(font: Fonts.SearchDetailModule.seriesRatingScoreLabel,
+                            numberOfLines: 1)
+        seriesRatingScoreLabel = label
     }
 
     func createSeriesGenreLabel() {
-        let label = UILabel(with: Fonts.searchDetailModuleGenreLabel)
+        let label = UILabel(font: Fonts.SearchDetailModule.genreLabel)
+        label.textAlignment = .center
         seriesGenreLabel = label
     }
 
     func createSeriesCountryAndSeasonsCountAndYearLabel() {
-        let label = UILabel(with: Fonts.searchDetailModuleCountrySeasonsAndYearLabel)
+        let label = UILabel(font: Fonts.SearchDetailModule.countrySeasonsAndYearLabel)
         seriesCountryAndSeasonsCountAndYearLabel = label
     }
 
     func createSeriesOverviewLabel() {
-        let label = UILabel(with: Fonts.searchModuleSecondaryLabel)
+        let label = UILabel(font: Fonts.SearchDetailModule.overviewLabel)
         seriesOverviewLabel = label
     }
 }

@@ -9,12 +9,20 @@ import UIKit
 
 struct Fonts {
     static let tabItemTextAttributes = [NSAttributedString.Key.font:
-                                            UIFont.systemFont(ofSize: 16, weight: .semibold)]
-    static let searchModulePromptLabelFont: UIFont = .systemFont(ofSize: 24, weight: .semibold)
-    static let searchModuleSeriesTitleFont: UIFont = .boldSystemFont(ofSize: 18)
-    static let searchModuleSecondaryLabel: UIFont  = .systemFont(ofSize: 16)
-    static let searchDetailModuleSeriesNameLabel: UIFont = .boldSystemFont(ofSize: 26)
-    static let searchDetailModuleSeriesRatingLabel: UIFont = .systemFont(ofSize: 20, weight: .semibold)
-    static let searchDetailModuleGenreLabel: UIFont = .systemFont(ofSize: 20, weight: .light)
-    static let searchDetailModuleCountrySeasonsAndYearLabel: UIFont = .systemFont(ofSize: 20, weight: .light)
+                                        UIFont.systemFont(ofSize: 16, weight: .semibold)]
+    struct SearchModule {
+
+        static let promptLabelFont: UIFont = .systemFont(ofSize: 24, weight: .semibold)
+        static let titleFont: UIFont = .boldSystemFont(ofSize: 18)
+        static let secondaryLabel: UIFont  = .systemFont(ofSize: 16)
+    }
+
+    struct SearchDetailModule {
+        static let seriesNameLabel: UIFont = .boldSystemFont(ofSize: 26)
+        static let seriesRatingIsLabel: UIFont = .systemFont(ofSize: 20, weight: .semibold)
+        static let seriesRatingScoreLabel: UIFont = .systemFont(ofSize: 20, weight: .bold)
+        static let genreLabel: UIFont = .systemFont(ofSize: 20, weight: .light)
+        static let countrySeasonsAndYearLabel: UIFont = .systemFont(ofSize: 20, weight: .light)
+        static let overviewLabel: UIFont = .systemFont(ofSize: 18)
+    }
 }

@@ -12,10 +12,22 @@ class SearchDetailSeriesCell: BaseDetailTableViewCell {
         didSet {
             posterImageView.getImage(viewModel?.imageUrl)
             seriesNameLabel.text = viewModel?.seriesName
-            seriesRatingLabel.text = viewModel?.seriesRating
+            seriesRatingIsLabel.text = viewModel?.seriesRatingIs
+            seriesRatingScoreLabel.text = viewModel?.seriesScoreRating
+            seriesRatingScoreLabel.textColor = getColor()
             seriesGenreLabel.text = viewModel?.genreAndYear
             seriesCountryAndSeasonsCountAndYearLabel.text = viewModel?.countryAndSeasonsCount
             seriesOverviewLabel.text = viewModel?.overview
+        }
+    }
+
+    func getColor() -> UIColor {
+        guard let color = viewModel?.scoreRatingColor else { return .black }
+        switch color {
+        case .black: return .black
+        case .green: return .systemGreen
+        case .red: return .systemRed
+        case .yellow: return .systemYellow
         }
     }
 }

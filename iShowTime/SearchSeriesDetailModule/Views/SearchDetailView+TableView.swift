@@ -11,7 +11,6 @@ extension SearchDetailView {
 
     func createTableView() {
         tableView = UITableView()
-        tableView.backgroundColor = .clear
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
         tableView.dataSource = self
@@ -62,7 +61,7 @@ extension SearchDetailView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return configuredDetailCell(indexPath)
     }
-    
+
     func configuredDetailCell(_ indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchModuleConstants.detailSeriesCellIdentifier,
                                                        for: indexPath) as? SearchDetailSeriesCell

@@ -18,7 +18,8 @@ extension SearchSeriesView {
     }
 
     func createAndAddSearchPromptLabel() {
-        let label = UILabel(with: Fonts.searchModulePromptLabelFont, and: Colors.searchModulePromptTextColor)
+        let label = UILabel(font: Fonts.SearchModule.promptLabelFont,
+                            color: Colors.searchModulePromptTextColor)
         label.textAlignment = .center
         searchPromptLabel = label
         tableView.addSubview(searchPromptLabel)
@@ -45,15 +46,13 @@ extension SearchSeriesView {
     }
 
     func createAndAddSpinner() {
-        let spinner = UIActivityIndicatorView(style: .large)
-        spinner.hidesWhenStopped = true
-        spinner.color = Colors.spinnerColor
+        let spinner = SpinnerView()
         self.spinner = spinner
         addSubview(spinner)
+        setupSpinnerConstraints()
     }
 
     func setupSpinnerConstraints() {
-        spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.bottomAnchor.constraint(equalTo: searchPromptLabel.topAnchor, constant: -20).isActive = true
         spinner.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }

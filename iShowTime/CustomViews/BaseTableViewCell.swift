@@ -59,17 +59,17 @@ extension BaseTableViewCell {
     }
 
     private func setupTitleLabel() {
-        let label = UILabel(with: Fonts.searchModuleSeriesTitleFont)
+        let label = UILabel(font: Fonts.SearchModule.titleFont)
         seriesTitleLabel = label
     }
 
     private func setupSecondaryLabel() {
-        let label = UILabel(with: Fonts.searchModuleSecondaryLabel)
+        let label = UILabel(font: Fonts.SearchModule.secondaryLabel)
         seriesSecondaryLabel = label
     }
 
     private func setupTertiaryLabel() {
-        let label = UILabel(with: Fonts.searchModuleSecondaryLabel, and: .systemGray)
+        let label = UILabel(font: Fonts.SearchModule.secondaryLabel, color: .systemGray)
         seriesTertiaryLabel = label
     }
 

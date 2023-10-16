@@ -43,7 +43,7 @@ final class APIService {
     }
 
     func buildImageUrl(_ imagePath: String) -> URL? {
-        let baseUrlString = "https://image.tmdb.org/t/p/w500\(imagePath)"
+        let baseUrlString = "https://image.tmdb.org/t/p/w342\(imagePath)"
         return URL(string: baseUrlString)
     }
 

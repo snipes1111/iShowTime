@@ -13,13 +13,13 @@ final class SearchDetailView: UIView {
     var tableView: UITableView!
     var blurBackgroundView: UIView!
     var backDropImageView: SeriesImageView!
+    var loadingView: UIView!
+    var spinner: UIActivityIndicatorView!
 
     init(viewModel: SearchDetailViewModelProtocol) {
         self.viewModel = viewModel
         super.init(frame: .zero)
-        createTableView()
-//        createBackDropImageView()
-//        createBlurBackgroundView()
+        setupUI()
         subscribeToViewModel()
     }
 
@@ -30,9 +30,23 @@ final class SearchDetailView: UIView {
     func subscribeToViewModel() {
         viewModel.viewModelDidChange = { _ in
             DispatchQueue.main.async { [unowned self] in
-                tableView.reloadData()
                 updateBackDropImageView()
+                tableView.reloadData()
+                hideLoadingView()
             }
+        }
+    }
+
+    func updateBackDropImageView() {
+        backDropImageView.getImage(viewModel.backDropImageUrl)
+    }
+
+    func hideLoadingView() {
+        UIView.animate(withDuration: 0.5) { [unowned self] in
+            loadingView.alpha = 0
+            spinner.stopAnimating()
+        } completion: { [unowned self] _ in
+            loadingView.isHidden = true
         }
     }
 }

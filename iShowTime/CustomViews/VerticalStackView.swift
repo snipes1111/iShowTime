@@ -12,7 +12,7 @@ final class VerticalStackView: UIStackView {
         super.init(frame: .zero)
         arrangedSubviews.forEach { addArrangedSubview($0) }
         axis = .vertical
-        alignment = .fill
+        distribution = .fill
         self.spacing = spacing
     }
 

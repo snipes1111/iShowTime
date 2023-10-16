@@ -25,6 +25,7 @@ final class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
     private var series: [Series] = []
     private let networkManager: NetworkServiceProtocol = NetworkService()
     private let decoder: SeriesDecoderProtocol = SeriesDecoder()
+    private let countryService: CountryService = CountryService.shared
 
     var viewModelDidChange: ((SearchSeriesViewModelProtocol) -> Void)?
     var promptLabelText: String {
@@ -60,8 +61,7 @@ final class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
 
     func configureCell(_ searchCell: SearchSeriesCell, _ indexPath: IndexPath) {
         let seriesAtIndexPath = series[indexPath.item]
-        let countries = decodeCountries(seriesAtIndexPath)
-        let seriesViewModel = SearchSeriesCellViewModel(series: seriesAtIndexPath, countries: countries)
+        let seriesViewModel = SearchSeriesCellViewModel(series: seriesAtIndexPath)
         searchCell.viewModel = seriesViewModel
     }
 
@@ -82,7 +82,7 @@ extension SearchSeriesViewModel {
             guard let series = decoder.decodeSeriesFromData(seriesData) else { return }
             self.series = series
             guard let countries = decoder.decodeCountryList(countriesData) else { return }
-            self.countries = countries
+            countryService.updateCountryList(with: countries)
         } catch NetworkService.NetworkErrors.invalidUrl {
             print("Invalid URL")
         } catch NetworkService.NetworkErrors.badResponse {
@@ -98,17 +98,5 @@ extension SearchSeriesViewModel {
         case .loading: return SearchModuleConstants.loadingSearchPromptText
         case .finished: return SearchModuleConstants.finishedSearchPromptText
         }
-    }
-
-    private func decodeCountries(_ series: Series) -> [Country] {
-        var filteredCountries = [Country]()
-        guard let encodedISO = series.originCountry,
-        let countries = countries else { return filteredCountries }
-        encodedISO.forEach { iso in
-            if let country = countries.first(where: { $0.iso == iso }) {
-                filteredCountries.append(country)
-            }
-        }
-        return filteredCountries
     }
 }
