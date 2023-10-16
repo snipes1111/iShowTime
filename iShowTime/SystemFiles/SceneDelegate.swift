@@ -15,9 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: scene)
         let builder = Builder()
-        let width = window.screen.bounds.width
-        let height = window.screen.bounds.height / 13
-        let mainTabBarController = builder.buildMainTabController(height, width)
+        let mainTabBarController = builder.buildMainTabController()
         window.rootViewController = mainTabBarController
         window.makeKeyAndVisible()
         self.window = window

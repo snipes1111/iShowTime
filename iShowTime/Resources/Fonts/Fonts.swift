@@ -9,7 +9,7 @@ import UIKit
 
 struct Fonts {
     static let tabItemTextAttributes = [NSAttributedString.Key.font:
-                                        UIFont.systemFont(ofSize: 16, weight: .semibold)]
+                                        UIFont.systemFont(ofSize: 14, weight: .semibold)]
     struct SearchModule {
 
         static let promptLabelFont: UIFont = .systemFont(ofSize: 24, weight: .semibold)
@@ -24,5 +24,9 @@ struct Fonts {
         static let genreLabel: UIFont = .systemFont(ofSize: 20, weight: .light)
         static let countrySeasonsAndYearLabel: UIFont = .systemFont(ofSize: 20, weight: .light)
         static let overviewLabel: UIFont = .systemFont(ofSize: 18)
+        static let overviewTextAttributes = [NSAttributedString.Key.font:
+                                                    UIFont.systemFont(ofSize: 18)]
+        static let overviewAttributes = [NSAttributedString.Key.font:
+                                                    UIFont.systemFont(ofSize: 18, weight: .bold)]
     }
 }

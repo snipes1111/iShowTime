@@ -9,17 +9,12 @@ import UIKit
 
 class BaseTabBarController: UITabBarController {
 
-    var viewModel: BaseTabBarViewModelProtocol!
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        makeTabBarTranslucentAndSetItemColor()
     }
 
     override func viewDidLayoutSubviews() {
-        updateTabBarFrame()
-        addCustomLayerWithColor(Colors.tabBarColor)
-        customizeItemTitle()
+        customizeItemTitleAndColor()
     }
 
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -29,39 +24,10 @@ class BaseTabBarController: UITabBarController {
 
 extension BaseTabBarController {
 
-    private func updateTabBarFrame() {
-        tabBar.frame.size.height = viewModel.estimatedTabBarHeight()
-        tabBar.frame.origin.y = view.frame.height - viewModel.estimatedTabBarHeight()
-    }
-
-    private func makeTabBarTranslucentAndSetItemColor() {
-        tabBar.backgroundColor = .clear
-        tabBar.backgroundImage = UIImage()
-        tabBar.shadowImage = UIImage()
+    private func customizeItemTitleAndColor() {
         tabBar.tintColor = Colors.tabItemColor
-    }
-
-    private func addCustomLayerWithColor(_ color: CGColor) {
-        let roundLayer = CAShapeLayer()
-        roundLayer.path = makeBezierPath()
-        tabBar.layer.insertSublayer(roundLayer, at: 0)
-        roundLayer.fillColor = color
-    }
-
-    private func makeBezierPath() -> CGPath {
-        let startPointX = viewModel.tabBarWidthInset
-        let startPointY = tabBar.bounds.minY - viewModel.tabBarHeightInset
-        let tabBarWidth = viewModel.estimatedTabBarWidth()
-        let tabBarHeight = viewModel.estimatedTabBarHeight()
-        let roundedRect = CGRect(x: startPointX, y: startPointY,
-                                 width: tabBarWidth, height: tabBarHeight)
-        return UIBezierPath(roundedRect: roundedRect,
-                            cornerRadius: tabBarHeight / 2).cgPath
-    }
-
-    private func customizeItemTitle() {
         tabBar.items?.forEach { item in
-            item.titlePositionAdjustment = .init(horizontal: .zero, vertical: viewModel.tabItemTitleInset)
+            item.titlePositionAdjustment = .init(horizontal: .zero, vertical: 8)
             item.setTitleTextAttributes(Fonts.tabItemTextAttributes, for: .normal)
         }
     }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol BuilderProtocol {
-    func buildMainTabController(_ tabBarHeight: CGFloat, _ viewWidth: CGFloat) -> MainTabBarController
+    func buildMainTabController() -> MainTabBarController
     func buildSearchViewController() -> UIViewController
     func buildWatchingNowViewController() -> UIViewController
     func buildFinishedViewController() -> UIViewController
@@ -17,11 +17,8 @@ protocol BuilderProtocol {
 
 final class Builder: BuilderProtocol {
 
-    func buildMainTabController(_ tabBarHeight: CGFloat, _ viewWidth: CGFloat) -> MainTabBarController {
+    func buildMainTabController() -> MainTabBarController {
         let viewController = MainTabBarController()
-        let viewModel = BaseTabBarViewModel(tabBarHeight: tabBarHeight,
-                                            tabBarWidth: viewWidth)
-        viewController.viewModel = viewModel
         viewController.builder = self
         return viewController
     }

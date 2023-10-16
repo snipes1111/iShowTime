@@ -15,6 +15,7 @@ class BaseDetailTableViewCell: UITableViewCell {
     var seriesGenreLabel: UILabel!
     var seriesCountryAndSeasonsCountAndYearLabel: UILabel!
     var seriesOverviewLabel: UILabel!
+    var watchingNowButton: UIButton!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,14 +29,14 @@ class BaseDetailTableViewCell: UITableViewCell {
 
     func setupView() {
         setupSubViews()
-        let hStack = UIStackView(arrangedSubviews: [seriesRatingIsLabel, seriesRatingScoreLabel])
+        let ratingHStack = UIStackView(arrangedSubviews: [seriesRatingIsLabel, seriesRatingScoreLabel])
         let vStack = VerticalStackView(spacing: 8, arrangedSubviews: [posterImageView,
                                                                       seriesNameLabel,
-                                                                      hStack,
+                                                                      ratingHStack,
                                                                       seriesGenreLabel,
                                                                       seriesCountryAndSeasonsCountAndYearLabel,
                                                                       seriesOverviewLabel,
-                                                                      UIView()])
+                                                                      watchingNowButton])
         vStack.alignment = .center
         contentView.addSubview(vStack)
         makeConstraints(vStack)
@@ -45,7 +46,7 @@ class BaseDetailTableViewCell: UITableViewCell {
         posterImageView.heightAnchor.constraint(equalToConstant: 300).isActive = true
         posterImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         seriesNameLabel.heightAnchor.constraint(equalToConstant: 75).isActive = true
-        view.fillSuperView(contentView, padding: 32)
+        view.fillSuperView(contentView, padding: 18)
     }
 
     func setupSubViews() {
@@ -56,6 +57,7 @@ class BaseDetailTableViewCell: UITableViewCell {
         createSeriesGenreLabel()
         createSeriesCountryAndSeasonsCountAndYearLabel()
         createSeriesOverviewLabel()
+        createWatchingNowButton()
     }
 
     func createPosterImageView() {
@@ -96,5 +98,14 @@ class BaseDetailTableViewCell: UITableViewCell {
     func createSeriesOverviewLabel() {
         let label = UILabel(font: Fonts.SearchDetailModule.overviewLabel)
         seriesOverviewLabel = label
+    }
+
+    func createWatchingNowButton() {
+        let button = UIButton(type: .system)
+        button.setTitle("Watching now", for: .normal)
+        button.backgroundColor = .systemGreen
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 12
+        watchingNowButton = button
     }
 }

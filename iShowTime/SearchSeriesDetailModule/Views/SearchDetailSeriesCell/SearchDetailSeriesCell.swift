@@ -18,6 +18,7 @@ class SearchDetailSeriesCell: BaseDetailTableViewCell {
             seriesGenreLabel.text = viewModel?.genreAndYear
             seriesCountryAndSeasonsCountAndYearLabel.text = viewModel?.countryAndSeasonsCount
             seriesOverviewLabel.text = viewModel?.overview
+            seriesOverviewLabel.addTextAttributes(for: viewModel?.attributedOverviewText)
         }
     }
 
@@ -27,7 +28,7 @@ class SearchDetailSeriesCell: BaseDetailTableViewCell {
         case .black: return .black
         case .green: return .systemGreen
         case .red: return .systemRed
-        case .yellow: return .systemYellow
+        case .yellow: return .systemOrange
         }
     }
 }

@@ -8,11 +8,11 @@
 import UIKit
 
 extension SearchSeriesView {
-    func createTableView(bottomInset: CGFloat = 0) {
+    func createTableView() {
         tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.contentInset = .init(top: 0, left: 0, bottom: bottomInset, right: 0)
+        //tableView.contentInset = .init(top: 0, left: 0, bottom: bottomInset, right: 0)
         tableView.register(SearchSeriesCell.self, forCellReuseIdentifier: SearchModuleConstants.seriesCellIdentifier)
         addTableView()
     }

@@ -21,6 +21,7 @@ protocol SearchSeriesDetailCellViewModelProtocol {
     var scoreRatingColor: ScoreRatingColor { get }
     var genreAndYear: String { get }
     var countryAndSeasonsCount: String { get }
+    var attributedOverviewText: String { get }
     var overview: String { get }
     var imageUrl: String? { get }
     init(series: Series)
@@ -59,8 +60,9 @@ final class SearchSeriesDetailCellViewModel: SearchSeriesDetailCellViewModelProt
         let year = "\(series.firstAirDate?.extractYear() ?? "Unknown year")"
         return "\(countries), seasons: \(seasonsCount) • \(year)"
     }
+    var attributedOverviewText: String {"   Overview: " }
     var overview: String {
-        series.overview ?? "No any overview yet"
+        attributedOverviewText + (series.overview ?? "No any overview yet")
     }
     var imageUrl: String? {
         series.posterPath
