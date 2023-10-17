@@ -26,6 +26,16 @@ extension UIView {
         }
     }
 
+    func addShadow() {
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowRadius = 3.0
+        layer.shadowOpacity = 1.0
+        layer.shadowOffset = CGSize(width: 4, height: 4)
+        layer.masksToBounds = false
+    }
+}
+
+extension UIView {
     func fillSuperView(_ superView: UIView, padding: CGFloat = 0) {
         translatesAutoresizingMaskIntoConstraints = false
         topAnchor.constraint(equalTo: superView.topAnchor, constant: padding).isActive = true
@@ -34,11 +44,19 @@ extension UIView {
         trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -padding).isActive = true
     }
 
-    func addShadow() {
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowRadius = 3.0
-        layer.shadowOpacity = 1.0
-        layer.shadowOffset = CGSize(width: 4, height: 4)
-        layer.masksToBounds = false
+    func setSize(_ height: CGFloat, _ width: CGFloat) {
+        translatesAutoresizingMaskIntoConstraints = false
+        heightAnchor.constraint(equalToConstant: height).isActive = true
+        widthAnchor.constraint(equalToConstant: width).isActive = true
+    }
+
+    func setWidth(_ width: CGFloat) {
+        translatesAutoresizingMaskIntoConstraints = false
+        widthAnchor.constraint(equalToConstant: width).isActive = true
+    }
+
+    func setHeight(_ height: CGFloat) {
+        translatesAutoresizingMaskIntoConstraints = false
+        heightAnchor.constraint(equalToConstant: height).isActive = true
     }
 }

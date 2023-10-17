@@ -50,6 +50,7 @@
 		CEBB0FB92AC5E8CE00A45074 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB0FB82AC5E8CE00A45074 /* NetworkService.swift */; };
 		CEBB0FBB2AC5EE1500A45074 /* SeriesDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB0FBA2AC5EE1500A45074 /* SeriesDecoder.swift */; };
 		CED57AB32ADD7BB5006C7981 /* CountryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AB22ADD7BB4006C7981 /* CountryService.swift */; };
+		CED57AB52ADEB635006C7981 /* WatchingNowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AB42ADEB635006C7981 /* WatchingNowButton.swift */; };
 		CED6AE482ADAE47D002140C1 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED6AE472ADAE47D002140C1 /* SpinnerView.swift */; };
 		CEF455FA2AAB305E00D5A397 /* SearchSeriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF455F92AAB305E00D5A397 /* SearchSeriesView.swift */; };
 		CEF456002AAB472600D5A397 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEBAAEA92A13E828001F59A6 /* LaunchScreen.storyboard */; };
@@ -115,6 +116,7 @@
 		CEBB0FB82AC5E8CE00A45074 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		CEBB0FBA2AC5EE1500A45074 /* SeriesDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDecoder.swift; sourceTree = "<group>"; };
 		CED57AB22ADD7BB4006C7981 /* CountryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryService.swift; sourceTree = "<group>"; };
+		CED57AB42ADEB635006C7981 /* WatchingNowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingNowButton.swift; sourceTree = "<group>"; };
 		CED6AE472ADAE47D002140C1 /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		CEF455F92AAB305E00D5A397 /* SearchSeriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSeriesView.swift; sourceTree = "<group>"; };
 		CEF456012AAB4BDD00D5A397 /* SearchModuleConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModuleConstants.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 				CE2E1FC12AD011BD00E0FC3B /* VerticalStackView.swift */,
 				CE2E1FC32AD011CE00E0FC3B /* HorizontalStackView.swift */,
 				CED6AE472ADAE47D002140C1 /* SpinnerView.swift */,
+				CED57AB42ADEB635006C7981 /* WatchingNowButton.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				CE58DBDE2AD99302004CBB4B /* AssetsImages.swift in Sources */,
 				CEBAAEA32A13E824001F59A6 /* SearchSeriesViewController.swift in Sources */,
 				CEA1A8C62AB9F55C0012630D /* UIView+Extensions.swift in Sources */,
+				CED57AB52ADEB635006C7981 /* WatchingNowButton.swift in Sources */,
 				CEF456042AAB547B00D5A397 /* MainTabBarController.swift in Sources */,
 				CEF455FA2AAB305E00D5A397 /* SearchSeriesView.swift in Sources */,
 				CEF503092ACF24C500DFB431 /* String+Extensions.swift in Sources */,

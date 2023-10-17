@@ -10,4 +10,5 @@ import Foundation
 struct AssetsImages {
     static let stubSeriesPoster = "movie"
     static let noImage = "no image"
+    static let watchingNowButton = "watchingNow"
 }

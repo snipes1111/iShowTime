@@ -19,6 +19,7 @@ class SearchDetailSeriesCell: BaseDetailTableViewCell {
             seriesCountryAndSeasonsCountAndYearLabel.text = viewModel?.countryAndSeasonsCount
             seriesOverviewLabel.text = viewModel?.overview
             seriesOverviewLabel.addTextAttributes(for: viewModel?.attributedOverviewText)
+            watchingNowButton.setTitle(viewModel?.watchingNowButtonTitle, for: .normal)
         }
     }
 

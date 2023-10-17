@@ -28,5 +28,6 @@ struct Fonts {
                                                     UIFont.systemFont(ofSize: 18)]
         static let overviewAttributes = [NSAttributedString.Key.font:
                                                     UIFont.systemFont(ofSize: 18, weight: .bold)]
+        static let watchingNowButton: UIFont = .systemFont(ofSize: 16, weight: .semibold)
     }
 }

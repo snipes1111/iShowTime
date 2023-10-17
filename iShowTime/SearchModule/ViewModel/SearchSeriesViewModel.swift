@@ -50,7 +50,7 @@ final class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
         series.removeAll()
         loadingState.value = .loading
         promptLabelIsHidden = false
-        let task = Task.delayed(byTimeInterval: 3) { [unowned self] in
+        let task = Task.delayed(byTimeInterval: 2) { [unowned self] in
             await fetchAndDecodeData(searchText)
             promptLabelIsHidden = !series.isEmpty
             viewModelDidChange?(self)

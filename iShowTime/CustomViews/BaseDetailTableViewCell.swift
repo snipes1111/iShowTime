@@ -37,15 +37,16 @@ class BaseDetailTableViewCell: UITableViewCell {
                                                                       seriesCountryAndSeasonsCountAndYearLabel,
                                                                       seriesOverviewLabel,
                                                                       watchingNowButton])
+        vStack.setCustomSpacing(32, after: seriesOverviewLabel)
         vStack.alignment = .center
         contentView.addSubview(vStack)
         makeConstraints(vStack)
     }
 
     func makeConstraints(_ view: UIView) {
-        posterImageView.heightAnchor.constraint(equalToConstant: 300).isActive = true
-        posterImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        seriesNameLabel.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        posterImageView.setSize(300, 200)
+        seriesNameLabel.setHeight(75)
+        watchingNowButton.setSize(50, 250)
         view.fillSuperView(contentView, padding: 18)
     }
 
@@ -101,11 +102,24 @@ class BaseDetailTableViewCell: UITableViewCell {
     }
 
     func createWatchingNowButton() {
-        let button = UIButton(type: .system)
-        button.setTitle("Watching now", for: .normal)
-        button.backgroundColor = .systemGreen
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 12
+        let button = WatchingNowButton()
         watchingNowButton = button
+    }
+}
+
+extension UIButton {
+
+    func pulsate() {
+
+        let pulse = CASpringAnimation(keyPath: "transform.scale")
+        pulse.duration = 0.6
+        pulse.fromValue = 0.95
+        pulse.toValue = 1.0
+        pulse.autoreverses = true
+        pulse.repeatCount = 2
+        pulse.initialVelocity = 0.5
+        pulse.damping = 1.0
+
+        layer.add(pulse, forKey: "pulse")
     }
 }

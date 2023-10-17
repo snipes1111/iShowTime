@@ -24,6 +24,7 @@ protocol SearchSeriesDetailCellViewModelProtocol {
     var attributedOverviewText: String { get }
     var overview: String { get }
     var imageUrl: String? { get }
+    var watchingNowButtonTitle: String { get }
     init(series: Series)
 }
 
@@ -42,13 +43,7 @@ final class SearchSeriesDetailCellViewModel: SearchSeriesDetailCellViewModelProt
         return roundedRating
     }
     var scoreRatingColor: ScoreRatingColor {
-        guard let rating = series.voteAverage else { return .black }
-        switch rating {
-        case 0: return .black
-        case 0..<5.5: return .red
-        case 5.5..<7: return .yellow
-        default: return .green
-        }
+        returnRatingColor()
     }
     var genreAndYear: String {
         let genre = receiveGenres()
@@ -67,6 +62,9 @@ final class SearchSeriesDetailCellViewModel: SearchSeriesDetailCellViewModelProt
     var imageUrl: String? {
         series.posterPath
     }
+    var watchingNowButtonTitle: String {
+        "Add to Watching Now"
+    }
 
     required init(series: Series) {
         self.series = series
@@ -78,4 +76,13 @@ final class SearchSeriesDetailCellViewModel: SearchSeriesDetailCellViewModelProt
         return genreNames.joined(separator: ", ")
     }
 
+    private func returnRatingColor() -> ScoreRatingColor {
+        guard let rating = series.voteAverage else { return .black }
+        switch rating {
+        case 0: return .black
+        case 0..<5.5: return .red
+        case 5.5..<7: return .yellow
+        default: return .green
+        }
+    }
 }
