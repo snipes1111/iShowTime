@@ -16,10 +16,18 @@ class SearchDetailSeriesCell: BaseDetailTableViewCell {
             genreLabel.text = viewModel?.genreAndYear
             countrySeasonsAndYearLabel.text = viewModel?.countrySeasonsAndYear
             updateOverview()
-            updateWatchingNowButton()
+            setupWatchingNowButton()
+            updateWatchingNowButtonTitle()
         }
     }
 
+    @objc private func buttonPressed() {
+        viewModel?.watchingNowButtonPressed()
+        updateWatchingNowButtonTitle()
+    }
+}
+
+extension SearchDetailSeriesCell {
     private func updateRating() {
         ratingIsLabel.text = viewModel?.ratingIs
         ratingScoreLabel.text = viewModel?.scoreRating
@@ -43,12 +51,18 @@ class SearchDetailSeriesCell: BaseDetailTableViewCell {
         }
     }
 
-    private func updateWatchingNowButton() {
-        watchingNowButton.setTitle(viewModel?.watchingNowButtonTitle, for: .normal)
-        watchingNowButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+    private func updateWatchingNowButtonTitle() {
+        guard let isSaved = viewModel?.seriesIsSaved else { return }
+        if !isSaved {
+            watchingNowButton.setTitle(SearchModuleConstants.addToWatchingNow, for: .normal)
+            watchingNowButton.setTitleColor(.black, for: .normal)
+        } else {
+            watchingNowButton.setTitle(SearchModuleConstants.removeFromWatchingNow, for: .normal)
+            watchingNowButton.setTitleColor(.darkGray, for: .normal)
+        }
     }
 
-    @objc private func buttonPressed() {
-        viewModel?.watchingNowButtonPressed()
+    private func setupWatchingNowButton() {
+        watchingNowButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
 }

@@ -24,7 +24,7 @@ protocol SearchSeriesDetailCellViewModelProtocol {
     var attributedOverviewText: String { get }
     var overview: String { get }
     var imageUrl: String? { get }
-    var watchingNowButtonTitle: String { get }
+    var seriesIsSaved: Bool { get }
     init(series: Series)
     func watchingNowButtonPressed()
 }
@@ -33,6 +33,7 @@ final class SearchSeriesDetailCellViewModel: SearchSeriesDetailCellViewModelProt
 
     private var series: Series
     private var countryService: CountryService = CountryService.shared
+    private var dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
 
     var seriesName: String { series.name ?? SearchModuleConstants.unknownTitle }
 
@@ -52,14 +53,18 @@ final class SearchSeriesDetailCellViewModel: SearchSeriesDetailCellViewModelProt
 
     var imageUrl: String? { series.posterPath }
 
-    var watchingNowButtonTitle: String { SearchModuleConstants.addToWatchingNow }
+    var seriesIsSaved: Bool { dataStoreManager.isSavedBefore(series: series) }
 
     required init(series: Series) {
         self.series = series
     }
 
     func watchingNowButtonPressed() {
-        print("Series are ready to save: ", seriesName)
+        if !seriesIsSaved {
+            dataStoreManager.save(series: series)
+        } else {
+            dataStoreManager.remove(series: series)
+        }
     }
 }
 

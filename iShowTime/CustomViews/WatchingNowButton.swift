@@ -12,7 +12,6 @@ class WatchingNowButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         titleLabel?.font = Fonts.SearchDetailModule.watchingNowButton
-        setTitleColor(.black, for: .normal)
         setBackgroundImage(UIImage(resource: .watchingNow), for: .normal)
         setBackgroundImage(UIImage(resource: .watchingPressed), for: .highlighted)
         addAction(buttonPressed(), for: .touchDown)

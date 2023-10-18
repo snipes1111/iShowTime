@@ -35,3 +35,9 @@ struct Series: Codable {
 
     let seasons: [Season]?
 }
+
+extension Series: Equatable {
+    static func == (lhs: Series, rhs: Series) -> Bool {
+        lhs.id == rhs.id
+    }
+}
