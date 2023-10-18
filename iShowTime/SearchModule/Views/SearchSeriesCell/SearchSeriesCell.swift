@@ -10,10 +10,10 @@ import UIKit
 final class SearchSeriesCell: BaseTableViewCell {
     var viewModel: SeriesCellViewModelProtocol? {
         didSet {
-            seriesTitleLabel.text = viewModel?.seriesTitle
-            seriesSecondaryLabel.text = viewModel?.secondaryLabelTitle
-            seriesTertiaryLabel.text = viewModel?.tertiaryLabelTitle
-            seriesProgressView.isHidden = viewModel?.progressViewIsVisible ?? true
+            titleLabel.text = viewModel?.seriesTitle
+            secondaryLabel.text = viewModel?.secondaryLabelTitle
+            tertiaryLabel.text = viewModel?.tertiaryLabelTitle
+            progressView.isHidden = viewModel?.progressViewIsVisible ?? true
             posterImageView.getImage(viewModel?.imageUrl)
         }
     }

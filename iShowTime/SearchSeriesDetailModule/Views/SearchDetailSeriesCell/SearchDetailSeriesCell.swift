@@ -11,19 +11,29 @@ class SearchDetailSeriesCell: BaseDetailTableViewCell {
     var viewModel: SearchSeriesDetailCellViewModelProtocol? {
         didSet {
             posterImageView.getImage(viewModel?.imageUrl)
-            seriesNameLabel.text = viewModel?.seriesName
-            seriesRatingIsLabel.text = viewModel?.seriesRatingIs
-            seriesRatingScoreLabel.text = viewModel?.seriesScoreRating
-            seriesRatingScoreLabel.textColor = getColor()
-            seriesGenreLabel.text = viewModel?.genreAndYear
-            seriesCountryAndSeasonsCountAndYearLabel.text = viewModel?.countryAndSeasonsCount
-            seriesOverviewLabel.text = viewModel?.overview
-            seriesOverviewLabel.addTextAttributes(for: viewModel?.attributedOverviewText)
-            watchingNowButton.setTitle(viewModel?.watchingNowButtonTitle, for: .normal)
+            nameLabel.text = viewModel?.seriesName
+            updateRating()
+            genreLabel.text = viewModel?.genreAndYear
+            countrySeasonsAndYearLabel.text = viewModel?.countrySeasonsAndYear
+            updateOverview()
+            updateWatchingNowButton()
         }
     }
 
-    func getColor() -> UIColor {
+    private func updateRating() {
+        ratingIsLabel.text = viewModel?.ratingIs
+        ratingScoreLabel.text = viewModel?.scoreRating
+        ratingScoreLabel.textColor = getColor()
+    }
+
+    private func updateOverview() {
+        guard let viewModel = viewModel else { return }
+        let text = viewModel.attributedOverviewText + viewModel.overview
+        overviewLabel.text = text
+        overviewLabel.addTextAttributes(for: viewModel.attributedOverviewText)
+    }
+
+    private func getColor() -> UIColor {
         guard let color = viewModel?.scoreRatingColor else { return .black }
         switch color {
         case .black: return .black
@@ -31,5 +41,14 @@ class SearchDetailSeriesCell: BaseDetailTableViewCell {
         case .red: return .systemRed
         case .yellow: return .systemOrange
         }
+    }
+
+    private func updateWatchingNowButton() {
+        watchingNowButton.setTitle(viewModel?.watchingNowButtonTitle, for: .normal)
+        watchingNowButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+    }
+
+    @objc private func buttonPressed() {
+        viewModel?.watchingNowButtonPressed()
     }
 }

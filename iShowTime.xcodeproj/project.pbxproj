@@ -31,6 +31,8 @@
 		CE2E1FC62AD0144400E0FC3B /* SeriesProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2E1FC52AD0144400E0FC3B /* SeriesProgressView.swift */; };
 		CE58DBDE2AD99302004CBB4B /* AssetsImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58DBDD2AD99302004CBB4B /* AssetsImages.swift */; };
 		CE65E9642ABCC209009E38E8 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65E9632ABCC209009E38E8 /* Builder.swift */; };
+		CE72082D2ADFF2D40005C16E /* BaseTableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72082C2ADFF2D40005C16E /* BaseTableViewCell+Extensions.swift */; };
+		CE7208302ADFF3D30005C16E /* BaseDetailTableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72082F2ADFF3D30005C16E /* BaseDetailTableViewCell+Extensions.swift */; };
 		CE9EA8CF2AD802E700C261C8 /* SearchDetailView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EA8CE2AD802E700C261C8 /* SearchDetailView+Extensions.swift */; };
 		CE9EA8D12AD81B9000C261C8 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EA8D02AD81B9000C261C8 /* Page.swift */; };
 		CE9EA8D32AD81B9A00C261C8 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EA8D22AD81B9A00C261C8 /* Country.swift */; };
@@ -94,6 +96,8 @@
 		CE2E1FC52AD0144400E0FC3B /* SeriesProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesProgressView.swift; sourceTree = "<group>"; };
 		CE58DBDD2AD99302004CBB4B /* AssetsImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsImages.swift; sourceTree = "<group>"; };
 		CE65E9632ABCC209009E38E8 /* Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		CE72082C2ADFF2D40005C16E /* BaseTableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseTableViewCell+Extensions.swift"; sourceTree = "<group>"; };
+		CE72082F2ADFF3D30005C16E /* BaseDetailTableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseDetailTableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		CE9EA8CE2AD802E700C261C8 /* SearchDetailView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchDetailView+Extensions.swift"; sourceTree = "<group>"; };
 		CE9EA8D02AD81B9000C261C8 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		CE9EA8D22AD81B9A00C261C8 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
@@ -308,8 +312,8 @@
 		CE2E1FBE2AD0101800E0FC3B /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				CEF503062ACF13B400DFB431 /* BaseTableViewCell.swift */,
-				CE9EA8D62AD8489100C261C8 /* BaseDetailTableViewCell.swift */,
+				CE72082E2ADFF3B50005C16E /* BaseTableViewCell */,
+				CE7208312ADFF40B0005C16E /* BaseDetailTableViewCell */,
 				CE2E1FBF2AD0104B00E0FC3B /* SeriesImageView.swift */,
 				CE2E1FC52AD0144400E0FC3B /* SeriesProgressView.swift */,
 				CE2E1FC12AD011BD00E0FC3B /* VerticalStackView.swift */,
@@ -318,6 +322,24 @@
 				CED57AB42ADEB635006C7981 /* WatchingNowButton.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		CE72082E2ADFF3B50005C16E /* BaseTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CEF503062ACF13B400DFB431 /* BaseTableViewCell.swift */,
+				CE72082C2ADFF2D40005C16E /* BaseTableViewCell+Extensions.swift */,
+			);
+			path = BaseTableViewCell;
+			sourceTree = "<group>";
+		};
+		CE7208312ADFF40B0005C16E /* BaseDetailTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE9EA8D62AD8489100C261C8 /* BaseDetailTableViewCell.swift */,
+				CE72082F2ADFF3D30005C16E /* BaseDetailTableViewCell+Extensions.swift */,
+			);
+			path = BaseDetailTableViewCell;
 			sourceTree = "<group>";
 		};
 		CEA1A8CB2ABB52F90012630D /* ViewModel */ = {
@@ -548,6 +570,7 @@
 			files = (
 				CE2E1FC02AD0104B00E0FC3B /* SeriesImageView.swift in Sources */,
 				CEF456082AAB732900D5A397 /* Fonts.swift in Sources */,
+				CE72082D2ADFF2D40005C16E /* BaseTableViewCell+Extensions.swift in Sources */,
 				CEF5030B2ACF298700DFB431 /* Double+Extensions.swift in Sources */,
 				CEA1A8C82ABB37890012630D /* SearchSeriesView+Extensions.swift in Sources */,
 				CE1A6B4D2AAF515000B495EB /* Colors.swift in Sources */,
@@ -567,6 +590,7 @@
 				CE58DBDE2AD99302004CBB4B /* AssetsImages.swift in Sources */,
 				CEBAAEA32A13E824001F59A6 /* SearchSeriesViewController.swift in Sources */,
 				CEA1A8C62AB9F55C0012630D /* UIView+Extensions.swift in Sources */,
+				CE7208302ADFF3D30005C16E /* BaseDetailTableViewCell+Extensions.swift in Sources */,
 				CED57AB52ADEB635006C7981 /* WatchingNowButton.swift in Sources */,
 				CEF456042AAB547B00D5A397 /* MainTabBarController.swift in Sources */,
 				CEF455FA2AAB305E00D5A397 /* SearchSeriesView.swift in Sources */,
@@ -678,7 +702,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -733,7 +757,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -759,7 +783,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -792,7 +816,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

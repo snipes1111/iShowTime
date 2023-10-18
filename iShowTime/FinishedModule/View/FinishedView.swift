@@ -10,7 +10,6 @@ import UIKit
 final class FinishedView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemMint
     }
 
     required init?(coder: NSCoder) {

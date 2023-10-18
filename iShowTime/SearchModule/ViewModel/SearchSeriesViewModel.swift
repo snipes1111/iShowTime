@@ -94,9 +94,9 @@ extension SearchSeriesViewModel {
 
     private func setPromptLabelText() -> String {
         switch loadingState.value {
-        case .initial: return SearchModuleConstants.startSearchPromptText
-        case .loading: return SearchModuleConstants.loadingSearchPromptText
-        case .finished: return SearchModuleConstants.finishedSearchPromptText
+        case .initial: return SearchModuleConstants.welcomeText
+        case .loading: return SearchModuleConstants.loading
+        case .finished: return SearchModuleConstants.loadingFinished
         }
     }
 }
