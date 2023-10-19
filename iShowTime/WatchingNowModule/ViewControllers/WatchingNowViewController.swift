@@ -15,6 +15,6 @@ class WatchingNowViewController: UIViewController {
         super.viewDidLoad()
         watchingNowView.frame = view.frame
         view = watchingNowView
-        view.backgroundColor = .black
+        view.backgroundColor = .white
     }
 }
