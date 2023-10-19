@@ -13,7 +13,7 @@ class WatchingNowViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.searchController = UISearchController(searchResultsController: nil)
+        navigationItem.searchController = nil
         watchingNowView.frame = view.frame
         view = watchingNowView
 
