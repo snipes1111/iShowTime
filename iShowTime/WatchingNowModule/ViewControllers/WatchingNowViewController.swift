@@ -16,6 +16,6 @@ class WatchingNowViewController: UIViewController {
         navigationItem.searchController = nil
         watchingNowView.frame = view.frame
         view = watchingNowView
-
+        view.backgroundColor = .white
     }
 }
