@@ -32,8 +32,8 @@ extension SearchSeriesView: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchModuleConstants.seriesCellIdentifier,
-                                                   for: indexPath) as? SearchSeriesCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchModuleConstants.seriesCellIdentifier,
+                                                       for: indexPath) as? SearchSeriesCell
         else { return UITableViewCell() }
         viewModel.configureCell(cell, indexPath)
         return cell

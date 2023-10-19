@@ -11,6 +11,7 @@ protocol DataStoreMangerProtocol {
     func save(series: Series)
     func remove(series: Series)
     func isSavedBefore(series: Series) -> Bool
+    func seriesList() -> [Series]
 }
 
 class DataStoreManger: DataStoreMangerProtocol {
@@ -32,5 +33,9 @@ class DataStoreManger: DataStoreMangerProtocol {
         guard let index = storage.firstIndex(of: series) else { return }
         storage.remove(at: index)
         print("Successfully removed")
+    }
+
+    func seriesList() -> [Series] {
+        storage
     }
 }

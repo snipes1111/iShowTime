@@ -38,11 +38,12 @@ final class Builder: BuilderProtocol {
     }
 
     func buildWatchingNowViewController() -> UIViewController {
-        let view = WatchingNowView()
-        let viewModel = WatchingNowViewModel(series: [])
-        view.viewModel = viewModel
         let viewController = WatchingNowViewController()
+        let router = Router(viewController: viewController)
+        let viewModel = WatchingNowViewModel(router: router)
+        let view = WatchingNowView(viewModel: viewModel)
         viewController.watchingNowView = view
+        viewController.viewModel = viewModel
         return createNavController(
             viewController: viewController,
             title: WatchingNowConstants.title,

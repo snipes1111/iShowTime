@@ -18,14 +18,19 @@ extension BaseTableViewCell {
         titleLabel = label
     }
 
-    func setupSecondaryLabel() {
+    func setupGenreLabel() {
         let label = UILabel(font: Fonts.SearchModule.secondaryLabel)
-        secondaryLabel = label
+        genreLabel = label
     }
 
-    func setupTertiaryLabel() {
+    func setupCountryAndYearLabel() {
         let label = UILabel(font: Fonts.SearchModule.secondaryLabel, color: .systemGray)
-        tertiaryLabel = label
+        countryAndYearLabel = label
+    }
+
+    func setupSeasonsLabel() {
+        let label = UILabel(font: Fonts.SearchModule.secondaryLabel, color: .systemGray)
+        seasonsLabel = label
     }
 
     func setupSeriesProgressView() {

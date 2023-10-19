@@ -9,4 +9,6 @@ import Foundation
 
 struct WatchingNowConstants {
     static let title = "Watching Now"
+    static let seriesCellIdentifier = "WatchingNowSeriesCell"
+    static let detailSeriesCellIdentifier = "WatchingNowDetailSeriesCell"
 }

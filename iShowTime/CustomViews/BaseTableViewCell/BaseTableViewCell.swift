@@ -10,8 +10,9 @@ import UIKit
 class BaseTableViewCell: UITableViewCell {
     var posterImageView: SeriesImageView!
     var titleLabel: UILabel!
-    var secondaryLabel: UILabel!
-    var tertiaryLabel: UILabel!
+    var genreLabel: UILabel!
+    var countryAndYearLabel: UILabel!
+    var seasonsLabel: UILabel!
     var progressView: SeriesProgressView!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -28,8 +29,9 @@ extension BaseTableViewCell {
     private func setupView() {
         setupSubViews()
         let vStack = VerticalStackView(arrangedSubviews: [titleLabel,
-                                                          secondaryLabel,
-                                                          tertiaryLabel,
+                                                          genreLabel,
+                                                          countryAndYearLabel,
+                                                          seasonsLabel,
                                                           UIView(),
                                                           progressView
                                                          ])
@@ -41,8 +43,9 @@ extension BaseTableViewCell {
     private func setupSubViews() {
         setupImageView()
         setupTitleLabel()
-        setupSecondaryLabel()
-        setupTertiaryLabel()
+        setupGenreLabel()
+        setupCountryAndYearLabel()
+        setupSeasonsLabel()
         setupSeriesProgressView()
     }
 

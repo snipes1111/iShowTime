@@ -10,11 +10,21 @@ import UIKit
 class WatchingNowViewController: UIViewController {
 
     var watchingNowView: WatchingNowView!
+    var viewModel: WatchingNowViewModelProtocol!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        watchingNowView.frame = view.frame
-        view = watchingNowView
-        view.backgroundColor = .white
+        createWatchingNowView()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.fetchSeries()
+    }
+
+    func createWatchingNowView() {
+        watchingNowView.frame = view.frame
+        view.addSubview(watchingNowView)
+    }
+
 }
