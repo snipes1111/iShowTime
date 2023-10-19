@@ -48,7 +48,7 @@ extension SearchSeriesView {
     func createAndAddSpinner() {
         let spinner = SpinnerView()
         self.spinner = spinner
-        addSubview(spinner)
+        tableView.addSubview(spinner)
         setupSpinnerConstraints()
     }
 

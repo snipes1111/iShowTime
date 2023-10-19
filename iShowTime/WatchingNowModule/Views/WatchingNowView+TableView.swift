@@ -37,4 +37,6 @@ extension WatchingNowView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         CGFloat(viewModel.heightForRow)
     }
+
+    
 }

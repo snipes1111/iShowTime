@@ -34,7 +34,7 @@ extension BaseTableViewCell {
     }
 
     func setupSeriesProgressView() {
-        let progressView = SeriesProgressView(25)
+        let progressView = SeriesProgressView(15)
         self.progressView = progressView
     }
 }

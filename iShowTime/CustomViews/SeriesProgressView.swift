@@ -10,7 +10,7 @@ import UIKit
 final class SeriesProgressView: UIProgressView {
     init(_ height: CGFloat) {
         super.init(frame: .zero)
-        progress = 0.5
+        progress = 0.2
         trackTintColor = .lightGray.withAlphaComponent(0.4)
         progressTintColor = .systemGreen
         translatesAutoresizingMaskIntoConstraints = false
