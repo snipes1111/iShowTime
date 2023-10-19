@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchSeriesViewController: UIViewController {
+final class SearchSeriesViewController: UIViewController {
 
     var viewModel: SearchSeriesViewModel!
     var searchView: SearchSeriesView!
@@ -18,6 +18,7 @@ class SearchSeriesViewController: UIViewController {
         super.viewDidLoad()
         createSearchView()
         createSearchBar()
+        setBackButtonText()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +38,11 @@ class SearchSeriesViewController: UIViewController {
         searchController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchController
         searchController.searchBar.delegate = self
+    }
+
+    func setBackButtonText() {
+        navigationItem.backButtonDisplayMode = .minimal
+        navigationController?.navigationBar.tintColor = .black
     }
 }
 

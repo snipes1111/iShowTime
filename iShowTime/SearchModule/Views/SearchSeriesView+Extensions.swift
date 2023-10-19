@@ -18,16 +18,19 @@ extension SearchSeriesView {
     }
 
     func createAndAddSearchPromptLabel() {
-        let label = UILabel()
-        label.font = Fonts.searchModulePromptLabelFont
-        label.textColor = Colors.searchModulePromptTextColor
+        let label = UILabel(font: Fonts.SearchModule.promptLabelFont,
+                            color: Colors.searchModulePromptTextColor)
+        label.textAlignment = .center
         searchPromptLabel = label
         tableView.addSubview(searchPromptLabel)
     }
 
-    func setupSearchPromptLabelConstraints() {
+    func setupSearchPromptLabelConstraints(sideInsets: CGFloat) {
         searchPromptLabel.translatesAutoresizingMaskIntoConstraints = false
-        searchPromptLabel.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
+        searchPromptLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                                   constant: sideInsets).isActive = true
+        searchPromptLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                                    constant: -sideInsets).isActive = true
         searchPromptLabel.centerYAnchor.constraint(equalTo: tableView.centerYAnchor,
                                                    constant: -calculatedNavBarSize()).isActive = true
     }
@@ -43,22 +46,20 @@ extension SearchSeriesView {
     }
 
     func createAndAddSpinner() {
-        let spinner = UIActivityIndicatorView(style: .large)
-        spinner.hidesWhenStopped = true
-        spinner.color = Colors.spinnerColor
+        let spinner = SpinnerView()
         self.spinner = spinner
         addSubview(spinner)
+        setupSpinnerConstraints()
     }
 
     func setupSpinnerConstraints() {
-        spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.bottomAnchor.constraint(equalTo: searchPromptLabel.topAnchor, constant: -20).isActive = true
         spinner.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
 
     func updateSubviewsConstraints() {
         if shouldSetupConstraints {
-            setupSearchPromptLabelConstraints()
+            setupSearchPromptLabelConstraints(sideInsets: 16)
             setupSpinnerConstraints()
             shouldSetupConstraints = false
         }

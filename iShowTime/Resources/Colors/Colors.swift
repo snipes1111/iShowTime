@@ -10,6 +10,6 @@ import UIKit
 struct Colors {
     static let tabBarColor = UIColor(white: 0.9, alpha: 0.6).cgColor
     static let tabItemColor = UIColor.systemPink
-    static let searchModulePromptTextColor = UIColor.systemGray
+    static let searchModulePromptTextColor = UIColor.systemGray.withAlphaComponent(0.7)
     static let spinnerColor = UIColor.systemPink
 }
