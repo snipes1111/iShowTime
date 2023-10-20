@@ -26,53 +26,20 @@ class BaseSearchDetailCell: BaseDetailCell {
         vStack.setCustomSpacing(32, after: overviewLabel)
     }
 
-    override func makeConstraints(_ view: UIView) {
-        super.makeConstraints(view)
-        watchingNowButton.setSize(50, 250)
-    }
-
     override func setupSubViews() {
         super.setupSubViews()
-        createSeriesRatingIsLabel()
-        createSeriesRatingScoreLabel()
-        createSeriesGenreLabel()
-        createSeriesCountryAndSeasonsCountAndYearLabel()
-        createSeriesOverviewLabel()
-        createWatchingNowButton()
+        setupUI()
     }
 }
 
 extension BaseSearchDetailCell {
-    func createSeriesRatingIsLabel() {
-        let label = UILabel(font: Fonts.SearchDetailModule.seriesRatingIsLabel,
-                            numberOfLines: 1)
-        ratingIsLabel = label
-    }
-
-    func createSeriesRatingScoreLabel() {
-        let label = UILabel(font: Fonts.SearchDetailModule.seriesRatingScoreLabel,
-                            numberOfLines: 1)
-        ratingScoreLabel = label
-    }
-
-    func createSeriesGenreLabel() {
-        let label = UILabel(font: Fonts.SearchDetailModule.genreLabel)
-        label.textAlignment = .center
-        genreLabel = label
-    }
-
-    func createSeriesCountryAndSeasonsCountAndYearLabel() {
-        let label = UILabel(font: Fonts.SearchDetailModule.countrySeasonsAndYearLabel)
-        countrySeasonsAndYearLabel = label
-    }
-
-    func createSeriesOverviewLabel() {
-        let label = UILabel(font: Fonts.SearchDetailModule.overviewLabel)
-        overviewLabel = label
-    }
-
-    func createWatchingNowButton() {
-        let button = WatchingNowButton()
-        watchingNowButton = button
+    func setupUI() {
+        ratingIsLabel = UILabel(font: Fonts.SearchDetailModule.seriesRatingIsLabel, numberOfLines: 1)
+        ratingScoreLabel = UILabel(font: Fonts.SearchDetailModule.seriesRatingScoreLabel, numberOfLines: 1)
+        genreLabel = UILabel(font: Fonts.SearchDetailModule.genreLabel)
+        genreLabel.textAlignment = .center
+        countrySeasonsAndYearLabel = UILabel(font: Fonts.SearchDetailModule.countrySeasonsAndYearLabel)
+        overviewLabel = UILabel(font: Fonts.SearchDetailModule.overviewLabel)
+        watchingNowButton = WatchingNowButton()
     }
 }

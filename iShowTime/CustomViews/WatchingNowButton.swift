@@ -17,6 +17,7 @@ class WatchingNowButton: UIButton {
         addAction(buttonPressed(), for: .touchDown)
         addAction(buttonTouchCancel(), for: .touchUpInside)
         addAction(buttonTouchCancel(), for: .touchUpOutside)
+        setSize(50, 250)
     }
 
     required init?(coder: NSCoder) {

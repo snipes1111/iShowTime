@@ -8,11 +8,14 @@
 import UIKit
 
 final class VerticalStackView: UIStackView {
-    init(spacing: CGFloat = 4, arrangedSubviews: [UIView]) {
+    init(spacing: CGFloat = 4, arrangedSubviews: [UIView?], distribution: UIStackView.Distribution = .fill) {
         super.init(frame: .zero)
-        arrangedSubviews.forEach { addArrangedSubview($0) }
+        arrangedSubviews.forEach { subview in
+            guard let subview = subview else { return }
+            addArrangedSubview(subview)
+        }
+        self.distribution = distribution
         axis = .vertical
-        distribution = .fill
         self.spacing = spacing
     }
 

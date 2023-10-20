@@ -30,4 +30,9 @@ struct Fonts {
                                                     UIFont.systemFont(ofSize: 18, weight: .bold)]
         static let watchingNowButton: UIFont = .systemFont(ofSize: 16, weight: .semibold)
     }
+
+    struct WatchingNowModule {
+        static let description: UIFont = .systemFont(ofSize: 20, weight: .light)
+        static let seasonAndEpisode: UIFont = .systemFont(ofSize: 18)
+    }
 }

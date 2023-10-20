@@ -26,4 +26,5 @@ final class SearchSeriesDetailViewController: UIViewController {
         searchDetailView.frame = view.frame
         view.addSubview(searchDetailView)
     }
+
 }

@@ -24,8 +24,10 @@ class BaseDetailCell: UITableViewCell {
 
     func setupView() {
         setupSubViews()
-        let vStack = VerticalStackView(spacing: 8, arrangedSubviews: [posterImageView, nameLabel])
+        let vStack = VerticalStackView(spacing: 10, arrangedSubviews: [posterImageView, nameLabel])
         vStack.alignment = .center
+        vStack.setCustomSpacing(24, after: posterImageView)
+        vStack.setCustomSpacing(12, after: nameLabel)
         contentView.addSubview(vStack)
         makeConstraints(vStack)
         self.vStack = vStack
@@ -33,27 +35,14 @@ class BaseDetailCell: UITableViewCell {
 
     func makeConstraints(_ view: UIView) {
         posterImageView.setSize(300, 200)
-        nameLabel.setHeight(75)
         view.fillSuperView(contentView, padding: 18)
     }
 
     func setupSubViews() {
-        createPosterImageView()
-        createSeriesNameLabel()
+        posterImageView = SeriesImageView()
+        posterImageView.addShadow()
+        nameLabel = UILabel(font: Fonts.SearchDetailModule.seriesNameLabel)
+        nameLabel.textAlignment = .center
     }
 
-}
-
-extension BaseDetailCell {
-    func createPosterImageView() {
-        let imageView = SeriesImageView()
-        imageView.addShadow()
-        posterImageView = imageView
-    }
-
-    func createSeriesNameLabel() {
-        let label = UILabel(font: Fonts.SearchDetailModule.seriesNameLabel)
-        label.textAlignment = .center
-        nameLabel = label
-    }
 }

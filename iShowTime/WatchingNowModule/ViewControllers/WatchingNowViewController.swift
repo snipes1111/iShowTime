@@ -15,6 +15,7 @@ class WatchingNowViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createWatchingNowView()
+        setBackButtonText()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -25,6 +26,11 @@ class WatchingNowViewController: UIViewController {
     func createWatchingNowView() {
         watchingNowView.frame = view.frame
         view.addSubview(watchingNowView)
+    }
+
+    func setBackButtonText() {
+        navigationItem.backButtonDisplayMode = .minimal
+        navigationController?.navigationBar.tintColor = .black
     }
 
 }

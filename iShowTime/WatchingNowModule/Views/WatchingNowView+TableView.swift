@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension WatchingNowView: UITableViewDataSource, UITableViewDelegate {
+extension WatchingNowView: UITableViewDataSource {
 
     func addTableView() {
         addSubview(tableView)
@@ -28,15 +28,21 @@ extension WatchingNowView: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WatchingNowConstants.seriesCellIdentifier,
-                                                 for: indexPath) as? WatchingNowSeriesCell
+                                                       for: indexPath) as? WatchingNowSeriesCell
         else { return UITableViewCell() }
         viewModel.configureCell(cell, indexPath)
         return cell
     }
+}
+
+extension WatchingNowView: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         CGFloat(viewModel.heightForRow)
     }
 
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        viewModel.showDetails(at: indexPath)
+    }
 }

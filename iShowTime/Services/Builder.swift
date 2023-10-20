@@ -13,6 +13,7 @@ protocol BuilderProtocol {
     func buildWatchingNowViewController() -> UIViewController
     func buildFinishedViewController() -> UIViewController
     func buildSearchSeriesDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController
+    func buildWatchingNowDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController
 }
 
 final class Builder: BuilderProtocol {
@@ -64,6 +65,15 @@ final class Builder: BuilderProtocol {
         let viewModel = SearchDetailViewModel(seriesId: seriesId)
         let view = SearchDetailView(viewModel: viewModel)
         viewController.searchDetailView = view
+        viewController.viewModel = viewModel
+        return viewController
+    }
+
+    func buildWatchingNowDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController {
+        let viewController = WatchingNowDetailViewController(title: seriesName)
+        let viewModel = WatchingNowDetailViewModel(seriesId: seriesId)
+        let view = WatchingNowDetailView(viewModel: viewModel)
+        viewController.watchingNowDetailView = view
         viewController.viewModel = viewModel
         return viewController
     }

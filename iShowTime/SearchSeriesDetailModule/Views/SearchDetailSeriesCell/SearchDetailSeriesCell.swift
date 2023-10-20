@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchDetailSeriesCell: BaseDetailTableViewCell {
+class SearchDetailSeriesCell: BaseSearchDetailCell {
     var viewModel: SearchSeriesDetailCellViewModelProtocol? {
         didSet {
             posterImageView.getImage(viewModel?.imageUrl)

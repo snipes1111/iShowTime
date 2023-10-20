@@ -50,6 +50,9 @@ class WatchingNowViewModel: WatchingNowViewModelProtocol {
     }
 
     func showDetails(at indexPath: IndexPath) {
-        print("Show details")
+        let series = series[indexPath.item]
+        guard let id = series.id,
+        let seriesName = series.name else { return }
+        router.showWatchingNowDetailViewController(id, seriesName)
     }
 }
