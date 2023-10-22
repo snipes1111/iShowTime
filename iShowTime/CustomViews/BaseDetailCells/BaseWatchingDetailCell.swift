@@ -51,19 +51,20 @@ extension BaseWatchingDetailCell {
 
     func setupUI() {
         descriptionLabel = UILabel(font: Fonts.WatchingNowModule.description)
-        descriptionLabel.text = "Seasons: 3 • Status: In Production"
         nextEpisodeDateLabel = UILabel(font: Fonts.WatchingNowModule.description)
-        nextEpisodeDateLabel.text = "Next Episode Air Date: 11.11.11"
         progressView = SeriesProgressView(15)
-        seasonLabel = UILabel(font: Fonts.WatchingNowModule.seasonAndEpisode, text: "Season")
-        seasonPlusButton = CountButton(type: .plus)
-        seasonTF = CountTextField()
-        seasonMinusButton = CountButton(type: .minus)
-        episodeLabel = UILabel(font: Fonts.WatchingNowModule.seasonAndEpisode, text: "Episode")
-        episodePlusButton = CountButton(type: .plus)
-        episodeTF = CountTextField()
-        episodeMinusButton = CountButton(type: .minus)
+        setupRowWith(&seasonLabel, &seasonMinusButton, &seasonTF, &seasonPlusButton)
+        setupRowWith(&episodeLabel, &episodeMinusButton, &episodeTF, &episodePlusButton)
+
         removeButton = WatchingNowButton()
+    }
+
+    private func setupRowWith( _ label: inout UILabel?, _ minusButton: inout UIButton?,
+                               _ textfield: inout UITextField?, _ plusButton: inout UIButton?) {
+        label = UILabel(font: Fonts.WatchingNowModule.seasonAndEpisode)
+        minusButton = CountButton(type: .minus)
+        textfield = CountTextField()
+        plusButton = CountButton(type: .plus)
     }
 
     func createCountingStack() -> UIStackView {
@@ -76,11 +77,5 @@ extension BaseWatchingDetailCell {
                                                        arrangedSubviews: $0,
                                                        distribution: .fillEqually) }
         return UIStackView(arrangedSubviews: stackViews)
-    }
-}
-
-extension BaseWatchingDetailCell: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-
     }
 }

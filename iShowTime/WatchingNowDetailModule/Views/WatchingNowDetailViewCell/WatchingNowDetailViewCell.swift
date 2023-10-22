@@ -9,19 +9,23 @@ import UIKit
 
 class WatchingNowDetailViewCell: BaseWatchingDetailCell {
 
-    var seriesCount = 50
-    let seriesInSeason = 10
-
     var viewModel: WatchingNowDetailViewCellViewModelProtocol? {
         didSet {
-            posterImageView.getImage(viewModel?.imageUrl)
-            nameLabel.text = viewModel?.seriesName
+            guard let viewModel = viewModel else { return }
+            posterImageView.getImage(viewModel.imageUrl)
+            nameLabel.text = viewModel.seriesName
+            descriptionLabel.text = viewModel.description
+            nextEpisodeDateLabel.text = viewModel.nextEpisodeDate
+            seasonLabel.text = viewModel.season
+            episodeLabel.text = viewModel.episode
+            seasonTF.text = viewModel.seasonTFText
+            episodeTF.text = viewModel.episodeTFText
+            progressView.progress = viewModel.seriesProgress
             setupRemoveButton()
             seasonPlusButton.addTarget(self, action: #selector(plusSeason), for: .touchUpInside)
             seasonMinusButton.addTarget(self, action: #selector(minusSeason), for: .touchUpInside)
             episodePlusButton.addTarget(self, action: #selector(plusEpisode), for: .touchUpInside)
             episodeMinusButton.addTarget(self, action: #selector(minusEpisode), for: .touchUpInside)
-            updateProgressView()
         }
     }
 
@@ -53,36 +57,23 @@ extension WatchingNowDetailViewCell {
         guard let text = seasonTF.text,
               let count = Int(text) else { return }
         seasonTF.text = "\(count + 1)"
-        updateProgressView()
     }
 
     @objc private func minusSeason() {
         guard let text = seasonTF.text,
               let count = Int(text) else { return }
         seasonTF.text = "\(count - 1)"
-        updateProgressView()
     }
 
     @objc private func plusEpisode() {
         guard let text = episodeTF.text,
               let count = Int(text) else { return }
         episodeTF.text = "\(count + 1)"
-        updateProgressView()
     }
 
     @objc private func minusEpisode() {
         guard let text = episodeTF.text,
               let count = Int(text) else { return }
         episodeTF.text = "\(count - 1)"
-        updateProgressView()
-    }
-
-    func updateProgressView() {
-        guard let seasonCount = Int(seasonTF.text ?? ""),
-              let episodeCount = Int(episodeTF.text ?? "")
-        else { return }
-        let myProgress: Float = (Float(episodeCount) + Float(seasonCount - 1) * Float(seriesInSeason)) / Float(seriesCount)
-        print(myProgress)
-        progressView.progress = myProgress
     }
 }

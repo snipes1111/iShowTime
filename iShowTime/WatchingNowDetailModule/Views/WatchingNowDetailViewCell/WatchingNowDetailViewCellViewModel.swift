@@ -9,13 +9,13 @@ import Foundation
 
 protocol WatchingNowDetailViewCellViewModelProtocol {
     var seriesName: String { get }
-    var ratingIs: String { get }
-    var scoreRating: String { get }
-    var scoreRatingColor: ScoreRatingColor { get }
-    var genreAndYear: String { get }
-    var countrySeasonsAndYear: String { get }
-    var attributedOverviewText: String { get }
-    var overview: String { get }
+    var description: String { get }
+    var nextEpisodeDate: String { get }
+    var season: String { get }
+    var episode: String { get }
+    var seasonTFText: String { get }
+    var episodeTFText: String { get }
+    var seriesProgress: Float { get }
     var imageUrl: String? { get }
     var seriesIsSaved: Bool { get }
     init(series: Series)
@@ -25,24 +25,30 @@ protocol WatchingNowDetailViewCellViewModelProtocol {
 final class WatchingNowDetailViewCellViewModel: WatchingNowDetailViewCellViewModelProtocol {
 
     private var series: Series
-    private var countryService: CountryService = CountryService.shared
     private var dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
+
+    private var seasonCount: Double = 1
+    private var episodeCount: Double = 1
 
     var seriesName: String { series.name ?? SearchModuleConstants.unknownTitle }
 
-    var ratingIs: String { SearchModuleConstants.ratingIs }
+    var description: String {
+        let numberOfSeasons = Int(series.numberOfSeasons ?? 1)
+        let productionStatus = (series.inProduction ?? false) ? "In Production" : "Finished"
+        return "Seasons: \(numberOfSeasons) • Status: \(productionStatus)"
+    }
 
-    var scoreRating: String { receiveRating() }
+    var nextEpisodeDate: String {
+        "Next Episode Air Date \(series.nextEpisodeToAir?.airDate ?? "No info")"
+    }
 
-    var scoreRatingColor: ScoreRatingColor { returnRatingColor() }
+    var season: String { "Season" }
+    var episode: String { "Episode" }
 
-    var genreAndYear: String { receiveGenres() }
+    var seasonTFText: String { "\(seasonCount)" }
+    var episodeTFText: String { "\(episodeCount)" }
 
-    var countrySeasonsAndYear: String { receiveCountrySeasonAndYear() }
-
-    var attributedOverviewText: String { SearchModuleConstants.overview }
-
-    var overview: String { series.overview ?? SearchModuleConstants.noOverview  }
+    var seriesProgress: Float { calculateSeriesProgress() }
 
     var imageUrl: String? { series.posterPath }
 
@@ -62,32 +68,11 @@ final class WatchingNowDetailViewCellViewModel: WatchingNowDetailViewCellViewMod
 }
 
 extension WatchingNowDetailViewCellViewModel {
-    private func receiveGenres() -> String {
-        let genres = series.genres?.compactMap { $0.name }
-        guard let genreNames = genres else { return "Unknown genre" }
-        return genreNames.joined(separator: ", ")
-    }
-
-    private func receiveCountrySeasonAndYear() -> String {
-        let countries = countryService.getCountryNames(from: series)
-        let seasonsCount = Int(series.numberOfSeasons ?? 1)
-        let year = "\(series.firstAirDate?.extractYear() ?? "Unknown year")"
-        return "\(countries), seasons: \(seasonsCount) • \(year)"
-    }
-
-    private func receiveRating() -> String {
-        guard let rating = series.voteAverage, rating != 0 else { return "No rating yet" }
-        let roundedRating = String(format: "%.2f", rating)
-        return roundedRating
-    }
-
-    private func returnRatingColor() -> ScoreRatingColor {
-        guard let rating = series.voteAverage else { return .black }
-        switch rating {
-        case 0: return .black
-        case 0..<5.5: return .red
-        case 5.5..<7: return .yellow
-        default: return .green
-        }
+    func calculateSeriesProgress() -> Float {
+        guard let numberOfSeries = series.numberOfEpisodes else { return 1 }
+        let numberOfSeasons = series.numberOfSeasons ?? 1
+        let seriesInSeason = (numberOfSeries / numberOfSeasons).rounded(.up)
+        let totalProgress = (episodeCount + (seasonCount - 1) * seriesInSeason) / numberOfSeries
+        return Float(totalProgress)
     }
 }
