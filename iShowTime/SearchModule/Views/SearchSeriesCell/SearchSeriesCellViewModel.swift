@@ -33,7 +33,7 @@ final class SearchSeriesCellViewModel: SeriesCellViewModelProtocol {
 
     var tertiaryLabelTitle: String {
         let countryNames = countryService.getCountryNames(from: series)
-        let year = " • \(series.firstAirDate?.extractYear() ?? "Unknown")"
+        let year = " • \(series.firstAirDate?.extractYear() ?? "Unknown date")"
         return countryNames + year
     }
 

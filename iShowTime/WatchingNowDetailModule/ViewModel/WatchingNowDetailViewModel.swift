@@ -47,7 +47,7 @@ final class WatchingNowDetailViewModel: WatchingNowDetailViewModelProtocol {
 
     func configureCell(_ detailCell: WatchingNowDetailViewCell) {
         guard let series = series else { return }
-        let viewModel = WatchingNowDetailViewCellViewModel(series: series)
+        let viewModel = WatchingNowDetailCellViewModel(series: series)
         detailCell.viewModel = viewModel
     }
 

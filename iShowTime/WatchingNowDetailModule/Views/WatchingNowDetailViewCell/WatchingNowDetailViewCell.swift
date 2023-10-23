@@ -9,7 +9,7 @@ import UIKit
 
 class WatchingNowDetailViewCell: BaseWatchingDetailCell {
 
-    var viewModel: WatchingNowDetailViewCellViewModelProtocol? {
+    var viewModel: WatchingNowDetailCellViewModelProtocol? {
         didSet {
             guard let viewModel = viewModel else { return }
             posterImageView.getImage(viewModel.imageUrl)

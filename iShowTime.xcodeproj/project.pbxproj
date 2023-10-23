@@ -41,7 +41,7 @@
 		CE7208442AE16F860005C16E /* WatchingNowDetailView+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208432AE16F860005C16E /* WatchingNowDetailView+TableView.swift */; };
 		CE7208462AE16FC30005C16E /* WatchingNowDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208452AE16FC30005C16E /* WatchingNowDetailViewModel.swift */; };
 		CE7208482AE17C720005C16E /* WatchingNowDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208472AE17C710005C16E /* WatchingNowDetailViewCell.swift */; };
-		CE72084A2AE17C7D0005C16E /* WatchingNowDetailViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208492AE17C7D0005C16E /* WatchingNowDetailViewCellViewModel.swift */; };
+		CE72084A2AE17C7D0005C16E /* WatchingNowDetailCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208492AE17C7D0005C16E /* WatchingNowDetailCellViewModel.swift */; };
 		CE72084D2AE182CA0005C16E /* BaseSearchDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72084C2AE182CA0005C16E /* BaseSearchDetailCell.swift */; };
 		CE72084F2AE182FE0005C16E /* BaseDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72084E2AE182FE0005C16E /* BaseDetailCell.swift */; };
 		CE7208512AE186450005C16E /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208502AE186450005C16E /* UIStackView+Extensions.swift */; };
@@ -120,7 +120,7 @@
 		CE7208432AE16F860005C16E /* WatchingNowDetailView+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WatchingNowDetailView+TableView.swift"; sourceTree = "<group>"; };
 		CE7208452AE16FC30005C16E /* WatchingNowDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingNowDetailViewModel.swift; sourceTree = "<group>"; };
 		CE7208472AE17C710005C16E /* WatchingNowDetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingNowDetailViewCell.swift; sourceTree = "<group>"; };
-		CE7208492AE17C7D0005C16E /* WatchingNowDetailViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingNowDetailViewCellViewModel.swift; sourceTree = "<group>"; };
+		CE7208492AE17C7D0005C16E /* WatchingNowDetailCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingNowDetailCellViewModel.swift; sourceTree = "<group>"; };
 		CE72084C2AE182CA0005C16E /* BaseSearchDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSearchDetailCell.swift; sourceTree = "<group>"; };
 		CE72084E2AE182FE0005C16E /* BaseDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDetailCell.swift; sourceTree = "<group>"; };
 		CE7208502AE186450005C16E /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
@@ -425,7 +425,7 @@
 			isa = PBXGroup;
 			children = (
 				CE7208472AE17C710005C16E /* WatchingNowDetailViewCell.swift */,
-				CE7208492AE17C7D0005C16E /* WatchingNowDetailViewCellViewModel.swift */,
+				CE7208492AE17C7D0005C16E /* WatchingNowDetailCellViewModel.swift */,
 			);
 			path = WatchingNowDetailViewCell;
 			sourceTree = "<group>";
@@ -710,7 +710,7 @@
 				CEF502FD2ACDD1F100DFB431 /* PlistManager.swift in Sources */,
 				CE1A6B6A2AB0921D00B495EB /* WatchingNowViewModel.swift in Sources */,
 				CE7208572AE29BC50005C16E /* CountTextField.swift in Sources */,
-				CE72084A2AE17C7D0005C16E /* WatchingNowDetailViewCellViewModel.swift in Sources */,
+				CE72084A2AE17C7D0005C16E /* WatchingNowDetailCellViewModel.swift in Sources */,
 				CEA1A8D22ABC81270012630D /* UILabel+Extensions.swift in Sources */,
 				CE1A6B672AB08C9D00B495EB /* Series.swift in Sources */,
 				CE2E1FC22AD011BD00E0FC3B /* VerticalStackView.swift in Sources */,

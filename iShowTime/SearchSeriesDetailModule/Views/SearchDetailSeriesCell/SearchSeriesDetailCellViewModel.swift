@@ -78,7 +78,7 @@ extension SearchSeriesDetailCellViewModel {
     private func receiveCountrySeasonAndYear() -> String {
         let countries = countryService.getCountryNames(from: series)
         let seasonsCount = Int(series.numberOfSeasons ?? 1)
-        let year = "\(series.firstAirDate?.extractYear() ?? "Unknown year")"
+        let year = "\(series.firstAirDate?.extractYear() ?? "Unknown date")"
         return "\(countries), seasons: \(seasonsCount) • \(year)"
     }
 

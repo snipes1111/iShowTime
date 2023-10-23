@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol WatchingNowDetailViewCellViewModelProtocol {
+protocol WatchingNowDetailCellViewModelProtocol {
     var seriesName: String { get }
     var description: String { get }
     var nextEpisodeDate: String { get }
@@ -22,7 +22,7 @@ protocol WatchingNowDetailViewCellViewModelProtocol {
     func watchingNowButtonPressed()
 }
 
-final class WatchingNowDetailViewCellViewModel: WatchingNowDetailViewCellViewModelProtocol {
+final class WatchingNowDetailCellViewModel: WatchingNowDetailCellViewModelProtocol {
 
     private var series: Series
     private var dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
@@ -39,14 +39,15 @@ final class WatchingNowDetailViewCellViewModel: WatchingNowDetailViewCellViewMod
     }
 
     var nextEpisodeDate: String {
-        "Next Episode Air Date \(series.nextEpisodeToAir?.airDate ?? "No info")"
+        let airDate = series.nextEpisodeToAir?.airDate.extractDate()
+        return "Next Episode Air Date: \(airDate ?? "No info")"
     }
 
     var season: String { "Season" }
     var episode: String { "Episode" }
 
-    var seasonTFText: String { "\(seasonCount)" }
-    var episodeTFText: String { "\(episodeCount)" }
+    var seasonTFText: String { "\(Int(seasonCount))" }
+    var episodeTFText: String { "\(Int(episodeCount))" }
 
     var seriesProgress: Float { calculateSeriesProgress() }
 
@@ -67,7 +68,7 @@ final class WatchingNowDetailViewCellViewModel: WatchingNowDetailViewCellViewMod
     }
 }
 
-extension WatchingNowDetailViewCellViewModel {
+extension WatchingNowDetailCellViewModel {
     func calculateSeriesProgress() -> Float {
         guard let numberOfSeries = series.numberOfEpisodes else { return 1 }
         let numberOfSeasons = series.numberOfSeasons ?? 1
