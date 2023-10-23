@@ -31,7 +31,6 @@ final class WatchingNowDetailView: UIView {
         viewModel.viewModelDidChange = { _ in
             DispatchQueue.main.async { [unowned self] in
                 updateBackDropImageView()
-                tableView.reloadData()
                 hideLoadingView()
             }
         }

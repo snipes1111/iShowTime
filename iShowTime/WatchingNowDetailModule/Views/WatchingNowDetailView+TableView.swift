@@ -68,7 +68,7 @@ extension WatchingNowDetailView: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WatchingNowConstants.detailSeriesCellIdentifier,
                                                        for: indexPath) as? WatchingNowDetailViewCell
         else { return UITableViewCell() }
-        viewModel.configureCell(cell)
+        cell.viewModel = viewModel.returnDetailCellViewModel()
         return cell
     }
 }

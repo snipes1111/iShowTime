@@ -7,8 +7,6 @@
 
 import Foundation
 
-import UIKit
-
 protocol WatchingNowDetailViewModelProtocol {
     var viewModelDidChange: ((WatchingNowDetailViewModelProtocol) -> Void)? { get set }
     var title: Box<String> { get }
@@ -16,7 +14,7 @@ protocol WatchingNowDetailViewModelProtocol {
     var numberOfRows: Int { get }
     init(seriesId: Double)
     func fetchSeriesDetails()
-    func configureCell(_ detailCell: WatchingNowDetailViewCell)
+    func returnDetailCellViewModel() -> WatchingNowDetailCellViewModelProtocol?
 }
 
 final class WatchingNowDetailViewModel: WatchingNowDetailViewModelProtocol {
@@ -28,9 +26,7 @@ final class WatchingNowDetailViewModel: WatchingNowDetailViewModelProtocol {
 
     var viewModelDidChange: ((WatchingNowDetailViewModelProtocol) -> Void)?
     var title: Box<String> = Box(value: "")
-    var nameTitle: String? {
-        series?.name
-    }
+    var nameTitle: String? { series?.name }
     var backDropImageUrl: String? { series?.backdropPath }
     var numberOfRows: Int { 1 }
     init(seriesId: Double) {
@@ -41,14 +37,12 @@ final class WatchingNowDetailViewModel: WatchingNowDetailViewModelProtocol {
         Task { [unowned self] in
             await fetchAndDecodeData()
             viewModelDidChange?(self)
-
         }
     }
 
-    func configureCell(_ detailCell: WatchingNowDetailViewCell) {
-        guard let series = series else { return }
-        let viewModel = WatchingNowDetailCellViewModel(series: series)
-        detailCell.viewModel = viewModel
+    func returnDetailCellViewModel() -> WatchingNowDetailCellViewModelProtocol? {
+        guard let series = series else { return nil }
+        return WatchingNowDetailCellViewModel(series: series)
     }
 
     private func fetchAndDecodeData() async {

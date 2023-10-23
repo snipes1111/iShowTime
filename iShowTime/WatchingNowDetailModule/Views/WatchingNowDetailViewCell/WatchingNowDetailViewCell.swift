@@ -18,14 +18,9 @@ class WatchingNowDetailViewCell: BaseWatchingDetailCell {
             nextEpisodeDateLabel.text = viewModel.nextEpisodeDate
             seasonLabel.text = viewModel.season
             episodeLabel.text = viewModel.episode
-            seasonTF.text = viewModel.seasonTFText
-            episodeTF.text = viewModel.episodeTFText
-            progressView.progress = viewModel.seriesProgress
+            updateUI()
             setupRemoveButton()
-            seasonPlusButton.addTarget(self, action: #selector(plusSeason), for: .touchUpInside)
-            seasonMinusButton.addTarget(self, action: #selector(minusSeason), for: .touchUpInside)
-            episodePlusButton.addTarget(self, action: #selector(plusEpisode), for: .touchUpInside)
-            episodeMinusButton.addTarget(self, action: #selector(minusEpisode), for: .touchUpInside)
+            addButtonsTargets()
         }
     }
 
@@ -36,6 +31,13 @@ class WatchingNowDetailViewCell: BaseWatchingDetailCell {
 }
 
 extension WatchingNowDetailViewCell {
+
+    func addButtonsTargets() {
+        seasonPlusButton.addAction(createAction(for: .season, increment: true), for: .touchUpInside)
+        seasonMinusButton.addAction(createAction(for: .season, increment: false), for: .touchUpInside)
+        episodePlusButton.addAction(createAction(for: .episode, increment: true), for: .touchUpInside)
+        episodeMinusButton.addAction(createAction(for: .episode, increment: false), for: .touchUpInside)
+    }
 
     private func updateRemoveButton() {
         guard let isSaved = viewModel?.seriesIsSaved else { return }
@@ -53,27 +55,22 @@ extension WatchingNowDetailViewCell {
         removeButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
 
-    @objc private func plusSeason() {
-        guard let text = seasonTF.text,
-              let count = Int(text) else { return }
-        seasonTF.text = "\(count + 1)"
+    func createAction(for counterType: CounterType, increment: Bool) -> UIAction {
+        let action = UIAction { [unowned self] _ in
+            if increment {
+                viewModel?.increment(counterType)
+            } else {
+                viewModel?.decrement(counterType)
+            }
+            updateUI()
+        }
+        return action
     }
 
-    @objc private func minusSeason() {
-        guard let text = seasonTF.text,
-              let count = Int(text) else { return }
-        seasonTF.text = "\(count - 1)"
-    }
-
-    @objc private func plusEpisode() {
-        guard let text = episodeTF.text,
-              let count = Int(text) else { return }
-        episodeTF.text = "\(count + 1)"
-    }
-
-    @objc private func minusEpisode() {
-        guard let text = episodeTF.text,
-              let count = Int(text) else { return }
-        episodeTF.text = "\(count - 1)"
+    func updateUI() {
+        guard let viewModel = viewModel else { return }
+        seasonTF.text = viewModel.seasonTFText
+        episodeTF.text = viewModel.episodeTFText
+        progressView.progress = viewModel.seriesProgress
     }
 }
