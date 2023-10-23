@@ -10,7 +10,7 @@ import UIKit
 final class SearchSeriesDetailViewController: UIViewController {
 
     var searchDetailView: SearchDetailView!
-    var viewModel: SearchDetailViewModelProtocol!
+    var viewModel: SeriesDetailViewModelProtocol!
 
     override func viewDidLoad() {
         createSearchDetailView()

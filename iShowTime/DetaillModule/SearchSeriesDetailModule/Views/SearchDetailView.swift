@@ -1,22 +1,22 @@
 //
-//  WatchingNowDetailView.swift
+//  SearchDetailView.swift
 //  iShowTime
 //
-//  Created by user on 19/10/2023.
+//  Created by user on 11/10/2023.
 //
 
 import UIKit
 
-final class WatchingNowDetailView: UIView {
+final class SearchDetailView: UIView {
 
-    var viewModel: WatchingNowDetailViewModelProtocol
+    var viewModel: SeriesDetailViewModelProtocol
     var tableView: UITableView!
     var blurBackgroundView: UIView!
     var backDropImageView: SeriesImageView!
     var loadingView: UIView!
     var spinner: UIActivityIndicatorView!
 
-    init(viewModel: WatchingNowDetailViewModelProtocol) {
+    init(viewModel: SeriesDetailViewModelProtocol) {
         self.viewModel = viewModel
         super.init(frame: .zero)
         setupUI()
@@ -31,6 +31,7 @@ final class WatchingNowDetailView: UIView {
         viewModel.viewModelDidChange = { _ in
             DispatchQueue.main.async { [unowned self] in
                 updateBackDropImageView()
+                tableView.reloadData()
                 hideLoadingView()
             }
         }

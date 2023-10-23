@@ -50,6 +50,7 @@
 		CE7208572AE29BC50005C16E /* CountTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208562AE29BC50005C16E /* CountTextField.swift */; };
 		CE7208592AE6BECF0005C16E /* DetailCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208582AE6BECF0005C16E /* DetailCellViewModel.swift */; };
 		CE72085E2AE6C18A0005C16E /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72085D2AE6C18A0005C16E /* DetailCell.swift */; };
+		CE7208632AE6DE200005C16E /* SeriesDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208622AE6DE200005C16E /* SeriesDetailViewModel.swift */; };
 		CE9EA8CF2AD802E700C261C8 /* SearchDetailView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EA8CE2AD802E700C261C8 /* SearchDetailView+Extensions.swift */; };
 		CE9EA8D12AD81B9000C261C8 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EA8D02AD81B9000C261C8 /* Page.swift */; };
 		CE9EA8D32AD81B9A00C261C8 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EA8D22AD81B9A00C261C8 /* Country.swift */; };
@@ -131,6 +132,7 @@
 		CE7208562AE29BC50005C16E /* CountTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountTextField.swift; sourceTree = "<group>"; };
 		CE7208582AE6BECF0005C16E /* DetailCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCellViewModel.swift; sourceTree = "<group>"; };
 		CE72085D2AE6C18A0005C16E /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
+		CE7208622AE6DE200005C16E /* SeriesDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDetailViewModel.swift; sourceTree = "<group>"; };
 		CE9EA8CE2AD802E700C261C8 /* SearchDetailView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchDetailView+Extensions.swift"; sourceTree = "<group>"; };
 		CE9EA8D02AD81B9000C261C8 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		CE9EA8D22AD81B9A00C261C8 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 		CE0589C82AD6BCCC00DE987F /* SearchSeriesDetailModule */ = {
 			isa = PBXGroup;
 			children = (
+				CE7208622AE6DE200005C16E /* SeriesDetailViewModel.swift */,
 				CE0589D32AD6E8DA00DE987F /* ViewModel */,
 				CE0589D22AD6E8C800DE987F /* ViewController */,
 				CE0589D12AD6E8B400DE987F /* Views */,
@@ -444,6 +447,15 @@
 			path = DetailCell;
 			sourceTree = "<group>";
 		};
+		CE7208612AE6DDDC0005C16E /* DetaillModule */ = {
+			isa = PBXGroup;
+			children = (
+				CE0589C82AD6BCCC00DE987F /* SearchSeriesDetailModule */,
+				CE7208392AE16D420005C16E /* WatchingNowDetailModule */,
+			);
+			path = DetaillModule;
+			sourceTree = "<group>";
+		};
 		CEA1A8CB2ABB52F90012630D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,8 +504,7 @@
 				CEF455FC2AAB307C00D5A397 /* SearchModule */,
 				CE1A6B512AAF5E0E00B495EB /* WatchingNowModule */,
 				CE1A6B632AAF6C5B00B495EB /* FinishedModule */,
-				CE0589C82AD6BCCC00DE987F /* SearchSeriesDetailModule */,
-				CE7208392AE16D420005C16E /* WatchingNowDetailModule */,
+				CE7208612AE6DDDC0005C16E /* DetaillModule */,
 				CE72085B2AE6C1170005C16E /* DetailCellModule */,
 				CEBAAEAC2A13E828001F59A6 /* Info.plist */,
 			);
@@ -732,6 +743,7 @@
 				CE2E1FC22AD011BD00E0FC3B /* VerticalStackView.swift in Sources */,
 				CE0589C52AD4543300DE987F /* ImageCachingManager.swift in Sources */,
 				CEF503032ACF0BF900DFB431 /* SearchSeriesCellViewModel.swift in Sources */,
+				CE7208632AE6DE200005C16E /* SeriesDetailViewModel.swift in Sources */,
 				CE65E9642ABCC209009E38E8 /* Builder.swift in Sources */,
 				CE7208372AE150DB0005C16E /* WatchingNowCellViewModel.swift in Sources */,
 				CE1A6B562AAF5F6800B495EB /* WatchingNowView.swift in Sources */,

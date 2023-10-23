@@ -10,7 +10,7 @@ import UIKit
 final class WatchingNowDetailViewController: UIViewController {
 
     var watchingNowDetailView: WatchingNowDetailView!
-    var viewModel: WatchingNowDetailViewModelProtocol!
+    var viewModel: SeriesDetailViewModelProtocol!
 
     override func viewDidLoad() {
         createSearchDetailView()

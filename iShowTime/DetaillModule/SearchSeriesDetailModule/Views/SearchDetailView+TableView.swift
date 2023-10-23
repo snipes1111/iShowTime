@@ -66,7 +66,7 @@ extension SearchDetailView: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchModuleConstants.detailSeriesCellIdentifier,
                                                        for: indexPath) as? SearchDetailSeriesCell
         else { return UITableViewCell() }
-        viewModel.configureCell(cell)
+        cell.viewModel = viewModel.returnDetailCellViewModel()
         return cell
     }
 }
