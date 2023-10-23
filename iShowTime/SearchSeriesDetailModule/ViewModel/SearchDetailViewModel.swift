@@ -45,7 +45,7 @@ final class SearchDetailViewModel: SearchDetailViewModelProtocol {
 
     func configureCell(_ detailCell: SearchDetailSeriesCell) {
         guard let series = series else { return }
-        let viewModel = SearchSeriesDetailCellViewModel(series: series)
+        let viewModel = SearchDetailCellViewModel(series: series)
         detailCell.viewModel = viewModel
     }
 

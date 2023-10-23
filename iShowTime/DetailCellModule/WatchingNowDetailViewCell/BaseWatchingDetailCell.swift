@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BaseWatchingDetailCell: BaseDetailCell {
+class BaseWatchingNowDetailCell: DetailCell {
 
     var descriptionLabel: UILabel!
     var nextEpisodeDateLabel: UILabel!
@@ -24,13 +24,11 @@ class BaseWatchingDetailCell: BaseDetailCell {
     var episodeTF: UITextField!
     var episodeMinusButton: UIButton!
 
-    var removeButton: UIButton!
-
     override func setupView() {
         super.setupView()
         let hStack = createCountingStack()
         hStack.spacing = 18
-        vStack.addArrangedSubviews([descriptionLabel, nextEpisodeDateLabel, progressView, hStack, removeButton])
+        vStack.addArrangedSubviews([descriptionLabel, nextEpisodeDateLabel, progressView, hStack, watchingNowButton])
         vStack.setCustomSpacing(16, after: nextEpisodeDateLabel)
         vStack.setCustomSpacing(32, after: progressView)
         vStack.setCustomSpacing(32, after: hStack)
@@ -47,7 +45,7 @@ class BaseWatchingDetailCell: BaseDetailCell {
     }
 }
 
-extension BaseWatchingDetailCell {
+extension BaseWatchingNowDetailCell {
 
     func setupUI() {
         descriptionLabel = UILabel(font: Fonts.WatchingNowModule.description)
@@ -55,8 +53,6 @@ extension BaseWatchingDetailCell {
         progressView = SeriesProgressView(15)
         setupRowWith(&seasonLabel, &seasonMinusButton, &seasonTF, &seasonPlusButton)
         setupRowWith(&episodeLabel, &episodeMinusButton, &episodeTF, &episodePlusButton)
-
-        removeButton = WatchingNowButton()
     }
 
     private func setupRowWith( _ label: inout UILabel?, _ minusButton: inout UIButton?,

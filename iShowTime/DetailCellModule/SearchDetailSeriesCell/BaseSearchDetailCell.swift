@@ -7,13 +7,12 @@
 
 import UIKit
 
-class BaseSearchDetailCell: BaseDetailCell {
+class BaseSearchDetailCell: DetailCell {
     var ratingIsLabel: UILabel!
     var ratingScoreLabel: UILabel!
     var genreLabel: UILabel!
     var countrySeasonsAndYearLabel: UILabel!
     var overviewLabel: UILabel!
-    var watchingNowButton: UIButton!
 
     override func setupView() {
         super.setupView()
@@ -40,6 +39,5 @@ extension BaseSearchDetailCell {
         genreLabel.textAlignment = .center
         countrySeasonsAndYearLabel = UILabel(font: Fonts.SearchDetailModule.countrySeasonsAndYearLabel)
         overviewLabel = UILabel(font: Fonts.SearchDetailModule.overviewLabel)
-        watchingNowButton = WatchingNowButton()
     }
 }

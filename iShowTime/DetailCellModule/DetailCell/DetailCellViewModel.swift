@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol BaseDetailCellViewModelProtocol {
+protocol DetailCellViewModelProtocol {
     var seriesName: String { get }
     var imageUrl: String? { get }
     var seriesIsSaved: Bool { get }
@@ -15,15 +15,13 @@ protocol BaseDetailCellViewModelProtocol {
     func watchingNowButtonPressed()
 }
 
-class BaseDetailCellViewModel: BaseDetailCellViewModelProtocol {
-    
-    private var series: Series
+class DetailCellViewModel: DetailCellViewModelProtocol {
+
+    var series: Series
     private var dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
-    
+
     var seriesName: String { series.name ?? SearchModuleConstants.unknownTitle }
-
     var imageUrl: String? { series.posterPath }
-
     var seriesIsSaved: Bool { dataStoreManager.isSavedBefore(series: series) }
 
     required init(series: Series) {

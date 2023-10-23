@@ -1,5 +1,5 @@
 //
-//  SearchSeriesDetailCellViewModel.swift
+//  SearchDetailCellViewModel.swift
 //  iShowTime
 //
 //  Created by user on 12/10/2023.
@@ -14,8 +14,7 @@ enum ScoreRatingColor {
     case black
 }
 
-protocol SearchSeriesDetailCellViewModelProtocol {
-    var seriesName: String { get }
+protocol SearchDetailCellViewModelProtocol: DetailCellViewModelProtocol {
     var ratingIs: String { get }
     var scoreRating: String { get }
     var scoreRatingColor: ScoreRatingColor { get }
@@ -23,52 +22,22 @@ protocol SearchSeriesDetailCellViewModelProtocol {
     var countrySeasonsAndYear: String { get }
     var attributedOverviewText: String { get }
     var overview: String { get }
-    var imageUrl: String? { get }
-    var seriesIsSaved: Bool { get }
-    init(series: Series)
-    func watchingNowButtonPressed()
 }
 
-final class SearchSeriesDetailCellViewModel: SearchSeriesDetailCellViewModelProtocol {
+final class SearchDetailCellViewModel: DetailCellViewModel, SearchDetailCellViewModelProtocol {
 
-    private var series: Series
     private var countryService: CountryService = CountryService.shared
-    private var dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
-
-    var seriesName: String { series.name ?? SearchModuleConstants.unknownTitle }
 
     var ratingIs: String { SearchModuleConstants.ratingIs }
-
     var scoreRating: String { receiveRating() }
-
     var scoreRatingColor: ScoreRatingColor { returnRatingColor() }
-
     var genreAndYear: String { receiveGenres() }
-
     var countrySeasonsAndYear: String { receiveCountrySeasonAndYear() }
-
     var attributedOverviewText: String { SearchModuleConstants.overview }
-
-    var overview: String { series.overview ?? SearchModuleConstants.noOverview  }
-
-    var imageUrl: String? { series.posterPath }
-
-    var seriesIsSaved: Bool { dataStoreManager.isSavedBefore(series: series) }
-
-    required init(series: Series) {
-        self.series = series
-    }
-
-    func watchingNowButtonPressed() {
-        if !seriesIsSaved {
-            dataStoreManager.save(series: series)
-        } else {
-            dataStoreManager.remove(series: series)
-        }
-    }
+    var overview: String { series.overview ?? SearchModuleConstants.noOverview }
 }
 
-extension SearchSeriesDetailCellViewModel {
+extension SearchDetailCellViewModel {
     private func receiveGenres() -> String {
         let genres = series.genres?.compactMap { $0.name }
         guard let genreNames = genres else { return "Unknown genre" }

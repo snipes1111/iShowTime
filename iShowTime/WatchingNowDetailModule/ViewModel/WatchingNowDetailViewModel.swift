@@ -14,7 +14,7 @@ protocol WatchingNowDetailViewModelProtocol {
     var numberOfRows: Int { get }
     init(seriesId: Double)
     func fetchSeriesDetails()
-    func returnDetailCellViewModel() -> WatchingNowDetailCellViewModelProtocol?
+    func returnDetailCellViewModel() -> DetailCellViewModelProtocol?
 }
 
 final class WatchingNowDetailViewModel: WatchingNowDetailViewModelProtocol {
@@ -40,7 +40,7 @@ final class WatchingNowDetailViewModel: WatchingNowDetailViewModelProtocol {
         }
     }
 
-    func returnDetailCellViewModel() -> WatchingNowDetailCellViewModelProtocol? {
+    func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
         guard let series = series else { return nil }
         return WatchingNowDetailCellViewModel(series: series)
     }

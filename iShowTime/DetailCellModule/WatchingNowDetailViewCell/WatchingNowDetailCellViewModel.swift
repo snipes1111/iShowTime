@@ -12,7 +12,6 @@ enum CounterType {
 }
 
 protocol WatchingNowDetailCellViewModelProtocol {
-    var seriesName: String { get }
     var description: String { get }
     var nextEpisodeDate: String { get }
     var season: String { get }
@@ -20,25 +19,18 @@ protocol WatchingNowDetailCellViewModelProtocol {
     var seasonTFText: String { get }
     var episodeTFText: String { get }
     var seriesProgress: Float { get }
-    var imageUrl: String? { get }
-    var seriesIsSaved: Bool { get }
-    init(series: Series)
-    func watchingNowButtonPressed()
     func increment(_ counterType: CounterType)
     func decrement(_ counterType: CounterType)
 }
 
-final class WatchingNowDetailCellViewModel: WatchingNowDetailCellViewModelProtocol {
+final class WatchingNowDetailCellViewModel: DetailCellViewModel, WatchingNowDetailCellViewModelProtocol {
 
-    private var series: Series
     private var dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
 
     private var seasonCount: Double = 1
     private var episodeCount: Double = 1
 
     private var numberOfSeasons: Double { series.numberOfSeasons ?? 1 }
-
-    var seriesName: String { series.name ?? SearchModuleConstants.unknownTitle }
 
     var description: String {
         let productionStatus = (series.inProduction ?? false) ? "In Production" : "Finished"
@@ -57,22 +49,6 @@ final class WatchingNowDetailCellViewModel: WatchingNowDetailCellViewModelProtoc
     var episodeTFText: String { "\(Int(episodeCount))" }
 
     var seriesProgress: Float { calculateSeriesProgress() }
-
-    var imageUrl: String? { series.posterPath }
-
-    var seriesIsSaved: Bool { dataStoreManager.isSavedBefore(series: series) }
-
-    required init(series: Series) {
-        self.series = series
-    }
-
-    func watchingNowButtonPressed() {
-        if !seriesIsSaved {
-            dataStoreManager.save(series: series)
-        } else {
-            dataStoreManager.remove(series: series)
-        }
-    }
 
     func increment(_ counterType: CounterType) {
         if counterType == .episode {
