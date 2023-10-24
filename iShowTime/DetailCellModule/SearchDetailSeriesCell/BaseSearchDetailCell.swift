@@ -27,12 +27,6 @@ class BaseSearchDetailCell: DetailCell {
 
     override func setupSubViews() {
         super.setupSubViews()
-        setupUI()
-    }
-}
-
-extension BaseSearchDetailCell {
-    func setupUI() {
         ratingIsLabel = UILabel(font: Fonts.SearchDetailModule.seriesRatingIsLabel, numberOfLines: 1)
         ratingScoreLabel = UILabel(font: Fonts.SearchDetailModule.seriesRatingScoreLabel, numberOfLines: 1)
         genreLabel = UILabel(font: Fonts.SearchDetailModule.genreLabel)

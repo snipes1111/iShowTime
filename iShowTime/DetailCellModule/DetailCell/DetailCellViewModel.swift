@@ -18,7 +18,7 @@ protocol DetailCellViewModelProtocol {
 class DetailCellViewModel: DetailCellViewModelProtocol {
 
     var series: Series
-    private var dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
+    private let dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
 
     var seriesName: String { series.name ?? SearchModuleConstants.unknownTitle }
     var imageUrl: String? { series.posterPath }

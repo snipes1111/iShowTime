@@ -16,10 +16,14 @@ struct SearchModuleConstants {
     static let loadingFinished = "Nothing was found. Please, check your request or connection."
     static let title = "Search"
     // Detail screen
-    static let unknownTitle = "Unknown name"
     static let ratingIs = "Rating MovieDB: "
     static let overview = "   Overview: "
-    static let noOverview = "No any overview yet"
+    static let seasons = "seasons"
     static let addToWatchingNow = "Add to Watching Now"
     static let removeFromWatchingNow = "Remove from Watching Now"
+    static let unknownTitle = "Unknown name"
+    static let noOverview = "No any overview yet"
+    static let noGenre = "Unknown genre"
+    static let noDate = "Unknown date"
+    static let noRating = "No rating yet"
 }

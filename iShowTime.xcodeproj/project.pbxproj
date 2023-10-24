@@ -186,7 +186,6 @@
 		CE0589C82AD6BCCC00DE987F /* SearchSeriesDetailModule */ = {
 			isa = PBXGroup;
 			children = (
-				CE7208622AE6DE200005C16E /* SeriesDetailViewModel.swift */,
 				CE0589D32AD6E8DA00DE987F /* ViewModel */,
 				CE0589D22AD6E8C800DE987F /* ViewController */,
 				CE0589D12AD6E8B400DE987F /* Views */,
@@ -450,6 +449,7 @@
 		CE7208612AE6DDDC0005C16E /* DetaillModule */ = {
 			isa = PBXGroup;
 			children = (
+				CE7208622AE6DE200005C16E /* SeriesDetailViewModel.swift */,
 				CE0589C82AD6BCCC00DE987F /* SearchSeriesDetailModule */,
 				CE7208392AE16D420005C16E /* WatchingNowDetailModule */,
 			);

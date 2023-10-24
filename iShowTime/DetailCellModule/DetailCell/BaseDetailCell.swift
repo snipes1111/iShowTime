@@ -13,7 +13,7 @@ class BaseDetailCell: UITableViewCell {
     var vStack: UIStackView!
     var watchingNowButton: UIButton!
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    private override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .clear
         setupView()
@@ -46,5 +46,4 @@ class BaseDetailCell: UITableViewCell {
         nameLabel.textAlignment = .center
         watchingNowButton = WatchingNowButton()
     }
-
 }

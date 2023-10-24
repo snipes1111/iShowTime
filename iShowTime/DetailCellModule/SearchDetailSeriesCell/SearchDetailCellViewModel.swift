@@ -40,19 +40,21 @@ final class SearchDetailCellViewModel: DetailCellViewModel, SearchDetailCellView
 extension SearchDetailCellViewModel {
     private func receiveGenres() -> String {
         let genres = series.genres?.compactMap { $0.name }
-        guard let genreNames = genres else { return "Unknown genre" }
+        guard let genreNames = genres
+        else { return SearchModuleConstants.noGenre }
         return genreNames.joined(separator: ", ")
     }
 
     private func receiveCountrySeasonAndYear() -> String {
         let countries = countryService.getCountryNames(from: series)
         let seasonsCount = Int(series.numberOfSeasons ?? 1)
-        let year = "\(series.firstAirDate?.extractYear() ?? "Unknown date")"
-        return "\(countries), seasons: \(seasonsCount) • \(year)"
+        let year = "\(series.firstAirDate?.extractYear() ?? SearchModuleConstants.noDate)"
+        return "\(countries), \(SearchModuleConstants.seasons): \(seasonsCount) • \(year)"
     }
 
     private func receiveRating() -> String {
-        guard let rating = series.voteAverage, rating != 0 else { return "No rating yet" }
+        guard let rating = series.voteAverage, rating != 0 
+        else { return SearchModuleConstants.noRating }
         let roundedRating = String(format: "%.2f", rating)
         return roundedRating
     }
@@ -60,7 +62,6 @@ extension SearchDetailCellViewModel {
     private func returnRatingColor() -> ScoreRatingColor {
         guard let rating = series.voteAverage else { return .black }
         switch rating {
-        case 0: return .black
         case 0..<5.5: return .red
         case 5.5..<7: return .yellow
         default: return .green

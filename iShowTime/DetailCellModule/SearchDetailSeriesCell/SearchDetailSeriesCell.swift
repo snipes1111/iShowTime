@@ -9,25 +9,22 @@ import UIKit
 
 final class SearchDetailSeriesCell: BaseSearchDetailCell {
 
-    private lazy var detailViewModel: SearchDetailCellViewModelProtocol? = {
-        return (viewModel as? SearchDetailCellViewModelProtocol) ?? nil
-    }()
+    private var detailViewModel: SearchDetailCellViewModelProtocol?
 
     override func updateViews() {
         super.updateViews()
-        guard let viewModel = detailViewModel else { return }
+        detailViewModel = (viewModel as? SearchDetailCellViewModelProtocol)
         updateRating()
-        genreLabel.text = viewModel.genreAndYear
-        countrySeasonsAndYearLabel.text = viewModel.countrySeasonsAndYear
+        genreLabel.text = detailViewModel?.genreAndYear
+        countrySeasonsAndYearLabel.text = detailViewModel?.countrySeasonsAndYear
         updateOverview()
     }
 }
 
 extension SearchDetailSeriesCell {
     private func updateRating() {
-        guard let viewModel = detailViewModel else { return }
-        ratingIsLabel.text = viewModel.ratingIs
-        ratingScoreLabel.text = viewModel.scoreRating
+        ratingIsLabel.text = detailViewModel?.ratingIs
+        ratingScoreLabel.text = detailViewModel?.scoreRating
         ratingScoreLabel.textColor = getColor()
     }
 

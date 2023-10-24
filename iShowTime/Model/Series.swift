@@ -15,6 +15,7 @@ struct Series: Codable {
     }
 
     struct Season: Codable {
+        let seasonNumber: Double?
         let episodeCount: Double?
     }
 

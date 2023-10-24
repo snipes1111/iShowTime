@@ -15,10 +15,14 @@ class DetailCell: BaseDetailCell {
         }
     }
 
+    override func setupSubViews() {
+        super.setupSubViews()
+        watchingNowButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+    }
+
     func updateViews() {
         posterImageView.getImage(viewModel?.imageUrl)
         nameLabel.text = viewModel?.seriesName
-        watchingNowButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         updateWatchingNowButtonTitle()
     }
 }
@@ -31,13 +35,13 @@ extension DetailCell {
     }
 
     private func updateWatchingNowButtonTitle() {
-        guard let isSaved = viewModel?.seriesIsSaved else { return }
+        guard let isSaved = viewModel?.seriesIsSaved,
+              let button = watchingNowButton as? WatchingNowButton
+        else { return }
         if !isSaved {
-            watchingNowButton.setTitle(SearchModuleConstants.addToWatchingNow, for: .normal)
-            watchingNowButton.setTitleColor(.black, for: .normal)
+            button.addToWatchState()
         } else {
-            watchingNowButton.setTitle(SearchModuleConstants.removeFromWatchingNow, for: .normal)
-            watchingNowButton.setTitleColor(.darkGray, for: .normal)
+            button.removeFromWatchState()
         }
     }
 }
