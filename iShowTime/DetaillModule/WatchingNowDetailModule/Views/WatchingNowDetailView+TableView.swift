@@ -17,7 +17,7 @@ extension WatchingNowDetailView {
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(WatchingNowDetailViewCell.self,
+        tableView.register(WatchingNowDetailCell.self,
                            forCellReuseIdentifier: WatchingNowConstants.detailSeriesCellIdentifier)
         addTableView()
         setBackGroundView()
@@ -66,7 +66,7 @@ extension WatchingNowDetailView: UITableViewDataSource {
 
     func configuredDetailCell(_ indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WatchingNowConstants.detailSeriesCellIdentifier,
-                                                       for: indexPath) as? WatchingNowDetailViewCell
+                                                       for: indexPath) as? WatchingNowDetailCell
         else { return UITableViewCell() }
         cell.viewModel = viewModel.returnDetailCellViewModel()
         return cell

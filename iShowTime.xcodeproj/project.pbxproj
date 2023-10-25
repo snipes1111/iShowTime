@@ -13,7 +13,7 @@
 		CE0589CC2AD6C56200DE987F /* SearchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589CB2AD6C56200DE987F /* SearchDetailView.swift */; };
 		CE0589CE2AD6C63400DE987F /* SearchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589CD2AD6C63400DE987F /* SearchDetailViewModel.swift */; };
 		CE0589D02AD6E5BD00DE987F /* SearchDetailView+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589CF2AD6E5BD00DE987F /* SearchDetailView+TableView.swift */; };
-		CE0589D62AD6E92D00DE987F /* SearchDetailSeriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589D52AD6E92D00DE987F /* SearchDetailSeriesCell.swift */; };
+		CE0589D62AD6E92D00DE987F /* SearchDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589D52AD6E92D00DE987F /* SearchDetailCell.swift */; };
 		CE1A6B4A2AAF4D6B00B495EB /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B492AAF4D6B00B495EB /* BaseTabBarController.swift */; };
 		CE1A6B4D2AAF515000B495EB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B4C2AAF515000B495EB /* Colors.swift */; };
 		CE1A6B532AAF5F4700B495EB /* WatchingNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B522AAF5F4700B495EB /* WatchingNowViewController.swift */; };
@@ -45,7 +45,7 @@
 		CE72084D2AE182CA0005C16E /* BaseSearchDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72084C2AE182CA0005C16E /* BaseSearchDetailCell.swift */; };
 		CE72084F2AE182FE0005C16E /* BaseDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72084E2AE182FE0005C16E /* BaseDetailCell.swift */; };
 		CE7208512AE186450005C16E /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208502AE186450005C16E /* UIStackView+Extensions.swift */; };
-		CE7208532AE187E10005C16E /* BaseWatchingDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208522AE187E10005C16E /* BaseWatchingDetailCell.swift */; };
+		CE7208532AE187E10005C16E /* BaseWatchingNowDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208522AE187E10005C16E /* BaseWatchingNowDetailCell.swift */; };
 		CE7208552AE296B40005C16E /* CountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208542AE296B40005C16E /* CountButton.swift */; };
 		CE7208572AE29BC50005C16E /* CountTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208562AE29BC50005C16E /* CountTextField.swift */; };
 		CE7208592AE6BECF0005C16E /* DetailCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208582AE6BECF0005C16E /* DetailCellViewModel.swift */; };
@@ -95,7 +95,7 @@
 		CE0589CB2AD6C56200DE987F /* SearchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailView.swift; sourceTree = "<group>"; };
 		CE0589CD2AD6C63400DE987F /* SearchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewModel.swift; sourceTree = "<group>"; };
 		CE0589CF2AD6E5BD00DE987F /* SearchDetailView+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchDetailView+TableView.swift"; sourceTree = "<group>"; };
-		CE0589D52AD6E92D00DE987F /* SearchDetailSeriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailSeriesCell.swift; sourceTree = "<group>"; };
+		CE0589D52AD6E92D00DE987F /* SearchDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailCell.swift; sourceTree = "<group>"; };
 		CE1A6B492AAF4D6B00B495EB /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		CE1A6B4C2AAF515000B495EB /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CE1A6B522AAF5F4700B495EB /* WatchingNowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingNowViewController.swift; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 		CE72084C2AE182CA0005C16E /* BaseSearchDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSearchDetailCell.swift; sourceTree = "<group>"; };
 		CE72084E2AE182FE0005C16E /* BaseDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDetailCell.swift; sourceTree = "<group>"; };
 		CE7208502AE186450005C16E /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
-		CE7208522AE187E10005C16E /* BaseWatchingDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWatchingDetailCell.swift; sourceTree = "<group>"; };
+		CE7208522AE187E10005C16E /* BaseWatchingNowDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWatchingNowDetailCell.swift; sourceTree = "<group>"; };
 		CE7208542AE296B40005C16E /* CountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountButton.swift; sourceTree = "<group>"; };
 		CE7208562AE29BC50005C16E /* CountTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountTextField.swift; sourceTree = "<group>"; };
 		CE7208582AE6BECF0005C16E /* DetailCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCellViewModel.swift; sourceTree = "<group>"; };
@@ -219,14 +219,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		CE0589D42AD6E8EA00DE987F /* SearchDetailSeriesCell */ = {
+		CE0589D42AD6E8EA00DE987F /* SearchDetailCell */ = {
 			isa = PBXGroup;
 			children = (
 				CE72084C2AE182CA0005C16E /* BaseSearchDetailCell.swift */,
-				CE0589D52AD6E92D00DE987F /* SearchDetailSeriesCell.swift */,
+				CE0589D52AD6E92D00DE987F /* SearchDetailCell.swift */,
 				CE9EA8D42AD846BD00C261C8 /* SearchDetailCellViewModel.swift */,
 			);
-			path = SearchDetailSeriesCell;
+			path = SearchDetailCell;
 			sourceTree = "<group>";
 		};
 		CE1A6B4B2AAF513800B495EB /* Colors */ = {
@@ -416,22 +416,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		CE72084B2AE17C840005C16E /* WatchingNowDetailViewCell */ = {
+		CE72084B2AE17C840005C16E /* WatchingNowDetailCell */ = {
 			isa = PBXGroup;
 			children = (
-				CE7208522AE187E10005C16E /* BaseWatchingDetailCell.swift */,
+				CE7208522AE187E10005C16E /* BaseWatchingNowDetailCell.swift */,
 				CE7208472AE17C710005C16E /* WatchingDetailViewCell.swift */,
 				CE7208492AE17C7D0005C16E /* WatchingNowDetailCellViewModel.swift */,
 			);
-			path = WatchingNowDetailViewCell;
+			path = WatchingNowDetailCell;
 			sourceTree = "<group>";
 		};
 		CE72085B2AE6C1170005C16E /* DetailCellModule */ = {
 			isa = PBXGroup;
 			children = (
 				CE72085C2AE6C1480005C16E /* DetailCell */,
-				CE0589D42AD6E8EA00DE987F /* SearchDetailSeriesCell */,
-				CE72084B2AE17C840005C16E /* WatchingNowDetailViewCell */,
+				CE0589D42AD6E8EA00DE987F /* SearchDetailCell */,
+				CE72084B2AE17C840005C16E /* WatchingNowDetailCell */,
 			);
 			path = DetailCellModule;
 			sourceTree = "<group>";
@@ -696,7 +696,7 @@
 				CE7208512AE186450005C16E /* UIStackView+Extensions.swift in Sources */,
 				CED57AB32ADD7BB5006C7981 /* CountryService.swift in Sources */,
 				CED6AE482ADAE47D002140C1 /* SpinnerView.swift in Sources */,
-				CE0589D62AD6E92D00DE987F /* SearchDetailSeriesCell.swift in Sources */,
+				CE0589D62AD6E92D00DE987F /* SearchDetailCell.swift in Sources */,
 				CEF503072ACF13B400DFB431 /* BaseTableViewCell.swift in Sources */,
 				CEA1A8CA2ABB46030012630D /* SearchSeriesViewModel.swift in Sources */,
 				CE7208402AE16EAC0005C16E /* WatchingNowDetailView.swift in Sources */,
@@ -719,7 +719,7 @@
 				CE7208592AE6BECF0005C16E /* DetailCellViewModel.swift in Sources */,
 				CE1A6B592AAF646900B495EB /* WatchingNowConstants.swift in Sources */,
 				CE7208482AE17C720005C16E /* WatchingDetailViewCell.swift in Sources */,
-				CE7208532AE187E10005C16E /* BaseWatchingDetailCell.swift in Sources */,
+				CE7208532AE187E10005C16E /* BaseWatchingNowDetailCell.swift in Sources */,
 				CEBB0FBB2AC5EE1500A45074 /* SeriesDecoder.swift in Sources */,
 				CE0589CA2AD6BD3300DE987F /* SearchSeriesDetailViewController.swift in Sources */,
 				CE1A6B4A2AAF4D6B00B495EB /* BaseTabBarController.swift in Sources */,

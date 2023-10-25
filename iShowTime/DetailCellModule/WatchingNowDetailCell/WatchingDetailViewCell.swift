@@ -1,5 +1,5 @@
 //
-//  WatchingNowDetailViewCell.swift
+//  WatchingNowDetailCell.swift
 //  iShowTime
 //
 //  Created by user on 19/10/2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class WatchingNowDetailViewCell: BaseWatchingNowDetailCell {
+final class WatchingNowDetailCell: BaseWatchingNowDetailCell {
 
     private var detailViewModel: WatchingNowDetailCellViewModelProtocol?
 
@@ -19,42 +19,45 @@ final class WatchingNowDetailViewCell: BaseWatchingNowDetailCell {
         seasonLabel.text = detailViewModel?.seasonText
         episodeLabel.text = detailViewModel?.episodeText
         setProgress()
-        addButtonsTargets()
-        seasonTF.addAction(createSeasonTFAction(), for: .editingDidEnd)
-        episodeTF.addAction(createEpisodeTFAction(), for: .editingDidEnd)
+    }
+
+    override func setupSubViews() {
+        super.setupSubViews()
+        addActionsToButtons()
+        addActionsToTextfields()
     }
 }
 
-extension WatchingNowDetailViewCell {
+extension WatchingNowDetailCell {
 
-    private func addButtonsTargets() {
-        seasonPlusButton.addAction(createAction(for: .season, increment: true),
+    private func addActionsToTextfields() {
+        seasonTF.addAction(createTFAction(.season), for: .editingDidEnd)
+        episodeTF.addAction(createTFAction(.episode), for: .editingDidEnd)
+    }
+
+    private func addActionsToButtons() {
+        seasonPlusButton.addAction(createButtonAction(for: .season, increment: true),
                                    for: .touchUpInside)
-        seasonMinusButton.addAction(createAction(for: .season, increment: false),
+        seasonMinusButton.addAction(createButtonAction(for: .season, increment: false),
                                     for: .touchUpInside)
-        episodePlusButton.addAction(createAction(for: .episode, increment: true),
+        episodePlusButton.addAction(createButtonAction(for: .episode, increment: true),
                                     for: .touchUpInside)
-        episodeMinusButton.addAction(createAction(for: .episode, increment: false),
+        episodeMinusButton.addAction(createButtonAction(for: .episode, increment: false),
                                      for: .touchUpInside)
     }
 
-    private func createSeasonTFAction() -> UIAction {
+    private func createTFAction(_ counterType: CounterType) -> UIAction {
         let action = UIAction { [unowned self] _ in
-            detailViewModel?.setSeasonCount(seasonTF.text)
+            switch counterType {
+            case .episode: detailViewModel?.setEpisodeCount(episodeTF.text)
+            case .season: detailViewModel?.setSeasonCount(seasonTF.text)
+            }
             setProgress()
         }
         return action
     }
 
-    private func createEpisodeTFAction() -> UIAction {
-        let action = UIAction { [unowned self] _ in
-            detailViewModel?.setEpisodeCount(episodeTF.text)
-            setProgress()
-        }
-        return action
-    }
-
-    private func createAction(for counterType: CounterType, increment: Bool) -> UIAction {
+    private func createButtonAction(for counterType: CounterType, increment: Bool) -> UIAction {
         let action = UIAction { [unowned self] _ in
             if increment {
                 detailViewModel?.increment(counterType)
@@ -70,6 +73,6 @@ extension WatchingNowDetailViewCell {
         guard let viewModel = detailViewModel else { return }
         seasonTF.text = viewModel.seasonTFText
         episodeTF.text = viewModel.episodeTFText
-        progressView.progress = viewModel.seriesProgress
+        progressView.setProgress(viewModel.seriesProgress, animated: true)
     }
 }

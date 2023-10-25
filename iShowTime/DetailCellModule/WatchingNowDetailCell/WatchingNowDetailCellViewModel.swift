@@ -1,5 +1,5 @@
 //
-//  WatchingNowDetailViewCellViewModel.swift
+//  WatchingNowDetailCellViewModel.swift
 //  iShowTime
 //
 //  Created by user on 19/10/2023.
@@ -98,15 +98,16 @@ final class WatchingNowDetailCellViewModel: DetailCellViewModel, WatchingNowDeta
 }
 
 extension WatchingNowDetailCellViewModel {
-    private func calculateSeriesProgress() -> Float {
-        let seriesWatched = getEpisodesCount()
-        let totalProgress = (seriesWatched + episodeCount) / numberOfEpisodes
-        return Float(totalProgress)
-    }
 
     private func getEpisodesInSeason(_ season: Double) -> Double? {
         let currentSeason = series.seasons?.first { $0.seasonNumber == season }
         return currentSeason?.episodeCount
+    }
+
+    private func calculateSeriesProgress() -> Float {
+        let seriesWatched = getEpisodesCount()
+        let totalProgress = (seriesWatched + episodeCount) / numberOfEpisodes
+        return Float(totalProgress)
     }
 
     private func getEpisodesCount() -> Double {

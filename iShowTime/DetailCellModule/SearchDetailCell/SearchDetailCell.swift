@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SearchDetailSeriesCell: BaseSearchDetailCell {
+final class SearchDetailCell: BaseSearchDetailCell {
 
     private var detailViewModel: SearchDetailCellViewModelProtocol?
 
@@ -21,7 +21,7 @@ final class SearchDetailSeriesCell: BaseSearchDetailCell {
     }
 }
 
-extension SearchDetailSeriesCell {
+extension SearchDetailCell {
     private func updateRating() {
         ratingIsLabel.text = detailViewModel?.ratingIs
         ratingScoreLabel.text = detailViewModel?.scoreRating

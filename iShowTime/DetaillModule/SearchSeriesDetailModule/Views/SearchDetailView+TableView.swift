@@ -15,7 +15,7 @@ extension SearchDetailView {
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(SearchDetailSeriesCell.self,
+        tableView.register(SearchDetailCell.self,
                            forCellReuseIdentifier: SearchModuleConstants.detailSeriesCellIdentifier)
         addTableView()
         setBackGroundView()
@@ -64,7 +64,7 @@ extension SearchDetailView: UITableViewDataSource {
 
     func configuredDetailCell(_ indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchModuleConstants.detailSeriesCellIdentifier,
-                                                       for: indexPath) as? SearchDetailSeriesCell
+                                                       for: indexPath) as? SearchDetailCell
         else { return UITableViewCell() }
         cell.viewModel = viewModel.returnDetailCellViewModel()
         return cell

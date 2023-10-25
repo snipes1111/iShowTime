@@ -13,7 +13,7 @@ final class SeriesImageView: UIImageView {
 
     init() {
         super.init(frame: .zero)
-        contentMode = .scaleToFill
+        contentMode = .scaleAspectFill
         translatesAutoresizingMaskIntoConstraints = false
     }
 
