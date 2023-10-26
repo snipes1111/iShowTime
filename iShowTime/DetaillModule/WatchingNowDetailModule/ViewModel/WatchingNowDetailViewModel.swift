@@ -7,17 +7,17 @@
 
 import Foundation
 
-final class WatchingNowDetailViewModel: SeriesDetailViewModel {
+final class WatchingNowDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresentableProtocol {
 
     private let dataStorage: DataStoreMangerProtocol = DataStoreManger.shared
 
-    override func fetchSeriesDetails() {
+    func fetchSeriesDetails() {
         let selectedSeries = dataStorage.seriesList().filter { $0.id == seriesId }
         series = selectedSeries.first
         viewModelDidChange?(self)
     }
 
-    override func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
+    func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
         guard let series = series else { return nil }
         return WatchingNowDetailCellViewModel(series: series)
     }

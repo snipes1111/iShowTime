@@ -12,12 +12,15 @@ protocol SeriesDetailViewModelProtocol {
     var backDropImageUrl: String? { get }
     var numberOfRows: Int { get }
     init(seriesId: Double)
+}
+
+protocol SeriesDetailRepresentableProtocol {
     func fetchSeriesDetails()
     func returnDetailCellViewModel() -> DetailCellViewModelProtocol?
 }
 
 class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
-    var seriesId: Double
+    private(set) var seriesId: Double
     var series: Series?
 
     var viewModelDidChange: ((SeriesDetailViewModelProtocol) -> Void)?
@@ -26,10 +29,5 @@ class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
 
     required init(seriesId: Double) {
         self.seriesId = seriesId
-    }
-
-    func fetchSeriesDetails() {}
-    func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
-        return nil
     }
 }

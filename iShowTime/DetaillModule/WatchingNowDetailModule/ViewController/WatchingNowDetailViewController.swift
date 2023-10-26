@@ -11,11 +11,7 @@ final class WatchingNowDetailViewController: UIViewController {
 
     private var keyboardManager: KeyboardManager!
     var watchingNowDetailView: WatchingNowDetailView!
-    var viewModel: SeriesDetailViewModelProtocol!
-
-    private var color: UIColor?
-    private var image: UIImage?
-    private var imageTwo: UIImage?
+    var viewModel: SeriesDetailRepresentableProtocol!
 
     override func viewDidLoad() {
         createSearchDetailView()
@@ -30,8 +26,8 @@ final class WatchingNowDetailViewController: UIViewController {
     }
 
     func createSearchDetailView() {
-        watchingNowDetailView.frame = view.frame
         view.addSubview(watchingNowDetailView)
+        watchingNowDetailView.fillSuperView(view)
     }
 
     func createKeyboardManager() {

@@ -7,20 +7,19 @@
 
 import Foundation
 
-final class SearchDetailViewModel: SeriesDetailViewModel {
+final class SearchDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresentableProtocol {
 
     private let networkService: NetworkServiceProtocol = NetworkService()
     private let decoder: SeriesDecoderProtocol = SeriesDecoder()
 
-    override func fetchSeriesDetails() {
+    func fetchSeriesDetails() {
         Task { [unowned self] in
             await fetchAndDecodeData()
             viewModelDidChange?(self)
-
         }
     }
 
-    override func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
+    func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
         guard let series = series else { return nil }
         return SearchDetailCellViewModel(series: series)
     }
