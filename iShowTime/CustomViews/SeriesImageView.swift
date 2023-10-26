@@ -14,6 +14,7 @@ final class SeriesImageView: UIImageView {
     init() {
         super.init(frame: .zero)
         contentMode = .scaleAspectFill
+        clipsToBounds = true
         translatesAutoresizingMaskIntoConstraints = false
     }
 

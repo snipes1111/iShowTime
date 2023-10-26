@@ -9,16 +9,19 @@ import UIKit
 
 final class WatchingNowDetailViewController: UIViewController {
 
+    private var keyboardManager: KeyboardManager!
     var watchingNowDetailView: WatchingNowDetailView!
     var viewModel: SeriesDetailViewModelProtocol!
+
+    private var color: UIColor?
+    private var image: UIImage?
+    private var imageTwo: UIImage?
 
     override func viewDidLoad() {
         createSearchDetailView()
         viewModel.fetchSeriesDetails()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)),
-                                               name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+        createKeyboardManager()
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
 
     convenience init(title: String) {
@@ -26,29 +29,13 @@ final class WatchingNowDetailViewController: UIViewController {
         self.title = title
     }
 
-    @objc func keyboardWillShow(_ notification: Notification) {
-        guard let userInfo = (notification.userInfo) as? [String: Any],
-              let keyboardSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-              let animationDuration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval)
-        else { return }
-        let keyboardHeight = keyboardSize.height
-        UIView.animate(withDuration: animationDuration) {
-            self.watchingNowDetailView.transform = CGAffineTransform(translationX: 1.0, y: -keyboardHeight)
-        }
-    }
-
-    @objc func keyboardWillHide(_ notification: Notification) {
-        guard
-            let userInfo = (notification.userInfo) as? [String: Any],
-            let animationDuration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval)
-        else { return }
-        UIView.animate(withDuration: animationDuration) {
-            self.watchingNowDetailView.transform = .identity
-        }
-    }
-
     func createSearchDetailView() {
         watchingNowDetailView.frame = view.frame
         view.addSubview(watchingNowDetailView)
+    }
+
+    func createKeyboardManager() {
+        keyboardManager = KeyboardManager(watchingNowDetailView)
+        keyboardManager.addNotifications()
     }
 }

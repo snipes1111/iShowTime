@@ -23,14 +23,13 @@ class WatchingNowViewController: UIViewController {
         viewModel.fetchSeries()
     }
 
-    func createWatchingNowView() {
+    private func createWatchingNowView() {
         watchingNowView.frame = view.frame
         view.addSubview(watchingNowView)
     }
 
-    func setBackButtonText() {
+    private func setBackButtonText() {
         navigationItem.backButtonDisplayMode = .minimal
         navigationController?.navigationBar.tintColor = .black
     }
-
 }

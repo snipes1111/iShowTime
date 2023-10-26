@@ -44,6 +44,14 @@ extension UIView {
         trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -padding).isActive = true
     }
 
+    func fillSuperView(_ superView: UIView, insets: UIEdgeInsets) {
+        translatesAutoresizingMaskIntoConstraints = false
+        topAnchor.constraint(equalTo: superView.topAnchor, constant: insets.top).isActive = true
+        bottomAnchor.constraint(equalTo: superView.bottomAnchor, constant: -insets.bottom).isActive = true
+        leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: insets.left).isActive = true
+        trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -insets.right).isActive = true
+    }
+
     func setSize(_ height: CGFloat, _ width: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: height).isActive = true

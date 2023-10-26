@@ -19,7 +19,7 @@ class CountryService {
     }
 
     func getCountryNames(from series: Series) -> String {
-        guard let encodedISO = series.originCountry else { return "Unknown country" }
+        guard let encodedISO = series.originCountry, !encodedISO.isEmpty else { return "Unknown country" }
         let filteredCountryList = countryList.filter { encodedISO.contains($0.iso ?? "") }
         return filteredCountryList.compactMap { $0.nativeName }.joined(separator: ", ")
     }

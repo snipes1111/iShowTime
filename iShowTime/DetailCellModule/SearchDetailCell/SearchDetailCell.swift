@@ -39,9 +39,9 @@ extension SearchDetailCell {
         guard let color = detailViewModel?.scoreRatingColor else { return .black }
         switch color {
         case .black: return .black
-        case .green: return .systemGreen.withAlphaComponent(0.8)
-        case .red: return .systemRed.withAlphaComponent(0.8)
+        case .red: return .systemRed.withAlphaComponent(0.9)
         case .yellow: return .systemOrange
+        case .green: return .systemGreen.withAlphaComponent(0.9)
         }
     }
 }

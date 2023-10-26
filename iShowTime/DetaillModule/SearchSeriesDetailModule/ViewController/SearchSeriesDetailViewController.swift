@@ -23,8 +23,8 @@ final class SearchSeriesDetailViewController: UIViewController {
     }
 
     func createSearchDetailView() {
-        searchDetailView.frame = view.frame
         view.addSubview(searchDetailView)
+        searchDetailView.fillSuperView(view)
     }
 
 }

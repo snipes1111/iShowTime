@@ -11,7 +11,6 @@ final class WatchingNowDetailView: UIView {
 
     var viewModel: SeriesDetailViewModelProtocol
     var tableView: UITableView!
-    var blurBackgroundView: UIView!
     var backDropImageView: SeriesImageView!
     var loadingView: UIView!
     var spinner: UIActivityIndicatorView!

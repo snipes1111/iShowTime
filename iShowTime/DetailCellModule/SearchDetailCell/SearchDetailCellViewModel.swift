@@ -34,10 +34,17 @@ final class SearchDetailCellViewModel: DetailCellViewModel, SearchDetailCellView
     var genreAndYear: String { receiveGenres() }
     var countrySeasonsAndYear: String { receiveCountrySeasonAndYear() }
     var attributedOverviewText: String { SearchModuleConstants.overview }
-    var overview: String { series.overview ?? SearchModuleConstants.noOverview }
+    var overview: String { receiveOverview() }
 }
 
 extension SearchDetailCellViewModel {
+
+    private func receiveOverview() -> String {
+        guard let overview = series.overview, !overview.isEmpty
+        else { return SearchModuleConstants.noOverview }
+        return overview
+    }
+
     private func receiveGenres() -> String {
         let genres = series.genres?.compactMap { $0.name }
         guard let genreNames = genres
@@ -53,7 +60,7 @@ extension SearchDetailCellViewModel {
     }
 
     private func receiveRating() -> String {
-        guard let rating = series.voteAverage, rating != 0 
+        guard let rating = series.voteAverage, rating != 0
         else { return SearchModuleConstants.noRating }
         let roundedRating = String(format: "%.2f", rating)
         return roundedRating
@@ -62,6 +69,7 @@ extension SearchDetailCellViewModel {
     private func returnRatingColor() -> ScoreRatingColor {
         guard let rating = series.voteAverage else { return .black }
         switch rating {
+        case 0: return .black
         case 0..<5.5: return .red
         case 5.5..<7: return .yellow
         default: return .green

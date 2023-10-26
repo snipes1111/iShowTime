@@ -23,7 +23,7 @@ final class Router: RouterProtocol {
 
     func showDetailSeriesViewController(_ seriesID: Double, _ seriesName: String) {
         let detailVc = builder.buildSearchSeriesDetailViewController(seriesID, seriesName)
-        viewController.navigationController?.pushViewController(detailVc, animated: true)
+        viewController.present(detailVc, animated: true)
     }
 
     func showWatchingNowDetailViewController(_ seriesID: Double, _ seriesName: String) {

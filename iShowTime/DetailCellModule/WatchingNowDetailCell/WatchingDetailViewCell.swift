@@ -18,7 +18,9 @@ final class WatchingNowDetailCell: BaseWatchingNowDetailCell {
         nextEpisodeDateLabel.text = detailViewModel?.nextEpisodeDate
         seasonLabel.text = detailViewModel?.seasonText
         episodeLabel.text = detailViewModel?.episodeText
-        setProgress()
+        seasonTF.text = detailViewModel?.seasonTFText
+        episodeTF.text = detailViewModel?.episodeTFText
+        progressView.progress = detailViewModel?.seriesProgress ?? 0
     }
 
     override func setupSubViews() {
@@ -52,7 +54,7 @@ extension WatchingNowDetailCell {
             case .episode: detailViewModel?.setEpisodeCount(episodeTF.text)
             case .season: detailViewModel?.setSeasonCount(seasonTF.text)
             }
-            setProgress()
+            updateProgress()
         }
         return action
     }
@@ -64,12 +66,12 @@ extension WatchingNowDetailCell {
             } else {
                 detailViewModel?.decrement(counterType)
             }
-            setProgress()
+            updateProgress()
         }
         return action
     }
 
-    private func setProgress() {
+    private func updateProgress() {
         guard let viewModel = detailViewModel else { return }
         seasonTF.text = viewModel.seasonTFText
         episodeTF.text = viewModel.episodeTFText
