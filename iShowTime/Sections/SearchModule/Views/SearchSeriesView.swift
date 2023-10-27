@@ -13,14 +13,14 @@ final class SearchSeriesView: BaseSectionView {
         viewModel as? SearchSeriesViewModelProtocol
     }()
 
-    var shouldSetupConstraints = true
-
     var searchPromptLabel: UILabel!
     var spinner: UIActivityIndicatorView!
+    var shouldSetupConstraints = true
 
     override func setupUI() {
         super.setupUI()
         setupSubviews()
+        updateSearchPromptLabel()
         bindWithLoadingState()
     }
 
@@ -29,22 +29,29 @@ final class SearchSeriesView: BaseSectionView {
         super.updateConstraints()
     }
 
-    func bindWithLoadingState() {
-        searchViewModel?.loadingState.bind { _ in
-            DispatchQueue.main.async { [unowned self] in
-                updateSearchPromptLabel()
-                manageSpinner()
-                tableView.reloadData()
-            }
+    private func bindWithLoadingState() {
+        searchViewModel?.loadingState.bind { [unowned self] _ in
+            updateUI()
+        }
+    }
+}
+
+extension SearchSeriesView {
+
+    private func updateUI() {
+        DispatchQueue.main.async { [unowned self] in
+            updateSearchPromptLabel()
+            manageSpinner()
+            tableView.reloadData()
         }
     }
 
-    func updateSearchPromptLabel() {
+    private func updateSearchPromptLabel() {
         searchPromptLabel.isHidden = searchViewModel?.promptLabelIsHidden ?? false
         searchPromptLabel.text = searchViewModel?.promptLabelText
     }
 
-    func manageSpinner() {
+    private func manageSpinner() {
         switch searchViewModel?.loadingState.value {
         case .loading: spinner.startAnimating()
         default: spinner.stopAnimating()

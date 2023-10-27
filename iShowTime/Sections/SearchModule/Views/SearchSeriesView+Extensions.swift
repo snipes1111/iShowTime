@@ -13,14 +13,12 @@ extension SearchSeriesView {
         backgroundColor = .white
         createAndAddSearchPromptLabel()
         createAndAddSpinner()
-        updateSearchPromptLabel()
     }
 
     func createAndAddSearchPromptLabel() {
-        let label = UILabel(font: Fonts.SearchModule.promptLabelFont,
+        searchPromptLabel = UILabel(font: Fonts.SearchModule.promptLabelFont,
                             color: Colors.searchModulePromptTextColor)
-        label.textAlignment = .center
-        searchPromptLabel = label
+        searchPromptLabel.textAlignment = .center
         tableView.addSubview(searchPromptLabel)
     }
 
