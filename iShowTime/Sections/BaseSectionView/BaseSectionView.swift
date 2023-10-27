@@ -9,8 +9,9 @@ import UIKit
 
 class BaseSectionView: UIView {
 
-    private(set) var viewModel: (SectionViewModelProtocol & SectionViewModelRepresentableProtocol)
     let tableView: UITableView
+
+    private(set) var viewModel: (SectionViewModelProtocol & SectionViewModelRepresentableProtocol)
 
     init(viewModel: (SectionViewModelProtocol & SectionViewModelRepresentableProtocol)) {
         self.viewModel = viewModel

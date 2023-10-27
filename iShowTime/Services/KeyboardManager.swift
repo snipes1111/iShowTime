@@ -11,7 +11,7 @@ class KeyboardManager {
 
     private let managedView: UIView
 
-    init(_ managedView: UIView) {
+    init(_ managedView: UIView, customInset: CGFloat? = nil) {
         self.managedView = managedView
     }
 
@@ -22,7 +22,7 @@ class KeyboardManager {
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
-    @objc func keyboardWillShow(_ notification: Notification) {
+    @objc private func keyboardWillShow(_ notification: Notification) {
         guard let userInfo = (notification.userInfo) as? [String: Any],
               let keyboardSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
               let animationDuration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval)
@@ -33,7 +33,7 @@ class KeyboardManager {
         }
     }
 
-    @objc func keyboardWillHide(_ notification: Notification) {
+    @objc private func keyboardWillHide(_ notification: Notification) {
         guard
             let userInfo = (notification.userInfo) as? [String: Any],
             let animationDuration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval)

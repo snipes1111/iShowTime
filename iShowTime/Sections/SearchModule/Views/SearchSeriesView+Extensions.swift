@@ -11,28 +11,27 @@ extension SearchSeriesView {
 
     func setupSubviews() {
         backgroundColor = .white
-        createAndAddSearchPromptLabel()
-        createAndAddSpinner()
+        setupLabelAndSpinner()
     }
 
-    func createAndAddSearchPromptLabel() {
+    private func setupLabelAndSpinner() {
         searchPromptLabel = UILabel(font: Fonts.SearchModule.promptLabelFont,
                             color: Colors.searchModulePromptTextColor)
         searchPromptLabel.textAlignment = .center
-        tableView.addSubview(searchPromptLabel)
+        spinner = SpinnerView()
+        loadingVStack = VerticalStackView(spacing: 16, arrangedSubviews: [searchPromptLabel, spinner])
+        tableView.addSubview(loadingVStack)
     }
 
-    func setupSearchPromptLabelConstraints(sideInsets: CGFloat) {
-        searchPromptLabel.translatesAutoresizingMaskIntoConstraints = false
-        searchPromptLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
-                                                   constant: sideInsets).isActive = true
-        searchPromptLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
-                                                    constant: -sideInsets).isActive = true
-        searchPromptLabel.centerYAnchor.constraint(equalTo: tableView.centerYAnchor,
-                                                   constant: -calculatedNavBarSize()).isActive = true
+    func updateLoadingVStackConstraints() {
+        let topInset = calculatedNavBarSize()
+        loadingVStack.translatesAutoresizingMaskIntoConstraints = false
+        loadingVStack.topAnchor.constraint(equalTo: tableView.topAnchor, constant: topInset).isActive = true
+        loadingVStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
+        loadingVStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
     }
 
-    func calculatedNavBarSize() -> CGFloat {
+    private func calculatedNavBarSize() -> CGFloat {
         guard let searchViewController = findViewController() as? SearchSeriesViewController else { return 0 }
         if let searchBarFrame = searchViewController.navigationController?.navigationBar.frame {
             let topInset = searchBarFrame.origin.y
@@ -40,25 +39,5 @@ extension SearchSeriesView {
             return topInset + height
         }
         return 0
-    }
-
-    func createAndAddSpinner() {
-        let spinner = SpinnerView()
-        self.spinner = spinner
-        tableView.addSubview(spinner)
-        setupSpinnerConstraints()
-    }
-
-    func setupSpinnerConstraints() {
-        spinner.bottomAnchor.constraint(equalTo: searchPromptLabel.topAnchor, constant: -20).isActive = true
-        spinner.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-    }
-
-    func updateSubviewsConstraints() {
-        if shouldSetupConstraints {
-            setupSearchPromptLabelConstraints(sideInsets: 16)
-            setupSpinnerConstraints()
-            shouldSetupConstraints = false
-        }
     }
 }

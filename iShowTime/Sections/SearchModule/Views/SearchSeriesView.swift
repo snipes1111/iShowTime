@@ -12,10 +12,11 @@ final class SearchSeriesView: BaseSectionView {
     private lazy var searchViewModel: SearchSeriesViewModelProtocol? = {
         viewModel as? SearchSeriesViewModelProtocol
     }()
+    private var needToUpdateConstraints: Bool = true
 
     var searchPromptLabel: UILabel!
     var spinner: UIActivityIndicatorView!
-    var shouldSetupConstraints = true
+    var loadingVStack: UIStackView!
 
     override func setupUI() {
         super.setupUI()
@@ -25,7 +26,10 @@ final class SearchSeriesView: BaseSectionView {
     }
 
     override func updateConstraints() {
-        updateSubviewsConstraints()
+        if needToUpdateConstraints {
+            updateLoadingVStackConstraints()
+            needToUpdateConstraints = false
+        }
         super.updateConstraints()
     }
 
