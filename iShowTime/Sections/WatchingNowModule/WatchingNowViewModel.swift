@@ -11,8 +11,6 @@ class WatchingNowViewModel: SectionViewModel, SectionViewModelRepresentableProto
 
     private let dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
 
-    private var countries: [Country]?
-
     var numberOfSeries: Int {
         series.count
     }

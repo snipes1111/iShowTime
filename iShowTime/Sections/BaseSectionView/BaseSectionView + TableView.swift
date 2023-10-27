@@ -1,41 +1,11 @@
 //
-//  BaseSectionView.swift
+//  BaseSectionView + TableView.swift
 //  iShowTime
 //
 //  Created by user on 27/10/2023.
 //
 
 import UIKit
-
-class BaseSectionView: UIView {
-
-    var tableView: UITableView!
-    var viewModel: (SectionViewModelProtocol & SectionViewModelRepresentableProtocol)
-
-    init(viewModel: (SectionViewModelProtocol & SectionViewModelRepresentableProtocol)) {
-        self.viewModel = viewModel
-        super.init(frame: .zero)
-        setupUI()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func setupUI() {
-        setupTableView()
-        addTableViewToView()
-        subscribeToViewModel()
-    }
-
-    func subscribeToViewModel() {
-        viewModel.viewModelDidChange = { _ in
-            DispatchQueue.main.async { [unowned self] in
-                tableView.reloadData()
-            }
-        }
-    }
-}
 
 extension BaseSectionView {
     func addTableViewToView() {
@@ -44,7 +14,6 @@ extension BaseSectionView {
     }
 
     func setupTableView() {
-        tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(SeriesCell.self, forCellReuseIdentifier: String(describing: SeriesCell.self))

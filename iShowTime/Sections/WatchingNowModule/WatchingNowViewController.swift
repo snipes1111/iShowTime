@@ -7,29 +7,11 @@
 
 import UIKit
 
-class WatchingNowViewController: UIViewController {
-
-    var watchingNowView: BaseSectionView!
-    var viewModel: (SectionViewModel & SectionViewModelRepresentableProtocol)!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        createWatchingNowView()
-        setBackButtonText()
-    }
+class WatchingNowViewController: BaseSectionViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.fetchSeries(nil)
     }
 
-    private func createWatchingNowView() {
-        watchingNowView.frame = view.frame
-        view.addSubview(watchingNowView)
-    }
-
-    private func setBackButtonText() {
-        navigationItem.backButtonDisplayMode = .minimal
-        navigationController?.navigationBar.tintColor = .black
-    }
 }

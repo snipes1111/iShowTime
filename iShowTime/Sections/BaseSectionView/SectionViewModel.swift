@@ -22,7 +22,7 @@ protocol SectionViewModelRepresentableProtocol {
 
 class SectionViewModel: SectionViewModelProtocol {
     var series: [Series] = []
-    var router: RouterProtocol
+    private let router: RouterProtocol
 
     var viewModelDidChange: ((SectionViewModelProtocol) -> Void)?
     var numberOfRows: Int { series.count }

@@ -29,7 +29,7 @@ final class Builder: BuilderProtocol {
         let router = Router(viewController: viewController)
         let viewModel = SearchSeriesViewModel(router: router)
         let view = SearchSeriesView(viewModel: viewModel)
-        viewController.searchView = view
+        viewController.mainView = view
         viewController.viewModel = viewModel
         return createNavController(
             viewController: viewController,
@@ -43,7 +43,7 @@ final class Builder: BuilderProtocol {
         let router = Router(viewController: viewController)
         let viewModel = WatchingNowViewModel(router: router)
         let view = BaseSectionView(viewModel: viewModel)
-        viewController.watchingNowView = view
+        viewController.mainView = view
         viewController.viewModel = viewModel
         return createNavController(
             viewController: viewController,
