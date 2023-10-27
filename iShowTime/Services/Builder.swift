@@ -42,7 +42,7 @@ final class Builder: BuilderProtocol {
         let viewController = WatchingNowViewController()
         let router = Router(viewController: viewController)
         let viewModel = WatchingNowViewModel(router: router)
-        let view = WatchingNowView(viewModel: viewModel)
+        let view = BaseSectionView(viewModel: viewModel)
         viewController.watchingNowView = view
         viewController.viewModel = viewModel
         return createNavController(

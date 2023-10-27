@@ -8,25 +8,41 @@
 import Foundation
 
 protocol SearchSeriesViewModelProtocol {
+    var viewModelDidChange: ((SearchSeriesViewModelProtocol) -> Void)? { get set }
     var promptLabelText: String { get }
     var promptLabelIsHidden: Bool { get }
+    var numberOfRows: Int { get }
+    var heightForRow: Int { get }
     var loadingState: Box<NetworkService.LoadingState> { get }
+    init(router: RouterProtocol)
+    func fetchSeries(_ searchText: String?)
+    func configureCell(_ searchCell: SearchSeriesCell, _ indexPath: IndexPath)
+    func showDetails(at indexPath: IndexPath)
 }
 
-final class SearchSeriesViewModel: SectionViewModel,
-                                   SectionViewModelRepresentableProtocol & SearchSeriesViewModelProtocol {
+final class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
 
+    private var series: [Series] = []
     private let networkManager: NetworkServiceProtocol = NetworkService()
     private let decoder: SeriesDecoderProtocol = SeriesDecoder()
     private let countryService: CountryService = CountryService.shared
-    private var currentTask: Task<Void, Error>?
-    private var countries: [Country]?
 
+    var viewModelDidChange: ((SearchSeriesViewModelProtocol) -> Void)?
     var promptLabelText: String {
         setPromptLabelText()
     }
     var promptLabelIsHidden: Bool = false
+    var numberOfRows: Int { series.count }
+    var heightForRow: Int { 165 }
     var loadingState: Box<NetworkService.LoadingState> = Box(value: NetworkService.LoadingState.initial)
+
+    private var currentTask: Task<Void, Error>?
+    private var countries: [Country]?
+    private var router: RouterProtocol
+
+    required init(router: RouterProtocol) {
+        self.router = router
+    }
 
     func fetchSeries(_ searchText: String?) {
         guard let searchText = searchText, !searchText.isEmpty else { return }
@@ -43,9 +59,17 @@ final class SearchSeriesViewModel: SectionViewModel,
         currentTask = task
     }
 
-    func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel {
+    func configureCell(_ searchCell: SearchSeriesCell, _ indexPath: IndexPath) {
         let seriesAtIndexPath = series[indexPath.item]
-        return SeriesCellViewModel(series: seriesAtIndexPath)
+        let seriesViewModel = SearchSeriesCellViewModel(series: seriesAtIndexPath)
+        searchCell.viewModel = seriesViewModel
+    }
+
+    func showDetails(at indexPath: IndexPath) {
+        let series = series[indexPath.item]
+        guard let id = series.id,
+        let seriesName = series.name else { return }
+        router.showDetailSeriesViewController(id, seriesName)
     }
 }
 

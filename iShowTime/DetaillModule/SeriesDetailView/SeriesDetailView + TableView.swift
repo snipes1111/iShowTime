@@ -30,7 +30,7 @@ extension SeriesDetailView {
         cell.viewModel = viewModel.returnDetailCellViewModel()
         return cell
     }
-    
+
     private func returnCellOfType(_ cellType: UITableViewCell.Type, for indexPath: IndexPath) -> UITableViewCell? {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         switch cellType {

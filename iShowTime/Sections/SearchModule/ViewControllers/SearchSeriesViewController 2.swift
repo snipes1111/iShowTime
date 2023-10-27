@@ -9,7 +9,7 @@ import UIKit
 
 final class SearchSeriesViewController: UIViewController {
 
-    var viewModel: SectionViewModelRepresentableProtocol!
+    var viewModel: SearchSeriesViewModel!
     var searchView: SearchSeriesView!
 
     private var searchController: UISearchController!

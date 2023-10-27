@@ -9,27 +9,25 @@ import UIKit
 
 extension SearchSeriesView {
 
-    func setupSubviews() {
+    func setupUI() {
         backgroundColor = .white
+        createTableView()
         createAndAddSearchPromptLabel()
         createAndAddSpinner()
         updateSearchPromptLabel()
     }
 
     func createAndAddSearchPromptLabel() {
-        let label = UILabel(font: Fonts.SearchModule.promptLabelFont,
-                            color: Colors.searchModulePromptTextColor)
-        label.textAlignment = .center
+        let label = UILabel()
+        label.font = Fonts.searchModulePromptLabelFont
+        label.textColor = Colors.searchModulePromptTextColor
         searchPromptLabel = label
         tableView.addSubview(searchPromptLabel)
     }
 
-    func setupSearchPromptLabelConstraints(sideInsets: CGFloat) {
+    func setupSearchPromptLabelConstraints() {
         searchPromptLabel.translatesAutoresizingMaskIntoConstraints = false
-        searchPromptLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
-                                                   constant: sideInsets).isActive = true
-        searchPromptLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
-                                                    constant: -sideInsets).isActive = true
+        searchPromptLabel.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
         searchPromptLabel.centerYAnchor.constraint(equalTo: tableView.centerYAnchor,
                                                    constant: -calculatedNavBarSize()).isActive = true
     }
@@ -45,20 +43,22 @@ extension SearchSeriesView {
     }
 
     func createAndAddSpinner() {
-        let spinner = SpinnerView()
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.hidesWhenStopped = true
+        spinner.color = Colors.spinnerColor
         self.spinner = spinner
-        tableView.addSubview(spinner)
-        setupSpinnerConstraints()
+        addSubview(spinner)
     }
 
     func setupSpinnerConstraints() {
+        spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.bottomAnchor.constraint(equalTo: searchPromptLabel.topAnchor, constant: -20).isActive = true
         spinner.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
 
     func updateSubviewsConstraints() {
         if shouldSetupConstraints {
-            setupSearchPromptLabelConstraints(sideInsets: 16)
+            setupSearchPromptLabelConstraints()
             setupSpinnerConstraints()
             shouldSetupConstraints = false
         }

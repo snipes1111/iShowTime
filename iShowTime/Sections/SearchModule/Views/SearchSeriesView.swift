@@ -7,24 +7,21 @@
 
 import UIKit
 
-final class SearchSeriesView: UIView {
+final class SearchSeriesView: BaseSectionView {
+
+    private lazy var searchViewModel: SearchSeriesViewModelProtocol? = {
+        viewModel as? SearchSeriesViewModelProtocol
+    }()
 
     var shouldSetupConstraints = true
 
     var searchPromptLabel: UILabel!
     var spinner: UIActivityIndicatorView!
-    var tableView: UITableView!
-    var viewModel: SearchSeriesViewModelProtocol
 
-    init(viewModel: SearchSeriesViewModelProtocol) {
-        self.viewModel = viewModel
-        super.init(frame: .zero)
-        setupUI()
-        subscribeToViewModel()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func setupUI() {
+        super.setupUI()
+        setupSubviews()
+        bindWithLoadingState()
     }
 
     override func updateConstraints() {
@@ -32,17 +29,8 @@ final class SearchSeriesView: UIView {
         super.updateConstraints()
     }
 
-    func subscribeToViewModel() {
-        viewModel.viewModelDidChange = { _ in
-            DispatchQueue.main.async { [unowned self] in
-                tableView.reloadData()
-            }
-        }
-        bindWithLoadingState()
-    }
-
     func bindWithLoadingState() {
-        viewModel.loadingState.bind { _ in
+        searchViewModel?.loadingState.bind { _ in
             DispatchQueue.main.async { [unowned self] in
                 updateSearchPromptLabel()
                 manageSpinner()
@@ -52,12 +40,12 @@ final class SearchSeriesView: UIView {
     }
 
     func updateSearchPromptLabel() {
-        searchPromptLabel.isHidden = viewModel.promptLabelIsHidden
-        searchPromptLabel.text = viewModel.promptLabelText
+        searchPromptLabel.isHidden = searchViewModel?.promptLabelIsHidden ?? false
+        searchPromptLabel.text = searchViewModel?.promptLabelText
     }
 
     func manageSpinner() {
-        switch viewModel.loadingState.value {
+        switch searchViewModel?.loadingState.value {
         case .loading: spinner.startAnimating()
         default: spinner.stopAnimating()
         }

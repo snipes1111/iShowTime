@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SectionViewModelProtocol {
-    var viewModelDidChange: ((SearchSeriesViewModelProtocol) -> Void)? { get set }
+    var viewModelDidChange: ((SectionViewModelProtocol) -> Void)? { get set }
     var numberOfRows: Int { get }
     var heightForRow: Int { get }
     init(router: RouterProtocol)
@@ -17,14 +17,14 @@ protocol SectionViewModelProtocol {
 
 protocol SectionViewModelRepresentableProtocol {
     func fetchSeries(_ searchText: String?)
-    func configureCell(_ searchCell: SearchSeriesCell, _ indexPath: IndexPath)
+    func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel
 }
 
 class SectionViewModel: SectionViewModelProtocol {
-    private var series: [Series] = []
-    private var router: RouterProtocol
+    var series: [Series] = []
+    var router: RouterProtocol
 
-    var viewModelDidChange: ((SearchSeriesViewModelProtocol) -> Void)?
+    var viewModelDidChange: ((SectionViewModelProtocol) -> Void)?
     var numberOfRows: Int { series.count }
     var heightForRow: Int { 165 }
 

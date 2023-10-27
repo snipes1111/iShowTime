@@ -9,8 +9,8 @@ import UIKit
 
 class WatchingNowViewController: UIViewController {
 
-    var watchingNowView: WatchingNowView!
-    var viewModel: WatchingNowViewModelProtocol!
+    var watchingNowView: BaseSectionView!
+    var viewModel: (SectionViewModel & SectionViewModelRepresentableProtocol)!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,7 @@ class WatchingNowViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.fetchSeries()
+        viewModel.fetchSeries(nil)
     }
 
     private func createWatchingNowView() {

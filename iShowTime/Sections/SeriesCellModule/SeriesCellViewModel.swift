@@ -1,24 +1,26 @@
 //
-//  WatchingNowCellViewModel.swift
+//  SeriesCellViewModel.swift
 //  iShowTime
 //
-//  Created by user on 19/10/2023.
+//  Created by user on 27/10/2023.
 //
 
 import Foundation
 
-protocol WatchingNowCellViewModelProtocol {
+protocol SeriesCellViewModelProtocol {
     var seriesTitle: String { get }
     var secondaryLabelTitle: String { get }
     var tertiaryLabelTitle: String { get }
+    var seasonsLabelIsHidden: Bool { get }
     var seasonsLabelText: String { get }
     var progressViewIsHidden: Bool { get }
     var imageUrl: String? { get }
     init(series: Series)
 }
 
-class WatchingNowCellViewModel: WatchingNowCellViewModelProtocol {
-    private var series: Series
+class SeriesCellViewModel: SeriesCellViewModelProtocol {
+
+    private(set) var series: Series
     private var countryService: CountryService = CountryService.shared
 
     var seriesTitle: String {
@@ -26,7 +28,8 @@ class WatchingNowCellViewModel: WatchingNowCellViewModelProtocol {
     }
 
     var secondaryLabelTitle: String {
-        receiveGenres()
+        let genres = series.genreIds
+        return genres?.compactMap { $0.extractGenre() }.joined(separator: ", ") ?? "Unknown genres"
     }
 
     var tertiaryLabelTitle: String {
@@ -35,13 +38,17 @@ class WatchingNowCellViewModel: WatchingNowCellViewModelProtocol {
         return countryNames + year
     }
 
+    var seasonsLabelIsHidden: Bool {
+        true
+    }
+
     var seasonsLabelText: String {
         let numberOfSeasons = Int(series.numberOfSeasons ?? 1)
         return "Seasons - \(numberOfSeasons)"
     }
 
     var progressViewIsHidden: Bool {
-        false
+        true
     }
 
     var imageUrl: String? {
@@ -50,13 +57,5 @@ class WatchingNowCellViewModel: WatchingNowCellViewModelProtocol {
 
     required init(series: Series) {
         self.series = series
-    }
-}
-
-extension WatchingNowCellViewModel {
-    private func receiveGenres() -> String {
-        let genres = series.genres?.compactMap { $0.name }
-        guard let genreNames = genres else { return "Unknown genre" }
-        return genreNames.joined(separator: ", ")
     }
 }
