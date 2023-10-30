@@ -14,10 +14,10 @@ final class WatchingNowDetailViewController: UIViewController {
     var viewModel: SeriesDetailRepresentableProtocol!
 
     override func viewDidLoad() {
+        navigationController?.navigationBar.prefersLargeTitles = false
         createSearchDetailView()
         viewModel.fetchSeriesDetails()
         createKeyboardManager()
-        navigationController?.navigationBar.prefersLargeTitles = false
     }
 
     convenience init(title: String) {

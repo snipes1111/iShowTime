@@ -11,6 +11,7 @@ final class SearchDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresenta
 
     private let networkService: NetworkServiceProtocol = NetworkService()
     private let decoder: SeriesDecoderProtocol = SeriesDecoder()
+    private let errorHandler = ErrorHandler()
 
     func fetchSeriesDetails() {
         Task { [unowned self] in
@@ -29,12 +30,8 @@ final class SearchDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresenta
             let data = try await networkService.fetchSeriesDetails(seriesId)
             guard let series = decoder.decodeSeriesDetailsFromData(data) else { return }
             self.series = series
-        } catch NetworkService.NetworkErrors.invalidUrl {
-            print("Invalid URL")
-        } catch NetworkService.NetworkErrors.badResponse {
-            print("Bad Response")
         } catch {
-            print("Undefined error: \(error)")
+            errorHandler.handle(error)
         }
     }
 }

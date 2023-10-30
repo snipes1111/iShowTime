@@ -7,39 +7,46 @@
 
 import Foundation
 
+enum LoadingState {
+    case initial
+    case loading
+    case finished
+}
+
 protocol SearchSeriesViewModelProtocol {
     var promptLabelText: String { get }
     var promptLabelIsHidden: Bool { get }
-    var loadingState: Box<NetworkService.LoadingState> { get }
+    var loadingState: Box<LoadingState> { get }
 }
 
 final class SearchSeriesViewModel: SectionViewModel,
                                    SectionViewModelRepresentableProtocol & SearchSeriesViewModelProtocol {
 
     private let networkManager: NetworkServiceProtocol = NetworkService()
+    private let errorHandler = ErrorHandler()
     private let decoder: SeriesDecoderProtocol = SeriesDecoder()
     private let countryService: CountryService = CountryService.shared
     private var currentTask: Task<Void, Error>?
     private var countries: [Country]?
 
+    var loadingState: Box<LoadingState> = Box(value: LoadingState.initial)
+
     var promptLabelText: String {
         setPromptLabelText()
     }
-    var promptLabelIsHidden: Bool = false
-    var loadingState: Box<NetworkService.LoadingState> = Box(value: NetworkService.LoadingState.initial)
+    var promptLabelIsHidden: Bool {
+        series.isEmpty ? false : true
+    }
 
     func fetchSeries(_ searchText: String?) {
-        guard let searchText = searchText, !searchText.isEmpty else { return }
-        currentTask?.cancel()
         series.removeAll()
-        loadingState.value = .loading
-        promptLabelIsHidden = false
-        let task = Task.delayed(byTimeInterval: 2) { [unowned self] in
-            await fetchAndDecodeData(searchText)
-            promptLabelIsHidden = !series.isEmpty
-            viewModelDidChange?(self)
-            loadingState.value = .finished
+        currentTask?.cancel()
+        guard let searchText = searchText, !searchText.isEmpty else {
+            loadingState.value = .initial
+            return
         }
+        loadingState.value = .loading
+        let task = startLoadingTask(searchText)
         currentTask = task
     }
 
@@ -51,6 +58,14 @@ final class SearchSeriesViewModel: SectionViewModel,
 
 extension SearchSeriesViewModel {
 
+    private func startLoadingTask(_ searchText: String) -> Task<Void, Error> {
+        Task.delayed(byTimeInterval: 1.5) { [unowned self] in
+            await fetchAndDecodeData(searchText)
+            loadingState.value = .finished
+            viewModelDidChange?(self)
+        }
+    }
+
     private func fetchAndDecodeData(_ searchText: String) async {
         do {
             let seriesData = try await networkManager.fetchSeriesData(searchText)
@@ -59,20 +74,16 @@ extension SearchSeriesViewModel {
             self.series = series
             guard let countries = decoder.decodeCountryList(countriesData) else { return }
             countryService.updateCountryList(with: countries)
-        } catch NetworkService.NetworkErrors.invalidUrl {
-            print("Invalid URL")
-        } catch NetworkService.NetworkErrors.badResponse {
-            print("Bad Response")
         } catch {
-            print("Undefined error: \(error)")
+            errorHandler.handle(error)
         }
     }
 
     private func setPromptLabelText() -> String {
         switch loadingState.value {
         case .initial: return SearchModuleConstants.welcomeText
-        case .loading: return SearchModuleConstants.loading
-        case .finished: return SearchModuleConstants.loadingFinished
+        case .loading: return SearchModuleConstants.isLoading
+        case .finished: return SearchModuleConstants.finishedWithNoResults
         }
     }
 }

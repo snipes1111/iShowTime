@@ -9,7 +9,7 @@ import Foundation
 
 class WatchingNowCellViewModel: SeriesCellViewModel {
 
-    override var secondaryLabelTitle: String {
+    override var genreLabel: String {
         receiveGenres()
     }
 

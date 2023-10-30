@@ -12,8 +12,8 @@ class SeriesCell: BaseSeriesCell {
         didSet {
             guard let viewModel = viewModel else { return }
             titleLabel.text = viewModel.seriesTitle
-            genreLabel.text = viewModel.secondaryLabelTitle
-            countryAndYearLabel.text = viewModel.tertiaryLabelTitle
+            genreLabel.text = viewModel.genreLabel
+            countryAndYearLabel.text = viewModel.countryAndYear
             seasonsLabel.isHidden = viewModel.seasonsLabelIsHidden
             seasonsLabel.text = viewModel.seasonsLabelText
             progressView.isHidden = viewModel.progressViewIsHidden

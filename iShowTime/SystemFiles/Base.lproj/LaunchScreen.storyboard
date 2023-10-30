@@ -16,44 +16,8 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ca8-pQ-rqS">
-                                <rect key="frame" x="76" y="211" width="252" height="491"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NTR-04-XCA">
-                                        <rect key="frame" x="16" y="189" width="220" height="113"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Something large sfbngnngngngnngngngnjvnsdjnv" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Gt-uZ-O1r">
-                                                <rect key="frame" x="0.3333333333333286" y="0.0" width="219.33333333333337" height="61"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="xPO-Ip-g8G">
-                                                <rect key="frame" x="91.666666666666657" y="76" width="37" height="37"/>
-                                            </activityIndicatorView>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                <constraints>
-                                    <constraint firstItem="NTR-04-XCA" firstAttribute="leading" secondItem="Ca8-pQ-rqS" secondAttribute="leading" constant="16" id="DdN-3k-mZW"/>
-                                    <constraint firstItem="NTR-04-XCA" firstAttribute="centerY" secondItem="Ca8-pQ-rqS" secondAttribute="centerY" id="hae-WB-Ifg"/>
-                                    <constraint firstAttribute="trailing" secondItem="NTR-04-XCA" secondAttribute="trailing" constant="16" id="lyw-Iq-r9s"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ca8-pQ-rqS" secondAttribute="bottom" constant="116" id="5uU-jg-KPp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ca8-pQ-rqS" secondAttribute="trailing" constant="65" id="Mou-vk-txc"/>
-                            <constraint firstItem="Ca8-pQ-rqS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="76" id="N0d-3m-cva"/>
-                            <constraint firstItem="Ca8-pQ-rqS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="152" id="fSO-Mv-WH1"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ca8-pQ-rqS" secondAttribute="bottom" constant="116" id="ihP-Jp-NsP"/>
-                            <constraint firstItem="Ca8-pQ-rqS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="76" id="mUj-1h-aYJ"/>
-                            <constraint firstItem="Ca8-pQ-rqS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="152" id="p5Y-ZA-AIq"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -64,9 +28,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

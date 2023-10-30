@@ -11,15 +11,15 @@ extension SearchSeriesView {
 
     func setupSubviews() {
         backgroundColor = .white
-        setupLabelAndSpinner()
+        setupPromptLabelAndSpinner()
     }
 
-    private func setupLabelAndSpinner() {
-        searchPromptLabel = UILabel(font: Fonts.SearchModule.promptLabelFont,
+    private func setupPromptLabelAndSpinner() {
+        promptLabel = UILabel(font: Fonts.SearchModule.promptLabelFont,
                             color: Colors.searchModulePromptTextColor)
-        searchPromptLabel.textAlignment = .center
+        promptLabel.textAlignment = .center
         spinner = SpinnerView()
-        loadingVStack = VerticalStackView(spacing: 16, arrangedSubviews: [searchPromptLabel, spinner])
+        loadingVStack = VerticalStackView(spacing: 16, arrangedSubviews: [promptLabel, spinner])
         tableView.addSubview(loadingVStack)
     }
 

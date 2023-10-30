@@ -12,8 +12,8 @@ struct SearchModuleConstants {
     static let detailSeriesCellIdentifier = "DetailSeriesCell"
     // Main screen
     static let welcomeText = "Explore your new experience"
-    static let loading = "Searching for results..."
-    static let loadingFinished = "Nothing was found. Please, check your request or connection."
+    static let isLoading = "Searching for results..."
+    static let finishedWithNoResults = "Nothing was found. Please, check your request or connection."
     static let title = "Search"
     // Detail screen
     static let ratingIs = "Rating MovieDB: "

@@ -38,10 +38,10 @@ extension SearchDetailCell {
     private func getColor() -> UIColor {
         guard let color = detailViewModel?.scoreRatingColor else { return .black }
         switch color {
-        case .black: return .black
-        case .red: return .systemRed.withAlphaComponent(0.9)
-        case .yellow: return .systemOrange
-        case .green: return .systemGreen.withAlphaComponent(0.9)
+        case .black: return Colors.blackRating
+        case .red: return Colors.redRating
+        case .yellow: return Colors.yellowRating
+        case .green: return Colors.greenRating
         }
     }
 }

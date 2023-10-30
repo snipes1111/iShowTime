@@ -14,7 +14,7 @@ final class SearchSeriesView: BaseSectionView {
     }()
     private var needToUpdateConstraints: Bool = true
 
-    var searchPromptLabel: UILabel!
+    var promptLabel: UILabel!
     var spinner: UIActivityIndicatorView!
     var loadingVStack: UIStackView!
 
@@ -51,8 +51,8 @@ extension SearchSeriesView {
     }
 
     private func updateSearchPromptLabel() {
-        searchPromptLabel.isHidden = searchViewModel?.promptLabelIsHidden ?? false
-        searchPromptLabel.text = searchViewModel?.promptLabelText
+        promptLabel.isHidden = searchViewModel?.promptLabelIsHidden ?? false
+        promptLabel.text = searchViewModel?.promptLabelText
     }
 
     private func manageSpinner() {

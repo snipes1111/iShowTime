@@ -18,7 +18,7 @@ class BaseSectionViewController: UIViewController {
 
     func setupUI() {
         createMainView()
-        setBackButtonText()
+        setupBackButton()
     }
 
     private func createMainView() {
@@ -26,7 +26,7 @@ class BaseSectionViewController: UIViewController {
         mainView.fillSuperView(view)
     }
 
-    private func setBackButtonText() {
+    private func setupBackButton() {
         navigationItem.backButtonDisplayMode = .minimal
         navigationController?.navigationBar.tintColor = .black
     }

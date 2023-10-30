@@ -9,8 +9,8 @@ import Foundation
 
 protocol SeriesCellViewModelProtocol {
     var seriesTitle: String { get }
-    var secondaryLabelTitle: String { get }
-    var tertiaryLabelTitle: String { get }
+    var genreLabel: String { get }
+    var countryAndYear: String { get }
     var seasonsLabelIsHidden: Bool { get }
     var seasonsLabelText: String { get }
     var progressViewIsHidden: Bool { get }
@@ -27,12 +27,12 @@ class SeriesCellViewModel: SeriesCellViewModelProtocol {
         series.name ?? "Unknown"
     }
 
-    var secondaryLabelTitle: String {
+    var genreLabel: String {
         let genres = series.genreIds
         return genres?.compactMap { $0.extractGenre() }.joined(separator: ", ") ?? "Unknown genres"
     }
 
-    var tertiaryLabelTitle: String {
+    var countryAndYear: String {
         let countryNames = countryService.getCountryNames(from: series)
         let year = " • \(series.firstAirDate?.extractYear() ?? "Unknown date")"
         return countryNames + year

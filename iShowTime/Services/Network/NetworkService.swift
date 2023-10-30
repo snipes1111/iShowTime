@@ -20,12 +20,6 @@ final class NetworkService: NetworkServiceProtocol {
         case invalidUrl
     }
 
-    enum LoadingState {
-        case initial
-        case loading
-        case finished
-    }
-
     private let apiService = APIService()
 
     func fetchSeriesData(_ searchText: String) async throws -> Data {
