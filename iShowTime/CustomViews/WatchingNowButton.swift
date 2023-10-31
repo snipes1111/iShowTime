@@ -24,6 +24,16 @@ class WatchingNowButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func addToWatchState() {
+        setTitle(SearchModuleConstants.addToWatchingNow, for: .normal)
+        setTitleColor(.black, for: .normal)
+    }
+
+    func removeFromWatchState() {
+        setTitle(SearchModuleConstants.removeFromWatchingNow, for: .normal)
+        setTitleColor(.darkGray, for: .normal)
+    }
+
     private func buttonPressed() -> UIAction {
         let action = UIAction { [unowned self] _ in
             highlight()
