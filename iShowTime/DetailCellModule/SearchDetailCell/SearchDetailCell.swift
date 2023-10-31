@@ -18,6 +18,7 @@ final class SearchDetailCell: BaseSearchDetailCell {
         genreLabel.text = detailViewModel?.genreAndYear
         countrySeasonsAndYearLabel.text = detailViewModel?.countrySeasonsAndYear
         updateOverview()
+        heartButton.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)
     }
 }
 
@@ -42,6 +43,20 @@ extension SearchDetailCell {
         case .red: return Colors.redRating
         case .yellow: return Colors.yellowRating
         case .green: return Colors.greenRating
+        }
+    }
+
+    @objc private func heartButtonTapped() {
+        detailViewModel?.heartButtonDidTapped()
+        updateHeartButton()
+    }
+
+    private func updateHeartButton() {
+        guard let viewModel = detailViewModel else { return }
+        if viewModel.seriesIsFavourite {
+            heartButton.switchToShadedState()
+        } else {
+            heartButton.switchToBorderedState()
         }
     }
 }

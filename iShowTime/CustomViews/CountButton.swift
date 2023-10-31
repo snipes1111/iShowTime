@@ -18,18 +18,10 @@ class CountButton: UIButton {
         tintColor = .black.withAlphaComponent(0.7)
         setBackgroundImage(image, for: .normal)
         setSize(30, 30)
-        addTarget(nil, action: #selector(addTapAnimation), for: .touchUpInside)
+        addTarget(self, action: #selector(tapWithAnimation), for: .touchUpInside)
     }
 
-    @objc func addTapAnimation() {
-        let animator = UIViewPropertyAnimator(duration: 0.3, curve: .easeOut) {
-            self.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
-        }
-
-        animator.addAnimations({
-            self.transform = .identity
-        }, delayFactor: 0.15)
-
-        animator.startAnimation()
+    @objc func tapWithAnimation() {
+        performTapAnimation()
     }
 }

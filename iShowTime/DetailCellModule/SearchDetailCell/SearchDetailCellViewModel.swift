@@ -22,6 +22,8 @@ protocol SearchDetailCellViewModelProtocol: DetailCellViewModelProtocol {
     var countrySeasonsAndYear: String { get }
     var attributedOverviewText: String { get }
     var overview: String { get }
+    var seriesIsFavourite: Bool { get }
+    func heartButtonDidTapped()
 }
 
 final class SearchDetailCellViewModel: DetailCellViewModel, SearchDetailCellViewModelProtocol {
@@ -35,6 +37,14 @@ final class SearchDetailCellViewModel: DetailCellViewModel, SearchDetailCellView
     var countrySeasonsAndYear: String { receiveCountrySeasonAndYear() }
     var attributedOverviewText: String { SearchModuleConstants.overview }
     var overview: String { receiveOverview() }
+    var seriesIsFavourite: Bool { dataStoreManager.isFavourite(series: series) }
+    func heartButtonDidTapped() {
+        if !seriesIsFavourite {
+            dataStoreManager.saveToFavourites(series: series)
+        } else {
+            dataStoreManager.removeFromFavourites(series: series)
+        }
+    }
 }
 
 extension SearchDetailCellViewModel {

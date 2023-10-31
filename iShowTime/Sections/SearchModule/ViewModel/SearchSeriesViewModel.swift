@@ -14,8 +14,6 @@ enum LoadingState {
 }
 
 protocol SearchSeriesViewModelProtocol {
-    var promptLabelText: String { get }
-    var promptLabelIsHidden: Bool { get }
     var loadingState: Box<LoadingState> { get }
 }
 
@@ -31,11 +29,8 @@ final class SearchSeriesViewModel: SectionViewModel,
 
     var loadingState: Box<LoadingState> = Box(value: LoadingState.initial)
 
-    var promptLabelText: String {
+    override var promptLabelText: String {
         setPromptLabelText()
-    }
-    var promptLabelIsHidden: Bool {
-        series.isEmpty ? false : true
     }
 
     func fetchSeries(_ searchText: String?) {

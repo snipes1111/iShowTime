@@ -76,6 +76,8 @@
 		CED57AB52ADEB635006C7981 /* WatchingNowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AB42ADEB635006C7981 /* WatchingNowButton.swift */; };
 		CED6AE482ADAE47D002140C1 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED6AE472ADAE47D002140C1 /* SpinnerView.swift */; };
 		CEE4958E2AEFEE630086F67A /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4958D2AEFEE630086F67A /* ErrorHandler.swift */; };
+		CEE495922AF12C2B0086F67A /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE495912AF12C2B0086F67A /* HeartButton.swift */; };
+		CEE495942AF12E5B0086F67A /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE495932AF12E5B0086F67A /* UIButton+Extensions.swift */; };
 		CEF455FA2AAB305E00D5A397 /* SearchSeriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF455F92AAB305E00D5A397 /* SearchSeriesView.swift */; };
 		CEF456002AAB472600D5A397 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEBAAEA92A13E828001F59A6 /* LaunchScreen.storyboard */; };
 		CEF456022AAB4BDD00D5A397 /* SearchModuleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF456012AAB4BDD00D5A397 /* SearchModuleConstants.swift */; };
@@ -163,6 +165,8 @@
 		CED57AB42ADEB635006C7981 /* WatchingNowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingNowButton.swift; sourceTree = "<group>"; };
 		CED6AE472ADAE47D002140C1 /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		CEE4958D2AEFEE630086F67A /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		CEE495912AF12C2B0086F67A /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
+		CEE495932AF12E5B0086F67A /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		CEF455F92AAB305E00D5A397 /* SearchSeriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSeriesView.swift; sourceTree = "<group>"; };
 		CEF456012AAB4BDD00D5A397 /* SearchModuleConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModuleConstants.swift; sourceTree = "<group>"; };
 		CEF456032AAB547B00D5A397 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -275,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				CE1A6B5B2AAF66BD00B495EB /* UIImage+Extensions.swift */,
+				CEE495932AF12E5B0086F67A /* UIButton+Extensions.swift */,
 				CEA1A8D12ABC81270012630D /* UILabel+Extensions.swift */,
 				CEA1A8C52AB9F55B0012630D /* UIView+Extensions.swift */,
 				CEF502FE2ACEFEDF00DFB431 /* Task+Extensions.swift */,
@@ -334,6 +339,7 @@
 				CE7208562AE29BC50005C16E /* CountTextField.swift */,
 				CE72086B2AEAB94D0005C16E /* LoadingView.swift */,
 				CE72086D2AEABB6B0005C16E /* DetailTableView.swift */,
+				CEE495912AF12C2B0086F67A /* HeartButton.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -750,6 +756,7 @@
 				CEA1A8D02ABC6D580012630D /* Box.swift in Sources */,
 				CEF502FD2ACDD1F100DFB431 /* PlistManager.swift in Sources */,
 				CE7208722AEAC0700005C16E /* SeriesDetailView + TableView.swift in Sources */,
+				CEE495922AF12C2B0086F67A /* HeartButton.swift in Sources */,
 				CE1A6B6A2AB0921D00B495EB /* WatchingNowViewModel.swift in Sources */,
 				CE7208572AE29BC50005C16E /* CountTextField.swift in Sources */,
 				CE72084A2AE17C7D0005C16E /* WatchingNowDetailCellViewModel.swift in Sources */,
@@ -769,6 +776,7 @@
 				CE81261B2AEBD19900693BF5 /* BaseSeriesCell.swift in Sources */,
 				CEF502FF2ACEFEDF00DFB431 /* Task+Extensions.swift in Sources */,
 				CEBAAEA12A13E824001F59A6 /* SceneDelegate.swift in Sources */,
+				CEE495942AF12E5B0086F67A /* UIButton+Extensions.swift in Sources */,
 				CE72086C2AEAB94D0005C16E /* LoadingView.swift in Sources */,
 				CEBB0FB92AC5E8CE00A45074 /* NetworkService.swift in Sources */,
 				CE2E1FC42AD011CE00E0FC3B /* HorizontalStackView.swift in Sources */,

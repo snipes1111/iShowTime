@@ -13,8 +13,9 @@ class WatchingNowCellViewModel: SeriesCellViewModel {
         receiveGenres()
     }
 
-    override var seasonsLabelIsHidden: Bool {
-        false
+    override var seasonsLabelText: String {
+        let numberOfSeasons = Int(series.numberOfSeasons ?? 1)
+        return "Seasons - \(numberOfSeasons)"
     }
 
     override var progressViewIsHidden: Bool {

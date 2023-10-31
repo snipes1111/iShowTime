@@ -11,6 +11,8 @@ protocol SectionViewModelProtocol {
     var viewModelDidChange: ((SectionViewModelProtocol) -> Void)? { get set }
     var numberOfRows: Int { get }
     var heightForRow: Int { get }
+    var promptLabelText: String { get }
+    var promptLabelIsHidden: Bool { get }
     init(router: RouterProtocol)
     func showDetails(at indexPath: IndexPath)
 }
@@ -27,6 +29,8 @@ class SectionViewModel: SectionViewModelProtocol {
     var viewModelDidChange: ((SectionViewModelProtocol) -> Void)?
     var numberOfRows: Int { series.count }
     var heightForRow: Int { 165 }
+    var promptLabelText: String { WatchingNowConstants.promptLabel }
+    var promptLabelIsHidden: Bool { series.isEmpty ? false : true }
 
     required init(router: RouterProtocol) {
         self.router = router

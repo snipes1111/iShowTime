@@ -8,16 +8,19 @@
 import UIKit
 
 extension BaseSectionView {
-    func addTableViewToView() {
-        addSubview(tableView)
-        tableView.fillSuperView(self)
-    }
 
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(SeriesCell.self, forCellReuseIdentifier: String(describing: SeriesCell.self))
+        addTableViewToView()
     }
+
+    func addTableViewToView() {
+        addSubview(tableView)
+        tableView.fillSuperView(self)
+    }
+
 }
 
 extension BaseSectionView: UITableViewDataSource {

@@ -14,7 +14,6 @@ class SeriesCell: BaseSeriesCell {
             titleLabel.text = viewModel.seriesTitle
             genreLabel.text = viewModel.genreLabel
             countryAndYearLabel.text = viewModel.countryAndYear
-            seasonsLabel.isHidden = viewModel.seasonsLabelIsHidden
             seasonsLabel.text = viewModel.seasonsLabelText
             progressView.isHidden = viewModel.progressViewIsHidden
             posterImageView.getImage(viewModel.imageUrl)

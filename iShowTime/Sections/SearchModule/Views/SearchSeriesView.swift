@@ -14,20 +14,21 @@ final class SearchSeriesView: BaseSectionView {
     }()
     private var needToUpdateConstraints: Bool = true
 
-    var promptLabel: UILabel!
     var spinner: UIActivityIndicatorView!
     var loadingVStack: UIStackView!
 
     override func setupUI() {
         super.setupUI()
-        setupSubviews()
-        updateSearchPromptLabel()
+        setupPromptVStack()
         bindWithLoadingState()
     }
 
+    // clear label constraints
+    override func setPromptLabelConstraints() {}
+
     override func updateConstraints() {
         if needToUpdateConstraints {
-            updateLoadingVStackConstraints()
+            setupLoadingVStackConstraints()
             needToUpdateConstraints = false
         }
         super.updateConstraints()
@@ -44,15 +45,10 @@ extension SearchSeriesView {
 
     private func updateUI() {
         DispatchQueue.main.async { [unowned self] in
-            updateSearchPromptLabel()
+            updatePromptLabel()
             manageSpinner()
             tableView.reloadData()
         }
-    }
-
-    private func updateSearchPromptLabel() {
-        promptLabel.isHidden = searchViewModel?.promptLabelIsHidden ?? false
-        promptLabel.text = searchViewModel?.promptLabelText
     }
 
     private func manageSpinner() {

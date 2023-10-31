@@ -15,6 +15,8 @@ struct SearchModuleConstants {
     static let isLoading = "Searching for results..."
     static let finishedWithNoResults = "Nothing was found. Please, check your request or connection."
     static let title = "Search"
+    static let inProduction = "Status: In Production"
+    static let finished = "Status: Finished"
     // Detail screen
     static let ratingIs = "Rating MovieDB: "
     static let overview = "   Overview: "

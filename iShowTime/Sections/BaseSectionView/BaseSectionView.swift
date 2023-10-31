@@ -10,7 +10,7 @@ import UIKit
 class BaseSectionView: UIView {
 
     let tableView: UITableView
-
+    private(set) var promptLabel: UILabel!
     private(set) var viewModel: (SectionViewModelProtocol & SectionViewModelRepresentableProtocol)
 
     init(viewModel: (SectionViewModelProtocol & SectionViewModelRepresentableProtocol)) {
@@ -26,7 +26,7 @@ class BaseSectionView: UIView {
 
     func setupUI() {
         setupTableView()
-        addTableViewToView()
+        setupPromptLabel()
         subscribeToViewModel()
     }
 
@@ -34,7 +34,26 @@ class BaseSectionView: UIView {
         viewModel.viewModelDidChange = { _ in
             DispatchQueue.main.async { [unowned self] in
                 tableView.reloadData()
+                updatePromptLabel()
             }
         }
+    }
+
+    private func setupPromptLabel() {
+        promptLabel = UILabel(font: Fonts.SearchModule.promptLabelFont,
+                            color: Colors.searchModulePromptTextColor)
+        promptLabel.textAlignment = .center
+        setPromptLabelConstraints()
+        updatePromptLabel()
+    }
+
+    func updatePromptLabel() {
+        promptLabel.isHidden = viewModel.promptLabelIsHidden
+        promptLabel.text = viewModel.promptLabelText
+    }
+
+    func setPromptLabelConstraints() {
+        addSubview(promptLabel)
+        promptLabel.centerInSuperView(self, sideInsets: 32)
     }
 }

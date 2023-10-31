@@ -11,7 +11,6 @@ protocol SeriesCellViewModelProtocol {
     var seriesTitle: String { get }
     var genreLabel: String { get }
     var countryAndYear: String { get }
-    var seasonsLabelIsHidden: Bool { get }
     var seasonsLabelText: String { get }
     var progressViewIsHidden: Bool { get }
     var imageUrl: String? { get }
@@ -38,13 +37,9 @@ class SeriesCellViewModel: SeriesCellViewModelProtocol {
         return countryNames + year
     }
 
-    var seasonsLabelIsHidden: Bool {
-        true
-    }
-
     var seasonsLabelText: String {
-        let numberOfSeasons = Int(series.numberOfSeasons ?? 1)
-        return "Seasons - \(numberOfSeasons)"
+        let status = series.inProduction ?? false
+        return status ? SearchModuleConstants.inProduction : SearchModuleConstants.finished
     }
 
     var progressViewIsHidden: Bool {

@@ -26,7 +26,7 @@ class LoadingView: UIView {
     }
 
     func hideWithAnimation() {
-        UIView.animate(withDuration: 0.5) { [unowned self] in
+        UIView.animate(withDuration: 0.7) { [unowned self] in
             alpha = 0
             spinner.stopAnimating()
         } completion: { [unowned self] _ in

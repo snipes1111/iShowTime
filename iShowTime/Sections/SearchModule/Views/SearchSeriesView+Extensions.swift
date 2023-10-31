@@ -9,21 +9,13 @@ import UIKit
 
 extension SearchSeriesView {
 
-    func setupSubviews() {
-        backgroundColor = .white
-        setupPromptLabelAndSpinner()
-    }
-
-    private func setupPromptLabelAndSpinner() {
-        promptLabel = UILabel(font: Fonts.SearchModule.promptLabelFont,
-                            color: Colors.searchModulePromptTextColor)
-        promptLabel.textAlignment = .center
+    func setupPromptVStack() {
         spinner = SpinnerView()
         loadingVStack = VerticalStackView(spacing: 16, arrangedSubviews: [promptLabel, spinner])
         tableView.addSubview(loadingVStack)
     }
 
-    func updateLoadingVStackConstraints() {
+    func setupLoadingVStackConstraints() {
         let topInset = calculatedNavBarSize()
         loadingVStack.translatesAutoresizingMaskIntoConstraints = false
         loadingVStack.topAnchor.constraint(equalTo: tableView.topAnchor, constant: topInset).isActive = true
