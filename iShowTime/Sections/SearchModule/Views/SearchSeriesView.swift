@@ -15,7 +15,7 @@ final class SearchSeriesView: BaseSectionView {
     private var needToUpdateConstraints: Bool = true
 
     var spinner: UIActivityIndicatorView!
-    var loadingVStack: UIStackView!
+    var loadingStack: UIStackView!
 
     override func setupUI() {
         super.setupUI()

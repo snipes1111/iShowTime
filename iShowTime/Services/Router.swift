@@ -28,7 +28,7 @@ final class Router: RouterProtocol {
             let detailVc = builder.buildWatchingNowDetailViewController(seriesID, seriesName)
             viewController.navigationController?.pushViewController(detailVc, animated: true)
         } else {
-            let detailVc = builder.buildSearchSeriesDetailViewController(seriesID, seriesName)
+            let detailVc = builder.buildFavouritesDetailViewController(seriesID, seriesName)
             viewController.navigationController?.pushViewController(detailVc, animated: true)
         }
     }

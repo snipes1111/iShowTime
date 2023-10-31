@@ -11,6 +11,8 @@ class FavouritesViewModel: SectionViewModel, SectionViewModelRepresentableProtoc
 
     private let dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
 
+    override var promptLabelText: String { FavouritesConstants.promptLabel }
+
     func fetchSeries(_ searchText: String?) {
         series = dataStoreManager.favouriteSeriesList()
         viewModelDidChange?(self)

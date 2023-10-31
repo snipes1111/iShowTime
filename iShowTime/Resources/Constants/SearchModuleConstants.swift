@@ -9,7 +9,6 @@ import Foundation
 
 struct SearchModuleConstants {
     static let seriesCellIdentifier = "SearchSeriesCell"
-    static let detailSeriesCellIdentifier = "DetailSeriesCell"
     // Main screen
     static let welcomeText = "Explore your new experience"
     static let isLoading = "Searching for results..."
@@ -27,5 +26,5 @@ struct SearchModuleConstants {
     static let noOverview = "No any overview yet"
     static let noGenre = "Unknown genre"
     static let noDate = "Unknown date"
-    static let noRating = "No rating yet"
+    static let noRating = "No rating"
 }

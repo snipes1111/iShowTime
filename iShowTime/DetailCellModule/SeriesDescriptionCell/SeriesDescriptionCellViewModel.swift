@@ -1,5 +1,5 @@
 //
-//  SearchDetailCellViewModel.swift
+//  SeriesDescriptionCellViewModel.swift
 //  iShowTime
 //
 //  Created by user on 12/10/2023.
@@ -14,7 +14,7 @@ enum ScoreRatingColor {
     case black
 }
 
-protocol SearchDetailCellViewModelProtocol: DetailCellViewModelProtocol {
+protocol SeriesDescriptionCellViewModelProtocol: DetailCellViewModelProtocol {
     var ratingIs: String { get }
     var scoreRating: String { get }
     var scoreRatingColor: ScoreRatingColor { get }
@@ -26,7 +26,7 @@ protocol SearchDetailCellViewModelProtocol: DetailCellViewModelProtocol {
     func heartButtonDidTapped()
 }
 
-final class SearchDetailCellViewModel: DetailCellViewModel, SearchDetailCellViewModelProtocol {
+final class SeriesDescriptionCellViewModel: DetailCellViewModel, SeriesDescriptionCellViewModelProtocol {
 
     private var countryService: CountryService = CountryService.shared
 
@@ -47,7 +47,7 @@ final class SearchDetailCellViewModel: DetailCellViewModel, SearchDetailCellView
     }
 }
 
-extension SearchDetailCellViewModel {
+extension SeriesDescriptionCellViewModel {
 
     private func receiveOverview() -> String {
         guard let overview = series.overview, !overview.isEmpty

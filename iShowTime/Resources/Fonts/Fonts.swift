@@ -12,7 +12,7 @@ struct Fonts {
                                         UIFont.systemFont(ofSize: 14, weight: .semibold)]
     struct SearchModule {
 
-        static let promptLabelFont: UIFont = .systemFont(ofSize: 24, weight: .semibold)
+        static let promptLabelFont: UIFont = .systemFont(ofSize: 24, weight: .medium)
         static let titleFont: UIFont = .boldSystemFont(ofSize: 18)
         static let secondaryLabel: UIFont  = .systemFont(ofSize: 16)
     }

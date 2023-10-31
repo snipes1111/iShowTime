@@ -19,6 +19,6 @@ final class FavouritesDetailViewModel: SeriesDetailViewModel, SeriesDetailRepres
 
     func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
         guard let series = series else { return nil }
-        return SearchDetailCellViewModel(series: series)
+        return SeriesDescriptionCellViewModel(series: series)
     }
 }

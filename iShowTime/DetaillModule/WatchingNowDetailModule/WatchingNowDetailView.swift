@@ -8,9 +8,6 @@
 import UIKit
 
 final class WatchingNowDetailView: SeriesDetailView {
-    override var cellIdentifier: String {
-        WatchingNowConstants.detailSeriesCellIdentifier
-    }
     override var cellType: UITableViewCell.Type {
         WatchingNowDetailCell.self
     }

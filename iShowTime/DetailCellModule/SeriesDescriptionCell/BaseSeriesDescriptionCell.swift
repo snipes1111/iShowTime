@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BaseSearchDetailCell: DetailCell {
+class BaseSeriesDescriptionCell: DetailCell {
     var ratingIsLabel: UILabel!
     var ratingScoreLabel: UILabel!
     var genreLabel: UILabel!

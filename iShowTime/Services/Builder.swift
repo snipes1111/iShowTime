@@ -68,10 +68,10 @@ final class Builder: BuilderProtocol {
     }
 
     func buildSearchSeriesDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController {
-        let viewController = SearchSeriesDetailViewController(title: seriesName)
+        let viewController = SeriesDetailViewController(title: seriesName)
         let viewModel = SearchDetailViewModel(seriesId: seriesId)
         let view = SearchDetailView(viewModel: viewModel)
-        viewController.searchDetailView = view
+        viewController.mainView = view
         viewController.viewModel = viewModel
         return viewController
     }
@@ -80,16 +80,16 @@ final class Builder: BuilderProtocol {
         let viewController = WatchingNowDetailViewController(title: seriesName)
         let viewModel = WatchingNowDetailViewModel(seriesId: seriesId)
         let view = WatchingNowDetailView(viewModel: viewModel)
-        viewController.watchingNowDetailView = view
+        viewController.mainView = view
         viewController.viewModel = viewModel
         return viewController
     }
 
     func buildFavouritesDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController {
-        let viewController = SearchSeriesDetailViewController(title: seriesName)
+        let viewController = SeriesDetailViewController(title: seriesName)
         let viewModel = FavouritesDetailViewModel(seriesId: seriesId)
-        let view = FavouritesDetailView(viewModel: viewModel)
-        viewController.searchDetailView = view
+        let view = SeriesDetailView(viewModel: viewModel)
+        viewController.mainView = view
         viewController.viewModel = viewModel
         return viewController
     }

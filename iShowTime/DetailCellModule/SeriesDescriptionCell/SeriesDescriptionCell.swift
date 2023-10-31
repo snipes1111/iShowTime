@@ -7,22 +7,22 @@
 
 import UIKit
 
-final class SearchDetailCell: BaseSearchDetailCell {
+final class SeriesDescriptionCell: BaseSeriesDescriptionCell {
 
-    private var detailViewModel: SearchDetailCellViewModelProtocol?
+    private var detailViewModel: SeriesDescriptionCellViewModelProtocol?
 
     override func updateViews() {
         super.updateViews()
-        detailViewModel = (viewModel as? SearchDetailCellViewModelProtocol)
+        detailViewModel = (viewModel as? SeriesDescriptionCellViewModelProtocol)
         updateRating()
         genreLabel.text = detailViewModel?.genreAndYear
         countrySeasonsAndYearLabel.text = detailViewModel?.countrySeasonsAndYear
         updateOverview()
-        heartButton.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)
+        setupHeartButton()
     }
 }
 
-extension SearchDetailCell {
+extension SeriesDescriptionCell {
     private func updateRating() {
         ratingIsLabel.text = detailViewModel?.ratingIs
         ratingScoreLabel.text = detailViewModel?.scoreRating
@@ -44,6 +44,11 @@ extension SearchDetailCell {
         case .yellow: return Colors.yellowRating
         case .green: return Colors.greenRating
         }
+    }
+
+    private func setupHeartButton() {
+        heartButton.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)
+        updateHeartButton()
     }
 
     @objc private func heartButtonTapped() {

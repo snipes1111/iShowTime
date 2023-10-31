@@ -8,13 +8,10 @@
 import UIKit
 
 final class HorizontalStackView: UIStackView {
-    init(arrangedSubviews: [UIView]) {
+    init(arrangedSubviews: [UIView], spacing: CGFloat = 12) {
         super.init(frame: .zero)
         arrangedSubviews.forEach { addArrangedSubview($0) }
-        axis = .horizontal
-        alignment = .fill
-        distribution = .fillProportionally
-        spacing = 12
+        self.spacing = spacing
     }
 
     required init(coder: NSCoder) {
