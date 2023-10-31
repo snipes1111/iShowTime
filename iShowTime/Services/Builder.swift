@@ -11,9 +11,10 @@ protocol BuilderProtocol {
     func buildMainTabController() -> MainTabBarController
     func buildSearchViewController() -> UIViewController
     func buildWatchingNowViewController() -> UIViewController
-    func buildFinishedViewController() -> UIViewController
+    func buildFavouritesViewController() -> UIViewController
     func buildSearchSeriesDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController
     func buildWatchingNowDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController
+    func buildFavouritesDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController
 }
 
 final class Builder: BuilderProtocol {
@@ -52,11 +53,17 @@ final class Builder: BuilderProtocol {
         )
     }
 
-    func buildFinishedViewController() -> UIViewController {
-        createNavController(
-            viewController: FinishedViewController(),
-            title: FinishedConstants.title,
-            image: TabBarImages.finishedImage
+    func buildFavouritesViewController() -> UIViewController {
+        let viewController = FavouritesViewController()
+        let router = Router(viewController: viewController)
+        let viewModel = FavouritesViewModel(router: router)
+        let view = BaseSectionView(viewModel: viewModel)
+        viewController.mainView = view
+        viewController.viewModel = viewModel
+        return createNavController(
+            viewController: viewController,
+            title: FavouritesConstants.title,
+            image: TabBarImages.favouritesImage
         )
     }
 
@@ -74,6 +81,15 @@ final class Builder: BuilderProtocol {
         let viewModel = WatchingNowDetailViewModel(seriesId: seriesId)
         let view = WatchingNowDetailView(viewModel: viewModel)
         viewController.watchingNowDetailView = view
+        viewController.viewModel = viewModel
+        return viewController
+    }
+
+    func buildFavouritesDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController {
+        let viewController = SearchSeriesDetailViewController(title: seriesName)
+        let viewModel = FavouritesDetailViewModel(seriesId: seriesId)
+        let view = FavouritesDetailView(viewModel: viewModel)
+        viewController.searchDetailView = view
         viewController.viewModel = viewModel
         return viewController
     }

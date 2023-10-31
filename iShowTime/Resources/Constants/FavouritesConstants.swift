@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct FinishedConstants {
-    static let title = "Finished"
+struct FavouritesConstants {
+    static let title = "Favourites"
 }

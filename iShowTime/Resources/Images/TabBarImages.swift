@@ -10,5 +10,5 @@ import UIKit
 struct TabBarImages {
     static let searchImage = UIImage(systemName: "magnifyingglass")
     static let watchingNowImage = UIImage(systemName: "popcorn")
-    static let finishedImage = UIImage(systemName: "film.stack")
+    static let favouritesImage = UIImage(systemName: "film.stack")
 }

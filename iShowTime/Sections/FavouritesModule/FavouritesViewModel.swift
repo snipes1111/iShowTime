@@ -1,23 +1,23 @@
 //
-//  WatchingNowViewModel.swift
+//  FavouritesViewModel.swift
 //  iShowTime
 //
-//  Created by user on 12/09/2023.
+//  Created by user on 31/10/2023.
 //
 
 import Foundation
 
-class WatchingNowViewModel: SectionViewModel, SectionViewModelRepresentableProtocol {
+class FavouritesViewModel: SectionViewModel, SectionViewModelRepresentableProtocol {
 
     private let dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
 
     func fetchSeries(_ searchText: String?) {
-        series = dataStoreManager.seriesList()
+        series = dataStoreManager.favouriteSeriesList()
         viewModelDidChange?(self)
     }
 
     func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel {
         let seriesAtIndexPath = series[indexPath.item]
-        return WatchingNowCellViewModel(series: seriesAtIndexPath)
+        return FavouriteCellViewModel(series: seriesAtIndexPath)
     }
 }

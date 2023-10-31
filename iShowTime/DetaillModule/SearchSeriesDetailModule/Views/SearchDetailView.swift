@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SearchDetailView: SeriesDetailView {
+/*final*/ class SearchDetailView: SeriesDetailView {
     override var cellIdentifier: String {
         SearchModuleConstants.detailSeriesCellIdentifier
     }

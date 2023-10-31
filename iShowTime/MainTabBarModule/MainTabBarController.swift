@@ -24,7 +24,7 @@ extension MainTabBarController {
         viewControllers = [
             builder.buildSearchViewController(),
             builder.buildWatchingNowViewController(),
-            builder.buildFinishedViewController()
+            builder.buildFavouritesViewController()
         ]
     }
 }
