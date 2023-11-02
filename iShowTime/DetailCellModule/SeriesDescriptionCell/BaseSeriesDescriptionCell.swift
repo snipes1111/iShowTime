@@ -7,24 +7,27 @@
 
 import UIKit
 
-class BaseSearchDetailCell: DetailCell {
+class BaseSeriesDescriptionCell: DetailCell {
     var ratingIsLabel: UILabel!
     var ratingScoreLabel: UILabel!
     var genreLabel: UILabel!
     var countrySeasonsAndYearLabel: UILabel!
     var overviewLabel: UILabel!
+    var showMoreButton: UIButton!
+    var showButtonStack: UIStackView!
     var heartButton: HeartButton!
 
     override func setupView() {
         super.setupView()
         let ratingHStack = UIStackView(arrangedSubviews: [ratingIsLabel, ratingScoreLabel])
         ratingHStack.spacing = 8
+        let overviewStack = VerticalStackView(spacing: 0, arrangedSubviews: [overviewLabel, showButtonStack])
         vStack.addArrangedSubviews([ratingHStack,
                                     genreLabel,
                                     countrySeasonsAndYearLabel,
-                                    overviewLabel,
+                                    overviewStack,
                                     watchingNowButton])
-        vStack.setCustomSpacing(32, after: overviewLabel)
+        vStack.setCustomSpacing(24, after: overviewStack)
         makeHeartButtonConstraints(equalTo: ratingHStack)
     }
 
@@ -35,7 +38,9 @@ class BaseSearchDetailCell: DetailCell {
         genreLabel = UILabel(font: Fonts.SearchDetailModule.genreLabel)
         genreLabel.textAlignment = .center
         countrySeasonsAndYearLabel = UILabel(font: Fonts.SearchDetailModule.countrySeasonsAndYearLabel)
-        overviewLabel = UILabel(font: Fonts.SearchDetailModule.overviewLabel)
+        overviewLabel = UILabel(font: Fonts.SearchDetailModule.overviewLabel, numberOfLines: 5)
+        showMoreButton = ShowMoreButton()
+        showButtonStack = HorizontalStackView(arrangedSubviews: [showMoreButton, UIView()])
         heartButton = HeartButton()
     }
 

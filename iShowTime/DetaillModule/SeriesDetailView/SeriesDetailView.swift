@@ -14,11 +14,11 @@ class SeriesDetailView: UIView {
     private(set) var backDropImageView = SeriesImageView()
     private(set) var loadingView = LoadingView()
 
-    var cellIdentifier: String {
-        "cell"
-    }
     var cellType: UITableViewCell.Type {
-        UITableViewCell.self
+        SeriesDescriptionCell.self
+    }
+    var cellIdentifier: String {
+        String(describing: cellType)
     }
     var tableViewTopInset: CGFloat {
         0

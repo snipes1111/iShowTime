@@ -10,7 +10,6 @@ import UIKit
 class HeartButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        switchToBorderedState()
         addTarget(self, action: #selector(tapWithAnimation), for: .touchUpInside)
         setSize(35, 40)
     }

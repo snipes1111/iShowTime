@@ -7,22 +7,39 @@
 
 import UIKit
 
-final class SearchDetailCell: BaseSearchDetailCell {
+protocol CellResizable: AnyObject {
+    func resizeCell()
+}
 
-    private var detailViewModel: SearchDetailCellViewModelProtocol?
+final class SeriesDescriptionCell: BaseSeriesDescriptionCell {
+
+    private var detailViewModel: SeriesDescriptionCellViewModelProtocol?
+    weak var delegate: CellResizable?
 
     override func updateViews() {
         super.updateViews()
-        detailViewModel = (viewModel as? SearchDetailCellViewModelProtocol)
+        detailViewModel = (viewModel as? SeriesDescriptionCellViewModelProtocol)
         updateRating()
         genreLabel.text = detailViewModel?.genreAndYear
         countrySeasonsAndYearLabel.text = detailViewModel?.countrySeasonsAndYear
         updateOverview()
-        heartButton.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)
+        setupHeartButton()
+        createButtonAction()
     }
+
+    func createButtonAction() {
+        showMoreButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    }
+
+    @objc func buttonTapped() {
+        overviewLabel.numberOfLines = 0
+        showButtonStack.isHidden = true
+        delegate?.resizeCell()
+    }
+
 }
 
-extension SearchDetailCell {
+extension SeriesDescriptionCell {
     private func updateRating() {
         ratingIsLabel.text = detailViewModel?.ratingIs
         ratingScoreLabel.text = detailViewModel?.scoreRating
@@ -44,6 +61,11 @@ extension SearchDetailCell {
         case .yellow: return Colors.yellowRating
         case .green: return Colors.greenRating
         }
+    }
+
+    private func setupHeartButton() {
+        heartButton.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)
+        updateHeartButton()
     }
 
     @objc private func heartButtonTapped() {

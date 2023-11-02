@@ -11,16 +11,17 @@ extension SearchSeriesView {
 
     func setupPromptVStack() {
         spinner = SpinnerView()
-        loadingVStack = VerticalStackView(spacing: 16, arrangedSubviews: [promptLabel, spinner])
-        tableView.addSubview(loadingVStack)
+        loadingStack = HorizontalStackView(arrangedSubviews: [promptLabel, spinner])
+        tableView.addSubview(loadingStack)
     }
 
     func setupLoadingVStackConstraints() {
         let topInset = calculatedNavBarSize()
-        loadingVStack.translatesAutoresizingMaskIntoConstraints = false
-        loadingVStack.topAnchor.constraint(equalTo: tableView.topAnchor, constant: topInset).isActive = true
-        loadingVStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
-        loadingVStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
+        loadingStack.translatesAutoresizingMaskIntoConstraints = false
+        loadingStack.topAnchor.constraint(equalTo: tableView.topAnchor, constant: topInset).isActive = true
+        loadingStack.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 16).isActive = true
+        loadingStack.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -16).isActive = true
+        loadingStack.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
 
     private func calculatedNavBarSize() -> CGFloat {

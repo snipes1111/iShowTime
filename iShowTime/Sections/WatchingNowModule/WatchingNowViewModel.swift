@@ -7,13 +7,9 @@
 
 import Foundation
 
-class WatchingNowViewModel: SectionViewModel, SectionViewModelRepresentableProtocol {
+final class WatchingNowViewModel: SectionViewModel, SectionViewModelRepresentableProtocol {
 
     private let dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
-
-    var numberOfSeries: Int {
-        series.count
-    }
 
     func fetchSeries(_ searchText: String?) {
         series = dataStoreManager.seriesList()

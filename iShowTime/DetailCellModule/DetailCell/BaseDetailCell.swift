@@ -36,7 +36,7 @@ class BaseDetailCell: UITableViewCell {
 
     func makeConstraints(_ view: UIView) {
         posterImageView.setSize(300, 200)
-        view.fillSuperView(contentView, padding: 18)
+        view.fillSuperView(contentView, padding: 16)
     }
 
     func setupSubViews() {

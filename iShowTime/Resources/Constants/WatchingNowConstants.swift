@@ -11,7 +11,6 @@ struct WatchingNowConstants {
     // Main screen
     static let title = "Watching Now"
     static let seriesCellIdentifier = "WatchingNowSeriesCell"
-    static let detailSeriesCellIdentifier = "WatchingNowDetailSeriesCell"
     static let promptLabel = "Add the series to track your progress"
     // Detail screen
     static let inProduction = "In Production"
