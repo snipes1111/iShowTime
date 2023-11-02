@@ -11,25 +11,29 @@ protocol EditableCellViewModelProtocol {
     func deleteRow(at indexPath: IndexPath)
 }
 
-class FavouritesViewModel: SectionViewModel, SectionViewModelRepresentableProtocol, EditableCellViewModelProtocol {
+class FavouritesViewModel: SectionViewModel, 
+                           SectionViewModelRepresentableProtocol {
 
     private let dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
 
     override var promptLabelText: String { FavouritesConstants.promptLabel }
 
-    func fetchSeries(_ searchText: String?) {
-        series = dataStoreManager.favouriteSeriesList()
+    func fetchSeries() {
+        seriesData = dataStoreManager.favouriteSeriesList()
         viewModelDidChange?(self)
     }
 
     func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel {
-        let seriesAtIndexPath = series[indexPath.item]
-        return FavouriteCellViewModel(series: seriesAtIndexPath)
+        let cellSeriesData = seriesData[indexPath.item]
+        return FavouriteCellViewModel(cellSeriesData: cellSeriesData)
     }
+}
 
+extension FavouritesViewModel: EditableCellViewModelProtocol {
     func deleteRow(at indexPath: IndexPath) {
-        let seriesToRemove = series.remove(at: indexPath.item)
-        dataStoreManager.removeFromFavourites(series: seriesToRemove)
-        if series.isEmpty { viewModelDidChange?(self) }
+        var cellSeriesData = seriesData[indexPath.item]
+        cellSeriesData.isFavourite = false
+        dataStoreManager.save(seriesData: cellSeriesData)
+        fetchSeries()
     }
 }

@@ -7,17 +7,18 @@
 
 import Foundation
 
-final class WatchingNowViewModel: SectionViewModel, SectionViewModelRepresentableProtocol {
+final class WatchingNowViewModel: SectionViewModel, 
+                                  SectionViewModelRepresentableProtocol {
 
     private let dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
 
-    func fetchSeries(_ searchText: String?) {
-        series = dataStoreManager.seriesList()
+    func fetchSeries() {
+        seriesData = dataStoreManager.seriesList()
         viewModelDidChange?(self)
     }
 
     func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel {
-        let seriesAtIndexPath = series[indexPath.item]
-        return WatchingNowCellViewModel(series: seriesAtIndexPath)
+        let cellSeriesData = seriesData[indexPath.item]
+        return WatchingNowCellViewModel(cellSeriesData: cellSeriesData)
     }
 }

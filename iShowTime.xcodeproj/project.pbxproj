@@ -218,9 +218,9 @@
 		CE0589D42AD6E8EA00DE987F /* SeriesDescriptionCell */ = {
 			isa = PBXGroup;
 			children = (
+				CE9EA8D42AD846BD00C261C8 /* SeriesDescriptionCellViewModel.swift */,
 				CE72084C2AE182CA0005C16E /* BaseSeriesDescriptionCell.swift */,
 				CE0589D52AD6E92D00DE987F /* SeriesDescriptionCell.swift */,
-				CE9EA8D42AD846BD00C261C8 /* SeriesDescriptionCellViewModel.swift */,
 			);
 			path = SeriesDescriptionCell;
 			sourceTree = "<group>";
@@ -354,9 +354,9 @@
 		CE72085C2AE6C1480005C16E /* DetailCell */ = {
 			isa = PBXGroup;
 			children = (
+				CE7208582AE6BECF0005C16E /* DetailCellViewModel.swift */,
 				CE72084E2AE182FE0005C16E /* BaseDetailCell.swift */,
 				CE72085D2AE6C18A0005C16E /* DetailCell.swift */,
-				CE7208582AE6BECF0005C16E /* DetailCellViewModel.swift */,
 			);
 			path = DetailCell;
 			sourceTree = "<group>";
@@ -881,10 +881,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TWWBX6RB4S;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iShowTime/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -899,6 +895,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-no_warn_duplicate_libraries",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Mark-Kovalchuk.iShowTime";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -919,10 +919,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TWWBX6RB4S;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iShowTime/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -937,6 +933,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-no_warn_duplicate_libraries",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Mark-Kovalchuk.iShowTime";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

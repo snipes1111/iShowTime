@@ -15,27 +15,26 @@ enum LoadingState {
 
 protocol SearchSeriesViewModelProtocol {
     var loadingState: Box<LoadingState> { get }
-    func setSearchText(_ searchText: String?)
 }
 
 final class SearchSeriesViewModel: SectionViewModel,
                                    SectionViewModelRepresentableProtocol & SearchSeriesViewModelProtocol {
+
     private let networkManager: NetworkServiceProtocol = NetworkService()
     private let errorHandler = ErrorHandler()
     private let decoder: SeriesDecoderProtocol = SeriesDecoder()
     private let countryService: CountryService = CountryService.shared
     private var currentTask: Task<Void, Error>?
     private var countries: [Country]?
-    private var searchText: String?
+
+    var loadingState: Box<LoadingState> = Box(value: LoadingState.initial)
 
     override var promptLabelText: String {
         setPromptLabelText()
     }
 
-    var loadingState: Box<LoadingState> = Box(value: LoadingState.initial)
-
-    func fetchSeries() {
-        seriesData.removeAll()
+    func fetchSeries(_ searchText: String?) {
+        series.removeAll()
         currentTask?.cancel()
         guard let searchText = searchText, !searchText.isEmpty else {
             loadingState.value = .initial
@@ -47,13 +46,8 @@ final class SearchSeriesViewModel: SectionViewModel,
     }
 
     func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel {
-        let cellSeriesData = seriesData[indexPath.item]
-        return SeriesCellViewModel(cellSeriesData: cellSeriesData)
-    }
-
-    func setSearchText(_ searchText: String?) {
-        self.searchText = searchText
-        fetchSeries()
+        let seriesAtIndexPath = series[indexPath.item]
+        return SeriesCellViewModel(series: seriesAtIndexPath)
     }
 }
 
@@ -69,10 +63,10 @@ extension SearchSeriesViewModel {
 
     private func fetchAndDecodeData(_ searchText: String) async {
         do {
-            let seriesJSON = try await networkManager.fetchSeriesData(searchText)
+            let seriesData = try await networkManager.fetchSeriesData(searchText)
             let countriesData = try await networkManager.fetchCountryList()
-            guard let series = decoder.decodeSeriesFromData(seriesJSON) else { return }
-            seriesData = series.map { SeriesData(series: $0) }
+            guard let series = decoder.decodeSeriesFromData(seriesData) else { return }
+            self.series = series
             guard let countries = decoder.decodeCountryList(countriesData) else { return }
             countryService.updateCountryList(with: countries)
         } catch {

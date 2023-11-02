@@ -40,9 +40,3 @@ struct Series: Codable {
     let numberOfSeasons: Double?
     let inProduction: Bool?
 }
-
-extension Series: Equatable {
-    static func == (lhs: Series, rhs: Series) -> Bool {
-        lhs.id == rhs.id
-    }
-}

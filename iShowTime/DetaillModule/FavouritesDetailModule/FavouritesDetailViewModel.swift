@@ -12,13 +12,13 @@ final class FavouritesDetailViewModel: SeriesDetailViewModel, SeriesDetailRepres
     private let dataStorage: DataStoreMangerProtocol = DataStoreManger.shared
 
     func fetchSeriesDetails() {
-        let selectedSeries = dataStorage.favouriteSeriesList().filter { $0.id == seriesId }
-        series = selectedSeries.first
+        let selectedSeries = dataStorage.favouriteSeriesList().filter { $0.series.id == seriesId }
+        seriesData = selectedSeries.first
         viewModelDidChange?(self)
     }
 
     func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
-        guard let series = series else { return nil }
-        return SeriesDescriptionCellViewModel(series: series)
+        guard let seriesData = seriesData else { return nil }
+        return SeriesDescriptionCellViewModel(seriesData: seriesData)
     }
 }

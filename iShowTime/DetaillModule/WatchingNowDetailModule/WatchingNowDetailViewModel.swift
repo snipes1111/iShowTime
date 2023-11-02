@@ -12,13 +12,13 @@ final class WatchingNowDetailViewModel: SeriesDetailViewModel, SeriesDetailRepre
     private let dataStorage: DataStoreMangerProtocol = DataStoreManger.shared
 
     func fetchSeriesDetails() {
-        let selectedSeries = dataStorage.seriesList().filter { $0.id == seriesId }
-        series = selectedSeries.first
+        let selectedSeries = dataStorage.seriesList().filter { $0.series.id == seriesId }
+        seriesData = selectedSeries.first
         viewModelDidChange?(self)
     }
 
     func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
-        guard let series = series else { return nil }
-        return WatchingNowDetailCellViewModel(series: series)
+        guard let seriesData = seriesData else { return nil }
+        return WatchingNowDetailCellViewModel(seriesData: seriesData)
     }
 }

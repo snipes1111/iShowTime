@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum CellType {
+    case search, watchingNow, favourite
+}
+
+
 protocol SectionViewModelProtocol {
     var viewModelDidChange: ((SectionViewModelProtocol) -> Void)? { get set }
     var numberOfRows: Int { get }
@@ -18,28 +23,28 @@ protocol SectionViewModelProtocol {
 }
 
 protocol SectionViewModelRepresentableProtocol {
-    func fetchSeries(_ searchText: String?)
+    func fetchSeries()
     func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel
 }
 
 class SectionViewModel: SectionViewModelProtocol {
-    var series: [Series] = []
+    var seriesData: [SeriesData] = []
     private let router: RouterProtocol
 
     var viewModelDidChange: ((SectionViewModelProtocol) -> Void)?
-    var numberOfRows: Int { series.count }
+    var numberOfRows: Int { seriesData.count }
     var heightForRow: Int { 165 }
     var promptLabelText: String { WatchingNowConstants.promptLabel }
-    var promptLabelIsHidden: Bool { series.isEmpty ? false : true }
+    var promptLabelIsHidden: Bool { seriesData.isEmpty ? false : true }
 
     required init(router: RouterProtocol) {
         self.router = router
     }
 
     func showDetails(at indexPath: IndexPath) {
-        let series = series[indexPath.item]
-        guard let id = series.id,
-        let seriesName = series.name else { return }
+        let selectedSeries = seriesData[indexPath.item]
+        guard let id = selectedSeries.series.id,
+              let seriesName = selectedSeries.series.name else { return }
         router.showDetailSeriesViewController(id, seriesName)
     }
 }

@@ -20,8 +20,9 @@ protocol SeriesDetailRepresentableProtocol {
 }
 
 class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
-    private(set) var seriesId: Double
-    var series: Series?
+    let seriesId: Double
+    var seriesData: SeriesData?
+    var series: Series? { seriesData?.series }
 
     var viewModelDidChange: ((SeriesDetailViewModelProtocol) -> Void)?
     var backDropImageUrl: String? { series?.backdropPath }

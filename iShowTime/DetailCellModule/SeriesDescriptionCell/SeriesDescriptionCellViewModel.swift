@@ -22,7 +22,7 @@ protocol SeriesDescriptionCellViewModelProtocol: DetailCellViewModelProtocol {
     var countrySeasonsAndYear: String { get }
     var attributedOverviewText: String { get }
     var overview: String { get }
-    var seriesIsFavourite: Bool { get }
+    var seriesIsFavourite: Bool { get set }
     func heartButtonDidTapped()
 }
 
@@ -37,13 +37,13 @@ final class SeriesDescriptionCellViewModel: DetailCellViewModel, SeriesDescripti
     var countrySeasonsAndYear: String { receiveCountrySeasonAndYear() }
     var attributedOverviewText: String { SearchModuleConstants.overview }
     var overview: String { receiveOverview() }
-    var seriesIsFavourite: Bool { dataStoreManager.isFavourite(series: series) }
+    var seriesIsFavourite: Bool {
+        get { seriesData.isFavourite }
+        set { setIsFavourite(isFavourite: newValue) }
+    }
     func heartButtonDidTapped() {
-        if !seriesIsFavourite {
-            dataStoreManager.saveToFavourites(series: series)
-        } else {
-            dataStoreManager.removeFromFavourites(series: series)
-        }
+        seriesIsFavourite.toggle()
+        dataStoreManager.save(seriesData: seriesData)
     }
 }
 

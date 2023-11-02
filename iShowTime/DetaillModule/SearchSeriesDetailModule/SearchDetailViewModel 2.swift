@@ -21,15 +21,15 @@ final class SearchDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresenta
     }
 
     func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
-        guard let seriesData = seriesData else { return nil }
-        return SeriesDescriptionCellViewModel(seriesData: seriesData)
+        guard let series = series else { return nil }
+        return SeriesDescriptionCellViewModel(series: series)
     }
 
     private func fetchAndDecodeData() async {
         do {
-            let seriesJSON = try await networkService.fetchSeriesDetails(seriesId)
-            guard let series = decoder.decodeSeriesDetailsFromData(seriesJSON) else { return }
-            seriesData = SeriesData(series: series)
+            let data = try await networkService.fetchSeriesDetails(seriesId)
+            guard let series = decoder.decodeSeriesDetailsFromData(data) else { return }
+            self.series = series
         } catch {
             errorHandler.handle(error)
         }

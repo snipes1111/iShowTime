@@ -8,60 +8,65 @@
 import Foundation
 
 protocol DataStoreMangerProtocol {
-    func save(series: Series)
-    func remove(series: Series)
-    func isSavedBefore(series: Series) -> Bool
-    func seriesList() -> [Series]
-
-    func saveToFavourites(series: Series)
-    func removeFromFavourites(series: Series)
-    func isFavourite(series: Series) -> Bool
-    func favouriteSeriesList() -> [Series]
+    func save(seriesData: SeriesData)
+    func remove(seriesData: SeriesData)
+    func isSavedBefore(seriesData: SeriesData) -> Bool
+    func seriesList() -> [SeriesData]
+    func favouriteSeriesList() -> [SeriesData]
 }
+
+struct SeriesData {
+    let series: Series
+    var isFavourite: Bool
+    var currentSeason: Int
+    var currentEpisode: Int
+    var currentProgress: Int
+
+    init(series: Series) {
+        self.series = series
+        self.isFavourite = false
+        self.currentSeason = 1
+        self.currentEpisode = 0
+        self.currentProgress = 0
+    }
+}
+
+extension SeriesData: Equatable {
+    static func == (lhs: SeriesData, rhs: SeriesData) -> Bool {
+        lhs.series.id == rhs.series.id
+    }
+}
+
 
 class DataStoreManger: DataStoreMangerProtocol {
 
     static let shared = DataStoreManger()
-    private var storage: [Series] = []
-    private var favouriteStorage: [Series] = []
+    private var storage: [SeriesData] = []
 
-    func save(series: Series) {
-        guard !storage.contains(series) else { return }
-        storage.append(series)
+    func save(seriesData: SeriesData) {
+        guard !storage.contains(seriesData) else {
+            remove(seriesData: seriesData)
+            return
+        }
+        storage.append(seriesData)
         print("Successfully saved")
     }
 
-    func remove(series: Series) {
-        guard let index = storage.firstIndex(of: series) else { return }
+    func remove(seriesData: SeriesData) {
+        guard let index = storage.firstIndex(of: seriesData) else { return }
         storage.remove(at: index)
         print("Successfully removed")
     }
 
-    func isSavedBefore(series: Series) -> Bool {
-        storage.contains(series)
+    func isSavedBefore(seriesData: SeriesData) -> Bool {
+        storage.filter { $0.isFavourite == false }.contains(seriesData)
     }
 
-    func seriesList() -> [Series] {
-        storage
+    func seriesList() -> [SeriesData] {
+        storage.filter { $0.isFavourite == false }
     }
 
-    func saveToFavourites(series: Series) {
-        guard !favouriteStorage.contains(series) else { return }
-        favouriteStorage.append(series)
-        print("Successfully saved to favourites")
-    }
-
-    func removeFromFavourites(series: Series) {
-        guard let index = favouriteStorage.firstIndex(of: series) else { return }
-        favouriteStorage.remove(at: index)
-        print("Successfully removed from favourites")
-    }
-
-    func isFavourite(series: Series) -> Bool {
-        favouriteStorage.contains(series)
-    }
-
-    func favouriteSeriesList() -> [Series] {
-        favouriteStorage
+    func favouriteSeriesList() -> [SeriesData] {
+        storage.filter { $0.isFavourite == true }
     }
 }

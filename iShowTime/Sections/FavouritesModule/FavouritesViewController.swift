@@ -10,6 +10,6 @@ import UIKit
 class FavouritesViewController: BaseSectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.fetchSeries(nil)
+        viewModel.fetchSeries()
     }
 }
