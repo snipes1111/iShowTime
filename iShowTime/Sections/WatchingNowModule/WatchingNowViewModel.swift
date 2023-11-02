@@ -7,7 +7,7 @@
 
 import Foundation
 
-class WatchingNowViewModel: SectionViewModel, SectionViewModelRepresentableProtocol {
+final class WatchingNowViewModel: SectionViewModel, SectionViewModelRepresentableProtocol {
 
     private let dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
 

@@ -7,7 +7,11 @@
 
 import Foundation
 
-class FavouritesViewModel: SectionViewModel, SectionViewModelRepresentableProtocol {
+protocol EditableCellViewModelProtocol {
+    func deleteRow(at indexPath: IndexPath)
+}
+
+class FavouritesViewModel: SectionViewModel, SectionViewModelRepresentableProtocol, EditableCellViewModelProtocol {
 
     private let dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
 
@@ -21,5 +25,11 @@ class FavouritesViewModel: SectionViewModel, SectionViewModelRepresentableProtoc
     func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel {
         let seriesAtIndexPath = series[indexPath.item]
         return FavouriteCellViewModel(series: seriesAtIndexPath)
+    }
+
+    func deleteRow(at indexPath: IndexPath) {
+        let seriesToRemove = series.remove(at: indexPath.item)
+        dataStoreManager.removeFromFavourites(series: seriesToRemove)
+        if series.isEmpty { viewModelDidChange?(self) }
     }
 }

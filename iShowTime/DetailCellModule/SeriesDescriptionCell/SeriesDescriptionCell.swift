@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol CellResizable: AnyObject {
+    func resizeCell()
+}
+
 final class SeriesDescriptionCell: BaseSeriesDescriptionCell {
 
     private var detailViewModel: SeriesDescriptionCellViewModelProtocol?
+    weak var delegate: CellResizable?
 
     override func updateViews() {
         super.updateViews()
@@ -19,7 +24,19 @@ final class SeriesDescriptionCell: BaseSeriesDescriptionCell {
         countrySeasonsAndYearLabel.text = detailViewModel?.countrySeasonsAndYear
         updateOverview()
         setupHeartButton()
+        createButtonAction()
     }
+
+    func createButtonAction() {
+        showMoreButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    }
+
+    @objc func buttonTapped() {
+        overviewLabel.numberOfLines = 0
+        showButtonStack.isHidden = true
+        delegate?.resizeCell()
+    }
+
 }
 
 extension SeriesDescriptionCell {

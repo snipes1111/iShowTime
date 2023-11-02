@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WatchingNowViewController: BaseSectionViewController {
+final class WatchingNowViewController: BaseSectionViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

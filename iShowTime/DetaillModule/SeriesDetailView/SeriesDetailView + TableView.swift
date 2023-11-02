@@ -34,9 +34,18 @@ extension SeriesDetailView {
     private func returnCellOfType(_ cellType: UITableViewCell.Type, for indexPath: IndexPath) -> UITableViewCell? {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         switch cellType {
-        case is SeriesDescriptionCell.Type: return (cell as? SeriesDescriptionCell)
+        case is SeriesDescriptionCell.Type: 
+            let cell = cell as! SeriesDescriptionCell
+            cell.delegate = self
+            return cell
         case is WatchingNowDetailCell.Type: return (cell as? WatchingNowDetailCell)
         default: return UITableViewCell()
         }
+    }
+}
+
+extension SeriesDetailView: CellResizable {
+    func resizeCell() {
+        tableView.reloadData()
     }
 }

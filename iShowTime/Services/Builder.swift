@@ -57,7 +57,7 @@ final class Builder: BuilderProtocol {
         let viewController = FavouritesViewController()
         let router = Router(viewController: viewController)
         let viewModel = FavouritesViewModel(router: router)
-        let view = BaseSectionView(viewModel: viewModel)
+        let view = FavouritesView(viewModel: viewModel)
         viewController.mainView = view
         viewController.viewModel = viewModel
         return createNavController(
