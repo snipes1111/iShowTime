@@ -26,6 +26,8 @@ struct Series: Codable {
     let id: Double?
     let backdropPath: String?
     let posterPath: String?
+    let seasons: [Season]?
+    let nextEpisodeToAir: Episode?
     let name: String?
     let genreIds: [Double]?
     let genres: [Genre]?
@@ -37,9 +39,6 @@ struct Series: Codable {
     let numberOfEpisodes: Double?
     let numberOfSeasons: Double?
     let inProduction: Bool?
-    let nextEpisodeToAir: Episode?
-
-    let seasons: [Season]?
 }
 
 extension Series: Equatable {
