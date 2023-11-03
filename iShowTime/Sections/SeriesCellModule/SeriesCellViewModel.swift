@@ -13,6 +13,7 @@ protocol SeriesCellViewModelProtocol {
     var countryAndYear: String { get }
     var seasonsLabelText: String { get }
     var progressViewIsHidden: Bool { get }
+    var seriesProgress: Float { get }
     var imageUrl: String? { get }
     init(cellSeriesData: SeriesData)
 }
@@ -22,7 +23,7 @@ class SeriesCellViewModel: SeriesCellViewModelProtocol {
     private var countryService: CountryService = CountryService.shared
 
     let seriesData: SeriesData
-    var series: Series { seriesData.series }
+    var series: Series
 
     var seriesTitle: String {
         series.name ?? "Unknown"
@@ -48,11 +49,16 @@ class SeriesCellViewModel: SeriesCellViewModelProtocol {
         true
     }
 
+    var seriesProgress: Float {
+        seriesData.currentProgress
+    }
+
     var imageUrl: String? {
         series.posterPath
     }
 
     required init(cellSeriesData: SeriesData) {
-        self.seriesData = cellSeriesData
+        seriesData = cellSeriesData
+        series = cellSeriesData.series
     }
 }

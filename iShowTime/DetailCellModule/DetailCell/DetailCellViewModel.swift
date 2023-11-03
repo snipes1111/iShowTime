@@ -10,7 +10,7 @@ import Foundation
 protocol DetailCellViewModelProtocol {
     var seriesName: String { get }
     var imageUrl: String? { get }
-    var isSaved: Bool { get }
+    var isBeingWatched: Bool { get }
     init(seriesData: SeriesData)
     func watchingNowButtonPressed()
 }
@@ -25,7 +25,7 @@ class DetailCellViewModel: DetailCellViewModelProtocol {
 
     var seriesName: String { series.name ?? SearchModuleConstants.unknownTitle }
     var imageUrl: String? { series.posterPath }
-    var isSaved: Bool { dataStoreManager.isSavedBefore(seriesData: seriesData) }
+    var isBeingWatched: Bool { seriesData.isBeingWatched }
 
     required init(seriesData: SeriesData) {
         self.seriesData = seriesData
@@ -34,13 +34,26 @@ class DetailCellViewModel: DetailCellViewModelProtocol {
 
     func setIsFavourite(isFavourite: Bool) {
         seriesData.isFavourite = isFavourite
+        dataStoreManager.save(seriesData: seriesData)
+    }
+
+    func setSeason(season: Double) {
+        seriesData.currentSeason = season
+        dataStoreManager.save(seriesData: seriesData)
+    }
+
+    func setEpisode(episode: Double) {
+        seriesData.currentEpisode = episode
+        dataStoreManager.save(seriesData: seriesData)
+    }
+
+    func setProgress(progress: Float) {
+        seriesData.currentProgress = progress
+        dataStoreManager.save(seriesData: seriesData)
     }
 
     func watchingNowButtonPressed() {
-        if !isSaved {
-            dataStoreManager.save(seriesData: seriesData)
-        } else {
-            dataStoreManager.remove(seriesData: seriesData)
-        }
+        seriesData.isBeingWatched.toggle()
+        dataStoreManager.save(seriesData: seriesData)
     }
 }

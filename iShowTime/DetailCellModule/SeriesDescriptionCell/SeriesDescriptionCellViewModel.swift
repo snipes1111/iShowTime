@@ -43,7 +43,6 @@ final class SeriesDescriptionCellViewModel: DetailCellViewModel, SeriesDescripti
     }
     func heartButtonDidTapped() {
         seriesIsFavourite.toggle()
-        dataStoreManager.save(seriesData: seriesData)
     }
 }
 

@@ -14,14 +14,14 @@ class BaseSeriesDescriptionCell: DetailCell {
     var countrySeasonsAndYearLabel: UILabel!
     var overviewLabel: UILabel!
     var showMoreButton: UIButton!
-    var showButtonStack: UIStackView!
+    var showMoreButtonStack: UIStackView!
     var heartButton: HeartButton!
 
     override func setupView() {
         super.setupView()
         let ratingHStack = UIStackView(arrangedSubviews: [ratingIsLabel, ratingScoreLabel])
         ratingHStack.spacing = 8
-        let overviewStack = VerticalStackView(spacing: 0, arrangedSubviews: [overviewLabel, showButtonStack])
+        let overviewStack = VerticalStackView(spacing: 0, arrangedSubviews: [overviewLabel, showMoreButtonStack])
         vStack.addArrangedSubviews([ratingHStack,
                                     genreLabel,
                                     countrySeasonsAndYearLabel,
@@ -40,7 +40,7 @@ class BaseSeriesDescriptionCell: DetailCell {
         countrySeasonsAndYearLabel = UILabel(font: Fonts.SearchDetailModule.countrySeasonsAndYearLabel)
         overviewLabel = UILabel(font: Fonts.SearchDetailModule.overviewLabel, numberOfLines: 5)
         showMoreButton = ShowMoreButton()
-        showButtonStack = HorizontalStackView(arrangedSubviews: [showMoreButton, UIView()])
+        showMoreButtonStack = HorizontalStackView(arrangedSubviews: [showMoreButton, UIView()])
         heartButton = HeartButton()
     }
 

@@ -35,7 +35,7 @@ extension DetailCell {
     }
 
     private func updateWatchingNowButtonTitle() {
-        guard let isSaved = viewModel?.isSaved,
+        guard let isSaved = viewModel?.isBeingWatched,
               let button = watchingNowButton as? WatchingNowButton
         else { return }
         if !isSaved {

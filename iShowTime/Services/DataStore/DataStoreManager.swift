@@ -10,7 +10,6 @@ import Foundation
 protocol DataStoreMangerProtocol {
     func save(seriesData: SeriesData)
     func remove(seriesData: SeriesData)
-    func isSavedBefore(seriesData: SeriesData) -> Bool
     func seriesList() -> [SeriesData]
     func favouriteSeriesList() -> [SeriesData]
 }
@@ -18,16 +17,18 @@ protocol DataStoreMangerProtocol {
 struct SeriesData {
     let series: Series
     var isFavourite: Bool
-    var currentSeason: Int
-    var currentEpisode: Int
-    var currentProgress: Int
+    var isBeingWatched: Bool
+    var currentSeason: Double
+    var currentEpisode: Double
+    var currentProgress: Float
 
     init(series: Series) {
         self.series = series
-        self.isFavourite = false
-        self.currentSeason = 1
-        self.currentEpisode = 0
-        self.currentProgress = 0
+        isFavourite = false
+        isBeingWatched = false
+        currentSeason = 1
+        currentEpisode = 0
+        currentProgress = 0
     }
 }
 
@@ -46,6 +47,7 @@ class DataStoreManger: DataStoreMangerProtocol {
     func save(seriesData: SeriesData) {
         guard !storage.contains(seriesData) else {
             remove(seriesData: seriesData)
+            storage.append(seriesData)
             return
         }
         storage.append(seriesData)
@@ -58,12 +60,8 @@ class DataStoreManger: DataStoreMangerProtocol {
         print("Successfully removed")
     }
 
-    func isSavedBefore(seriesData: SeriesData) -> Bool {
-        storage.filter { $0.isFavourite == false }.contains(seriesData)
-    }
-
     func seriesList() -> [SeriesData] {
-        storage.filter { $0.isFavourite == false }
+        storage.filter { $0.isBeingWatched == true }
     }
 
     func favouriteSeriesList() -> [SeriesData] {
