@@ -6,32 +6,51 @@
 //
 
 import Foundation
+import RealmSwift
 
 protocol EditableCellViewModelProtocol {
     func deleteRow(at indexPath: IndexPath)
 }
 
-class FavouritesViewModel: SectionViewModel, 
+class FavouritesViewModel: SectionViewModelProtocol, 
                            SectionViewModelRepresentableProtocol {
 
     private let dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
 
-    override var promptLabelText: String { FavouritesConstants.promptLabel }
+    var seriesData: Results<SeriesData>?
+    private let router: RouterProtocol
+
+    var viewModelDidChange: ((SectionViewModelProtocol) -> Void)?
+    var numberOfRows: Int { seriesData?.count ?? 0 }
+    var heightForRow: Int { 165 }
+    var promptLabelText: String { FavouritesConstants.promptLabel }
+    var promptLabelIsHidden: Bool { !(seriesData?.isEmpty ?? true) }
+
+    required init(router: RouterProtocol) {
+        self.router = router
+    }
+
+    func showDetails(at indexPath: IndexPath) {
+        guard let selectedSeries = seriesData?[indexPath.item],
+              let id = selectedSeries.series.id,
+              let seriesName = selectedSeries.series.name else { return }
+        router.showDetailSeriesViewController(id, seriesName)
+    }
 
     func fetchSeries() {
         seriesData = dataStoreManager.favouriteSeriesList()
         viewModelDidChange?(self)
     }
 
-    func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel {
-        let cellSeriesData = seriesData[indexPath.item]
+    func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel? {
+        guard let cellSeriesData = seriesData?[indexPath.item] else { return nil }
         return FavouriteCellViewModel(cellSeriesData: cellSeriesData)
     }
 }
 
 extension FavouritesViewModel: EditableCellViewModelProtocol {
     func deleteRow(at indexPath: IndexPath) {
-        var cellSeriesData = seriesData[indexPath.item]
+        guard let cellSeriesData = seriesData?[indexPath.item] else { return }
         cellSeriesData.isFavourite = false
         dataStoreManager.save(seriesData: cellSeriesData)
         fetchSeries()

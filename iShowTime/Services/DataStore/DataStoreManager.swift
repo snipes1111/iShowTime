@@ -6,42 +6,20 @@
 //
 
 import Foundation
+import RealmSwift
 
 protocol DataStoreMangerProtocol {
     func save(seriesData: SeriesData)
     func remove(seriesData: SeriesData)
-    func seriesList() -> [SeriesData]
-    func favouriteSeriesList() -> [SeriesData]
+    func seriesList() -> Results<SeriesData>
+    func favouriteSeriesList() -> Results<SeriesData>
 }
-
-struct SeriesData {
-    let series: Series
-    var isFavourite: Bool
-    var isBeingWatched: Bool
-    var currentSeason: Double
-    var currentEpisode: Double
-    var currentProgress: Float
-
-    init(series: Series) {
-        self.series = series
-        isFavourite = false
-        isBeingWatched = false
-        currentSeason = 1
-        currentEpisode = 0
-        currentProgress = 0
-    }
-}
-
-extension SeriesData: Equatable {
-    static func == (lhs: SeriesData, rhs: SeriesData) -> Bool {
-        lhs.series.id == rhs.series.id
-    }
-}
-
 
 class DataStoreManger: DataStoreMangerProtocol {
 
     static let shared = DataStoreManger()
+    let realm = try! Realm()
+
     private var storage: [SeriesData] = []
 
     func save(seriesData: SeriesData) {
@@ -52,6 +30,11 @@ class DataStoreManger: DataStoreMangerProtocol {
         }
         storage.append(seriesData)
         print("Successfully saved")
+
+        try! realm.write {
+            seriesData.isBeingWatched.toggle()
+            realm.add(seriesData)
+        }
     }
 
     func remove(seriesData: SeriesData) {
@@ -60,11 +43,11 @@ class DataStoreManger: DataStoreMangerProtocol {
         print("Successfully removed")
     }
 
-    func seriesList() -> [SeriesData] {
-        storage.filter { $0.isBeingWatched == true }
+    func seriesList() -> Results<SeriesData> {
+        realm.objects(SeriesData.self).where { $0.isBeingWatched == true }
     }
 
-    func favouriteSeriesList() -> [SeriesData] {
-        storage.filter { $0.isFavourite == true }
+    func favouriteSeriesList() -> Results<SeriesData> {
+        realm.objects(SeriesData.self).where { $0.isFavourite == true }
     }
 }

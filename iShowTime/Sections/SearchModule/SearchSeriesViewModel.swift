@@ -18,7 +18,7 @@ protocol SearchSeriesViewModelProtocol {
     func setSearchText(_ searchText: String?)
 }
 
-final class SearchSeriesViewModel: SectionViewModel,
+final class SearchSeriesViewModel: SectionViewModelProtocol,
                                    SectionViewModelRepresentableProtocol & SearchSeriesViewModelProtocol {
     private let networkManager: NetworkServiceProtocol = NetworkService()
     private let errorHandler = ErrorHandler()
@@ -28,11 +28,28 @@ final class SearchSeriesViewModel: SectionViewModel,
     private var countries: [Country]?
     private var searchText: String?
 
-    override var promptLabelText: String {
-        setPromptLabelText()
+    var seriesData: [SeriesData] = []
+    private let router: RouterProtocol
+
+    var viewModelDidChange: ((SectionViewModelProtocol) -> Void)?
+    var numberOfRows: Int { seriesData.count }
+    var heightForRow: Int { 165 }
+    var promptLabelText: String { setPromptLabelText() }
+    var promptLabelIsHidden: Bool { !seriesData.isEmpty }
+
+    required init(router: RouterProtocol) {
+        self.router = router
     }
 
+
     var loadingState: Box<LoadingState> = Box(value: LoadingState.initial)
+
+    func showDetails(at indexPath: IndexPath) {
+        let selectedSeries = seriesData[indexPath.item]
+        guard let id = selectedSeries.series.id,
+              let seriesName = selectedSeries.series.name else { return }
+        router.showDetailSeriesViewController(id, seriesName)
+    }
 
     func fetchSeries() {
         seriesData.removeAll()
@@ -46,7 +63,7 @@ final class SearchSeriesViewModel: SectionViewModel,
         currentTask = task
     }
 
-    func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel {
+    func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel? {
         let cellSeriesData = seriesData[indexPath.item]
         return SeriesCellViewModel(cellSeriesData: cellSeriesData)
     }

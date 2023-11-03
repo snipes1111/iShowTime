@@ -53,7 +53,6 @@ class DetailCellViewModel: DetailCellViewModelProtocol {
     }
 
     func watchingNowButtonPressed() {
-        seriesData.isBeingWatched.toggle()
         dataStoreManager.save(seriesData: seriesData)
     }
 }
