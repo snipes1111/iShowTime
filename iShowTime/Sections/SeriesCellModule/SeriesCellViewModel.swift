@@ -35,7 +35,13 @@ class SeriesCellViewModel: SeriesCellViewModelProtocol {
     }
 
     var countryAndYear: String {
-        let countryNames = countryService.getCountryNames(from: series)
+        let countryNames: String
+        if !seriesData.originCountry.isEmpty {
+            countryNames = seriesData.originCountry
+            print("Take from storage")
+        } else {
+            countryNames = countryService.getCountryNames(from: seriesData)
+        }
         let year = " • \(series.firstAirDate?.extractYear() ?? "Unknown date")"
         return countryNames + year
     }

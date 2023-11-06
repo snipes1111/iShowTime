@@ -9,11 +9,10 @@ import Foundation
 
 final class WatchingNowDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresentableProtocol {
 
-    private let dataStorage: DataStoreMangerProtocol = DataStoreManger.shared
+    private let dataStorage: DataStoreManagerProtocol = DataStoreManger.shared
 
     func fetchSeriesDetails() {
-        let selectedSeries = dataStorage.seriesList().filter { $0.series.id == seriesId }
-        seriesData = selectedSeries.first
+        seriesData = dataStorage.getSeries(with: seriesId)
         viewModelDidChange?(self)
     }
 

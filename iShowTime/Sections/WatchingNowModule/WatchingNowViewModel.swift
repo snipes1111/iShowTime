@@ -11,7 +11,7 @@ import RealmSwift
 final class WatchingNowViewModel: SectionViewModelProtocol,
                                   SectionViewModelRepresentableProtocol {
 
-    private let dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
+    private let dataStoreManager: DataStoreManagerProtocol = DataStoreManger.shared
 
     var seriesData: Results<SeriesData>?
     private let router: RouterProtocol

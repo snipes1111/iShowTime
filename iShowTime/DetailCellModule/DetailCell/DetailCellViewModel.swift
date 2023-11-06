@@ -19,9 +19,10 @@ class DetailCellViewModel: DetailCellViewModelProtocol {
 
     private(set) var seriesData: SeriesData
     private(set) var series: Series
-    
-    let dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
 
+    var countries: String = ""
+
+    let dataStoreManager: DataStoreManagerProtocol = DataStoreManger.shared
 
     var seriesName: String { series.name ?? SearchModuleConstants.unknownTitle }
     var imageUrl: String? { series.posterPath }
@@ -32,27 +33,16 @@ class DetailCellViewModel: DetailCellViewModelProtocol {
         self.series = seriesData.series
     }
 
-    func setIsFavourite(isFavourite: Bool) {
-        seriesData.isFavourite = isFavourite
-        dataStoreManager.save(seriesData: seriesData)
+    func setIsFavourite() {
+        dataStoreManager.setIsFavourite(seriesData: seriesData, countries: countries)
     }
 
-    func setSeason(season: Double) {
-        seriesData.currentSeason = season
-        dataStoreManager.save(seriesData: seriesData)
-    }
-
-    func setEpisode(episode: Double) {
-        seriesData.currentEpisode = episode
-        dataStoreManager.save(seriesData: seriesData)
-    }
-
-    func setProgress(progress: Float) {
-        seriesData.currentProgress = progress
-        dataStoreManager.save(seriesData: seriesData)
+    func setProgress(seriesProgress: SeriesProgress) {
+        dataStoreManager.setSeriesProgress(seriesData: seriesData,
+                                           seriesProgress: seriesProgress)
     }
 
     func watchingNowButtonPressed() {
-        dataStoreManager.save(seriesData: seriesData)
+        dataStoreManager.save(seriesData: seriesData, countries: countries)
     }
 }

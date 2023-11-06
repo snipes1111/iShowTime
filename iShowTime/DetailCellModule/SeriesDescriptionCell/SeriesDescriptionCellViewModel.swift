@@ -22,7 +22,7 @@ protocol SeriesDescriptionCellViewModelProtocol: DetailCellViewModelProtocol {
     var countrySeasonsAndYear: String { get }
     var attributedOverviewText: String { get }
     var overview: String { get }
-    var seriesIsFavourite: Bool { get set }
+    var seriesIsFavourite: Bool { get }
     func heartButtonDidTapped()
 }
 
@@ -37,13 +37,8 @@ final class SeriesDescriptionCellViewModel: DetailCellViewModel, SeriesDescripti
     var countrySeasonsAndYear: String { receiveCountrySeasonAndYear() }
     var attributedOverviewText: String { SearchModuleConstants.overview }
     var overview: String { receiveOverview() }
-    var seriesIsFavourite: Bool {
-        get { seriesData.isFavourite }
-        set { setIsFavourite(isFavourite: newValue) }
-    }
-    func heartButtonDidTapped() {
-        seriesIsFavourite.toggle()
-    }
+    var seriesIsFavourite: Bool { seriesData.isFavourite }
+    func heartButtonDidTapped() { setIsFavourite() }
 }
 
 extension SeriesDescriptionCellViewModel {
@@ -62,7 +57,14 @@ extension SeriesDescriptionCellViewModel {
     }
 
     private func receiveCountrySeasonAndYear() -> String {
-        let countries = countryService.getCountryNames(from: series)
+        let countries: String
+        if !seriesData.originCountry.isEmpty {
+            countries = seriesData.originCountry
+            print("Take from storage")
+        } else {
+            countries = countryService.getCountryNames(from: seriesData)
+            self.countries = countries
+        }
         let seasonsCount = Int(series.numberOfSeasons ?? 1)
         let year = "\(series.firstAirDate?.extractYear() ?? SearchModuleConstants.noDate)"
         return "\(countries), \(SearchModuleConstants.seasons): \(seasonsCount) • \(year)"

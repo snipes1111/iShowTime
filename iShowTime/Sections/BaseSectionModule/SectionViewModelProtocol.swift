@@ -8,11 +8,6 @@
 import Foundation
 import RealmSwift
 
-enum CellType {
-    case search, watchingNow, favourite
-}
-
-
 protocol SectionViewModelProtocol {
     var viewModelDidChange: ((SectionViewModelProtocol) -> Void)? { get set }
     var numberOfRows: Int { get }

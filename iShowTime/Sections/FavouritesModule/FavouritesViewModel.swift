@@ -15,7 +15,7 @@ protocol EditableCellViewModelProtocol {
 class FavouritesViewModel: SectionViewModelProtocol, 
                            SectionViewModelRepresentableProtocol {
 
-    private let dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
+    private let dataStoreManager: DataStoreManagerProtocol = DataStoreManger.shared
 
     var seriesData: Results<SeriesData>?
     private let router: RouterProtocol
@@ -51,8 +51,7 @@ class FavouritesViewModel: SectionViewModelProtocol,
 extension FavouritesViewModel: EditableCellViewModelProtocol {
     func deleteRow(at indexPath: IndexPath) {
         guard let cellSeriesData = seriesData?[indexPath.item] else { return }
-        cellSeriesData.isFavourite = false
-        dataStoreManager.save(seriesData: cellSeriesData)
+        dataStoreManager.setIsFavourite(seriesData: cellSeriesData, countries: "")
         fetchSeries()
     }
 }

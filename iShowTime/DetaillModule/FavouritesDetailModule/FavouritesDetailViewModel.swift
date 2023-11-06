@@ -9,11 +9,10 @@ import Foundation
 
 final class FavouritesDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresentableProtocol {
 
-    private let dataStorage: DataStoreMangerProtocol = DataStoreManger.shared
+    private let dataStorage: DataStoreManagerProtocol = DataStoreManger.shared
 
     func fetchSeriesDetails() {
-        let selectedSeries = dataStorage.favouriteSeriesList().filter { $0.series.id == seriesId }
-        seriesData = selectedSeries.first
+        seriesData = dataStorage.getSeries(with: seriesId)
         viewModelDidChange?(self)
     }
 
