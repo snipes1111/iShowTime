@@ -25,6 +25,8 @@
 		CE2E1FC22AD011BD00E0FC3B /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2E1FC12AD011BD00E0FC3B /* VerticalStackView.swift */; };
 		CE2E1FC42AD011CE00E0FC3B /* HorizontalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2E1FC32AD011CE00E0FC3B /* HorizontalStackView.swift */; };
 		CE2E1FC62AD0144400E0FC3B /* SeriesProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2E1FC52AD0144400E0FC3B /* SeriesProgressView.swift */; };
+		CE2FD5FF2AF547EE0036EF6A /* SeriesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2FD5FE2AF547EE0036EF6A /* SeriesData.swift */; };
+		CE54A4B22AF68DAE003D84C2 /* SeriesProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54A4B12AF68DAE003D84C2 /* SeriesProgress.swift */; };
 		CE58DBDE2AD99302004CBB4B /* AssetsImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58DBDD2AD99302004CBB4B /* AssetsImages.swift */; };
 		CE65E9642ABCC209009E38E8 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65E9632ABCC209009E38E8 /* Builder.swift */; };
 		CE6C3D292AF2D30F004DACF9 /* OverviewLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C3D282AF2D30F004DACF9 /* OverviewLabel.swift */; };
@@ -53,7 +55,7 @@
 		CE72086E2AEABB6B0005C16E /* DetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72086D2AEABB6B0005C16E /* DetailTableView.swift */; };
 		CE7208702AEABF3E0005C16E /* SeriesDetailView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72086F2AEABF3E0005C16E /* SeriesDetailView + Extensions.swift */; };
 		CE7208722AEAC0700005C16E /* SeriesDetailView + TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208712AEAC0700005C16E /* SeriesDetailView + TableView.swift */; };
-		CE7208762AEACDBB0005C16E /* SectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208752AEACDBB0005C16E /* SectionViewModel.swift */; };
+		CE7208762AEACDBB0005C16E /* SectionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208752AEACDBB0005C16E /* SectionViewModelProtocol.swift */; };
 		CE81261B2AEBD19900693BF5 /* BaseSeriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81261A2AEBD19900693BF5 /* BaseSeriesCell.swift */; };
 		CE81261D2AEBD2F100693BF5 /* SeriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81261C2AEBD2F100693BF5 /* SeriesCell.swift */; };
 		CE81261F2AEBD3B300693BF5 /* SeriesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81261E2AEBD3B300693BF5 /* SeriesCellViewModel.swift */; };
@@ -118,6 +120,8 @@
 		CE2E1FC12AD011BD00E0FC3B /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
 		CE2E1FC32AD011CE00E0FC3B /* HorizontalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalStackView.swift; sourceTree = "<group>"; };
 		CE2E1FC52AD0144400E0FC3B /* SeriesProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesProgressView.swift; sourceTree = "<group>"; };
+		CE2FD5FE2AF547EE0036EF6A /* SeriesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesData.swift; sourceTree = "<group>"; };
+		CE54A4B12AF68DAE003D84C2 /* SeriesProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesProgress.swift; sourceTree = "<group>"; };
 		CE58DBDD2AD99302004CBB4B /* AssetsImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsImages.swift; sourceTree = "<group>"; };
 		CE65E9632ABCC209009E38E8 /* Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		CE6C3D282AF2D30F004DACF9 /* OverviewLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewLabel.swift; sourceTree = "<group>"; };
@@ -144,7 +148,7 @@
 		CE72086D2AEABB6B0005C16E /* DetailTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableView.swift; sourceTree = "<group>"; };
 		CE72086F2AEABF3E0005C16E /* SeriesDetailView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SeriesDetailView + Extensions.swift"; sourceTree = "<group>"; };
 		CE7208712AEAC0700005C16E /* SeriesDetailView + TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SeriesDetailView + TableView.swift"; sourceTree = "<group>"; };
-		CE7208752AEACDBB0005C16E /* SectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionViewModel.swift; sourceTree = "<group>"; };
+		CE7208752AEACDBB0005C16E /* SectionViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionViewModelProtocol.swift; sourceTree = "<group>"; };
 		CE81261A2AEBD19900693BF5 /* BaseSeriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSeriesCell.swift; sourceTree = "<group>"; };
 		CE81261C2AEBD2F100693BF5 /* SeriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCell.swift; sourceTree = "<group>"; };
 		CE81261E2AEBD3B300693BF5 /* SeriesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCellViewModel.swift; sourceTree = "<group>"; };
@@ -218,9 +222,9 @@
 		CE0589D42AD6E8EA00DE987F /* SeriesDescriptionCell */ = {
 			isa = PBXGroup;
 			children = (
+				CE9EA8D42AD846BD00C261C8 /* SeriesDescriptionCellViewModel.swift */,
 				CE72084C2AE182CA0005C16E /* BaseSeriesDescriptionCell.swift */,
 				CE0589D52AD6E92D00DE987F /* SeriesDescriptionCell.swift */,
-				CE9EA8D42AD846BD00C261C8 /* SeriesDescriptionCellViewModel.swift */,
 			);
 			path = SeriesDescriptionCell;
 			sourceTree = "<group>";
@@ -296,6 +300,8 @@
 				CE9EA8D02AD81B9000C261C8 /* Page.swift */,
 				CE1A6B662AB08C9D00B495EB /* Series.swift */,
 				CE9EA8D22AD81B9A00C261C8 /* Country.swift */,
+				CE2FD5FE2AF547EE0036EF6A /* SeriesData.swift */,
+				CE54A4B12AF68DAE003D84C2 /* SeriesProgress.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -334,9 +340,9 @@
 		CE72084B2AE17C840005C16E /* WatchingNowDetailCell */ = {
 			isa = PBXGroup;
 			children = (
+				CE7208492AE17C7D0005C16E /* WatchingNowDetailCellViewModel.swift */,
 				CE7208522AE187E10005C16E /* BaseWatchingNowDetailCell.swift */,
 				CE7208472AE17C710005C16E /* WatchingDetailViewCell.swift */,
-				CE7208492AE17C7D0005C16E /* WatchingNowDetailCellViewModel.swift */,
 			);
 			path = WatchingNowDetailCell;
 			sourceTree = "<group>";
@@ -354,9 +360,9 @@
 		CE72085C2AE6C1480005C16E /* DetailCell */ = {
 			isa = PBXGroup;
 			children = (
+				CE7208582AE6BECF0005C16E /* DetailCellViewModel.swift */,
 				CE72084E2AE182FE0005C16E /* BaseDetailCell.swift */,
 				CE72085D2AE6C18A0005C16E /* DetailCell.swift */,
-				CE7208582AE6BECF0005C16E /* DetailCellViewModel.swift */,
 			);
 			path = DetailCell;
 			sourceTree = "<group>";
@@ -438,7 +444,7 @@
 		CE8126242AEBF3DA00693BF5 /* BaseSectionModule */ = {
 			isa = PBXGroup;
 			children = (
-				CE7208752AEACDBB0005C16E /* SectionViewModel.swift */,
+				CE7208752AEACDBB0005C16E /* SectionViewModelProtocol.swift */,
 				CE8126252AEBF78600693BF5 /* BaseSectionViewController.swift */,
 				CE8126202AEBE62E00693BF5 /* BaseSectionView.swift */,
 				CE8126222AEBF34D00693BF5 /* BaseSectionView + TableView.swift */,
@@ -660,7 +666,7 @@
 				CEF5030B2ACF298700DFB431 /* Double+Extensions.swift in Sources */,
 				CEA1A8C82ABB37890012630D /* SearchSeriesView+Extensions.swift in Sources */,
 				CE6C3D292AF2D30F004DACF9 /* OverviewLabel.swift in Sources */,
-				CE7208762AEACDBB0005C16E /* SectionViewModel.swift in Sources */,
+				CE7208762AEACDBB0005C16E /* SectionViewModelProtocol.swift in Sources */,
 				CE1A6B4D2AAF515000B495EB /* Colors.swift in Sources */,
 				CEF456022AAB4BDD00D5A397 /* SearchModuleConstants.swift in Sources */,
 				CEE4959F2AF156B20086F67A /* SeriesDetailViewController.swift in Sources */,
@@ -668,6 +674,7 @@
 				CEE495A12AF2ABE50086F67A /* FavouritesView.swift in Sources */,
 				CE7208512AE186450005C16E /* UIStackView+Extensions.swift in Sources */,
 				CED57AB32ADD7BB5006C7981 /* CountryService.swift in Sources */,
+				CE2FD5FF2AF547EE0036EF6A /* SeriesData.swift in Sources */,
 				CED6AE482ADAE47D002140C1 /* SpinnerView.swift in Sources */,
 				CE8126232AEBF34D00693BF5 /* BaseSectionView + TableView.swift in Sources */,
 				CE0589D62AD6E92D00DE987F /* SeriesDescriptionCell.swift in Sources */,
@@ -707,6 +714,7 @@
 				CE0589CE2AD6C63400DE987F /* SearchDetailViewModel.swift in Sources */,
 				CE72084F2AE182FE0005C16E /* BaseDetailCell.swift in Sources */,
 				CE72083E2AE16DAD0005C16E /* WatchingNowDetailViewController.swift in Sources */,
+				CE54A4B22AF68DAE003D84C2 /* SeriesProgress.swift in Sources */,
 				CE9EA8D32AD81B9A00C261C8 /* Country.swift in Sources */,
 				CEA1A8D02ABC6D580012630D /* Box.swift in Sources */,
 				CEF502FD2ACDD1F100DFB431 /* PlistManager.swift in Sources */,
@@ -881,10 +889,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TWWBX6RB4S;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iShowTime/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -899,6 +903,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-no_warn_duplicate_libraries",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Mark-Kovalchuk.iShowTime";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -919,10 +927,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TWWBX6RB4S;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iShowTime/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -937,6 +941,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-no_warn_duplicate_libraries",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Mark-Kovalchuk.iShowTime";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

@@ -16,6 +16,7 @@ class SeriesCell: BaseSeriesCell {
             countryAndYearLabel.text = viewModel.countryAndYear
             seasonsLabel.text = viewModel.seasonsLabelText
             progressView.isHidden = viewModel.progressViewIsHidden
+            progressView.progress = viewModel.seriesProgress
             posterImageView.getImage(viewModel.imageUrl)
         }
     }

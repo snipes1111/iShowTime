@@ -10,9 +10,6 @@ import UIKit
 final class SearchSeriesViewController: BaseSectionViewController {
 
     private var searchController: UISearchController!
-    private lazy var searchViewModel: SearchSeriesViewModelProtocol? = {
-        viewModel as? SearchSeriesViewModelProtocol
-    }()
 
     override func setupUI() {
         super.setupUI()
@@ -36,6 +33,6 @@ final class SearchSeriesViewController: BaseSectionViewController {
 
 extension SearchSeriesViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchViewModel?.setSearchText(searchText)
+        viewModel.fetchSeries(searchText)
     }
 }

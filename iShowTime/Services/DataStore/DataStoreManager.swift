@@ -6,62 +6,66 @@
 //
 
 import Foundation
+import RealmSwift
 
-protocol DataStoreMangerProtocol {
-    func save(series: Series)
-    func remove(series: Series)
-    func isSavedBefore(series: Series) -> Bool
-    func seriesList() -> [Series]
-
-    func saveToFavourites(series: Series)
-    func removeFromFavourites(series: Series)
-    func isFavourite(series: Series) -> Bool
-    func favouriteSeriesList() -> [Series]
+protocol DataStoreManagerProtocol {
+    func save(seriesData: SeriesData, countries: String)
+    func setIsFavourite(seriesData: SeriesData, countries: String)
+    func seriesList() -> Results<SeriesData>
+    func favouriteSeriesList() -> Results<SeriesData>
+    func getSeries(with id: Double) -> SeriesData?
+    func setSeriesProgress(seriesData: SeriesData, seriesProgress: SeriesProgress)
 }
 
-class DataStoreManger: DataStoreMangerProtocol {
+class DataStoreManger: DataStoreManagerProtocol {
 
     static let shared = DataStoreManger()
-    private var storage: [Series] = []
-    private var favouriteStorage: [Series] = []
+    let realm = try! Realm()
 
-    func save(series: Series) {
-        guard !storage.contains(series) else { return }
-        storage.append(series)
-        print("Successfully saved")
+    func save(seriesData: SeriesData, countries: String) {
+        try! realm.write {
+            seriesData.isBeingWatched.toggle()
+            seriesData.originCountry = countries
+            realm.add(seriesData)
+        }
+        checkForDelete(seriesData: seriesData)
     }
 
-    func remove(series: Series) {
-        guard let index = storage.firstIndex(of: series) else { return }
-        storage.remove(at: index)
-        print("Successfully removed")
+    func setIsFavourite(seriesData: SeriesData, countries: String) {
+        try! realm.write {
+            seriesData.isFavourite.toggle()
+            seriesData.originCountry = countries
+            realm.add(seriesData)
+        }
+        checkForDelete(seriesData: seriesData)
     }
 
-    func isSavedBefore(series: Series) -> Bool {
-        storage.contains(series)
+    func seriesList() -> Results<SeriesData> {
+        realm.objects(SeriesData.self).where { $0.isBeingWatched == true }
     }
 
-    func seriesList() -> [Series] {
-        storage
+    func favouriteSeriesList() -> Results<SeriesData> {
+        realm.objects(SeriesData.self).where { $0.isFavourite == true }
     }
 
-    func saveToFavourites(series: Series) {
-        guard !favouriteStorage.contains(series) else { return }
-        favouriteStorage.append(series)
-        print("Successfully saved to favourites")
+    func getSeries(with id: Double) -> SeriesData? {
+        realm.objects(SeriesData.self).first { $0.series.id == id }
     }
 
-    func removeFromFavourites(series: Series) {
-        guard let index = favouriteStorage.firstIndex(of: series) else { return }
-        favouriteStorage.remove(at: index)
-        print("Successfully removed from favourites")
+    func setSeriesProgress(seriesData: SeriesData, seriesProgress: SeriesProgress) {
+        try! realm.write {
+            seriesData.currentSeason = seriesProgress.season
+            seriesData.currentEpisode = seriesProgress.episode
+            seriesData.currentProgress = seriesProgress.progress
+            realm.add(seriesData)
+        }
     }
 
-    func isFavourite(series: Series) -> Bool {
-        favouriteStorage.contains(series)
-    }
-
-    func favouriteSeriesList() -> [Series] {
-        favouriteStorage
+    private func checkForDelete(seriesData: SeriesData) {
+        if !seriesData.isBeingWatched && !seriesData.isFavourite {
+            try! realm.write {
+                realm.delete(seriesData)
+            }
+        }
     }
 }

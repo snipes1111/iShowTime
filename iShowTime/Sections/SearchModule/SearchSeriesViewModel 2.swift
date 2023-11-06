@@ -15,44 +15,26 @@ enum LoadingState {
 
 protocol SearchSeriesViewModelProtocol {
     var loadingState: Box<LoadingState> { get }
-    func setSearchText(_ searchText: String?)
 }
 
-final class SearchSeriesViewModel: SectionViewModelProtocol,
+final class SearchSeriesViewModel: SectionViewModel,
                                    SectionViewModelRepresentableProtocol & SearchSeriesViewModelProtocol {
+
     private let networkManager: NetworkServiceProtocol = NetworkService()
     private let errorHandler = ErrorHandler()
     private let decoder: SeriesDecoderProtocol = SeriesDecoder()
     private let countryService: CountryService = CountryService.shared
     private var currentTask: Task<Void, Error>?
     private var countries: [Country]?
-    private var searchText: String?
-
-    var seriesData: [SeriesData] = []
-    private let router: RouterProtocol
-
-    var viewModelDidChange: ((SectionViewModelProtocol) -> Void)?
-    var numberOfRows: Int { seriesData.count }
-    var heightForRow: Int { 165 }
-    var promptLabelText: String { setPromptLabelText() }
-    var promptLabelIsHidden: Bool { !seriesData.isEmpty }
-
-    required init(router: RouterProtocol) {
-        self.router = router
-    }
-
 
     var loadingState: Box<LoadingState> = Box(value: LoadingState.initial)
 
-    func showDetails(at indexPath: IndexPath) {
-        let selectedSeries = seriesData[indexPath.item]
-        guard let id = selectedSeries.series.id,
-              let seriesName = selectedSeries.series.name else { return }
-        router.showDetailSeriesViewController(id, seriesName)
+    override var promptLabelText: String {
+        setPromptLabelText()
     }
 
-    func fetchSeries() {
-        seriesData.removeAll()
+    func fetchSeries(_ searchText: String?) {
+        series.removeAll()
         currentTask?.cancel()
         guard let searchText = searchText, !searchText.isEmpty else {
             loadingState.value = .initial
@@ -63,14 +45,9 @@ final class SearchSeriesViewModel: SectionViewModelProtocol,
         currentTask = task
     }
 
-    func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel? {
-        let cellSeriesData = seriesData[indexPath.item]
-        return SeriesCellViewModel(cellSeriesData: cellSeriesData)
-    }
-
-    func setSearchText(_ searchText: String?) {
-        self.searchText = searchText
-        fetchSeries()
+    func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel {
+        let seriesAtIndexPath = series[indexPath.item]
+        return SeriesCellViewModel(series: seriesAtIndexPath)
     }
 }
 
@@ -86,10 +63,10 @@ extension SearchSeriesViewModel {
 
     private func fetchAndDecodeData(_ searchText: String) async {
         do {
-            let seriesJSON = try await networkManager.fetchSeriesData(searchText)
+            let seriesData = try await networkManager.fetchSeriesData(searchText)
             let countriesData = try await networkManager.fetchCountryList()
-            guard let series = decoder.decodeSeriesFromData(seriesJSON) else { return }
-            seriesData = series.map { SeriesData(series: $0) }
+            guard let series = decoder.decodeSeriesFromData(seriesData) else { return }
+            self.series = series
             guard let countries = decoder.decodeCountryList(countriesData) else { return }
             countryService.updateCountryList(with: countries)
         } catch {

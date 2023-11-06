@@ -13,14 +13,17 @@ protocol SeriesCellViewModelProtocol {
     var countryAndYear: String { get }
     var seasonsLabelText: String { get }
     var progressViewIsHidden: Bool { get }
+    var seriesProgress: Float { get }
     var imageUrl: String? { get }
-    init(series: Series)
+    init(cellSeriesData: SeriesData)
 }
 
 class SeriesCellViewModel: SeriesCellViewModelProtocol {
 
-    private(set) var series: Series
     private var countryService: CountryService = CountryService.shared
+
+    let seriesData: SeriesData
+    var series: Series
 
     var seriesTitle: String {
         series.name ?? "Unknown"
@@ -32,7 +35,13 @@ class SeriesCellViewModel: SeriesCellViewModelProtocol {
     }
 
     var countryAndYear: String {
-        let countryNames = countryService.getCountryNames(from: series)
+        let countryNames: String
+        if !seriesData.originCountry.isEmpty {
+            countryNames = seriesData.originCountry
+            print("Take from storage")
+        } else {
+            countryNames = countryService.getCountryNames(from: seriesData)
+        }
         let year = " • \(series.firstAirDate?.extractYear() ?? "Unknown date")"
         return countryNames + year
     }
@@ -46,11 +55,16 @@ class SeriesCellViewModel: SeriesCellViewModelProtocol {
         true
     }
 
+    var seriesProgress: Float {
+        seriesData.currentProgress
+    }
+
     var imageUrl: String? {
         series.posterPath
     }
 
-    required init(series: Series) {
-        self.series = series
+    required init(cellSeriesData: SeriesData) {
+        seriesData = cellSeriesData
+        series = cellSeriesData.series
     }
 }

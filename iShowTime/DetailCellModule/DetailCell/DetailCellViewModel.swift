@@ -10,29 +10,39 @@ import Foundation
 protocol DetailCellViewModelProtocol {
     var seriesName: String { get }
     var imageUrl: String? { get }
-    var seriesIsSaved: Bool { get }
-    init(series: Series)
+    var isBeingWatched: Bool { get }
+    init(seriesData: SeriesData)
     func watchingNowButtonPressed()
 }
 
 class DetailCellViewModel: DetailCellViewModelProtocol {
 
-    var series: Series
-    let dataStoreManager: DataStoreMangerProtocol = DataStoreManger.shared
+    private(set) var seriesData: SeriesData
+    private(set) var series: Series
+
+    var countries: String = ""
+
+    let dataStoreManager: DataStoreManagerProtocol = DataStoreManger.shared
 
     var seriesName: String { series.name ?? SearchModuleConstants.unknownTitle }
     var imageUrl: String? { series.posterPath }
-    var seriesIsSaved: Bool { dataStoreManager.isSavedBefore(series: series) }
+    var isBeingWatched: Bool { seriesData.isBeingWatched }
 
-    required init(series: Series) {
-        self.series = series
+    required init(seriesData: SeriesData) {
+        self.seriesData = seriesData
+        self.series = seriesData.series
+    }
+
+    func setIsFavourite() {
+        dataStoreManager.setIsFavourite(seriesData: seriesData, countries: countries)
+    }
+
+    func setProgress(seriesProgress: SeriesProgress) {
+        dataStoreManager.setSeriesProgress(seriesData: seriesData,
+                                           seriesProgress: seriesProgress)
     }
 
     func watchingNowButtonPressed() {
-        if !seriesIsSaved {
-            dataStoreManager.save(series: series)
-        } else {
-            dataStoreManager.remove(series: series)
-        }
+        dataStoreManager.save(seriesData: seriesData, countries: countries)
     }
 }

@@ -25,6 +25,7 @@ final class SeriesDescriptionCell: BaseSeriesDescriptionCell {
         updateOverview()
         setupHeartButton()
         createButtonAction()
+        updateShowMoreButtonStack()
     }
 
     func createButtonAction() {
@@ -33,8 +34,16 @@ final class SeriesDescriptionCell: BaseSeriesDescriptionCell {
 
     @objc func buttonTapped() {
         overviewLabel.numberOfLines = 0
-        showButtonStack.isHidden = true
+        showMoreButtonStack.isHidden = true
         delegate?.resizeCell()
+    }
+
+    private func updateShowMoreButtonStack() {
+        guard let text = detailViewModel?.overview else { return }
+        let estimatedHeight = text.estimatedLabelHeight(width: overviewLabel.bounds.width,
+                                                        font: overviewLabel.font)
+        let stackIsHidden = estimatedHeight <= overviewLabel.bounds.height
+        showMoreButton.isHidden = stackIsHidden
     }
 
 }

@@ -9,7 +9,7 @@ import Foundation
 
 class CountryService {
     static let shared = CountryService()
-
+    private let dataStore: DataStoreManagerProtocol = DataStoreManger.shared
     private var countryList: [Country] = []
 
     private init() {}
@@ -18,9 +18,10 @@ class CountryService {
         self.countryList = countryList
     }
 
-    func getCountryNames(from series: Series) -> String {
-        guard let encodedISO = series.originCountry, !encodedISO.isEmpty else { return "Unknown country" }
+    func getCountryNames(from seriesData: SeriesData) -> String {
+        guard let encodedISO = seriesData.series.originCountry, !encodedISO.isEmpty else { return "Unknown country" }
         let filteredCountryList = countryList.filter { encodedISO.contains($0.iso ?? "") }
-        return filteredCountryList.compactMap { $0.nativeName }.joined(separator: ", ")
+        let countries = filteredCountryList.compactMap { $0.nativeName }.joined(separator: ", ")
+        return countries
     }
 }
