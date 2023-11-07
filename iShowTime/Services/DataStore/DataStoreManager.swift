@@ -15,6 +15,7 @@ protocol DataStoreManagerProtocol {
     func favouriteSeriesList() -> Results<SeriesData>
     func getSeries(with id: Double) -> SeriesData?
     func setSeriesProgress(seriesData: SeriesData, seriesProgress: SeriesProgress)
+    func checkForDelete(seriesData: SeriesData)
 }
 
 class DataStoreManger: DataStoreManagerProtocol {
@@ -28,7 +29,6 @@ class DataStoreManger: DataStoreManagerProtocol {
             seriesData.originCountry = countries
             realm.add(seriesData)
         }
-        checkForDelete(seriesData: seriesData)
     }
 
     func setIsFavourite(seriesData: SeriesData, countries: String) {
@@ -37,7 +37,6 @@ class DataStoreManger: DataStoreManagerProtocol {
             seriesData.originCountry = countries
             realm.add(seriesData)
         }
-        checkForDelete(seriesData: seriesData)
     }
 
     func seriesList() -> Results<SeriesData> {
@@ -61,7 +60,7 @@ class DataStoreManger: DataStoreManagerProtocol {
         }
     }
 
-    private func checkForDelete(seriesData: SeriesData) {
+    func checkForDelete(seriesData: SeriesData) {
         if !seriesData.isBeingWatched && !seriesData.isFavourite {
             try! realm.write {
                 realm.delete(seriesData)

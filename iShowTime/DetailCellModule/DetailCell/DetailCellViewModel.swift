@@ -13,6 +13,7 @@ protocol DetailCellViewModelProtocol {
     var isBeingWatched: Bool { get }
     init(seriesData: SeriesData)
     func watchingNowButtonPressed()
+    func updateSeriesList()
 }
 
 class DetailCellViewModel: DetailCellViewModelProtocol {
@@ -44,5 +45,9 @@ class DetailCellViewModel: DetailCellViewModelProtocol {
 
     func watchingNowButtonPressed() {
         dataStoreManager.save(seriesData: seriesData, countries: countries)
+    }
+
+    func updateSeriesList() {
+        dataStoreManager.checkForDelete(seriesData: seriesData)
     }
 }
