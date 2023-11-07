@@ -12,8 +12,8 @@ final class SeriesData: Object {
     @Persisted var seriesObject: Data?
     @Persisted var isFavourite: Bool = false
     @Persisted var isBeingWatched: Bool = false
-    @Persisted var currentSeason: Double = 0
-    @Persisted var currentEpisode: Double = 1
+    @Persisted var currentSeason: Double = 1
+    @Persisted var currentEpisode: Double = 0
     @Persisted var currentProgress: Float = 0
     @Persisted var originCountry: String = ""
 
