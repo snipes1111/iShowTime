@@ -21,7 +21,7 @@ class BaseSeriesDescriptionCell: DetailCell {
         super.setupView()
         let ratingHStack = UIStackView(arrangedSubviews: [ratingIsLabel, ratingScoreLabel])
         ratingHStack.spacing = 8
-        let overviewStack = VerticalStackView(spacing: 0, arrangedSubviews: [overviewLabel, showMoreButtonStack])
+        let overviewStack = VerticalStackView(arrangedSubviews: [overviewLabel, showMoreButtonStack])
         vStack.addArrangedSubviews([ratingHStack,
                                     genreLabel,
                                     countrySeasonsAndYearLabel,

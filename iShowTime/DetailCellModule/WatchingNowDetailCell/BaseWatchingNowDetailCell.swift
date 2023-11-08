@@ -54,9 +54,9 @@ extension BaseWatchingNowDetailCell {
     private func setupRowWith( _ label: inout UILabel?, _ minusButton: inout UIButton?,
                                _ textfield: inout UITextField?, _ plusButton: inout UIButton?) {
         label = UILabel(font: Fonts.WatchingNowModule.seasonAndEpisode)
-        minusButton = CountButton(type: .minus)
+        minusButton = CountButton(countType: .minus)
         textfield = CountTextField()
-        plusButton = CountButton(type: .plus)
+        plusButton = CountButton(countType: .plus)
     }
 
     private func createCountingStack() -> UIStackView {
@@ -65,9 +65,9 @@ extension BaseWatchingNowDetailCell {
                      [seasonTF, episodeTF],
                      [seasonPlusButton, episodePlusButton]]
 
-        let stackViews = items.map { VerticalStackView(spacing: 16,
-                                                       arrangedSubviews: $0,
-                                                       distribution: .fillEqually) }
+        let stackViews = items.map {
+            VerticalStackView(spacing: 16, distribution: .fillEqually, arrangedSubviews: $0)
+        }
         return UIStackView(arrangedSubviews: stackViews)
     }
 }

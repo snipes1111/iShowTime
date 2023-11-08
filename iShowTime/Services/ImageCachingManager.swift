@@ -14,12 +14,9 @@ protocol ImageCachingManagerProtocol {
 
 final class ImageCachingManager: ImageCachingManagerProtocol {
 
-    static let shared = ImageCachingManager()
     private let imageCache = NSCache<AnyObject, AnyObject>()
     private let apiService = APIService()
     private let networkService: NetworkServiceProtocol = NetworkService()
-
-    private init() {}
 
     func loadImage(with url: String) async -> Data? {
         guard let imagePath = apiService.buildImageUrl(url) else { return nil }

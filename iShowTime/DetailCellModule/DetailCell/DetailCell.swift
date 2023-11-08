@@ -40,12 +40,12 @@ extension DetailCell {
 
     private func updateWatchingNowButtonTitle() {
         guard let isSaved = viewModel?.isBeingWatched,
-              let button = watchingNowButton as? WatchingNowButton
+              let button = watchingNowButton as? SeriesButton
         else { return }
         if !isSaved {
-            button.addToWatchState()
+            button.switchToActiveState()
         } else {
-            button.removeFromWatchState()
+            button.switchToTappedBeforeState()
         }
     }
 }

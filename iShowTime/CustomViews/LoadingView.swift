@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoadingView: UIView {
+final class LoadingView: UIView {
     private let spinner = SpinnerView()
 
     override init(frame: CGRect) {
@@ -24,7 +24,9 @@ class LoadingView: UIView {
         addSubview(spinner)
         spinner.fillSuperView(self)
     }
+}
 
+extension LoadingView {
     func hideWithAnimation() {
         UIView.animate(withDuration: 0.7) { [unowned self] in
             alpha = 0

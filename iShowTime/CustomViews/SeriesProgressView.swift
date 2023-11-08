@@ -10,8 +10,8 @@ import UIKit
 final class SeriesProgressView: UIProgressView {
     init(_ height: CGFloat) {
         super.init(frame: .zero)
-        trackTintColor = .lightGray.withAlphaComponent(0.4)
-        progressTintColor = .systemGreen
+        trackTintColor = Colors.trackTintColor
+        progressTintColor = Colors.progressTintColor
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: height).isActive = true
         layer.cornerRadius = height / 2

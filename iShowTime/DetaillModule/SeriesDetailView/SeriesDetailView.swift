@@ -10,7 +10,7 @@ import UIKit
 class SeriesDetailView: UIView {
 
     private(set) var viewModel: (SeriesDetailViewModelProtocol & SeriesDetailRepresentableProtocol)
-    private(set) var tableView = DetailTableView()
+    private(set) var tableView = TableViewWithBlurBackground()
     private(set) var backDropImageView = SeriesImageView()
     private(set) var loadingView = LoadingView()
 

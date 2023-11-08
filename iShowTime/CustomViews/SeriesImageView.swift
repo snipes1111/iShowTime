@@ -9,13 +9,12 @@ import UIKit
 
 final class SeriesImageView: UIImageView {
 
-    private let imageCacheManager = ImageCachingManager.shared
+    private let imageCacheManager = ImageCachingManager()
 
     init() {
         super.init(frame: .zero)
         contentMode = .scaleAspectFill
         clipsToBounds = true
-        translatesAutoresizingMaskIntoConstraints = false
     }
 
     required init?(coder: NSCoder) {
@@ -23,7 +22,7 @@ final class SeriesImageView: UIImageView {
     }
 
     func getImage(_ path: String?) {
-        image = UIImage(named: AssetsImages.noImage)
+        image = UIImage(resource: .no)
         guard let path = path else { return }
             Task {
                 guard let data = await imageCacheManager.loadImage(with: path) else { return }

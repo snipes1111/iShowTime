@@ -10,7 +10,7 @@ import UIKit
 class HeartButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addTarget(self, action: #selector(tapWithAnimation), for: .touchUpInside)
+        addAction(UIAction(performTapAnimation), for: .touchUpInside)
         setSize(35, 40)
     }
 
@@ -18,17 +18,13 @@ class HeartButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 
-    @objc func tapWithAnimation() {
-        performTapAnimation()
-    }
-
     func switchToShadedState() {
-        setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
+        setBackgroundImage(UIImage(systemName: Images.heartFilled), for: .normal)
         tintColor = .systemPink
     }
 
     func switchToBorderedState() {
-        setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
+        setBackgroundImage(UIImage(systemName: Images.heart), for: .normal)
         tintColor = .black
     }
 }

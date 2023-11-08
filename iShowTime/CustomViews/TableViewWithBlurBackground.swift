@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailTableView: UITableView {
+final class TableViewWithBlurBackground: UITableView {
 
     var backDropImageView = SeriesImageView()
 
@@ -15,14 +15,14 @@ class DetailTableView: UITableView {
         super.init(frame: frame, style: style)
         allowsSelection = false
         separatorStyle = .none
-        createBackGroundView()
+        addBackGroundView()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func createBackGroundView() {
+    private func addBackGroundView() {
         let view = UIView()
         let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
         backgroundView = view
@@ -31,5 +31,4 @@ class DetailTableView: UITableView {
         view.addSubview(blurView)
         blurView.fillSuperView(view)
     }
-
 }

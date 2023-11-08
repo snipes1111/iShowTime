@@ -7,12 +7,11 @@
 
 import UIKit
 
-class SpinnerView: UIActivityIndicatorView {
+final class SpinnerView: UIActivityIndicatorView {
     init() {
         super.init(style: .large)
-        color = Colors.spinnerColor
+        color = Colors.spinner
         hidesWhenStopped = true
-        translatesAutoresizingMaskIntoConstraints = false
         startAnimating()
     }
 

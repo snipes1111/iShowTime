@@ -7,11 +7,11 @@
 
 import UIKit
 
-class ShowMoreButton: UIButton {
+final class ShowMoreButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        setTitle("Show more ...", for: .normal)
-        titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        setTitle(Constants.showMore, for: .normal)
+        titleLabel?.font = Fonts.showMoreButton
         setTitleColor(.black, for: .normal)
         contentHorizontalAlignment = .left
         contentVerticalAlignment = .top

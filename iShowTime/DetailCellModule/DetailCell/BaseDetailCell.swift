@@ -44,6 +44,6 @@ class BaseDetailCell: UITableViewCell {
         posterImageView.addShadow()
         nameLabel = UILabel(font: Fonts.SearchDetailModule.seriesNameLabel)
         nameLabel.textAlignment = .center
-        watchingNowButton = WatchingNowButton()
+        watchingNowButton = SeriesButton()
     }
 }

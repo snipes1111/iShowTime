@@ -9,10 +9,6 @@ import UIKit
 
 class BaseTabBarController: UITabBarController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     override func viewDidLayoutSubviews() {
         customizeItemTitleAndColor()
     }
@@ -23,9 +19,8 @@ class BaseTabBarController: UITabBarController {
 }
 
 extension BaseTabBarController {
-
     private func customizeItemTitleAndColor() {
-        tabBar.tintColor = Colors.tabItemColor
+        tabBar.tintColor = Colors.tabItem
         tabBar.items?.forEach { item in
             item.titlePositionAdjustment = .init(horizontal: .zero, vertical: 8)
             item.setTitleTextAttributes(Fonts.tabItemTextAttributes, for: .normal)
@@ -34,6 +29,6 @@ extension BaseTabBarController {
 
     func animateSelectedItem(_ item: UITabBarItem) {
         guard let barItemView = item.value(forKey: "view") as? UIView else { return }
-        barItemView.addSpringAnimation(0.5)
+        barItemView.addSpringAnimation()
     }
 }

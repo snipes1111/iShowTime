@@ -9,8 +9,8 @@ import UIKit
 
 extension UIView {
 
-    func addSpringAnimation(_ duration: Double) {
-        UIView.animate(withDuration: duration) {
+    func addSpringAnimation() {
+        UIView.animate(withDuration: 0.5) {
             self.transform = CGAffineTransform(scaleX: 0.4, y: 0.4)
             self.transform = .identity
         }

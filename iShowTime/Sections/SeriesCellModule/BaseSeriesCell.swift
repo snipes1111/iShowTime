@@ -28,7 +28,7 @@ class BaseSeriesCell: UITableViewCell {
 extension BaseSeriesCell {
     private func setupView() {
         setupSubViews()
-        let vStack = VerticalStackView(arrangedSubviews: [titleLabel,
+        let vStack = VerticalStackView(spacing: 4 ,arrangedSubviews: [titleLabel,
                                                           genreLabel,
                                                           countryAndYearLabel,
                                                           seasonsLabel,
