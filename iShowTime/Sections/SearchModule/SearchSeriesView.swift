@@ -35,7 +35,7 @@ final class SearchSeriesView: BaseSectionView {
     }
 
     private func bindWithLoadingState() {
-        searchViewModel?.loadingState.bind { [unowned self] _ in
+        searchViewModel?.loadingState.bind { [unowned self] state in
             updateUI()
         }
     }

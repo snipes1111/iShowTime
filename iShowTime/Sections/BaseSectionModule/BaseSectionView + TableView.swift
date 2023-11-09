@@ -10,6 +10,7 @@ import UIKit
 extension BaseSectionView {
 
     func setupTableView() {
+        tableView.keyboardDismissMode = .onDrag
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(SeriesCell.self, forCellReuseIdentifier: String(describing: SeriesCell.self))

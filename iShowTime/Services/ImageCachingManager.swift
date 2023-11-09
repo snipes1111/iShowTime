@@ -17,6 +17,7 @@ final class ImageCachingManager: ImageCachingManagerProtocol {
     private let imageCache = NSCache<AnyObject, AnyObject>()
     private let apiService = APIService()
     private let networkService: NetworkServiceProtocol = NetworkService()
+    private let errorHandler = ErrorHandler()
 
     func loadImage(with url: String) async -> Data? {
         guard let imagePath = apiService.buildImageUrl(url) else { return nil }
@@ -26,10 +27,8 @@ final class ImageCachingManager: ImageCachingManagerProtocol {
             do {
                 let data = try await downloadImage(imagePath)
                 return data
-            } catch NetworkService.NetworkErrors.badResponse {
-                print("No response when fetching image")
             } catch {
-                print("Error to fetch image: \(error)")
+                errorHandler.handle(error)
             }
         }
         return nil

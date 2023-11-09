@@ -27,7 +27,7 @@ final class SearchSeriesViewController: BaseSectionViewController {
         navigationItem.hidesSearchBarWhenScrolling = true
     }
 
-    func createSearchBar() {
+    private func createSearchBar() {
         searchController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchController
         searchController.searchBar.delegate = self
