@@ -23,24 +23,15 @@ final class NetworkService: NetworkServiceProtocol {
     private let apiService = APIService()
 
     func fetchSeriesData(_ searchText: String) async throws -> Data {
-        guard let urlRequest = apiService.buildSearchUrlRequest(with: searchText)
-        else { throw NetworkErrors.invalidUrl }
-        let data = try await fetchData(with: urlRequest)
-        return data
+        try await fetchDataWithRequest(apiService.buildSearchUrlRequest(with: searchText))
     }
 
     func fetchCountryList() async throws -> Data {
-        guard let urlRequest = apiService.buildCountryListUrlRequest()
-        else { throw NetworkErrors.invalidUrl }
-        let data = try await fetchData(with: urlRequest)
-        return data
+        try await fetchDataWithRequest(apiService.buildCountryListUrlRequest())
     }
 
     func fetchSeriesDetails(_ seriesId: Double) async throws -> Data {
-        guard let urlRequest = apiService.buildSeriesDetailsRequest(seriesId)
-        else { throw NetworkErrors.invalidUrl }
-        let data = try await fetchData(with: urlRequest)
-        return data
+        try await fetchDataWithRequest(apiService.buildSeriesDetailsRequest(seriesId))
     }
 
     func fetchData(with urlRequest: URLRequest) async throws -> Data {
@@ -50,5 +41,11 @@ final class NetworkService: NetworkServiceProtocol {
         } catch {
             throw NetworkErrors.badResponse
         }
+    }
+
+    private func fetchDataWithRequest(_ urlRequest: URLRequest?) async throws -> Data {
+        guard let urlRequest = urlRequest else { throw NetworkErrors.invalidUrl }
+        let data = try await fetchData(with: urlRequest)
+        return data
     }
 }
