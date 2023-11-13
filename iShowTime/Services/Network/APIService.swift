@@ -25,13 +25,11 @@ final class APIService {
     }
 
     func buildSearchUrlRequest(with searchText: String) -> URLRequest? {
-
         guard let url = buildUrl(for: .searchSeries, and: "query", equals: searchText) else { return nil }
         return buildUrlRequest(url)
     }
 
     func buildCountryListUrlRequest() -> URLRequest? {
-
         guard let url = buildUrl(for: .countryList, and: "language", equals: "en-US") else { return nil }
         return buildUrlRequest(url)
     }
