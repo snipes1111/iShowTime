@@ -8,10 +8,10 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
-    func fetchSeriesData(_ searchText: String) async throws -> Data
-    func fetchCountryList() async throws -> Data
-    func fetchSeriesDetails(_ seriesId: Double) async throws -> Data
-    func fetchData(with urlRequest: URLRequest) async throws -> Data
+    func fetchSeriesData(_ searchText: String) async -> Data?
+    func fetchCountryList() async -> Data?
+    func fetchSeriesDetails(_ seriesId: Double) async -> Data?
+    func fetchImageData(with url: URL) async -> Data?
 }
 
 final class NetworkService: NetworkServiceProtocol {
@@ -21,20 +21,26 @@ final class NetworkService: NetworkServiceProtocol {
     }
 
     private let apiService = APIService()
+    private let errorHandler = ErrorHandler()
 
-    func fetchSeriesData(_ searchText: String) async throws -> Data {
-        try await fetchDataWithRequest(apiService.buildSearchUrlRequest(with: searchText))
+    func fetchSeriesData(_ searchText: String) async -> Data? {
+        await fetchDataWithErrorHandler(apiService.buildSearchUrlRequest(with: searchText))
     }
 
-    func fetchCountryList() async throws -> Data {
-        try await fetchDataWithRequest(apiService.buildCountryListUrlRequest())
+    func fetchCountryList() async -> Data? {
+        await fetchDataWithErrorHandler(apiService.buildCountryListUrlRequest())
     }
 
-    func fetchSeriesDetails(_ seriesId: Double) async throws -> Data {
-        try await fetchDataWithRequest(apiService.buildSeriesDetailsRequest(seriesId))
+    func fetchSeriesDetails(_ seriesId: Double) async -> Data? {
+        await fetchDataWithErrorHandler(apiService.buildSeriesDetailsRequest(seriesId))
     }
 
-    func fetchData(with urlRequest: URLRequest) async throws -> Data {
+    func fetchImageData(with url: URL) async -> Data? {
+        await fetchDataWithErrorHandler(URLRequest(url: url))
+    }
+
+    private func fetchData(with urlRequest: URLRequest?) async throws -> Data {
+        guard let urlRequest = urlRequest else { throw NetworkErrors.invalidUrl }
         do {
             let (data, _) = try await URLSession.shared.data(for: urlRequest)
             return data
@@ -43,9 +49,13 @@ final class NetworkService: NetworkServiceProtocol {
         }
     }
 
-    private func fetchDataWithRequest(_ urlRequest: URLRequest?) async throws -> Data {
-        guard let urlRequest = urlRequest else { throw NetworkErrors.invalidUrl }
-        let data = try await fetchData(with: urlRequest)
-        return data
+    private func fetchDataWithErrorHandler(_ urlRequest: URLRequest?) async -> Data? {
+        do {
+            let data = try await fetchData(with: urlRequest)
+            return data
+        } catch {
+            errorHandler.handle(error)
+            return nil
+        }
     }
 }

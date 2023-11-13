@@ -21,7 +21,6 @@ protocol SearchSeriesViewModelProtocol {
 final class SearchSeriesViewModel: SectionViewModelProtocol,
                                    SectionViewModelRepresentableProtocol & SearchSeriesViewModelProtocol {
     private let networkManager: NetworkServiceProtocol = NetworkService()
-    private let errorHandler = ErrorHandler()
     private let decoder: SeriesDecoderProtocol = SeriesDecoder()
     private let countryService: CountryService = CountryService.shared
     private var currentTask: Task<Void, Error>?
@@ -85,16 +84,12 @@ extension SearchSeriesViewModel {
     }
 
     private func fetchAndDecodeData(_ searchText: String) async {
-        do {
-            let seriesJSON = try await networkManager.fetchSeriesData(searchText)
-            let countriesData = try await networkManager.fetchCountryList()
-            guard let series = decoder.decodeSeriesFromData(seriesJSON) else { return }
-            seriesData = series.map { SeriesData(series: $0) }
-            guard let countries = decoder.decodeCountryList(countriesData) else { return }
-            countryService.updateCountryList(with: countries)
-        } catch {
-            errorHandler.handle(error)
-        }
+        guard let seriesJSON = await networkManager.fetchSeriesData(searchText),
+              let series = decoder.decodeSeriesFromData(seriesJSON) else { return }
+        seriesData = series.map { SeriesData(series: $0) }
+        guard let countriesData = await networkManager.fetchCountryList(),
+              let countries = decoder.decodeCountryList(countriesData) else { return }
+        countryService.updateCountryList(with: countries)
     }
 
     private func setPromptLabelText() -> String {

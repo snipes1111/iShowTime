@@ -11,7 +11,6 @@ final class SearchDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresenta
 
     private let networkService: NetworkServiceProtocol = NetworkService()
     private let decoder: SeriesDecoderProtocol = SeriesDecoder()
-    private let errorHandler = ErrorHandler()
     private let dataStorage: DataStoreManagerProtocol = DataStoreManger.shared
 
     func fetchSeriesDetails() {
@@ -19,10 +18,7 @@ final class SearchDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresenta
             seriesData = seriesFromStorage
             viewModelDidChange?(self)
         } else {
-            Task { [unowned self] in
-                await fetchAndDecodeData()
-                viewModelDidChange?(self)
-            }
+            fetchAndDecodeData()
         }
     }
 
@@ -31,13 +27,12 @@ final class SearchDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresenta
         return SeriesDescriptionCellViewModel(seriesData: seriesData)
     }
 
-    private func fetchAndDecodeData() async {
-        do {
-            let seriesJSON = try await networkService.fetchSeriesDetails(seriesId)
-            guard let series = decoder.decodeSeriesDetailsFromData(seriesJSON) else { return }
+    private func fetchAndDecodeData() {
+        Task {
+            guard let seriesJSON = await networkService.fetchSeriesDetails(seriesId),
+                  let series = decoder.decodeSeriesDetailsFromData(seriesJSON) else { return }
             seriesData = SeriesData(series: series)
-        } catch {
-            errorHandler.handle(error)
+            viewModelDidChange?(self)
         }
     }
 }
