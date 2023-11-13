@@ -21,7 +21,7 @@ protocol DataStoreManagerProtocol {
 class DataStoreManger: DataStoreManagerProtocol {
 
     static let shared = DataStoreManger()
-    let realm = try! Realm()
+    private let realm = try! Realm()
 
     func save(seriesData: SeriesData, countries: String) {
         try! realm.write {
@@ -61,6 +61,7 @@ class DataStoreManger: DataStoreManagerProtocol {
     }
 
     func checkForDelete(seriesData: SeriesData) {
+        guard realm.objects(SeriesData.self).contains(seriesData) else { return }
         if !seriesData.isBeingWatched && !seriesData.isFavourite {
             try! realm.write {
                 realm.delete(seriesData)
