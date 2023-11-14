@@ -22,7 +22,7 @@ class SeriesDetailViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
     }
 
-    convenience init(title: String) {
+    convenience init(title: String?) {
         self.init(nibName: nil, bundle: nil)
         self.title = title
     }

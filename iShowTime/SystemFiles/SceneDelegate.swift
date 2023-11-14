@@ -16,8 +16,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: scene)
-        let builder = Builder()
-        let mainTabBarController = builder.buildMainTabController()
+        let mainTabBarController = MainTabBarController()
         window.rootViewController = mainTabBarController
         window.makeKeyAndVisible()
         self.window = window

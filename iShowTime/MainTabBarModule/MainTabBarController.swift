@@ -9,7 +9,7 @@ import UIKit
 
 final class MainTabBarController: BaseTabBarController {
 
-    var builder: BuilderProtocol!
+    private let builder: BuilderProtocol = Builder()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -20,7 +20,6 @@ final class MainTabBarController: BaseTabBarController {
 
 extension MainTabBarController {
     private func setViewControllers() {
-        guard let builder = builder else { return }
         viewControllers = [
             builder.buildSearchViewController(),
             builder.buildWatchingNowViewController(),

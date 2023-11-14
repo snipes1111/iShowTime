@@ -8,22 +8,15 @@
 import UIKit
 
 protocol BuilderProtocol {
-    func buildMainTabController() -> MainTabBarController
     func buildSearchViewController() -> UIViewController
     func buildWatchingNowViewController() -> UIViewController
     func buildFavouritesViewController() -> UIViewController
-    func buildSearchSeriesDetailViewController(_ seriesData: SeriesData) -> UIViewController
+    func buildSearchDetailViewController(_ seriesData: SeriesData) -> UIViewController
     func buildWatchingNowDetailViewController(_ seriesData: SeriesData) -> UIViewController
     func buildFavouritesDetailViewController(_ seriesData: SeriesData) -> UIViewController
 }
 
 final class Builder: BuilderProtocol {
-
-    func buildMainTabController() -> MainTabBarController {
-        let viewController = MainTabBarController()
-        viewController.builder = self
-        return viewController
-    }
 
     func buildSearchViewController() -> UIViewController {
         let viewController = SearchSeriesViewController()
@@ -67,8 +60,8 @@ final class Builder: BuilderProtocol {
         )
     }
 
-    func buildSearchSeriesDetailViewController(_ seriesData: SeriesData) -> UIViewController {
-        let viewController = SeriesDetailViewController(title: seriesData.series.name ?? "")
+    func buildSearchDetailViewController(_ seriesData: SeriesData) -> UIViewController {
+        let viewController = SeriesDetailViewController(title: seriesData.series.name)
         let viewModel = SearchDetailViewModel(seriesData: seriesData)
         let view = SearchDetailView(viewModel: viewModel)
         viewController.mainView = view
@@ -77,7 +70,7 @@ final class Builder: BuilderProtocol {
     }
 
     func buildWatchingNowDetailViewController(_ seriesData: SeriesData) -> UIViewController {
-        let viewController = WatchingNowDetailViewController(title: seriesData.series.name ?? "")
+        let viewController = WatchingNowDetailViewController(title: seriesData.series.name)
         let viewModel = WatchingNowDetailViewModel(seriesData: seriesData)
         let view = WatchingNowDetailView(viewModel: viewModel)
         viewController.mainView = view
@@ -86,7 +79,7 @@ final class Builder: BuilderProtocol {
     }
 
     func buildFavouritesDetailViewController(_ seriesData: SeriesData) -> UIViewController {
-        let viewController = SeriesDetailViewController(title: seriesData.series.name ?? "")
+        let viewController = SeriesDetailViewController(title: seriesData.series.name)
         let viewModel = FavouritesDetailViewModel(seriesData: seriesData)
         let view = SeriesDetailView(viewModel: viewModel)
         viewController.mainView = view
