@@ -28,8 +28,6 @@ protocol SeriesDescriptionCellViewModelProtocol: DetailCellViewModelProtocol {
 
 final class SeriesDescriptionCellViewModel: DetailCellViewModel, SeriesDescriptionCellViewModelProtocol {
 
-    private var countryService = CountryService()
-
     var ratingIs: String { SearchModuleConstants.ratingIs }
     var scoreRating: String { receiveRating() }
     var scoreRatingColor: ScoreRatingColor { returnRatingColor() }
@@ -57,14 +55,6 @@ extension SeriesDescriptionCellViewModel {
     }
 
     private func receiveCountrySeasonAndYear() -> String {
-        let countries: String
-        if !seriesData.originCountry.isEmpty {
-            countries = seriesData.originCountry
-            print("Take from storage")
-        } else {
-            countries = countryService.getCountryNames(from: seriesData)
-            self.countries = countries
-        }
         let seasonsCount = Int(series.numberOfSeasons ?? 1)
         let year = "\(series.firstAirDate?.extractYear() ?? SearchModuleConstants.noDate)"
         return "\(countries), \(SearchModuleConstants.seasons): \(seasonsCount) • \(year)"

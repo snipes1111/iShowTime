@@ -31,10 +31,8 @@ class FavouritesViewModel: SectionViewModelProtocol,
     }
 
     func showDetails(at indexPath: IndexPath) {
-        guard let selectedSeries = seriesData?[indexPath.item],
-              let id = selectedSeries.series.id,
-              let seriesName = selectedSeries.series.name else { return }
-        router.showDetailSeriesViewController(id, seriesName)
+        guard let selectedSeries = seriesData?[indexPath.item] else { return }
+        router.showDetailSeriesViewController(seriesData: selectedSeries)
     }
 
     func fetchSeries() {

@@ -20,8 +20,6 @@ protocol SeriesCellViewModelProtocol {
 
 class SeriesCellViewModel: SeriesCellViewModelProtocol {
 
-    private var countryService = CountryService()
-
     let seriesData: SeriesData
     var series: Series
 
@@ -35,15 +33,8 @@ class SeriesCellViewModel: SeriesCellViewModelProtocol {
     }
 
     var countryAndYear: String {
-        let countryNames = seriesData.originCountry
-//        if !seriesData.originCountry.isEmpty {
-//            countryNames = seriesData.originCountry
-//            print("Take from storage")
-//        } else {
-//            countryNames = countryService.getCountryNames(from: seriesData)
-//        }
         let year = " • \(series.firstAirDate?.extractYear() ?? "Unknown date")"
-        return countryNames + year
+        return seriesData.originCountry + year
     }
 
     var seasonsLabelText: String {

@@ -12,7 +12,7 @@ final class WatchingNowDetailViewModel: SeriesDetailViewModel, SeriesDetailRepre
     private let dataStorage: DataStoreManagerProtocol = DataStoreManger()
 
     func fetchSeriesDetails() {
-        seriesData = dataStorage.getSeries(with: seriesId)
+        seriesData = dataStorage.getSeries(with: seriesId ?? 0)
         viewModelDidChange?(self)
     }
 

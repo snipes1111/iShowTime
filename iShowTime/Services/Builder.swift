@@ -12,9 +12,9 @@ protocol BuilderProtocol {
     func buildSearchViewController() -> UIViewController
     func buildWatchingNowViewController() -> UIViewController
     func buildFavouritesViewController() -> UIViewController
-    func buildSearchSeriesDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController
-    func buildWatchingNowDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController
-    func buildFavouritesDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController
+    func buildSearchSeriesDetailViewController(_ seriesData: SeriesData) -> UIViewController
+    func buildWatchingNowDetailViewController(_ seriesData: SeriesData) -> UIViewController
+    func buildFavouritesDetailViewController(_ seriesData: SeriesData) -> UIViewController
 }
 
 final class Builder: BuilderProtocol {
@@ -67,27 +67,27 @@ final class Builder: BuilderProtocol {
         )
     }
 
-    func buildSearchSeriesDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController {
-        let viewController = SeriesDetailViewController(title: seriesName)
-        let viewModel = SearchDetailViewModel(seriesId: seriesId)
+    func buildSearchSeriesDetailViewController(_ seriesData: SeriesData) -> UIViewController {
+        let viewController = SeriesDetailViewController(title: seriesData.series.name ?? "")
+        let viewModel = SearchDetailViewModel(seriesData: seriesData)
         let view = SearchDetailView(viewModel: viewModel)
         viewController.mainView = view
         viewController.viewModel = viewModel
         return viewController
     }
 
-    func buildWatchingNowDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController {
-        let viewController = WatchingNowDetailViewController(title: seriesName)
-        let viewModel = WatchingNowDetailViewModel(seriesId: seriesId)
+    func buildWatchingNowDetailViewController(_ seriesData: SeriesData) -> UIViewController {
+        let viewController = WatchingNowDetailViewController(title: seriesData.series.name ?? "")
+        let viewModel = WatchingNowDetailViewModel(seriesData: seriesData)
         let view = WatchingNowDetailView(viewModel: viewModel)
         viewController.mainView = view
         viewController.viewModel = viewModel
         return viewController
     }
 
-    func buildFavouritesDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController {
-        let viewController = SeriesDetailViewController(title: seriesName)
-        let viewModel = FavouritesDetailViewModel(seriesId: seriesId)
+    func buildFavouritesDetailViewController(_ seriesData: SeriesData) -> UIViewController {
+        let viewController = SeriesDetailViewController(title: seriesData.series.name ?? "")
+        let viewModel = FavouritesDetailViewModel(seriesData: seriesData)
         let view = SeriesDetailView(viewModel: viewModel)
         viewController.mainView = view
         viewController.viewModel = viewModel

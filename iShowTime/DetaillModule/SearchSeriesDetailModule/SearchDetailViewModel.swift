@@ -13,6 +13,7 @@ final class SearchDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresenta
     private let decoder: SeriesDecoderProtocol = SeriesDecoder()
     private let dataStorage: DataStoreManagerProtocol = DataStoreManger()
     func fetchSeriesDetails() {
+        guard let seriesId = seriesId else { return }
         if let seriesFromStorage = dataStorage.getSeries(with: seriesId) {
             seriesData = seriesFromStorage
             viewModelDidChange?(self)
@@ -23,12 +24,15 @@ final class SearchDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresenta
 
     func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
         guard let seriesData = seriesData else { return nil }
-        return SeriesDescriptionCellViewModel(seriesData: seriesData)
+        let viewModel = SeriesDescriptionCellViewModel(seriesData: seriesData)
+        viewModel.countries = countries
+        return viewModel
     }
 
     private func fetchAndDecodeData() {
         Task {
-            guard let seriesJSON = await networkService.fetchSeriesDetails(seriesId),
+            guard let seriesId = seriesId,
+                  let seriesJSON = await networkService.fetchSeriesDetails(seriesId),
                   let series = decoder.decodeSeriesDetailsFromData(seriesJSON) else { return }
             seriesData = SeriesData(series: series)
             viewModelDidChange?(self)

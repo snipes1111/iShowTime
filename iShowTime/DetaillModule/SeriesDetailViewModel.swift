@@ -11,7 +11,7 @@ protocol SeriesDetailViewModelProtocol {
     var viewModelDidChange: ((SeriesDetailViewModelProtocol) -> Void)? { get set }
     var backDropImageUrl: String? { get }
     var numberOfRows: Int { get }
-    init(seriesId: Double)
+    init(seriesData: SeriesData)
 }
 
 protocol SeriesDetailRepresentableProtocol {
@@ -20,7 +20,8 @@ protocol SeriesDetailRepresentableProtocol {
 }
 
 class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
-    let seriesId: Double
+    let seriesId: Double?
+    let countries: String
     var seriesData: SeriesData?
     var series: Series? { seriesData?.series }
 
@@ -28,7 +29,8 @@ class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
     var backDropImageUrl: String? { series?.backdropPath }
     var numberOfRows: Int { 1 }
 
-    required init(seriesId: Double) {
-        self.seriesId = seriesId
+    required init(seriesData: SeriesData) {
+        self.seriesId = seriesData.series.id
+        self.countries = seriesData.originCountry
     }
 }

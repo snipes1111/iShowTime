@@ -9,7 +9,7 @@ import UIKit
 
 protocol RouterProtocol {
     init(viewController: UIViewController)
-    func showDetailSeriesViewController(_ seriesID: Double, _ seriesName: String)
+    func showDetailSeriesViewController(seriesData: SeriesData)
 }
 
 final class Router: RouterProtocol {
@@ -20,15 +20,15 @@ final class Router: RouterProtocol {
         self.viewController = viewController
     }
 
-    func showDetailSeriesViewController(_ seriesID: Double, _ seriesName: String) {
+    func showDetailSeriesViewController(seriesData: SeriesData) {
         if viewController is SearchSeriesViewController {
-            let detailVc = builder.buildSearchSeriesDetailViewController(seriesID, seriesName)
+            let detailVc = builder.buildSearchSeriesDetailViewController(seriesData)
             viewController.present(detailVc, animated: true)
         } else if viewController is WatchingNowViewController {
-            let detailVc = builder.buildWatchingNowDetailViewController(seriesID, seriesName)
+            let detailVc = builder.buildWatchingNowDetailViewController(seriesData)
             viewController.navigationController?.pushViewController(detailVc, animated: true)
         } else {
-            let detailVc = builder.buildFavouritesDetailViewController(seriesID, seriesName)
+            let detailVc = builder.buildFavouritesDetailViewController(seriesData)
             viewController.navigationController?.pushViewController(detailVc, animated: true)
         }
     }

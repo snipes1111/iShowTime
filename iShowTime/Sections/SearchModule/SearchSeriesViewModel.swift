@@ -45,9 +45,7 @@ final class SearchSeriesViewModel: SectionViewModelProtocol,
 
     func showDetails(at indexPath: IndexPath) {
         let selectedSeries = seriesData[indexPath.item]
-        guard let id = selectedSeries.series.id,
-              let seriesName = selectedSeries.series.name else { return }
-        router.showDetailSeriesViewController(id, seriesName)
+        router.showDetailSeriesViewController(seriesData: selectedSeries)
     }
 
     func fetchSeries() {
