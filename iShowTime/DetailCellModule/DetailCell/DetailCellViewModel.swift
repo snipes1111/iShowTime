@@ -13,7 +13,6 @@ protocol DetailCellViewModelProtocol {
     var isBeingWatched: Bool { get }
     init(seriesData: SeriesData)
     func watchingNowButtonPressed()
-    func updateSeriesList()
 }
 
 class DetailCellViewModel: DetailCellViewModelProtocol {
@@ -23,7 +22,7 @@ class DetailCellViewModel: DetailCellViewModelProtocol {
 
     var countries: String = ""
 
-    let dataStoreManager: DataStoreManagerProtocol = DataStoreManger.shared
+    let dataStoreManager: DataStoreManagerProtocol = DataStoreManger()
 
     var seriesName: String { series.name ?? SearchModuleConstants.unknownTitle }
     var imageUrl: String? { series.posterPath }
@@ -44,10 +43,6 @@ class DetailCellViewModel: DetailCellViewModelProtocol {
     }
 
     func watchingNowButtonPressed() {
-        dataStoreManager.save(seriesData: seriesData, countries: countries)
-    }
-
-    func updateSeriesList() {
-        dataStoreManager.checkForDelete(seriesData: seriesData)
+        dataStoreManager.setIsBeingWatched(seriesData: seriesData, countries: countries)
     }
 }

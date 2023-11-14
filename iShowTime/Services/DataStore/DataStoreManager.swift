@@ -9,21 +9,20 @@ import Foundation
 import RealmSwift
 
 protocol DataStoreManagerProtocol {
-    func save(seriesData: SeriesData, countries: String)
-    func setIsFavourite(seriesData: SeriesData, countries: String)
-    func seriesList() -> Results<SeriesData>
+    func watchingSeriesList() -> Results<SeriesData>
     func favouriteSeriesList() -> Results<SeriesData>
     func getSeries(with id: Double) -> SeriesData?
+    func setIsBeingWatched(seriesData: SeriesData, countries: String)
+    func setIsFavourite(seriesData: SeriesData, countries: String)
     func setSeriesProgress(seriesData: SeriesData, seriesProgress: SeriesProgress)
-    func checkForDelete(seriesData: SeriesData)
+    func checkForDelete()
 }
 
 class DataStoreManger: DataStoreManagerProtocol {
 
-    static let shared = DataStoreManger()
     private let realm = try! Realm()
 
-    func save(seriesData: SeriesData, countries: String) {
+    func setIsBeingWatched(seriesData: SeriesData, countries: String) {
         try! realm.write {
             seriesData.isBeingWatched.toggle()
             seriesData.originCountry = countries
@@ -39,7 +38,7 @@ class DataStoreManger: DataStoreManagerProtocol {
         }
     }
 
-    func seriesList() -> Results<SeriesData> {
+    func watchingSeriesList() -> Results<SeriesData> {
         realm.objects(SeriesData.self).where { $0.isBeingWatched == true }
     }
 
@@ -60,11 +59,11 @@ class DataStoreManger: DataStoreManagerProtocol {
         }
     }
 
-    func checkForDelete(seriesData: SeriesData) {
-        guard realm.objects(SeriesData.self).contains(seriesData) else { return }
-        if !seriesData.isBeingWatched && !seriesData.isFavourite {
+    func checkForDelete() {
+        let removingItems = realm.objects(SeriesData.self).filter { !$0.isFavourite && !$0.isBeingWatched }
+        removingItems.forEach { item in
             try! realm.write {
-                realm.delete(seriesData)
+                realm.delete(item)
             }
         }
     }

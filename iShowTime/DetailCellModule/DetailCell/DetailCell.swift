@@ -25,10 +25,6 @@ class DetailCell: BaseDetailCell {
         nameLabel.text = viewModel?.seriesName
         updateWatchingNowButtonTitle()
     }
-
-    deinit {
-        viewModel?.updateSeriesList()
-    }
 }
 
 extension DetailCell {

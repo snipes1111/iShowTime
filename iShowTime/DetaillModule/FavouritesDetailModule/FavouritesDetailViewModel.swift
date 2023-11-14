@@ -9,7 +9,7 @@ import Foundation
 
 final class FavouritesDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresentableProtocol {
 
-    private let dataStorage: DataStoreManagerProtocol = DataStoreManger.shared
+    private let dataStorage: DataStoreManagerProtocol = DataStoreManger()
 
     func fetchSeriesDetails() {
         seriesData = dataStorage.getSeries(with: seriesId)

@@ -9,6 +9,8 @@ import UIKit
 
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+    private lazy var dataStorage: DataStoreManagerProtocol = DataStoreManger()
+
     var window: UIWindow?
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
@@ -19,5 +21,9 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = mainTabBarController
         window.makeKeyAndVisible()
         self.window = window
+    }
+
+    func sceneDidEnterBackground(_ scene: UIScene) {
+        dataStorage.checkForDelete()
     }
 }

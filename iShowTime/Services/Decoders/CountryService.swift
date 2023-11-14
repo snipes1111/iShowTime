@@ -9,7 +9,7 @@ import Foundation
 
 class CountryService {
     static let shared = CountryService()
-    private let dataStore: DataStoreManagerProtocol = DataStoreManger.shared
+    private let dataStore: DataStoreManagerProtocol = DataStoreManger()
     private var countryList: [Country] = []
 
     private init() {}

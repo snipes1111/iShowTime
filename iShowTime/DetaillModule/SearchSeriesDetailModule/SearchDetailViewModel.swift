@@ -11,8 +11,7 @@ final class SearchDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresenta
 
     private let networkService: NetworkServiceProtocol = NetworkService()
     private let decoder: SeriesDecoderProtocol = SeriesDecoder()
-    private let dataStorage: DataStoreManagerProtocol = DataStoreManger.shared
-
+    private let dataStorage: DataStoreManagerProtocol = DataStoreManger()
     func fetchSeriesDetails() {
         if let seriesFromStorage = dataStorage.getSeries(with: seriesId) {
             seriesData = seriesFromStorage

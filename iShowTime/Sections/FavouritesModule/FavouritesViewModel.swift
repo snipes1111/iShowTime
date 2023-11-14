@@ -15,7 +15,7 @@ protocol EditableCellViewModelProtocol {
 class FavouritesViewModel: SectionViewModelProtocol, 
                            SectionViewModelRepresentableProtocol {
 
-    private let dataStoreManager: DataStoreManagerProtocol = DataStoreManger.shared
+    private let dataStoreManager: DataStoreManagerProtocol = DataStoreManger()
 
     var seriesData: Results<SeriesData>?
     private let router: RouterProtocol
