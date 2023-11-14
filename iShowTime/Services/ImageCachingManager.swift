@@ -9,7 +9,6 @@ import UIKit
 
 protocol ImageCachingManagerProtocol {
     func loadImage(with url: String) async -> Data?
-    func clearCache()
 }
 
 final class ImageCachingManager: ImageCachingManagerProtocol {
@@ -28,14 +27,9 @@ final class ImageCachingManager: ImageCachingManagerProtocol {
         }
     }
 
-    func clearCache() {
-        imageCache.removeAllObjects()
-    }
-
     private func loadImageFromCache(_ url: URL) -> Data? {
         let cachedKey = NSString(string: url.absoluteString)
-        let data = imageCache.object(forKey: cachedKey) as? Data
-        return data
+        return imageCache.object(forKey: cachedKey) as? Data
     }
 
     private func downloadAndSaveImage(_ url: URL) async -> Data? {
