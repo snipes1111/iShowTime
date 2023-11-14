@@ -28,7 +28,7 @@ protocol SeriesDescriptionCellViewModelProtocol: DetailCellViewModelProtocol {
 
 final class SeriesDescriptionCellViewModel: DetailCellViewModel, SeriesDescriptionCellViewModelProtocol {
 
-    private var countryService: CountryService = CountryService.shared
+    private var countryService = CountryService()
 
     var ratingIs: String { SearchModuleConstants.ratingIs }
     var scoreRating: String { receiveRating() }

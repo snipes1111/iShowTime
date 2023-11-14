@@ -22,7 +22,7 @@ final class SearchSeriesViewModel: SectionViewModelProtocol,
                                    SectionViewModelRepresentableProtocol & SearchSeriesViewModelProtocol {
     private let networkManager: NetworkServiceProtocol = NetworkService()
     private let decoder: SeriesDecoderProtocol = SeriesDecoder()
-    private let countryService: CountryService = CountryService.shared
+    private let countryService = CountryService()
     private var currentTask: Task<Void, Error>?
     private var countries: [Country]?
     private var searchText: String?
@@ -90,6 +90,7 @@ extension SearchSeriesViewModel {
         guard let countriesData = await networkManager.fetchCountryList(),
               let countries = decoder.decodeCountryList(countriesData) else { return }
         countryService.updateCountryList(with: countries)
+        seriesData.forEach { $0.originCountry = countryService.getCountryNames(from: $0) }
     }
 
     private func setPromptLabelText() -> String {

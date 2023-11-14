@@ -9,4 +9,5 @@ import UIKit
 
 struct Constants {
     static let showMore = "Show more ..."
+    static let unknownCountry = "Unknown country"
 }
