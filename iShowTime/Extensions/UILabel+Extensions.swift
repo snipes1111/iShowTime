@@ -21,8 +21,8 @@ extension UILabel {
         let str = str else { return }
         let textRange = (str as NSString).range(of: str)
         let attributedString = NSMutableAttributedString(string: labelText,
-                                                         attributes: Fonts.SearchDetailModule.overviewTextAttributes)
-        attributedString.setAttributes(Fonts.SearchDetailModule.overviewAttributes, range: textRange)
+                                                         attributes: Fonts.DetailCell.overviewTextAttributes)
+        attributedString.setAttributes(Fonts.DetailCell.overviewAttributes, range: textRange)
         attributedText = attributedString
     }
 }

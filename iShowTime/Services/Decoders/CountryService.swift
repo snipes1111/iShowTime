@@ -20,7 +20,7 @@ class CountryService {
 
     func getCountryNames(from seriesData: SeriesData) -> String {
         guard let encodedISO = seriesData.series.originCountry, !encodedISO.isEmpty
-        else { return Constants.unknownCountry }
+        else { return Constants.Labels.unknownCountry }
         return encodedISO.compactMap { countryList[$0] }.joined(separator: ", ")
     }
 }

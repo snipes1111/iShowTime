@@ -33,12 +33,12 @@ class BaseSeriesDescriptionCell: DetailCell {
 
     override func setupSubViews() {
         super.setupSubViews()
-        ratingIsLabel = UILabel(font: Fonts.SearchDetailModule.seriesRatingIsLabel, numberOfLines: 1)
-        ratingScoreLabel = UILabel(font: Fonts.SearchDetailModule.seriesRatingScoreLabel, numberOfLines: 1)
-        genreLabel = UILabel(font: Fonts.SearchDetailModule.genreLabel)
+        ratingIsLabel = UILabel(font: Fonts.DetailCell.seriesRating, numberOfLines: 1)
+        ratingScoreLabel = UILabel(font: Fonts.DetailCell.seriesRatingScore, numberOfLines: 1)
+        genreLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
         genreLabel.textAlignment = .center
-        countrySeasonsAndYearLabel = UILabel(font: Fonts.SearchDetailModule.countrySeasonsAndYearLabel)
-        overviewLabel = UILabel(font: Fonts.SearchDetailModule.overviewLabel, numberOfLines: 5)
+        countrySeasonsAndYearLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
+        overviewLabel = UILabel(font: Fonts.DetailCell.seriesInfo, numberOfLines: 5)
         showMoreButton = ShowMoreButton()
         showMoreButtonStack = HorizontalStackView(arrangedSubviews: [showMoreButton, UIView()])
         heartButton = HeartButton()

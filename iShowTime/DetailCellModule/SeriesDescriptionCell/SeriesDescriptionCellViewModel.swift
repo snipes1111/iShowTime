@@ -28,12 +28,12 @@ protocol SeriesDescriptionCellViewModelProtocol: DetailCellViewModelProtocol {
 
 final class SeriesDescriptionCellViewModel: DetailCellViewModel, SeriesDescriptionCellViewModelProtocol {
 
-    var ratingIs: String { SearchModuleConstants.ratingIs }
+    var ratingIs: String { Constants.SeriesInfo.rating }
     var scoreRating: String { receiveRating() }
     var scoreRatingColor: ScoreRatingColor { returnRatingColor() }
     var genreAndYear: String { receiveGenres() }
     var countrySeasonsAndYear: String { receiveCountrySeasonAndYear() }
-    var attributedOverviewText: String { SearchModuleConstants.overview }
+    var attributedOverviewText: String { Constants.SeriesInfo.overview }
     var overview: String { receiveOverview() }
     var seriesIsFavourite: Bool { seriesData.isFavourite }
     func heartButtonDidTapped() { setIsFavourite() }
@@ -43,26 +43,28 @@ extension SeriesDescriptionCellViewModel {
 
     private func receiveOverview() -> String {
         guard let overview = series.overview, !overview.isEmpty
-        else { return SearchModuleConstants.noOverview }
+        else { return Constants.SeriesInfo.noOverview }
         return overview
     }
 
     private func receiveGenres() -> String {
         let genres = series.genres?.compactMap { $0.name }
         guard let genreNames = genres
-        else { return SearchModuleConstants.noGenre }
+        else { return Constants.SeriesInfo.noGenre }
         return genreNames.joined(separator: ", ")
     }
 
     private func receiveCountrySeasonAndYear() -> String {
-        let seasonsCount = Int(series.numberOfSeasons ?? 1)
-        let year = "\(series.firstAirDate?.extractYear() ?? SearchModuleConstants.noDate)"
-        return "\(countries), \(SearchModuleConstants.seasons): \(seasonsCount) • \(year)"
+        let countries = countries + ", "
+        let seasonsCount = "\(Int(series.numberOfSeasons ?? 1))"
+        let year = series.firstAirDate?.extractYear() ?? Constants.SeriesInfo.noDate
+        let divider = Constants.SeriesInfo.divider
+        return countries + Constants.SeriesInfo.seasons + seasonsCount + divider + year
     }
 
     private func receiveRating() -> String {
         guard let rating = series.voteAverage, rating != 0
-        else { return SearchModuleConstants.noRating }
+        else { return Constants.SeriesInfo.noRating }
         let roundedRating = String(format: "%.2f", rating)
         return roundedRating
     }

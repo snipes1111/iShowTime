@@ -27,8 +27,8 @@ final class Builder: BuilderProtocol {
         viewController.viewModel = viewModel
         return createNavController(
             viewController: viewController,
-            title: SearchModuleConstants.title,
-            image: TabBarImages.searchImage
+            title: Constants.SectionTitle.search,
+            image: Images.TabBarImages.searchImage
         )
     }
 
@@ -41,8 +41,8 @@ final class Builder: BuilderProtocol {
         viewController.viewModel = viewModel
         return createNavController(
             viewController: viewController,
-            title: WatchingNowConstants.title,
-            image: TabBarImages.watchingNowImage
+            title: Constants.SectionTitle.watchingNow,
+            image: Images.TabBarImages.watchingNowImage
         )
     }
 
@@ -55,8 +55,8 @@ final class Builder: BuilderProtocol {
         viewController.viewModel = viewModel
         return createNavController(
             viewController: viewController,
-            title: FavouritesConstants.title,
-            image: TabBarImages.favouritesImage
+            title: Constants.SectionTitle.favourites,
+            image: Images.TabBarImages.favouritesImage
         )
     }
 

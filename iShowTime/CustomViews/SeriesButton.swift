@@ -19,7 +19,7 @@ final class SeriesButton: UIButton {
     }
 
     private func setupButton() {
-        titleLabel?.font = Fonts.SearchDetailModule.seriesButton
+        titleLabel?.font = Fonts.seriesButton
         setSize(50, 250)
         setBackgroundImage(UIImage(resource: .buttonActive), for: .normal)
         setBackgroundImage(UIImage(resource: .buttonTapped), for: .highlighted)
@@ -29,12 +29,12 @@ final class SeriesButton: UIButton {
     }
 
     func switchToActiveState() {
-        setTitle(SearchModuleConstants.activeSeriesButtonState, for: .normal)
+        setTitle(Constants.Buttons.addToWatching, for: .normal)
         setTitleColor(.black, for: .normal)
     }
 
     func switchToTappedBeforeState() {
-        setTitle(SearchModuleConstants.tappedBeforeSeriesButtonState, for: .normal)
+        setTitle(Constants.Buttons.removeFromWatching, for: .normal)
         setTitleColor(.darkGray, for: .normal)
     }
 

@@ -19,7 +19,7 @@ final class WatchingNowViewModel: SectionViewModelProtocol,
     var viewModelDidChange: ((SectionViewModelProtocol) -> Void)?
     var numberOfRows: Int { seriesData?.count ?? 0 }
     var heightForRow: Int { 165 }
-    var promptLabelText: String { WatchingNowConstants.promptLabel }
+    var promptLabelText: String { Constants.Labels.watchingPrompt }
     var promptLabelIsHidden: Bool { !(seriesData?.isEmpty ?? true) }
 
     required init(router: RouterProtocol) {

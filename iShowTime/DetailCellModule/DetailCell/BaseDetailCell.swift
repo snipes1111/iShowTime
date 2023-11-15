@@ -42,7 +42,7 @@ class BaseDetailCell: UITableViewCell {
     func setupSubViews() {
         posterImageView = SeriesImageView()
         posterImageView.addShadow()
-        nameLabel = UILabel(font: Fonts.SearchDetailModule.seriesNameLabel)
+        nameLabel = UILabel(font: Fonts.DetailCell.seriesName)
         nameLabel.textAlignment = .center
         watchingNowButton = SeriesButton()
     }

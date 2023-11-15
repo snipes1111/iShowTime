@@ -41,8 +41,8 @@ class BaseWatchingNowDetailCell: DetailCell {
 
     override func setupSubViews() {
         super.setupSubViews()
-        descriptionLabel = UILabel(font: Fonts.WatchingNowModule.description)
-        nextEpisodeDateLabel = UILabel(font: Fonts.WatchingNowModule.description)
+        descriptionLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
+        nextEpisodeDateLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
         progressView = SeriesProgressView(15)
         setupRowWith(&seasonLabel, &seasonMinusButton, &seasonTF, &seasonPlusButton)
         setupRowWith(&episodeLabel, &episodeMinusButton, &episodeTF, &episodePlusButton)
@@ -53,7 +53,7 @@ extension BaseWatchingNowDetailCell {
 
     private func setupRowWith( _ label: inout UILabel?, _ minusButton: inout UIButton?,
                                _ textfield: inout UITextField?, _ plusButton: inout UIButton?) {
-        label = UILabel(font: Fonts.WatchingNowModule.seasonAndEpisode)
+        label = UILabel(font: Fonts.DetailCell.seasonAndEpisode)
         minusButton = CountButton(countType: .minus)
         textfield = CountTextField()
         plusButton = CountButton(countType: .plus)

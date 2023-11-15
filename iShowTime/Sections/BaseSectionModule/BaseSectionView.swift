@@ -40,8 +40,8 @@ class BaseSectionView: UIView {
     }
 
     private func setupPromptLabel() {
-        promptLabel = UILabel(font: Fonts.SearchModule.promptLabelFont,
-                            color: Colors.promptText)
+        promptLabel = UILabel(font: Fonts.promptLabel,
+                            color: Colors.promptLabel)
         promptLabel.textAlignment = .center
         setPromptLabelConstraints()
         updatePromptLabel()

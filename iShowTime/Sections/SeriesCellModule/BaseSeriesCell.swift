@@ -28,7 +28,7 @@ class BaseSeriesCell: UITableViewCell {
 extension BaseSeriesCell {
     private func setupView() {
         setupSubViews()
-        let vStack = VerticalStackView(spacing: 4 ,arrangedSubviews: [titleLabel,
+        let vStack = VerticalStackView(spacing: 4, arrangedSubviews: [titleLabel,
                                                           genreLabel,
                                                           countryAndYearLabel,
                                                           seasonsLabel,
@@ -42,10 +42,10 @@ extension BaseSeriesCell {
 
     private func setupSubViews() {
         posterImageView = SeriesImageView()
-        titleLabel = UILabel(font: Fonts.SearchModule.titleFont)
-        genreLabel = UILabel(font: Fonts.SearchModule.secondaryLabel)
-        countryAndYearLabel = UILabel(font: Fonts.SearchModule.secondaryLabel, color: .systemGray)
-        seasonsLabel = UILabel(font: Fonts.SearchModule.secondaryLabel, color: .systemGray)
+        titleLabel = UILabel(font: Fonts.seriesName)
+        genreLabel = UILabel(font: Fonts.seriesInfo)
+        countryAndYearLabel = UILabel(font: Fonts.seriesInfo, color: .systemGray)
+        seasonsLabel = UILabel(font: Fonts.seriesInfo, color: .systemGray)
         progressView = SeriesProgressView(15)
     }
 

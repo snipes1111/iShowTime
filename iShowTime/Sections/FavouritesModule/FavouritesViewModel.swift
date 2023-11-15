@@ -23,7 +23,7 @@ class FavouritesViewModel: SectionViewModelProtocol,
     var viewModelDidChange: ((SectionViewModelProtocol) -> Void)?
     var numberOfRows: Int { seriesData?.count ?? 0 }
     var heightForRow: Int { 165 }
-    var promptLabelText: String { FavouritesConstants.promptLabel }
+    var promptLabelText: String { Constants.Labels.favouritesPrompt }
     var promptLabelIsHidden: Bool { !(seriesData?.isEmpty ?? true) }
 
     required init(router: RouterProtocol) {

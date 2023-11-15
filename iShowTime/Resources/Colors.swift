@@ -9,7 +9,7 @@ import UIKit
 
 struct Colors {
     static let tabItem = UIColor.systemPink
-    static let promptText = UIColor.systemGray.withAlphaComponent(0.7)
+    static let promptLabel = UIColor.systemGray.withAlphaComponent(0.7)
     static let spinner = UIColor.systemPink
     static let countButton = UIColor.black.withAlphaComponent(0.7)
     static let redRating = #colorLiteral(red: 0.998575151, green: 0.009222860448, blue: 0, alpha: 1)

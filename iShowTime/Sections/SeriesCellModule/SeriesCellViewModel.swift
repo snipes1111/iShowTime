@@ -29,7 +29,7 @@ class SeriesCellViewModel: SeriesCellViewModelProtocol {
 
     var genreLabel: String {
         let genres = series.genreIds
-        return genres?.compactMap { $0.extractGenre() }.joined(separator: ", ") ?? "Unknown genres"
+        return genres?.compactMap { Genres.findGenre(with: $0) }.joined(separator: ", ") ?? "Unknown genres"
     }
 
     var countryAndYear: String {
@@ -39,7 +39,7 @@ class SeriesCellViewModel: SeriesCellViewModelProtocol {
 
     var seasonsLabelText: String {
         let status = series.inProduction ?? false
-        return status ? SearchModuleConstants.inProduction : SearchModuleConstants.finished
+        return status ? Constants.SeriesInfo.finished : Constants.SeriesInfo.inProduction
     }
 
     var progressViewIsHidden: Bool {

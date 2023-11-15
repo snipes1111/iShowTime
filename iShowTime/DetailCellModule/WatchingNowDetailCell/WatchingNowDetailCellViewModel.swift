@@ -52,18 +52,18 @@ final class WatchingNowDetailCellViewModel: DetailCellViewModel, WatchingNowDeta
 
     var description: String {
         let productionStatus = (series.inProduction ?? false) ?
-        WatchingNowConstants.inProduction : WatchingNowConstants.finished
-        let seasons = WatchingNowConstants.seasons, status = WatchingNowConstants.status
-        return seasons + "\(Int(numberOfSeasons))" + status + "\(productionStatus)"
+        Constants.SeriesInfo.inProduction : Constants.SeriesInfo.finished
+        let seasons = Constants.SeriesInfo.seasons, divider = Constants.SeriesInfo.divider
+        return seasons + "\(Int(numberOfSeasons))" + divider + productionStatus
     }
 
     var nextEpisodeDate: String {
-        let airDate = series.nextEpisodeToAir?.airDate.extractDate() ?? WatchingNowConstants.noInfo
-        return WatchingNowConstants.nextEpisode + "\(airDate)"
+        let airDate = series.nextEpisodeToAir?.airDate.extractDate() ?? Constants.SeriesInfo.noInfo
+        return Constants.SeriesInfo.nextEpisode + airDate
     }
 
-    var seasonText: String { WatchingNowConstants.season }
-    var episodeText: String { WatchingNowConstants.episode }
+    var seasonText: String { Constants.SeriesInfo.season }
+    var episodeText: String { Constants.SeriesInfo.episode }
 
     var seasonTFText: String { "\(Int(seasonCount))" }
     var episodeTFText: String { "\(Int(episodeCount))" }
