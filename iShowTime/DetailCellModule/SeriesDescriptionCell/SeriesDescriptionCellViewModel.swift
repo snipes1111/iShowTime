@@ -42,13 +42,13 @@ final class SeriesDescriptionCellViewModel: DetailCellViewModel, SeriesDescripti
 extension SeriesDescriptionCellViewModel {
 
     private func receiveOverview() -> String {
-        guard let overview = series.overview, !overview.isEmpty
+        guard let overview = series?.overview, !overview.isEmpty
         else { return Constants.SeriesInfo.noOverview }
         return overview
     }
 
     private func receiveGenres() -> String {
-        let genres = series.genres?.compactMap { $0.name }
+        let genres = series?.genres?.compactMap { $0.name }
         guard let genreNames = genres
         else { return Constants.SeriesInfo.noGenre }
         return genreNames.joined(separator: ", ")
@@ -56,21 +56,21 @@ extension SeriesDescriptionCellViewModel {
 
     private func receiveCountrySeasonAndYear() -> String {
         let countries = countries + ", "
-        let seasonsCount = "\(Int(series.numberOfSeasons ?? 1))"
-        let year = series.firstAirDate?.extractYear() ?? Constants.SeriesInfo.noDate
+        let seasonsCount = "\(Int(series?.numberOfSeasons ?? 1))"
+        let year = series?.firstAirDate?.extractYear() ?? Constants.SeriesInfo.noDate
         let divider = Constants.SeriesInfo.divider
         return countries + Constants.SeriesInfo.seasons + seasonsCount + divider + year
     }
 
     private func receiveRating() -> String {
-        guard let rating = series.voteAverage, rating != 0
+        guard let rating = series?.voteAverage, rating != 0
         else { return Constants.SeriesInfo.noRating }
         let roundedRating = String(format: "%.2f", rating)
         return roundedRating
     }
 
     private func returnRatingColor() -> ScoreRatingColor {
-        guard let rating = series.voteAverage else { return .black }
+        guard let rating = series?.voteAverage else { return .black }
         switch rating {
         case 0: return .black
         case 0..<5.5: return .red

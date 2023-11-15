@@ -21,24 +21,24 @@ protocol SeriesCellViewModelProtocol {
 class SeriesCellViewModel: SeriesCellViewModelProtocol {
 
     let seriesData: SeriesData
-    var series: Series
+    var series: Series?
 
     var seriesTitle: String {
-        series.name ?? "Unknown"
+        series?.name ?? "Unknown"
     }
 
     var genreLabel: String {
-        let genres = series.genreIds
+        let genres = series?.genreIds
         return genres?.compactMap { Genres.findGenre(with: $0) }.joined(separator: ", ") ?? "Unknown genres"
     }
 
     var countryAndYear: String {
-        let year = " • \(series.firstAirDate?.extractYear() ?? "Unknown date")"
+        let year = " • \(series?.firstAirDate?.extractYear() ?? "Unknown date")"
         return seriesData.originCountry + year
     }
 
     var seasonsLabelText: String {
-        let status = series.inProduction ?? false
+        let status = series?.inProduction ?? false
         return status ? Constants.SeriesInfo.finished : Constants.SeriesInfo.inProduction
     }
 
@@ -51,7 +51,7 @@ class SeriesCellViewModel: SeriesCellViewModelProtocol {
     }
 
     var imageUrl: String? {
-        series.posterPath
+        series?.posterPath
     }
 
     required init(cellSeriesData: SeriesData) {

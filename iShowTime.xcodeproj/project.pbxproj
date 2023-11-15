@@ -283,8 +283,8 @@
 			children = (
 				CE9EA8D02AD81B9000C261C8 /* Page.swift */,
 				CE1A6B662AB08C9D00B495EB /* Series.swift */,
-				CE9EA8D22AD81B9A00C261C8 /* Country.swift */,
 				CE2FD5FE2AF547EE0036EF6A /* SeriesData.swift */,
+				CE9EA8D22AD81B9A00C261C8 /* Country.swift */,
 				CE54A4B12AF68DAE003D84C2 /* SeriesProgress.swift */,
 				CEF6FAEA2B03FC380070B899 /* Genres.swift */,
 			);

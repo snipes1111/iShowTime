@@ -18,14 +18,14 @@ protocol DetailCellViewModelProtocol {
 class DetailCellViewModel: DetailCellViewModelProtocol {
 
     private(set) var seriesData: SeriesData
-    private(set) var series: Series
+    private(set) var series: Series?
 
     var countries: String = ""
 
     let dataStoreManager: DataStoreManagerProtocol = DataStoreManger()
 
-    var seriesName: String { series.name ?? Constants.SeriesInfo.unknownTitle }
-    var imageUrl: String? { series.posterPath }
+    var seriesName: String { series?.name ?? Constants.SeriesInfo.unknownTitle }
+    var imageUrl: String? { series?.posterPath }
     var isBeingWatched: Bool { seriesData.isBeingWatched }
 
     required init(seriesData: SeriesData) {

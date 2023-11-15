@@ -16,7 +16,7 @@ final class PlistManager {
             return dict[key]
         } catch {
             print("Failed to load data from plist")
+            return nil
         }
-        return nil
     }
 }

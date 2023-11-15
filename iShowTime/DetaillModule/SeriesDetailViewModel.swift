@@ -30,7 +30,7 @@ class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
     var numberOfRows: Int { 1 }
 
     required init(seriesData: SeriesData) {
-        self.seriesId = seriesData.series.id
+        self.seriesId = seriesData.series?.id
         self.countries = seriesData.originCountry
     }
 }

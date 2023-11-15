@@ -39,7 +39,7 @@ final class SeriesDecoder: JSONDecoder, SeriesDecoderProtocol {
             return json
         } catch {
             print("Error to fetch json: \(error)")
+            return nil
         }
-        return nil
     }
 }

@@ -47,7 +47,7 @@ class DataStoreManger: DataStoreManagerProtocol {
     }
 
     func getSeries(with id: Double) -> SeriesData? {
-        realm.objects(SeriesData.self).first { $0.series.id == id }
+        realm.objects(SeriesData.self).first { $0.series?.id == id }
     }
 
     func setSeriesProgress(seriesData: SeriesData, seriesProgress: SeriesProgress) {

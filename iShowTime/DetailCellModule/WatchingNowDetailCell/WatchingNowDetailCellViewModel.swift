@@ -27,8 +27,8 @@ protocol WatchingNowDetailCellViewModelProtocol {
 
 final class WatchingNowDetailCellViewModel: DetailCellViewModel, WatchingNowDetailCellViewModelProtocol {
 
-    private var numberOfSeasons: Double { series.numberOfSeasons ?? 1 }
-    private var numberOfEpisodes: Double { series.numberOfEpisodes ?? 1 }
+    private var numberOfSeasons: Double { series?.numberOfSeasons ?? 1 }
+    private var numberOfEpisodes: Double { series?.numberOfEpisodes ?? 1 }
     private var episodesInSeason: Double { getEpisodesInSeason(seasonCount) ?? 1 }
 
     private var seasonCount: Double {
@@ -51,14 +51,14 @@ final class WatchingNowDetailCellViewModel: DetailCellViewModel, WatchingNowDeta
     }
 
     var description: String {
-        let productionStatus = (series.inProduction ?? false) ?
+        let productionStatus = (series?.inProduction ?? false) ?
         Constants.SeriesInfo.inProduction : Constants.SeriesInfo.finished
         let seasons = Constants.SeriesInfo.seasons, divider = Constants.SeriesInfo.divider
         return seasons + "\(Int(numberOfSeasons))" + divider + productionStatus
     }
 
     var nextEpisodeDate: String {
-        let airDate = series.nextEpisodeToAir?.airDate.extractDate() ?? Constants.SeriesInfo.noInfo
+        let airDate = series?.nextEpisodeToAir?.airDate.extractDate() ?? Constants.SeriesInfo.noInfo
         return Constants.SeriesInfo.nextEpisode + airDate
     }
 
@@ -124,7 +124,7 @@ final class WatchingNowDetailCellViewModel: DetailCellViewModel, WatchingNowDeta
 extension WatchingNowDetailCellViewModel {
 
     private func getEpisodesInSeason(_ season: Double) -> Double? {
-        let currentSeason = series.seasons?.first { $0.seasonNumber == season }
+        let currentSeason = series?.seasons?.first { $0.seasonNumber == season }
         return currentSeason?.episodeCount
     }
 
@@ -141,7 +141,7 @@ extension WatchingNowDetailCellViewModel {
     }
 
     private func seasonsWatched() -> [Series.Season] {
-        let watchedSeasonsWithoutSpecialSeasons = series.seasons?.filter { season in
+        let watchedSeasonsWithoutSpecialSeasons = series?.seasons?.filter { season in
             if let seasonNumber = season.seasonNumber,
                 seasonNumber != 0 && seasonNumber < seasonCount {
                 return true
