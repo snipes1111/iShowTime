@@ -12,43 +12,26 @@ protocol EditableCellViewModelProtocol {
     func deleteRow(at indexPath: IndexPath)
 }
 
-class FavouritesViewModel: SectionViewModelProtocol, 
+class FavouritesViewModel: SectionViewModel,
                            SectionViewModelRepresentableProtocol {
 
     private let dataStoreManager: DataStoreManagerProtocol = DataStoreManger()
 
-    var seriesData: Results<SeriesData>?
-    private let router: RouterProtocol
-
-    var viewModelDidChange: ((SectionViewModelProtocol) -> Void)?
-    var numberOfRows: Int { seriesData?.count ?? 0 }
-    var heightForRow: Int { 165 }
     var promptLabelText: String { Constants.Labels.favouritesPrompt }
-    var promptLabelIsHidden: Bool { !(seriesData?.isEmpty ?? true) }
-
-    required init(router: RouterProtocol) {
-        self.router = router
-    }
-
-    func showDetails(at indexPath: IndexPath) {
-        guard let selectedSeries = seriesData?[indexPath.item] else { return }
-        router.showDetailSeriesViewController(seriesData: selectedSeries)
-    }
 
     func fetchSeries() {
-        seriesData = dataStoreManager.favouriteSeriesList()
+        seriesData = Array(dataStoreManager.favouriteSeriesList())
         viewModelDidChange?(self)
     }
 
     func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel? {
-        guard let cellSeriesData = seriesData?[indexPath.item] else { return nil }
-        return FavouriteCellViewModel(cellSeriesData: cellSeriesData)
+        FavouriteCellViewModel(cellSeriesData: seriesData[indexPath.item])
     }
 }
 
 extension FavouritesViewModel: EditableCellViewModelProtocol {
     func deleteRow(at indexPath: IndexPath) {
-        guard let cellSeriesData = seriesData?[indexPath.item] else { return }
+        let cellSeriesData = seriesData[indexPath.item]
         dataStoreManager.setIsFavourite(seriesData: cellSeriesData, countries: "")
         fetchSeries()
     }
