@@ -9,8 +9,13 @@ import UIKit
 
 class BaseTabBarController: UITabBarController {
 
-    override func viewDidLayoutSubviews() {
-        customizeItemTitleAndColor()
+    private var needUpdateBarItems: Bool = true
+
+    override func viewWillLayoutSubviews() {
+        if needUpdateBarItems {
+            customizeItemTitleAndColor()
+            needUpdateBarItems = false
+        }
     }
 
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -28,7 +33,7 @@ extension BaseTabBarController {
     }
 
     func animateSelectedItem(_ item: UITabBarItem) {
-        guard let barItemView = item.value(forKey: "view") as? UIView else { return }
-        barItemView.addSpringAnimation()
+        let barItemView = item.value(forKey: "view") as? UIView
+        barItemView?.addSpringAnimation()
     }
 }

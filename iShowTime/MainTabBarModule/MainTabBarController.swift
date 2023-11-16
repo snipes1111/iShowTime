@@ -11,11 +11,10 @@ final class MainTabBarController: BaseTabBarController {
 
     private let builder: BuilderProtocol = Builder()
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         setViewControllers()
     }
-
 }
 
 extension MainTabBarController {
