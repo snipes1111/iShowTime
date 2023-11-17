@@ -44,11 +44,17 @@ extension UIView {
         trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -padding).isActive = true
     }
 
-    func centerInSuperView(_ superView: UIView, sideInsets: CGFloat, constant: CGFloat = 0) {
+    func centerInSuperView(_ superView: UIView, sideInsets: CGFloat,
+                           constantY: CGFloat = 0, constantX: CGFloat = 0) {
         translatesAutoresizingMaskIntoConstraints = false
-        leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: sideInsets).isActive = true
-        trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -sideInsets).isActive = true
-        centerYAnchor.constraint(equalTo: superView.centerYAnchor, constant: constant).isActive = true
+        leadingAnchor.constraint(lessThanOrEqualTo: superView.leadingAnchor,
+                                 constant: sideInsets).isActive = true
+        trailingAnchor.constraint(greaterThanOrEqualTo: superView.trailingAnchor,
+                                  constant: -sideInsets).isActive = true
+        centerYAnchor.constraint(equalTo: superView.centerYAnchor,
+                                 constant: constantY).isActive = true
+        centerXAnchor.constraint(equalTo: superView.centerXAnchor, 
+                                 constant: constantX).isActive = true
     }
 
     func setSize(_ height: CGFloat, _ width: CGFloat) {

@@ -27,12 +27,15 @@ class FavouritesViewModel: SectionViewModel,
     func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel? {
         FavouriteCellViewModel(cellSeriesData: seriesData[indexPath.item])
     }
+
+    func showDetails(at indexPath: IndexPath) {
+        router.pushDetailViewController(seriesData: seriesData[indexPath.item])
+    }
 }
 
 extension FavouritesViewModel: EditableCellViewModelProtocol {
     func deleteRow(at indexPath: IndexPath) {
-        let cellSeriesData = seriesData[indexPath.item]
-        dataStoreManager.setIsFavourite(seriesData: cellSeriesData, countries: "")
+        dataStoreManager.setIsFavourite(seriesData: seriesData[indexPath.item], countries: "")
         fetchSeries()
     }
 }

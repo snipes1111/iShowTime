@@ -9,13 +9,13 @@ import UIKit
 
 class BaseSectionView: UIView {
 
-    let tableView: UITableView
-    private(set) var promptLabel: UILabel!
     private(set) var viewModel: (SectionViewModelProtocol & SectionViewModelRepresentableProtocol)
+
+    let tableView: UITableView = UITableView()
+    let promptLabel: UILabel = UILabel(font: Fonts.promptLabel, color: Colors.promptLabel)
 
     init(viewModel: (SectionViewModelProtocol & SectionViewModelRepresentableProtocol)) {
         self.viewModel = viewModel
-        tableView = UITableView()
         super.init(frame: .zero)
         setupUI()
     }
@@ -30,30 +30,24 @@ class BaseSectionView: UIView {
         subscribeToViewModel()
     }
 
+    private func setupPromptLabel() {
+        promptLabel.textAlignment = .center
+        updatePromptLabel()
+        addSubview(promptLabel)
+        promptLabel.centerInSuperView(self, sideInsets: 32)
+    }
+
     func subscribeToViewModel() {
         viewModel.viewModelDidChange = { _ in
             DispatchQueue.main.async { [unowned self] in
-                tableView.reloadData()
                 updatePromptLabel()
+                tableView.reloadData()
             }
         }
-    }
-
-    private func setupPromptLabel() {
-        promptLabel = UILabel(font: Fonts.promptLabel,
-                            color: Colors.promptLabel)
-        promptLabel.textAlignment = .center
-        setPromptLabelConstraints()
-        updatePromptLabel()
     }
 
     func updatePromptLabel() {
         promptLabel.isHidden = viewModel.promptLabelIsHidden
         promptLabel.text = viewModel.promptLabelText
-    }
-
-    func setPromptLabelConstraints() {
-        addSubview(promptLabel)
-        promptLabel.centerInSuperView(self, sideInsets: 32)
     }
 }

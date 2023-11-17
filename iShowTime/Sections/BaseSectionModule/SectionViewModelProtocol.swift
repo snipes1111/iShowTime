@@ -14,18 +14,18 @@ protocol SectionViewModelProtocol {
     var heightForRow: Int { get }
     var promptLabelIsHidden: Bool { get }
     init(router: RouterProtocol)
-    func showDetails(at indexPath: IndexPath)
 }
 
 protocol SectionViewModelRepresentableProtocol {
     var promptLabelText: String { get }
     func fetchSeries()
     func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel?
+    func showDetails(at indexPath: IndexPath)
 }
 
 class SectionViewModel: SectionViewModelProtocol {
 
-    private let router: RouterProtocol
+    let router: RouterProtocol
 
     var seriesData: [SeriesData] = []
     
@@ -36,10 +36,5 @@ class SectionViewModel: SectionViewModelProtocol {
     
     required init(router: RouterProtocol) {
         self.router = router
-    }
-
-    func showDetails(at indexPath: IndexPath) {
-        let selectedSeries = seriesData[indexPath.item]
-        router.showDetailSeriesViewController(seriesData: selectedSeries)
     }
 }

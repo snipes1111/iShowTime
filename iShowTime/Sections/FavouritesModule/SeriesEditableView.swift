@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class FavouritesView: BaseSectionView {
+final class SeriesEditableView: BaseSectionView {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt
                      indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = deleteAction(at: indexPath)

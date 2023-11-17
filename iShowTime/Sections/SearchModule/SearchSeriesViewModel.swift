@@ -52,6 +52,10 @@ extension SearchSeriesViewModel: SectionViewModelRepresentableProtocol {
     func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel? {
         SeriesCellViewModel(cellSeriesData: seriesData[indexPath.item])
     }
+
+    func showDetails(at indexPath: IndexPath) {
+        router.showDetailViewController(seriesData: seriesData[indexPath.item])
+    }
 }
 
 extension SearchSeriesViewModel {

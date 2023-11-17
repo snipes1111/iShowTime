@@ -43,7 +43,4 @@ struct Constants {
         static let season = "Season"
         static let episode = "Episode"
     }
-    struct CellIdentifiers {
-        static let searchCell = "SearchSeriesCell"
-    }
 }

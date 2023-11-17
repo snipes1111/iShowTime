@@ -7,11 +7,9 @@
 
 import UIKit
 
-final class WatchingNowViewController: BaseSectionViewController {
-
+final class SeriesViewController: BaseSectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.fetchSeries()
     }
-
 }

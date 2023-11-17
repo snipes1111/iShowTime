@@ -23,4 +23,15 @@ final class WatchingNowViewModel: SectionViewModel,
     func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel? {
         WatchingNowCellViewModel(cellSeriesData: seriesData[indexPath.item])
     }
+
+    func showDetails(at indexPath: IndexPath) {
+        router.pushProgressViewController(seriesData: seriesData[indexPath.item])
+    }
+}
+
+extension WatchingNowViewModel: EditableCellViewModelProtocol {
+    func deleteRow(at indexPath: IndexPath) {
+        dataStoreManager.setIsBeingWatched(seriesData: seriesData[indexPath.item], countries: "")
+        fetchSeries()
+    }
 }

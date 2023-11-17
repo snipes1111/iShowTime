@@ -11,19 +11,14 @@ class BaseSectionViewController: UIViewController {
     var viewModel: SectionViewModelRepresentableProtocol!
     var mainView: BaseSectionView!
 
+    override func loadView() {
+        super.loadView()
+        view = mainView
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-    }
-
-    func setupUI() {
-        createMainView()
         setupBackButton()
-    }
-
-    private func createMainView() {
-        view.addSubview(mainView)
-        mainView.fillSuperView(view)
     }
 
     private func setupBackButton() {

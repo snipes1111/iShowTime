@@ -9,7 +9,9 @@ import UIKit
 
 protocol RouterProtocol {
     init(viewController: UIViewController)
-    func showDetailSeriesViewController(seriesData: SeriesData)
+    func showDetailViewController(seriesData: SeriesData)
+    func pushDetailViewController(seriesData: SeriesData)
+    func pushProgressViewController(seriesData: SeriesData)
 }
 
 final class Router: RouterProtocol {
@@ -20,16 +22,19 @@ final class Router: RouterProtocol {
         self.viewController = viewController
     }
 
-    func showDetailSeriesViewController(seriesData: SeriesData) {
-        if viewController is SearchSeriesViewController {
-            let detailVc = builder.buildSearchDetailViewController(seriesData)
-            viewController.present(detailVc, animated: true)
-        } else if viewController is WatchingNowViewController {
-            let detailVc = builder.buildWatchingNowDetailViewController(seriesData)
-            viewController.navigationController?.pushViewController(detailVc, animated: true)
-        } else {
-            let detailVc = builder.buildFavouritesDetailViewController(seriesData)
-            viewController.navigationController?.pushViewController(detailVc, animated: true)
-        }
+    func showDetailViewController(seriesData: SeriesData) {
+        let detailVc = builder.buildSearchDetailViewController(seriesData)
+        viewController.present(detailVc, animated: true)
     }
+
+    func pushProgressViewController(seriesData: SeriesData) {
+        let detailVc = builder.buildWatchingNowDetailViewController(seriesData)
+        viewController.navigationController?.pushViewController(detailVc, animated: true)
+    }
+
+    func pushDetailViewController(seriesData: SeriesData) {
+        let detailVc = builder.buildFavouritesDetailViewController(seriesData)
+        viewController.navigationController?.pushViewController(detailVc, animated: true)
+    }
+
 }

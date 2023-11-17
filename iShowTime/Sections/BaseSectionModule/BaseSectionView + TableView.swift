@@ -13,15 +13,10 @@ extension BaseSectionView {
         tableView.keyboardDismissMode = .onDrag
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(SeriesCell.self, forCellReuseIdentifier: String(describing: SeriesCell.self))
-        addTableViewToView()
-    }
-
-    func addTableViewToView() {
+        tableView.register(SeriesCell.self, forCellReuseIdentifier: SeriesCell.identifier)
         addSubview(tableView)
         tableView.fillSuperView(self)
     }
-
 }
 
 extension BaseSectionView: UITableViewDataSource {
@@ -30,7 +25,7 @@ extension BaseSectionView: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SeriesCell.self),
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SeriesCell.identifier,
                                                        for: indexPath) as? SeriesCell
         else { return UITableViewCell() }
         cell.viewModel = viewModel.returnCellViewModel(at: indexPath)

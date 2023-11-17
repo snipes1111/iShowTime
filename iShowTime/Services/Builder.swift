@@ -33,10 +33,10 @@ final class Builder: BuilderProtocol {
     }
 
     func buildWatchingNowViewController() -> UIViewController {
-        let viewController = WatchingNowViewController()
+        let viewController = SeriesViewController()
         let router = Router(viewController: viewController)
         let viewModel = WatchingNowViewModel(router: router)
-        let view = BaseSectionView(viewModel: viewModel)
+        let view = SeriesEditableView(viewModel: viewModel)
         viewController.mainView = view
         viewController.viewModel = viewModel
         return createNavController(
@@ -47,10 +47,10 @@ final class Builder: BuilderProtocol {
     }
 
     func buildFavouritesViewController() -> UIViewController {
-        let viewController = FavouritesViewController()
+        let viewController = SeriesViewController()
         let router = Router(viewController: viewController)
         let viewModel = FavouritesViewModel(router: router)
-        let view = FavouritesView(viewModel: viewModel)
+        let view = SeriesEditableView(viewModel: viewModel)
         viewController.mainView = view
         viewController.viewModel = viewModel
         return createNavController(

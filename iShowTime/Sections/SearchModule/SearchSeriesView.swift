@@ -9,52 +9,58 @@ import UIKit
 
 final class SearchSeriesView: BaseSectionView {
 
+    private var needToUpdateConstraints: Bool = true
+    private var spinner: UIActivityIndicatorView!
+    private var loadingStack: UIStackView!
+
     private lazy var searchViewModel: SearchSeriesViewModelProtocol? = {
         viewModel as? SearchSeriesViewModelProtocol
     }()
-    private var needToUpdateConstraints: Bool = true
-
-    var spinner: UIActivityIndicatorView!
-    var loadingStack: UIStackView!
 
     override func setupUI() {
         super.setupUI()
-        setupPromptVStack()
+        setupLoadingVStack()
         bindWithLoadingState()
     }
 
-    // clear label constraints
-    override func setPromptLabelConstraints() {}
-
     override func updateConstraints() {
         if needToUpdateConstraints {
-            setupLoadingVStackConstraints()
+            promptLabel.constraints.forEach { $0.isActive = false }
+            setLoadingVStackConstraints()
             needToUpdateConstraints = false
         }
         super.updateConstraints()
     }
 
     private func bindWithLoadingState() {
-        searchViewModel?.loadingState.bind { [unowned self] state in
-            updateUI()
+        searchViewModel?.loadingState.bind { state in
+            DispatchQueue.main.async { [unowned self] in
+                if state == .loading { spinner.startAnimating() }
+                else { spinner.stopAnimating() }
+                updatePromptLabel()
+                tableView.reloadData()
+            }
         }
     }
 }
 
 extension SearchSeriesView {
 
-    private func updateUI() {
-        DispatchQueue.main.async { [unowned self] in
-            updatePromptLabel()
-            manageSpinner()
-            tableView.reloadData()
-        }
+    func setupLoadingVStack() {
+        spinner = SpinnerView()
+        promptLabel.sizeToFit()
+        loadingStack = HorizontalStackView(arrangedSubviews: [promptLabel, spinner])
+        loadingStack.alignment = .center
+        tableView.addSubview(loadingStack)
     }
 
-    private func manageSpinner() {
-        switch searchViewModel?.loadingState.value {
-        case .loading: spinner.startAnimating()
-        default: spinner.stopAnimating()
-        }
+    func setLoadingVStackConstraints() {
+        loadingStack.centerInSuperView(tableView, sideInsets: 0, constantY: -navBarSize())
+    }
+
+    private func navBarSize() -> CGFloat {
+        let vc = findViewController()
+        let navBarFrame = vc?.navigationController?.navigationBar.frame
+        return navBarFrame?.maxY ?? 0
     }
 }
