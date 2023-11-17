@@ -47,13 +47,13 @@ extension UIView {
     func centerInSuperView(_ superView: UIView, sideInsets: CGFloat,
                            constantY: CGFloat = 0, constantX: CGFloat = 0) {
         translatesAutoresizingMaskIntoConstraints = false
-        leadingAnchor.constraint(lessThanOrEqualTo: superView.leadingAnchor,
+        leadingAnchor.constraint(greaterThanOrEqualTo: superView.leadingAnchor,
                                  constant: sideInsets).isActive = true
-        trailingAnchor.constraint(greaterThanOrEqualTo: superView.trailingAnchor,
+        trailingAnchor.constraint(lessThanOrEqualTo: superView.trailingAnchor,
                                   constant: -sideInsets).isActive = true
         centerYAnchor.constraint(equalTo: superView.centerYAnchor,
                                  constant: constantY).isActive = true
-        centerXAnchor.constraint(equalTo: superView.centerXAnchor, 
+        centerXAnchor.constraint(equalTo: superView.centerXAnchor,
                                  constant: constantX).isActive = true
     }
 

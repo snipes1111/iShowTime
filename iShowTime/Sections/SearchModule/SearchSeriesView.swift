@@ -25,7 +25,6 @@ final class SearchSeriesView: BaseSectionView {
 
     override func updateConstraints() {
         if needToUpdateConstraints {
-            promptLabel.constraints.forEach { $0.isActive = false }
             setLoadingVStackConstraints()
             needToUpdateConstraints = false
         }
@@ -48,14 +47,12 @@ extension SearchSeriesView {
 
     func setupLoadingVStack() {
         spinner = SpinnerView()
-        promptLabel.sizeToFit()
         loadingStack = HorizontalStackView(arrangedSubviews: [promptLabel, spinner])
-        loadingStack.alignment = .center
         tableView.addSubview(loadingStack)
     }
 
     func setLoadingVStackConstraints() {
-        loadingStack.centerInSuperView(tableView, sideInsets: 0, constantY: -navBarSize())
+        loadingStack.centerInSuperView(tableView, sideInsets: 16, constantY: -navBarSize())
     }
 
     private func navBarSize() -> CGFloat {
