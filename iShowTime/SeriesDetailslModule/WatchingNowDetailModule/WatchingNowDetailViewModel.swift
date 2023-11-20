@@ -11,6 +11,8 @@ final class WatchingNowDetailViewModel: SeriesDetailViewModel, SeriesDetailRepre
 
     private let dataStorage: DataStoreManagerProtocol = DataStoreManger()
 
+    var cellType: DetailCell.Type { WatchingNowDetailCell.self }
+
     func fetchSeriesDetails() {
         seriesData = dataStorage.getSeries(with: seriesId ?? 0)
         viewModelDidChange?(self)

@@ -11,24 +11,12 @@ class SeriesDetailView: UIView {
 
     private(set) var viewModel: (SeriesDetailViewModelProtocol & SeriesDetailRepresentableProtocol)
     private(set) var tableView = TableViewWithBlurBackground()
-    private(set) var backDropImageView = SeriesImageView()
     private(set) var loadingView = LoadingView()
-
-    var cellType: UITableViewCell.Type {
-        SeriesDescriptionCell.self
-    }
-    var cellIdentifier: String {
-        String(describing: cellType)
-    }
-    var tableViewTopInset: CGFloat {
-        0
-    }
 
     init(viewModel: (SeriesDetailViewModelProtocol & SeriesDetailRepresentableProtocol)) {
         self.viewModel = viewModel
         super.init(frame: .zero)
         setupUI()
-        assignBackDropImageView()
         subscribeToViewModel()
     }
 
@@ -36,12 +24,11 @@ class SeriesDetailView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func assignBackDropImageView() {
-        backDropImageView = tableView.backDropImageView
-    }
-
     func updateBackDropImageView() {
-        backDropImageView.getImage(viewModel.backDropImageUrl)
+        tableView.backDropImageView.getImage(viewModel.backDropImageUrl) { [weak self] isDone in
+            guard let self = self else { return }
+            if isDone { self.loadingView.hideWithAnimation() }
+        }
     }
 
     private func subscribeToViewModel() {
@@ -55,7 +42,6 @@ class SeriesDetailView: UIView {
         DispatchQueue.main.async(group: dispatchGroup) { [unowned self] in
             updateBackDropImageView()
             tableView.reloadData()
-            loadingView.hideWithAnimation()
         }
     }
 }

@@ -11,6 +11,8 @@ final class FavouritesDetailViewModel: SeriesDetailViewModel, SeriesDetailRepres
 
     private let dataStorage: DataStoreManagerProtocol = DataStoreManger()
 
+    var cellType: DetailCell.Type { SeriesDescriptionCell.self }
+
     func fetchSeriesDetails() {
         seriesData = dataStorage.getSeries(with: seriesId ?? 0)
         viewModelDidChange?(self)

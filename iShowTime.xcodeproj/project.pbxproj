@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		CE0589C52AD4543300DE987F /* ImageCachingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589C42AD4543300DE987F /* ImageCachingManager.swift */; };
 		CE0589C72AD5AD1D00DE987F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589C62AD5AD1D00DE987F /* Router.swift */; };
-		CE0589CC2AD6C56200DE987F /* SearchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589CB2AD6C56200DE987F /* SearchDetailView.swift */; };
 		CE0589CE2AD6C63400DE987F /* SearchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589CD2AD6C63400DE987F /* SearchDetailViewModel.swift */; };
 		CE0589D62AD6E92D00DE987F /* SeriesDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589D52AD6E92D00DE987F /* SeriesDescriptionCell.swift */; };
 		CE1A6B4A2AAF4D6B00B495EB /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B492AAF4D6B00B495EB /* BaseTabBarController.swift */; };
@@ -31,7 +30,6 @@
 		CE6C3D322AF3D18D004DACF9 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE6C3D312AF3D18D004DACF9 /* RealmSwift */; };
 		CE7208332AE0362F0005C16E /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208322AE0362F0005C16E /* DataStoreManager.swift */; };
 		CE72083E2AE16DAD0005C16E /* WatchingNowDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72083D2AE16DAD0005C16E /* WatchingNowDetailViewController.swift */; };
-		CE7208402AE16EAC0005C16E /* WatchingNowDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72083F2AE16EAC0005C16E /* WatchingNowDetailView.swift */; };
 		CE7208462AE16FC30005C16E /* WatchingNowDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208452AE16FC30005C16E /* WatchingNowDetailViewModel.swift */; };
 		CE7208482AE17C720005C16E /* WatchingDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208472AE17C710005C16E /* WatchingDetailViewCell.swift */; };
 		CE72084A2AE17C7D0005C16E /* WatchingNowDetailCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208492AE17C7D0005C16E /* WatchingNowDetailCellViewModel.swift */; };
@@ -49,7 +47,6 @@
 		CE72086C2AEAB94D0005C16E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72086B2AEAB94D0005C16E /* LoadingView.swift */; };
 		CE72086E2AEABB6B0005C16E /* TableViewWithBlurBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72086D2AEABB6B0005C16E /* TableViewWithBlurBackground.swift */; };
 		CE7208702AEABF3E0005C16E /* SeriesDetailView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72086F2AEABF3E0005C16E /* SeriesDetailView + Extensions.swift */; };
-		CE7208722AEAC0700005C16E /* SeriesDetailView + TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208712AEAC0700005C16E /* SeriesDetailView + TableView.swift */; };
 		CE7208762AEACDBB0005C16E /* SectionViewModel+Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7208752AEACDBB0005C16E /* SectionViewModel+Protocols.swift */; };
 		CE81261B2AEBD19900693BF5 /* BaseSeriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81261A2AEBD19900693BF5 /* BaseSeriesCell.swift */; };
 		CE81261D2AEBD2F100693BF5 /* SeriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81261C2AEBD2F100693BF5 /* SeriesCell.swift */; };
@@ -97,7 +94,6 @@
 /* Begin PBXFileReference section */
 		CE0589C42AD4543300DE987F /* ImageCachingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCachingManager.swift; sourceTree = "<group>"; };
 		CE0589C62AD5AD1D00DE987F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		CE0589CB2AD6C56200DE987F /* SearchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailView.swift; sourceTree = "<group>"; };
 		CE0589CD2AD6C63400DE987F /* SearchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewModel.swift; sourceTree = "<group>"; };
 		CE0589D52AD6E92D00DE987F /* SeriesDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDescriptionCell.swift; sourceTree = "<group>"; };
 		CE1A6B492AAF4D6B00B495EB /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
@@ -117,7 +113,6 @@
 		CE6C3D2C2AF3C657004DACF9 /* ShowMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMoreButton.swift; sourceTree = "<group>"; };
 		CE7208322AE0362F0005C16E /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
 		CE72083D2AE16DAD0005C16E /* WatchingNowDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingNowDetailViewController.swift; sourceTree = "<group>"; };
-		CE72083F2AE16EAC0005C16E /* WatchingNowDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingNowDetailView.swift; sourceTree = "<group>"; };
 		CE7208452AE16FC30005C16E /* WatchingNowDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingNowDetailViewModel.swift; sourceTree = "<group>"; };
 		CE7208472AE17C710005C16E /* WatchingDetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingDetailViewCell.swift; sourceTree = "<group>"; };
 		CE7208492AE17C7D0005C16E /* WatchingNowDetailCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingNowDetailCellViewModel.swift; sourceTree = "<group>"; };
@@ -135,7 +130,6 @@
 		CE72086B2AEAB94D0005C16E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		CE72086D2AEABB6B0005C16E /* TableViewWithBlurBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewWithBlurBackground.swift; sourceTree = "<group>"; };
 		CE72086F2AEABF3E0005C16E /* SeriesDetailView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SeriesDetailView + Extensions.swift"; sourceTree = "<group>"; };
-		CE7208712AEAC0700005C16E /* SeriesDetailView + TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SeriesDetailView + TableView.swift"; sourceTree = "<group>"; };
 		CE7208752AEACDBB0005C16E /* SectionViewModel+Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SectionViewModel+Protocols.swift"; sourceTree = "<group>"; };
 		CE81261A2AEBD19900693BF5 /* BaseSeriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSeriesCell.swift; sourceTree = "<group>"; };
 		CE81261C2AEBD2F100693BF5 /* SeriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCell.swift; sourceTree = "<group>"; };
@@ -200,7 +194,6 @@
 			isa = PBXGroup;
 			children = (
 				CE0589CD2AD6C63400DE987F /* SearchDetailViewModel.swift */,
-				CE0589CB2AD6C56200DE987F /* SearchDetailView.swift */,
 			);
 			path = SearchSeriesDetailModule;
 			sourceTree = "<group>";
@@ -331,7 +324,6 @@
 			children = (
 				CE7208452AE16FC30005C16E /* WatchingNowDetailViewModel.swift */,
 				CE72083D2AE16DAD0005C16E /* WatchingNowDetailViewController.swift */,
-				CE72083F2AE16EAC0005C16E /* WatchingNowDetailView.swift */,
 			);
 			path = WatchingNowDetailModule;
 			sourceTree = "<group>";
@@ -366,7 +358,7 @@
 			path = DetailCell;
 			sourceTree = "<group>";
 		};
-		CE7208612AE6DDDC0005C16E /* DetaillModule */ = {
+		CE7208612AE6DDDC0005C16E /* SeriesDetailslModule */ = {
 			isa = PBXGroup;
 			children = (
 				CE7208732AEAC0980005C16E /* SeriesDetailView */,
@@ -376,7 +368,7 @@
 				CE7208392AE16D420005C16E /* WatchingNowDetailModule */,
 				CEE495992AF14A9E0086F67A /* FavouritesDetailModule */,
 			);
-			path = DetaillModule;
+			path = SeriesDetailslModule;
 			sourceTree = "<group>";
 		};
 		CE7208662AEA85C90005C16E /* Network */ = {
@@ -411,7 +403,6 @@
 			children = (
 				CE7208692AEA86FD0005C16E /* SeriesDetailView.swift */,
 				CE72086F2AEABF3E0005C16E /* SeriesDetailView + Extensions.swift */,
-				CE7208712AEAC0700005C16E /* SeriesDetailView + TableView.swift */,
 			);
 			path = SeriesDetailView;
 			sourceTree = "<group>";
@@ -472,7 +463,7 @@
 				CE1A6B682AB08CA900B495EB /* Model */,
 				CEF456052AAB725F00D5A397 /* MainTabBarModule */,
 				CE7208742AEACD990005C16E /* SeriesSectionModule */,
-				CE7208612AE6DDDC0005C16E /* DetaillModule */,
+				CE7208612AE6DDDC0005C16E /* SeriesDetailslModule */,
 				CE72085B2AE6C1170005C16E /* DetailCellModule */,
 				CEBAAEAC2A13E828001F59A6 /* Info.plist */,
 			);
@@ -613,9 +604,7 @@
 				CE8126232AEBF34D00693BF5 /* BaseSectionView + TableView.swift in Sources */,
 				CE0589D62AD6E92D00DE987F /* SeriesDescriptionCell.swift in Sources */,
 				CEA1A8CA2ABB46030012630D /* SearchSeriesViewModel.swift in Sources */,
-				CE7208402AE16EAC0005C16E /* WatchingNowDetailView.swift in Sources */,
 				CE72086A2AEA86FD0005C16E /* SeriesDetailView.swift in Sources */,
-				CE0589CC2AD6C56200DE987F /* SearchDetailView.swift in Sources */,
 				CE7208462AE16FC30005C16E /* WatchingNowDetailViewModel.swift in Sources */,
 				CE9EA8D12AD81B9000C261C8 /* Page.swift in Sources */,
 				CE81261D2AEBD2F100693BF5 /* SeriesCell.swift in Sources */,
@@ -650,7 +639,6 @@
 				CE9EA8D32AD81B9A00C261C8 /* Country.swift in Sources */,
 				CEA1A8D02ABC6D580012630D /* Box.swift in Sources */,
 				CEF502FD2ACDD1F100DFB431 /* PlistManager.swift in Sources */,
-				CE7208722AEAC0700005C16E /* SeriesDetailView + TableView.swift in Sources */,
 				CEE495922AF12C2B0086F67A /* HeartButton.swift in Sources */,
 				CE1A6B6A2AB0921D00B495EB /* WatchingNowViewModel.swift in Sources */,
 				CE7208572AE29BC50005C16E /* CountTextField.swift in Sources */,

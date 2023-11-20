@@ -12,6 +12,11 @@ final class SearchDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresenta
     private let networkService: NetworkServiceProtocol = NetworkService()
     private let decoder: SeriesDecoderProtocol = SeriesDecoder()
     private let dataStorage: DataStoreManagerProtocol = DataStoreManger()
+
+    override var tableViewTopInset: Int { 60 }
+
+    var cellType: DetailCell.Type { SeriesDescriptionCell.self }
+
     func fetchSeriesDetails() {
         guard let seriesId = seriesId else { return }
         if let seriesFromStorage = dataStorage.getSeries(with: seriesId) {
