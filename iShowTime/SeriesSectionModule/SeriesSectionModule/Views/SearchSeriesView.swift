@@ -22,7 +22,7 @@ final class SearchSeriesView: BaseSectionView {
         setupLoadingVStack()
         bindWithLoadingState()
     }
-
+    //redefine constraints after the frame of the view will be known
     override func updateConstraints() {
         if needToUpdateConstraints {
             setLoadingVStackConstraints()

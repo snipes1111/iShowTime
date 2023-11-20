@@ -43,7 +43,7 @@ class BaseWatchingNowDetailCell: DetailCell {
         super.setupSubViews()
         descriptionLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
         nextEpisodeDateLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
-        progressView = SeriesProgressView(15)
+        progressView = SeriesProgressView(height: 15)
         setupRowWith(&seasonLabel, &seasonMinusButton, &seasonTF, &seasonPlusButton)
         setupRowWith(&episodeLabel, &episodeMinusButton, &episodeTF, &episodePlusButton)
     }

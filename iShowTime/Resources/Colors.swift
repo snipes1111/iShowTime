@@ -18,4 +18,6 @@ struct Colors {
     static let blackRating = UIColor.black
     static let trackTintColor = UIColor.lightGray.withAlphaComponent(0.4)
     static let progressTintColor = UIColor.systemGreen
+    static let title = UIColor.black
+    static let info = UIColor.secondaryLabel
 }

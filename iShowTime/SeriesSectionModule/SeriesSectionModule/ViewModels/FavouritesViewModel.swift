@@ -8,10 +8,6 @@
 import Foundation
 import RealmSwift
 
-protocol EditableCellViewModelProtocol {
-    func deleteRow(at indexPath: IndexPath)
-}
-
 class FavouritesViewModel: SectionViewModel,
                            SectionViewModelRepresentableProtocol {
 
@@ -22,10 +18,6 @@ class FavouritesViewModel: SectionViewModel,
     func fetchSeries() {
         seriesData = Array(dataStoreManager.favouriteSeriesList())
         viewModelDidChange?(self)
-    }
-
-    func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel? {
-        FavouriteCellViewModel(cellSeriesData: seriesData[indexPath.item])
     }
 
     func showDetails(at indexPath: IndexPath) {

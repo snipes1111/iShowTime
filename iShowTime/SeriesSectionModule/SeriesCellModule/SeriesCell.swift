@@ -11,12 +11,12 @@ class SeriesCell: BaseSeriesCell {
     var viewModel: SeriesCellViewModelProtocol? {
         didSet {
             guard let viewModel = viewModel else { return }
-            titleLabel.text = viewModel.seriesTitle
-            genreLabel.text = viewModel.genreLabel
+            titleLabel.text = viewModel.title
             countryAndYearLabel.text = viewModel.countryAndYear
-            seasonsLabel.text = viewModel.seasonsLabelText
-            progressView.isHidden = viewModel.progressViewIsHidden
-            progressView.progress = viewModel.seriesProgress
+            productionStatusLabel.text = viewModel.productionStatus
+            seasonsLabel.text = viewModel.seasonsCount
+            progressView.isHidden = viewModel.progressIsHidden
+            progressView.progress = viewModel.progress
             posterImageView.getImage(viewModel.imageUrl)
         }
     }

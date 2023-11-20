@@ -20,10 +20,6 @@ final class WatchingNowViewModel: SectionViewModel,
         viewModelDidChange?(self)
     }
 
-    func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel? {
-        WatchingNowCellViewModel(cellSeriesData: seriesData[indexPath.item])
-    }
-
     func showDetails(at indexPath: IndexPath) {
         router.pushProgressViewController(seriesData: seriesData[indexPath.item])
     }

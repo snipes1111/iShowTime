@@ -10,8 +10,8 @@ import UIKit
 class BaseSeriesCell: UITableViewCell {
     var posterImageView: SeriesImageView!
     var titleLabel: UILabel!
-    var genreLabel: UILabel!
     var countryAndYearLabel: UILabel!
+    var productionStatusLabel: UILabel!
     var seasonsLabel: UILabel!
     var progressView: SeriesProgressView!
 
@@ -29,12 +29,12 @@ extension BaseSeriesCell {
     private func setupView() {
         setupSubViews()
         let vStack = VerticalStackView(spacing: 4, arrangedSubviews: [titleLabel,
-                                                          genreLabel,
-                                                          countryAndYearLabel,
-                                                          seasonsLabel,
-                                                          UIView(),
-                                                          progressView
-                                                         ])
+                                                                      countryAndYearLabel,
+                                                                      productionStatusLabel,
+                                                                      seasonsLabel,
+                                                                      UIView(),
+                                                                      progressView])
+        vStack.setCustomSpacing(8, after: titleLabel)
         let hStack = HorizontalStackView(arrangedSubviews: [posterImageView, vStack])
         contentView.addSubview(hStack)
         makeConstraints(hStack)
@@ -42,11 +42,11 @@ extension BaseSeriesCell {
 
     private func setupSubViews() {
         posterImageView = SeriesImageView()
-        titleLabel = UILabel(font: Fonts.seriesName)
-        genreLabel = UILabel(font: Fonts.seriesInfo)
-        countryAndYearLabel = UILabel(font: Fonts.seriesInfo, color: .systemGray)
-        seasonsLabel = UILabel(font: Fonts.seriesInfo, color: .systemGray)
-        progressView = SeriesProgressView(15)
+        titleLabel = UILabel(font: Fonts.seriesName, color: Colors.title)
+        countryAndYearLabel = UILabel(font: Fonts.seriesInfo, color: Colors.info)
+        productionStatusLabel = UILabel(font: Fonts.seriesInfo, color: Colors.info)
+        seasonsLabel = UILabel(font: Fonts.seriesInfo, color: Colors.info)
+        progressView = SeriesProgressView(height: 15)
     }
 
     private func makeConstraints(_ view: UIView) {

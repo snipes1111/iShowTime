@@ -8,7 +8,7 @@
 import UIKit
 
 final class SeriesProgressView: UIProgressView {
-    init(_ height: CGFloat) {
+    init(height: CGFloat) {
         super.init(frame: .zero)
         trackTintColor = Colors.trackTintColor
         progressTintColor = Colors.progressTintColor

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import RealmSwift
 
 protocol SectionViewModelProtocol {
     var viewModelDidChange: ((SectionViewModelProtocol) -> Void)? { get set }
@@ -14,13 +13,17 @@ protocol SectionViewModelProtocol {
     var heightForRow: Int { get }
     var promptLabelIsHidden: Bool { get }
     init(router: RouterProtocol)
+    func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel?
 }
 
 protocol SectionViewModelRepresentableProtocol {
     var promptLabelText: String { get }
     func fetchSeries()
-    func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel?
     func showDetails(at indexPath: IndexPath)
+}
+
+protocol EditableCellViewModelProtocol {
+    func deleteRow(at indexPath: IndexPath)
 }
 
 class SectionViewModel: SectionViewModelProtocol {
@@ -36,5 +39,9 @@ class SectionViewModel: SectionViewModelProtocol {
     
     required init(router: RouterProtocol) {
         self.router = router
+    }
+
+    func returnCellViewModel(at indexPath: IndexPath) -> SeriesCellViewModel? {
+        SeriesCellViewModel(cellSeriesData: seriesData[indexPath.item])
     }
 }
