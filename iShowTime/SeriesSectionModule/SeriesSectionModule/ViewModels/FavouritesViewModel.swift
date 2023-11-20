@@ -27,7 +27,7 @@ class FavouritesViewModel: SectionViewModel,
 
 extension FavouritesViewModel: EditableCellViewModelProtocol {
     func deleteRow(at indexPath: IndexPath) {
-        dataStoreManager.setIsFavourite(seriesData: seriesData[indexPath.item], countries: "")
+        dataStoreManager.setIsFavourite(seriesData: seriesData[indexPath.item])
         fetchSeries()
     }
 }

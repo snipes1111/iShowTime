@@ -9,17 +9,9 @@ import Foundation
 
 final class FavouritesDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresentableProtocol {
 
-    private let dataStorage: DataStoreManagerProtocol = DataStoreManger()
-
     var cellType: DetailCell.Type { SeriesDescriptionCell.self }
 
-    func fetchSeriesDetails() {
-        seriesData = dataStorage.getSeries(with: seriesId ?? 0)
-        viewModelDidChange?(self)
-    }
-
     func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
-        guard let seriesData = seriesData else { return nil }
         return SeriesDescriptionCellViewModel(seriesData: seriesData)
     }
 }

@@ -12,8 +12,8 @@ protocol DataStoreManagerProtocol {
     func watchingSeriesList() -> Results<SeriesData>
     func favouriteSeriesList() -> Results<SeriesData>
     func getSeries(with id: Double) -> SeriesData?
-    func setIsBeingWatched(seriesData: SeriesData, countries: String)
-    func setIsFavourite(seriesData: SeriesData, countries: String)
+    func setIsBeingWatched(seriesData: SeriesData)
+    func setIsFavourite(seriesData: SeriesData)
     func setSeriesProgress(seriesData: SeriesData, seriesProgress: SeriesProgress)
     func checkForDelete()
 }
@@ -22,18 +22,16 @@ class DataStoreManger: DataStoreManagerProtocol {
 
     private let realm = try! Realm()
 
-    func setIsBeingWatched(seriesData: SeriesData, countries: String) {
+    func setIsBeingWatched(seriesData: SeriesData) {
         try! realm.write {
             seriesData.isBeingWatched.toggle()
-            seriesData.originCountry = countries
             realm.add(seriesData)
         }
     }
 
-    func setIsFavourite(seriesData: SeriesData, countries: String) {
+    func setIsFavourite(seriesData: SeriesData) {
         try! realm.write {
             seriesData.isFavourite.toggle()
-            seriesData.originCountry = countries
             realm.add(seriesData)
         }
     }

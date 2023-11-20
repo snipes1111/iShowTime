@@ -18,23 +18,19 @@ protocol DetailCellViewModelProtocol {
 class DetailCellViewModel: DetailCellViewModelProtocol {
 
     private(set) var seriesData: SeriesData
-    private(set) var series: Series?
-
-    var countries: String = ""
 
     let dataStoreManager: DataStoreManagerProtocol = DataStoreManger()
 
-    var seriesName: String { series?.name ?? Constants.SeriesInfo.unknownTitle }
-    var imageUrl: String? { series?.posterPath }
+    var seriesName: String { seriesData.series?.name ?? Constants.SeriesInfo.unknownTitle }
+    var imageUrl: String? { seriesData.series?.posterPath }
     var isBeingWatched: Bool { seriesData.isBeingWatched }
 
     required init(seriesData: SeriesData) {
         self.seriesData = seriesData
-        self.series = seriesData.series
     }
 
     func setIsFavourite() {
-        dataStoreManager.setIsFavourite(seriesData: seriesData, countries: countries)
+        dataStoreManager.setIsFavourite(seriesData: seriesData)
     }
 
     func setProgress(seriesProgress: SeriesProgress) {
@@ -43,6 +39,6 @@ class DetailCellViewModel: DetailCellViewModelProtocol {
     }
 
     func watchingNowButtonPressed() {
-        dataStoreManager.setIsBeingWatched(seriesData: seriesData, countries: countries)
+        dataStoreManager.setIsBeingWatched(seriesData: seriesData)
     }
 }

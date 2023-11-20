@@ -10,10 +10,13 @@ import UIKit
 class SeriesDetailViewController: UIViewController {
 
     var mainView: SeriesDetailView!
-    var viewModel: SeriesDetailRepresentableProtocol!
+    var viewModel: SeriesDetailViewModelProtocol!
+
+    override func loadView() {
+        view = mainView
+    }
 
     override func viewDidLoad() {
-        createMainView()
         viewModel.fetchSeriesDetails()
     }
 
@@ -25,10 +28,5 @@ class SeriesDetailViewController: UIViewController {
     convenience init(title: String?) {
         self.init(nibName: nil, bundle: nil)
         self.title = title
-    }
-
-    func createMainView() {
-        view.addSubview(mainView)
-        mainView.fillSuperView(view)
     }
 }

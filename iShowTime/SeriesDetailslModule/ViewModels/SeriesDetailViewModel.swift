@@ -13,27 +13,34 @@ protocol SeriesDetailViewModelProtocol {
     var numberOfRows: Int { get }
     var tableViewTopInset: Int { get }
     init(seriesData: SeriesData)
+    func fetchSeriesDetails()
 }
 
 protocol SeriesDetailRepresentableProtocol {
     var cellType: DetailCell.Type { get }
-    func fetchSeriesDetails()
     func returnDetailCellViewModel() -> DetailCellViewModelProtocol?
 }
 
 class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
-    let seriesId: Double?
-    let countries: String
-    var seriesData: SeriesData?
-    var series: Series? { seriesData?.series }
+
+    private let dataStorage: DataStoreManagerProtocol = DataStoreManger()
+
+    var seriesData: SeriesData
 
     var viewModelDidChange: ((SeriesDetailViewModelProtocol) -> Void)?
-    var backDropImageUrl: String? { series?.backdropPath }
+    var backDropImageUrl: String? { seriesData.series?.backdropPath }
     var numberOfRows: Int { 1 }
     var tableViewTopInset: Int { 0 }
 
     required init(seriesData: SeriesData) {
-        self.seriesId = seriesData.series?.id
-        self.countries = seriesData.originCountry
+        self.seriesData = seriesData
+    }
+
+    func fetchSeriesDetails() {
+        guard let id = seriesData.series?.id else { return }
+        if let seriesFromStorage = dataStorage.getSeries(with: id) {
+            seriesData = seriesFromStorage
+        }
+            viewModelDidChange?(self)
     }
 }

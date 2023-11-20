@@ -28,7 +28,7 @@ class BaseWatchingNowDetailCell: DetailCell {
         super.setupView()
         let hStack = createCountingStack()
         hStack.spacing = 18
-        vStack.addArrangedSubviews([descriptionLabel, nextEpisodeDateLabel, progressView, hStack, watchingNowButton])
+        vStack.addArrangedSubviews([descriptionLabel, nextEpisodeDateLabel, progressView, hStack, seriesButton])
         vStack.setCustomSpacing(16, after: nextEpisodeDateLabel)
         vStack.setCustomSpacing(32, after: progressView)
         vStack.setCustomSpacing(32, after: hStack)

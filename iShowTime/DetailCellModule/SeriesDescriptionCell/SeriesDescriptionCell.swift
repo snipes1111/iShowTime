@@ -13,57 +13,46 @@ protocol CellResizable: AnyObject {
 
 final class SeriesDescriptionCell: BaseSeriesDescriptionCell {
 
-    private var detailViewModel: SeriesDescriptionCellViewModelProtocol?
+    private var detailViewModel: SeriesDescriptionCellViewModelProtocol? {
+        viewModel as? SeriesDescriptionCellViewModelProtocol
+    }
     weak var delegate: CellResizable?
 
     override func updateViews() {
         super.updateViews()
-        detailViewModel = (viewModel as? SeriesDescriptionCellViewModelProtocol)
-        updateRating()
+        ratingIsLabel.text = detailViewModel?.ratingIs
+        ratingScoreLabel.text = detailViewModel?.scoreRating
+        ratingScoreLabel.textColor = getColor()
         genreLabel.text = detailViewModel?.genreAndYear
         countrySeasonsAndYearLabel.text = detailViewModel?.countrySeasonsAndYear
-        updateOverview()
-        setupHeartButton()
-        createButtonAction()
-        updateShowMoreButtonStack()
+        overviewLabel.text = detailViewModel?.overview
+        overviewLabel.addTextAttributes(for: detailViewModel?.attributedOverviewText)
+        heartButton.setIsFavourite(detailViewModel?.seriesIsFavourite)
+        heartButton.addAction(UIAction(heartButtonTapped), for: .touchUpInside)
+        showMoreButton.addAction(UIAction(buttonTapped), for: .touchUpInside)
+        setShowMoreButtonStackIsHidden()
     }
 
-    func createButtonAction() {
-        showMoreButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-    }
-
-    @objc func buttonTapped() {
+   @objc private func buttonTapped() {
         overviewLabel.numberOfLines = 0
         showMoreButtonStack.isHidden = true
         delegate?.resizeCell()
     }
 
-    private func updateShowMoreButtonStack() {
+    private func setShowMoreButtonStackIsHidden() {
         guard let text = detailViewModel?.overview else { return }
         let estimatedHeight = text.estimatedLabelHeight(width: overviewLabel.bounds.width,
                                                         font: overviewLabel.font)
         let stackIsHidden = estimatedHeight <= overviewLabel.bounds.height
-        showMoreButton.isHidden = stackIsHidden
+        showMoreButtonStack.isHidden = stackIsHidden
     }
 
 }
 
 extension SeriesDescriptionCell {
-    private func updateRating() {
-        ratingIsLabel.text = detailViewModel?.ratingIs
-        ratingScoreLabel.text = detailViewModel?.scoreRating
-        ratingScoreLabel.textColor = getColor()
-    }
 
-    private func updateOverview() {
-        guard let viewModel = detailViewModel else { return }
-        let text = viewModel.attributedOverviewText + viewModel.overview
-        overviewLabel.text = text
-        overviewLabel.addTextAttributes(for: viewModel.attributedOverviewText)
-    }
-
-    private func getColor() -> UIColor {
-        guard let color = detailViewModel?.scoreRatingColor else { return .black }
+    private func getColor() -> UIColor? {
+        guard let color = detailViewModel?.scoreRatingColor else { return nil }
         switch color {
         case .black: return Colors.blackRating
         case .red: return Colors.redRating
@@ -72,22 +61,8 @@ extension SeriesDescriptionCell {
         }
     }
 
-    private func setupHeartButton() {
-        heartButton.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)
-        updateHeartButton()
-    }
-
     @objc private func heartButtonTapped() {
         detailViewModel?.heartButtonDidTapped()
-        updateHeartButton()
-    }
-
-    private func updateHeartButton() {
-        guard let viewModel = detailViewModel else { return }
-        if viewModel.seriesIsFavourite {
-            heartButton.switchToShadedState()
-        } else {
-            heartButton.switchToBorderedState()
-        }
+        heartButton.setIsFavourite(detailViewModel?.seriesIsFavourite)
     }
 }

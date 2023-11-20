@@ -12,7 +12,6 @@ class BaseSectionViewController: UIViewController {
     var mainView: BaseSectionView!
 
     override func loadView() {
-        super.loadView()
         view = mainView
     }
 

@@ -17,7 +17,7 @@ class DetailCell: BaseDetailCell {
 
     override func setupSubViews() {
         super.setupSubViews()
-        watchingNowButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        seriesButton.addAction(UIAction(buttonPressed), for: .touchUpInside)
     }
 
     func updateViews() {
@@ -36,12 +36,8 @@ extension DetailCell {
 
     private func updateWatchingNowButtonTitle() {
         guard let isSaved = viewModel?.isBeingWatched,
-              let button = watchingNowButton as? SeriesButton
+              let button = seriesButton as? SeriesButton
         else { return }
-        if !isSaved {
-            button.switchToActiveState()
-        } else {
-            button.switchToTappedBeforeState()
-        }
+        !isSaved ? button.switchToActiveState() : button.switchToTappedBeforeState()
     }
 }

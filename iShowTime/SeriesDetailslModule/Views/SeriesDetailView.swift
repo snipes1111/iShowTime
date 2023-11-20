@@ -27,7 +27,7 @@ class SeriesDetailView: UIView {
     func updateBackDropImageView() {
         tableView.backDropImageView.getImage(viewModel.backDropImageUrl) { [weak self] isDone in
             guard let self = self else { return }
-            if isDone { self.loadingView.hideWithAnimation() }
+            self.loadingView.hideWithAnimation()
         }
     }
 
@@ -41,7 +41,7 @@ class SeriesDetailView: UIView {
         let dispatchGroup = DispatchGroup()
         DispatchQueue.main.async(group: dispatchGroup) { [unowned self] in
             updateBackDropImageView()
-            tableView.reloadData()
+            //tableView.reloadData()
         }
     }
 }

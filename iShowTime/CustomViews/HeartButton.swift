@@ -18,6 +18,14 @@ class HeartButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func setIsFavourite(_ isFavourite: Bool?) {
+        guard let isFavourite = isFavourite else { return }
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            isFavourite ? self.switchToShadedState() : self.switchToBorderedState()
+        }
+    }
+
     func switchToShadedState() {
         setBackgroundImage(UIImage(systemName: Images.heartFilled), for: .normal)
         tintColor = .systemPink

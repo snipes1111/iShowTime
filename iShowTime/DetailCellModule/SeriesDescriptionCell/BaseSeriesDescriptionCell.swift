@@ -26,9 +26,9 @@ class BaseSeriesDescriptionCell: DetailCell {
                                     genreLabel,
                                     countrySeasonsAndYearLabel,
                                     overviewStack,
-                                    watchingNowButton])
+                                    seriesButton])
         vStack.setCustomSpacing(24, after: overviewStack)
-        makeHeartButtonConstraints(equalTo: ratingHStack)
+        setHeartButtonConstraints(equalTo: ratingHStack)
     }
 
     override func setupSubViews() {
@@ -44,7 +44,7 @@ class BaseSeriesDescriptionCell: DetailCell {
         heartButton = HeartButton()
     }
 
-    private func makeHeartButtonConstraints(equalTo view: UIView) {
+    private func setHeartButtonConstraints(equalTo view: UIView) {
         addSubview(heartButton)
         heartButton.translatesAutoresizingMaskIntoConstraints = false
         heartButton.topAnchor.constraint(equalTo: view.topAnchor, constant: -6).isActive = true

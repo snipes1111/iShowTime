@@ -11,7 +11,7 @@ class BaseDetailCell: UITableViewCell {
     var posterImageView: SeriesImageView!
     var nameLabel: UILabel!
     var vStack: UIStackView!
-    var watchingNowButton: UIButton!
+    var seriesButton: UIButton!
 
     private override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -44,6 +44,6 @@ class BaseDetailCell: UITableViewCell {
         posterImageView.addShadow()
         nameLabel = UILabel(font: Fonts.DetailCell.seriesName)
         nameLabel.textAlignment = .center
-        watchingNowButton = SeriesButton()
+        seriesButton = SeriesButton()
     }
 }
