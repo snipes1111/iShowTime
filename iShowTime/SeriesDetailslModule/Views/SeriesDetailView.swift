@@ -9,11 +9,11 @@ import UIKit
 
 final class SeriesDetailView: UIView {
 
-    private(set) var viewModel: (SeriesDetailViewModelProtocol & SeriesDetailRepresentableProtocol)
+    private(set) var viewModel: SeriesDetailViewModelProtocol
     private(set) var tableView = TableViewWithBlurBackground()
     private(set) var loadingView = LoadingView()
 
-    init(viewModel: (SeriesDetailViewModelProtocol & SeriesDetailRepresentableProtocol)) {
+    init(viewModel: SeriesDetailViewModelProtocol) {
         self.viewModel = viewModel
         super.init(frame: .zero)
         setupUI()

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		CE0589C52AD4543300DE987F /* ImageCachingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589C42AD4543300DE987F /* ImageCachingManager.swift */; };
 		CE0589C72AD5AD1D00DE987F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589C62AD5AD1D00DE987F /* Router.swift */; };
-		CE0589CE2AD6C63400DE987F /* SearchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589CD2AD6C63400DE987F /* SearchDetailViewModel.swift */; };
 		CE0589D62AD6E92D00DE987F /* SeriesDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589D52AD6E92D00DE987F /* SeriesDescriptionCell.swift */; };
 		CE1A6B4A2AAF4D6B00B495EB /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B492AAF4D6B00B495EB /* BaseTabBarController.swift */; };
 		CE1A6B4D2AAF515000B495EB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B4C2AAF515000B495EB /* Colors.swift */; };
@@ -77,7 +76,6 @@
 		CEE495922AF12C2B0086F67A /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE495912AF12C2B0086F67A /* HeartButton.swift */; };
 		CEE495942AF12E5B0086F67A /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE495932AF12E5B0086F67A /* UIButton+Extensions.swift */; };
 		CEE495962AF1435E0086F67A /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE495952AF1435E0086F67A /* FavouritesViewModel.swift */; };
-		CEE4959B2AF14AEC0086F67A /* FavouritesDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4959A2AF14AEC0086F67A /* FavouritesDetailViewModel.swift */; };
 		CEE4959F2AF156B20086F67A /* SeriesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4959E2AF156B20086F67A /* SeriesDetailViewController.swift */; };
 		CEE495A12AF2ABE50086F67A /* SeriesEditableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE495A02AF2ABE50086F67A /* SeriesEditableView.swift */; };
 		CEF455FA2AAB305E00D5A397 /* SearchSeriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF455F92AAB305E00D5A397 /* SearchSeriesView.swift */; };
@@ -94,7 +92,6 @@
 /* Begin PBXFileReference section */
 		CE0589C42AD4543300DE987F /* ImageCachingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCachingManager.swift; sourceTree = "<group>"; };
 		CE0589C62AD5AD1D00DE987F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		CE0589CD2AD6C63400DE987F /* SearchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewModel.swift; sourceTree = "<group>"; };
 		CE0589D52AD6E92D00DE987F /* SeriesDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDescriptionCell.swift; sourceTree = "<group>"; };
 		CE1A6B492AAF4D6B00B495EB /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		CE1A6B4C2AAF515000B495EB /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -163,7 +160,6 @@
 		CEE495912AF12C2B0086F67A /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
 		CEE495932AF12E5B0086F67A /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		CEE495952AF1435E0086F67A /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
-		CEE4959A2AF14AEC0086F67A /* FavouritesDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesDetailViewModel.swift; sourceTree = "<group>"; };
 		CEE4959E2AF156B20086F67A /* SeriesDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDetailViewController.swift; sourceTree = "<group>"; };
 		CEE495A02AF2ABE50086F67A /* SeriesEditableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEditableView.swift; sourceTree = "<group>"; };
 		CEE495A32AF2C8150086F67A /* ExpandableLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExpandableLabel.framework; path = Carthage/Build/iOS/ExpandableLabel.framework; sourceTree = "<group>"; };
@@ -194,9 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				CE7208622AE6DE200005C16E /* SeriesDetailViewModel.swift */,
-				CE0589CD2AD6C63400DE987F /* SearchDetailViewModel.swift */,
 				CE7208452AE16FC30005C16E /* WatchingNowDetailViewModel.swift */,
-				CEE4959A2AF14AEC0086F67A /* FavouritesDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -623,7 +617,6 @@
 				CE7208652AEA7CC40005C16E /* KeyboardManager.swift in Sources */,
 				CE0589C72AD5AD1D00DE987F /* Router.swift in Sources */,
 				CEBAAE9F2A13E824001F59A6 /* AppDelegate.swift in Sources */,
-				CE0589CE2AD6C63400DE987F /* SearchDetailViewModel.swift in Sources */,
 				CEDA98052B067D0200FBA9C2 /* UITableViewCell+Extension.swift in Sources */,
 				CE72084F2AE182FE0005C16E /* BaseDetailCell.swift in Sources */,
 				CE72083E2AE16DAD0005C16E /* WatchingNowDetailViewController.swift in Sources */,
@@ -655,7 +648,6 @@
 				CE3B48DA2B07D70D009EB8AF /* SeriesFetcher.swift in Sources */,
 				CEBB0FB92AC5E8CE00A45074 /* NetworkService.swift in Sources */,
 				CE2E1FC42AD011CE00E0FC3B /* HorizontalStackView.swift in Sources */,
-				CEE4959B2AF14AEC0086F67A /* FavouritesDetailViewModel.swift in Sources */,
 				CE9EA8D52AD846BD00C261C8 /* SeriesDescriptionCellViewModel.swift in Sources */,
 				CE72084D2AE182CA0005C16E /* BaseSeriesDescriptionCell.swift in Sources */,
 			);

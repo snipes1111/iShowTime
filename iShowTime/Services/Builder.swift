@@ -62,7 +62,7 @@ final class Builder: BuilderProtocol {
 
     func buildSearchDetailViewController(_ seriesData: SeriesData) -> UIViewController {
         let viewController = SeriesDetailViewController(title: seriesData.series?.name)
-        let viewModel = SearchDetailViewModel(seriesData: seriesData)
+        let viewModel = SeriesDetailViewModel(seriesData: seriesData)
         let view = SeriesDetailView(viewModel: viewModel)
         viewController.mainView = view
         viewController.viewModel = viewModel
@@ -80,7 +80,7 @@ final class Builder: BuilderProtocol {
 
     func buildFavouritesDetailViewController(_ seriesData: SeriesData) -> UIViewController {
         let viewController = SeriesDetailViewController(title: seriesData.series?.name)
-        let viewModel = FavouritesDetailViewModel(seriesData: seriesData)
+        let viewModel = SeriesDetailViewModel(seriesData: seriesData)
         let view = SeriesDetailView(viewModel: viewModel)
         viewController.mainView = view
         viewController.viewModel = viewModel

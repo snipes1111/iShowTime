@@ -12,19 +12,15 @@ protocol SeriesDetailViewModelProtocol {
     var backDropImageUrl: String? { get }
     var numberOfRows: Int { get }
     var tableViewTopInset: Int { get }
+    var cellType: DetailCell.Type { get }
     init(seriesData: SeriesData)
     func fetchSeriesDetails()
-}
-
-protocol SeriesDetailRepresentableProtocol {
-    var cellType: DetailCell.Type { get }
     func returnDetailCellViewModel() -> DetailCellViewModelProtocol?
 }
 
 protocol CellResizable: AnyObject {
     func resizeCell()
 }
-
 
 class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
 
@@ -36,6 +32,7 @@ class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
     var backDropImageUrl: String? { seriesData.series?.backdropPath }
     var numberOfRows: Int { 1 }
     var tableViewTopInset: Int { 0 }
+    var cellType: DetailCell.Type { SeriesDescriptionCell.self }
 
     required init(seriesData: SeriesData) {
         self.seriesData = seriesData
@@ -47,6 +44,12 @@ class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
             seriesData = seriesFromStorage
         }
         viewModelDidChange?(nil)
+    }
+
+    func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
+        let viewModel = SeriesDescriptionCellViewModel(seriesData: seriesData)
+        viewModel.delegate = self
+        return viewModel
     }
 }
 

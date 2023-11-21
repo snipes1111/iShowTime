@@ -7,11 +7,11 @@
 
 import Foundation
 
-final class WatchingNowDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresentableProtocol {
+final class WatchingNowDetailViewModel: SeriesDetailViewModel {
 
-    var cellType: DetailCell.Type { WatchingNowDetailCell.self }
+    override var cellType: DetailCell.Type { WatchingNowDetailCell.self }
 
-    func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
+    override func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
         WatchingNowDetailCellViewModel(seriesData: seriesData)
     }
 }

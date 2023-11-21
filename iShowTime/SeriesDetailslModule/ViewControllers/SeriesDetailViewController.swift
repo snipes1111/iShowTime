@@ -18,6 +18,10 @@ class SeriesDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         viewModel.fetchSeriesDetails()
+        // check for modal presentation to adjust the insets
+        if navigationController == nil {
+            mainView.tableView.contentInset.top = 60
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

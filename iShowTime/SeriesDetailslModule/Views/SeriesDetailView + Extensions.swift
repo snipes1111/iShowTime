@@ -20,7 +20,6 @@ extension SeriesDetailView {
     }
 
     func setupTableView() {
-        tableView.contentInset.top = CGFloat(viewModel.tableViewTopInset)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(viewModel.cellType.self, forCellReuseIdentifier: DetailCell.identifier)
