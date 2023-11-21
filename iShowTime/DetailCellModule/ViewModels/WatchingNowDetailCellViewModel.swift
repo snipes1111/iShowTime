@@ -29,26 +29,15 @@ final class WatchingNowDetailCellViewModel: DetailCellViewModel, WatchingNowDeta
 
     private var numberOfSeasons: Double { seriesData.series?.numberOfSeasons ?? 1 }
     private var numberOfEpisodes: Double { seriesData.series?.numberOfEpisodes ?? 1 }
-    private var episodesInSeason: Double { getEpisodesInSeason(seasonCount) ?? 1 }
+    
+    private var episodesInSeason: Double {
+        let currentSeason = seriesData.series?.seasons?.first { $0.seasonNumber == seasonCount }
+        return currentSeason?.episodeCount ?? 1
+    }
 
-    private var seasonCount: Double {
-        get {
-            seriesData.currentSeason
-        } set {
-            setProgress(seriesProgress: SeriesProgress(season: newValue,
-                                                       episode: 0,
-                                                       progress: seriesProgress))
-        }
-    }
-    private var episodeCount: Double {
-        get {
-            seriesData.currentEpisode
-        } set {
-            setProgress(seriesProgress: SeriesProgress(season: seasonCount,
-                                                       episode: newValue,
-                                                       progress: seriesProgress))
-        }
-    }
+    private lazy var seasonCount: Double = seriesData.currentSeason
+    private lazy var episodeCount: Double = seriesData.currentEpisode
+    lazy var seriesProgress: Float = seriesData.currentProgress
 
     var description: String {
         let productionStatus = (seriesData.series?.inProduction ?? false) ?
@@ -68,15 +57,7 @@ final class WatchingNowDetailCellViewModel: DetailCellViewModel, WatchingNowDeta
     var seasonTFText: String { "\(Int(seasonCount))" }
     var episodeTFText: String { "\(Int(episodeCount))" }
 
-    var seriesProgress: Float {
-        get {
-            seriesData.currentProgress
-        } set {
-            setProgress(seriesProgress: SeriesProgress(season: seasonCount,
-                                                       episode: episodeCount,
-                                                       progress: newValue))
-        }
-    }
+
 
     func increment(_ counterType: CounterType) {
         if counterType == .episode {
@@ -123,18 +104,15 @@ final class WatchingNowDetailCellViewModel: DetailCellViewModel, WatchingNowDeta
 
 extension WatchingNowDetailCellViewModel {
 
-    private func getEpisodesInSeason(_ season: Double) -> Double? {
-        let currentSeason = seriesData.series?.seasons?.first { $0.seasonNumber == season }
-        return currentSeason?.episodeCount
-    }
-
     private func calculateSeriesProgress() {
-        let seriesWatched = getEpisodesCount()
+        let seriesWatched = seriesWatchedCount()
         let totalProgress = (seriesWatched + episodeCount) / numberOfEpisodes
         seriesProgress = Float(totalProgress)
+        let progress = SeriesProgress(season: seasonCount, episode: episodeCount, progress: seriesProgress)
+        setProgress(seriesProgress: progress)
     }
 
-    private func getEpisodesCount() -> Double {
+    private func seriesWatchedCount() -> Double {
         guard seasonCount > 1 else { return 0 }
         let seasons = seasonsWatched()
         return seasons.compactMap { $0.episodeCount }.reduce(0, +)
