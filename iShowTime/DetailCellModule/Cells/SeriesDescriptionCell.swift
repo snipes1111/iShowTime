@@ -7,17 +7,13 @@
 
 import UIKit
 
-protocol CellResizable: AnyObject {
-    func resizeCell()
-}
 
 final class SeriesDescriptionCell: BaseSeriesDescriptionCell {
 
     private var detailViewModel: SeriesDescriptionCellViewModelProtocol? {
         viewModel as? SeriesDescriptionCellViewModelProtocol
     }
-    weak var delegate: CellResizable?
-
+    
     override func updateViews() {
         super.updateViews()
         ratingIsLabel.text = detailViewModel?.ratingIs
@@ -30,13 +26,13 @@ final class SeriesDescriptionCell: BaseSeriesDescriptionCell {
         heartButton.setIsFavourite(detailViewModel?.seriesIsFavourite)
         heartButton.addAction(UIAction(heartButtonTapped), for: .touchUpInside)
         showMoreButton.addAction(UIAction(buttonTapped), for: .touchUpInside)
-        setShowMoreButtonStackIsHidden()
     }
 
-   @objc private func buttonTapped() {
+   private func buttonTapped() {
         overviewLabel.numberOfLines = 0
+        showMoreButton.isHidden = true
         showMoreButtonStack.isHidden = true
-        delegate?.resizeCell()
+        detailViewModel?.showButtonDidTapped()
     }
 
     private func setShowMoreButtonStackIsHidden() {
@@ -45,6 +41,11 @@ final class SeriesDescriptionCell: BaseSeriesDescriptionCell {
                                                         font: overviewLabel.font)
         let stackIsHidden = estimatedHeight <= overviewLabel.bounds.height
         showMoreButtonStack.isHidden = stackIsHidden
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setShowMoreButtonStackIsHidden()
     }
 
 }
@@ -61,7 +62,7 @@ extension SeriesDescriptionCell {
         }
     }
 
-    @objc private func heartButtonTapped() {
+    private func heartButtonTapped() {
         detailViewModel?.heartButtonDidTapped()
         heartButton.setIsFavourite(detailViewModel?.seriesIsFavourite)
     }

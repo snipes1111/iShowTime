@@ -17,8 +17,18 @@ class BaseSeriesDescriptionCell: DetailCell {
     var showMoreButtonStack: UIStackView!
     var heartButton: HeartButton!
 
-    override func setupView() {
-        super.setupView()
+    override func setupSubviews() {
+        super.setupSubviews()
+        ratingIsLabel = UILabel(font: Fonts.DetailCell.seriesRating, numberOfLines: 1)
+        ratingScoreLabel = UILabel(font: Fonts.DetailCell.seriesRatingScore, numberOfLines: 1)
+        genreLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
+        genreLabel.textAlignment = .center
+        countrySeasonsAndYearLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
+        overviewLabel = UILabel(font: Fonts.DetailCell.seriesInfo, numberOfLines: 5)
+        showMoreButton = ShowMoreButton()
+        showMoreButtonStack = HorizontalStackView(arrangedSubviews: [showMoreButton, UIView()])
+        heartButton = HeartButton()
+
         let ratingHStack = UIStackView(arrangedSubviews: [ratingIsLabel, ratingScoreLabel])
         ratingHStack.spacing = 8
         let overviewStack = VerticalStackView(arrangedSubviews: [overviewLabel, showMoreButtonStack])
@@ -29,19 +39,6 @@ class BaseSeriesDescriptionCell: DetailCell {
                                     seriesButton])
         vStack.setCustomSpacing(24, after: overviewStack)
         setHeartButtonConstraints(equalTo: ratingHStack)
-    }
-
-    override func setupSubViews() {
-        super.setupSubViews()
-        ratingIsLabel = UILabel(font: Fonts.DetailCell.seriesRating, numberOfLines: 1)
-        ratingScoreLabel = UILabel(font: Fonts.DetailCell.seriesRatingScore, numberOfLines: 1)
-        genreLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
-        genreLabel.textAlignment = .center
-        countrySeasonsAndYearLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
-        overviewLabel = UILabel(font: Fonts.DetailCell.seriesInfo, numberOfLines: 5)
-        showMoreButton = ShowMoreButton()
-        showMoreButtonStack = HorizontalStackView(arrangedSubviews: [showMoreButton, UIView()])
-        heartButton = HeartButton()
     }
 
     private func setHeartButtonConstraints(equalTo view: UIView) {

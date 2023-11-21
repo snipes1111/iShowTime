@@ -12,6 +12,8 @@ final class FavouritesDetailViewModel: SeriesDetailViewModel, SeriesDetailRepres
     var cellType: DetailCell.Type { SeriesDescriptionCell.self }
 
     func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
-        return SeriesDescriptionCellViewModel(seriesData: seriesData)
+        let viewModel = SeriesDescriptionCellViewModel(seriesData: seriesData)
+        viewModel.delegate = self
+        return viewModel
     }
 }

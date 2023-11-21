@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SeriesDetailView: UIView {
+final class SeriesDetailView: UIView {
 
     private(set) var viewModel: (SeriesDetailViewModelProtocol & SeriesDetailRepresentableProtocol)
     private(set) var tableView = TableViewWithBlurBackground()
@@ -24,24 +24,22 @@ class SeriesDetailView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func updateBackDropImageView() {
-        tableView.backDropImageView.getImage(viewModel.backDropImageUrl) { [weak self] isDone in
+    private func subscribeToViewModel() {
+            viewModel.viewModelDidChange = { [weak self]  _ in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    self.tableView.beginUpdates()
+                    self.tableView.endUpdates()
+                    self.setupBackground()
+                }
+            }
+    }
+
+    private func setupBackground() {
+        if loadingView.isHidden { return }
+        tableView.backDropImageView.getImage(viewModel.backDropImageUrl) { [weak self] _ in
             guard let self = self else { return }
             self.loadingView.hideWithAnimation()
-        }
-    }
-
-    private func subscribeToViewModel() {
-        viewModel.viewModelDidChange = { [unowned self] _ in
-            reloadInterface()
-        }
-    }
-
-    private func reloadInterface() {
-        let dispatchGroup = DispatchGroup()
-        DispatchQueue.main.async(group: dispatchGroup) { [unowned self] in
-            updateBackDropImageView()
-            //tableView.reloadData()
         }
     }
 }

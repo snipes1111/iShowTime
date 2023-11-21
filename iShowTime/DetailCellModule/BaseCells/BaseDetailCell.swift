@@ -16,34 +16,34 @@ class BaseDetailCell: UITableViewCell {
     private override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .clear
-        setupView()
+        commonInit()
     }
 
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        commonInit()
     }
 
-    func setupView() {
-        setupSubViews()
-        let vStack = VerticalStackView(spacing: 10, arrangedSubviews: [posterImageView, nameLabel])
-        vStack.alignment = .center
-        vStack.setCustomSpacing(24, after: posterImageView)
-        vStack.setCustomSpacing(12, after: nameLabel)
-        contentView.addSubview(vStack)
-        makeConstraints(vStack)
-        self.vStack = vStack
+    private func commonInit() {
+        setupSubviews()
+        setupConstraints()
     }
 
-    func makeConstraints(_ view: UIView) {
+    func setupConstraints() {
         posterImageView.setSize(300, 200)
-        view.fillSuperView(contentView, padding: 16)
+        vStack.fillSuperView(contentView, padding: 16)
     }
 
-    func setupSubViews() {
+    func setupSubviews() {
         posterImageView = SeriesImageView()
         posterImageView.addShadow()
         nameLabel = UILabel(font: Fonts.DetailCell.seriesName)
         nameLabel.textAlignment = .center
         seriesButton = SeriesButton()
+        vStack = VerticalStackView(spacing: 10, arrangedSubviews: [posterImageView, nameLabel])
+        vStack.alignment = .center
+        vStack.setCustomSpacing(24, after: posterImageView)
+        vStack.setCustomSpacing(12, after: nameLabel)
+        contentView.addSubview(vStack)
     }
 }

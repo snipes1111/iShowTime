@@ -58,8 +58,8 @@ final class WatchingNowDetailCellViewModel: DetailCellViewModel, WatchingNowDeta
     }
 
     var nextEpisodeDate: String {
-        let airDate = seriesData.series?.nextEpisodeToAir?.airDate.extractDate() ?? Constants.SeriesInfo.noInfo
-        return Constants.SeriesInfo.nextEpisode + airDate
+        let airDate = seriesData.series?.nextEpisodeToAir?.airDate.extractDate()
+        return Constants.SeriesInfo.nextEpisode + (airDate ?? Constants.SeriesInfo.noInfo)
     }
 
     var seasonText: String { Constants.SeriesInfo.season }

@@ -15,8 +15,8 @@ class DetailCell: BaseDetailCell {
         }
     }
 
-    override func setupSubViews() {
-        super.setupSubViews()
+    override func setupSubviews() {
+        super.setupSubviews()
         seriesButton.addAction(UIAction(buttonPressed), for: .touchUpInside)
     }
 

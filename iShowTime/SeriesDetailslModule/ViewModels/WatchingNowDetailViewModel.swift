@@ -12,6 +12,6 @@ final class WatchingNowDetailViewModel: SeriesDetailViewModel, SeriesDetailRepre
     var cellType: DetailCell.Type { WatchingNowDetailCell.self }
 
     func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
-        return WatchingNowDetailCellViewModel(seriesData: seriesData)
+        WatchingNowDetailCellViewModel(seriesData: seriesData)
     }
 }

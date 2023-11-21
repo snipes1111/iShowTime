@@ -23,8 +23,8 @@ final class WatchingNowDetailCell: BaseWatchingNowDetailCell {
         progressView.progress = detailViewModel?.seriesProgress ?? 0
     }
 
-    override func setupSubViews() {
-        super.setupSubViews()
+    override func setupSubviews() {
+        super.setupSubviews()
         addActionsToButtons()
         addActionsToTextfields()
     }

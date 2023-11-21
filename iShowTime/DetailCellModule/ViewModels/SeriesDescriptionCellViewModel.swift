@@ -24,9 +24,12 @@ protocol SeriesDescriptionCellViewModelProtocol: DetailCellViewModelProtocol {
     var overview: String { get }
     var seriesIsFavourite: Bool { get }
     func heartButtonDidTapped()
+    func showButtonDidTapped()
 }
 
 final class SeriesDescriptionCellViewModel: DetailCellViewModel, SeriesDescriptionCellViewModelProtocol {
+
+    weak var delegate: CellResizable?
 
     var ratingIs: String { Constants.SeriesInfo.rating }
 
@@ -70,4 +73,8 @@ final class SeriesDescriptionCellViewModel: DetailCellViewModel, SeriesDescripti
     }
     
     func heartButtonDidTapped() { setIsFavourite() }
+    
+    func showButtonDidTapped() {
+        delegate?.resizeCell()
+    }
 }

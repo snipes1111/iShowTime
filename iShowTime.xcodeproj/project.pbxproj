@@ -201,14 +201,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		CE0589D42AD6E8EA00DE987F /* SeriesDescriptionCell */ = {
+		CE0589D42AD6E8EA00DE987F /* BaseCells */ = {
 			isa = PBXGroup;
 			children = (
-				CE9EA8D42AD846BD00C261C8 /* SeriesDescriptionCellViewModel.swift */,
+				CE72084E2AE182FE0005C16E /* BaseDetailCell.swift */,
 				CE72084C2AE182CA0005C16E /* BaseSeriesDescriptionCell.swift */,
-				CE0589D52AD6E92D00DE987F /* SeriesDescriptionCell.swift */,
+				CE7208522AE187E10005C16E /* BaseWatchingNowDetailCell.swift */,
 			);
-			path = SeriesDescriptionCell;
+			path = BaseCells;
 			sourceTree = "<group>";
 		};
 		CE1A6B4F2AAF56C900B495EB /* Resources */ = {
@@ -331,34 +331,34 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		CE72084B2AE17C840005C16E /* WatchingNowDetailCell */ = {
+		CE72084B2AE17C840005C16E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				CE7208492AE17C7D0005C16E /* WatchingNowDetailCellViewModel.swift */,
-				CE7208522AE187E10005C16E /* BaseWatchingNowDetailCell.swift */,
+				CE72085D2AE6C18A0005C16E /* DetailCell.swift */,
+				CE0589D52AD6E92D00DE987F /* SeriesDescriptionCell.swift */,
 				CE7208472AE17C710005C16E /* WatchingDetailViewCell.swift */,
 			);
-			path = WatchingNowDetailCell;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		CE72085B2AE6C1170005C16E /* DetailCellModule */ = {
 			isa = PBXGroup;
 			children = (
-				CE72085C2AE6C1480005C16E /* DetailCell */,
-				CE0589D42AD6E8EA00DE987F /* SeriesDescriptionCell */,
-				CE72084B2AE17C840005C16E /* WatchingNowDetailCell */,
+				CE72085C2AE6C1480005C16E /* ViewModels */,
+				CE0589D42AD6E8EA00DE987F /* BaseCells */,
+				CE72084B2AE17C840005C16E /* Cells */,
 			);
 			path = DetailCellModule;
 			sourceTree = "<group>";
 		};
-		CE72085C2AE6C1480005C16E /* DetailCell */ = {
+		CE72085C2AE6C1480005C16E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				CE7208582AE6BECF0005C16E /* DetailCellViewModel.swift */,
-				CE72084E2AE182FE0005C16E /* BaseDetailCell.swift */,
-				CE72085D2AE6C18A0005C16E /* DetailCell.swift */,
+				CE9EA8D42AD846BD00C261C8 /* SeriesDescriptionCellViewModel.swift */,
+				CE7208492AE17C7D0005C16E /* WatchingNowDetailCellViewModel.swift */,
 			);
-			path = DetailCell;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		CE7208612AE6DDDC0005C16E /* SeriesDetailslModule */ = {

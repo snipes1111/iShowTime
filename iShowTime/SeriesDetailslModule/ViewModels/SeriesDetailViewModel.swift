@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SeriesDetailViewModelProtocol {
-    var viewModelDidChange: ((SeriesDetailViewModelProtocol) -> Void)? { get set }
+    var viewModelDidChange: ((SeriesDetailViewModelProtocol?) -> Void)? { get set }
     var backDropImageUrl: String? { get }
     var numberOfRows: Int { get }
     var tableViewTopInset: Int { get }
@@ -21,13 +21,18 @@ protocol SeriesDetailRepresentableProtocol {
     func returnDetailCellViewModel() -> DetailCellViewModelProtocol?
 }
 
+protocol CellResizable: AnyObject {
+    func resizeCell()
+}
+
+
 class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
 
     private let dataStorage: DataStoreManagerProtocol = DataStoreManger()
 
     var seriesData: SeriesData
 
-    var viewModelDidChange: ((SeriesDetailViewModelProtocol) -> Void)?
+    var viewModelDidChange: ((SeriesDetailViewModelProtocol?) -> Void)?
     var backDropImageUrl: String? { seriesData.series?.backdropPath }
     var numberOfRows: Int { 1 }
     var tableViewTopInset: Int { 0 }
@@ -41,6 +46,12 @@ class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
         if let seriesFromStorage = dataStorage.getSeries(with: id) {
             seriesData = seriesFromStorage
         }
-            viewModelDidChange?(self)
+        viewModelDidChange?(nil)
+    }
+}
+
+extension SeriesDetailViewModel: CellResizable {
+    func resizeCell() {
+        viewModelDidChange?(nil)
     }
 }

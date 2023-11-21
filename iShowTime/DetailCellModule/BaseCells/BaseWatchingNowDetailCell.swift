@@ -24,28 +24,25 @@ class BaseWatchingNowDetailCell: DetailCell {
     var episodeTF: UITextField!
     var episodeMinusButton: UIButton!
 
-    override func setupView() {
-        super.setupView()
+    override func setupConstraints() {
+        super.setupConstraints()
+        progressView.setWidth(contentView.bounds.width * 0.8)
+    }
+
+    override func setupSubviews() {
+        super.setupSubviews()
+        descriptionLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
+        nextEpisodeDateLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
+        progressView = SeriesProgressView(height: 15)
+        setupRowWith(&seasonLabel, &seasonMinusButton, &seasonTF, &seasonPlusButton)
+        setupRowWith(&episodeLabel, &episodeMinusButton, &episodeTF, &episodePlusButton)
+
         let hStack = createCountingStack()
         hStack.spacing = 18
         vStack.addArrangedSubviews([descriptionLabel, nextEpisodeDateLabel, progressView, hStack, seriesButton])
         vStack.setCustomSpacing(16, after: nextEpisodeDateLabel)
         vStack.setCustomSpacing(32, after: progressView)
         vStack.setCustomSpacing(32, after: hStack)
-    }
-
-    override func makeConstraints(_ view: UIView) {
-        super.makeConstraints(view)
-        progressView.setWidth(contentView.bounds.width * 0.8)
-    }
-
-    override func setupSubViews() {
-        super.setupSubViews()
-        descriptionLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
-        nextEpisodeDateLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
-        progressView = SeriesProgressView(height: 15)
-        setupRowWith(&seasonLabel, &seasonMinusButton, &seasonTF, &seasonPlusButton)
-        setupRowWith(&episodeLabel, &episodeMinusButton, &episodeTF, &episodePlusButton)
     }
 }
 

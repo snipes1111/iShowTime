@@ -14,6 +14,8 @@ final class SearchDetailViewModel: SeriesDetailViewModel, SeriesDetailRepresenta
     var cellType: DetailCell.Type { SeriesDescriptionCell.self }
 
     func returnDetailCellViewModel() -> DetailCellViewModelProtocol? {
-        SeriesDescriptionCellViewModel(seriesData: seriesData)
+        let viewModel = SeriesDescriptionCellViewModel(seriesData: seriesData)
+        viewModel.delegate = self
+        return viewModel
     }
 }
