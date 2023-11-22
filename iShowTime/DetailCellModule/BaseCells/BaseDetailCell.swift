@@ -32,6 +32,8 @@ class BaseDetailCell: UITableViewCell {
     func setupConstraints() {
         posterImageView.setSize(300, 200)
         vStack.fillSuperView(contentView, padding: 16)
+        vStack.setCustomSpacing(24, after: posterImageView)
+        vStack.setCustomSpacing(12, after: nameLabel)
     }
 
     func setupSubviews() {
@@ -42,8 +44,6 @@ class BaseDetailCell: UITableViewCell {
         seriesButton = SeriesButton()
         vStack = VerticalStackView(spacing: 10, arrangedSubviews: [posterImageView, nameLabel])
         vStack.alignment = .center
-        vStack.setCustomSpacing(24, after: posterImageView)
-        vStack.setCustomSpacing(12, after: nameLabel)
         contentView.addSubview(vStack)
     }
 }

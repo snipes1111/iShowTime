@@ -7,6 +7,8 @@
 
 import UIKit
 
+typealias SeriesConstants = Constants.SeriesInfo
+
 struct Constants {
     struct Buttons {
         static let showMore = "Show more ..."

@@ -20,7 +20,7 @@ class DetailCellViewModel: DetailCellViewModelProtocol {
     private let dataStoreManager: DataStoreManagerProtocol = DataStoreManger()
     let seriesData: SeriesData
 
-    var seriesName: String { seriesData.series?.name ?? Constants.SeriesInfo.unknownTitle }
+    var seriesName: String { seriesData.series?.name ?? SeriesConstants.unknownTitle }
     var imageUrl: String? { seriesData.series?.posterPath }
     var isBeingWatched: Bool { seriesData.isBeingWatched }
 

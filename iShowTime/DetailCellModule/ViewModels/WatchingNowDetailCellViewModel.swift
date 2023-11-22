@@ -18,87 +18,69 @@ protocol WatchingNowDetailCellViewModelProtocol {
     var episodeText: String { get }
     var seasonTFText: String { get }
     var episodeTFText: String { get }
-    var seriesProgress: Float { get }
+    var progress: Float { get }
     func increment(_ counterType: CounterType)
     func decrement(_ counterType: CounterType)
-    func setSeasonCount(_ text: String?)
-    func setEpisodeCount(_ text: String?)
+    func setCount(_ text: String?, _ counterType: CounterType)
 }
 
 final class WatchingNowDetailCellViewModel: DetailCellViewModel, WatchingNowDetailCellViewModelProtocol {
 
     private var numberOfSeasons: Double { seriesData.series?.numberOfSeasons ?? 1 }
-    private var numberOfEpisodes: Double { seriesData.series?.numberOfEpisodes ?? 1 }
     
     private var episodesInSeason: Double {
         let currentSeason = seriesData.series?.seasons?.first { $0.seasonNumber == seasonCounter }
         return currentSeason?.episodeCount ?? 1
     }
 
-    private lazy var seasonCounter: Double = seriesData.currentSeason
-    private lazy var episodeCounter: Double = seriesData.currentEpisode
-    lazy var seriesProgress: Float = seriesData.currentProgress
+    private lazy var seasonCounter: Double = seriesData.currentSeason {
+        didSet {
+            validateSeason()
+            episodeCounter = 0
+            saveProgress()
+        }
+    }
+    private lazy var episodeCounter: Double = seriesData.currentEpisode {
+        didSet {
+            validateEpisode()
+            saveProgress()
+        }
+    }
+    private lazy var seriesProgress: Float = seriesData.currentProgress
 
     var description: String {
-        let productionStatus = (seriesData.series?.inProduction ?? false) ?
-        Constants.SeriesInfo.inProduction : Constants.SeriesInfo.finished
-        let seasons = Constants.SeriesInfo.seasons, divider = Constants.SeriesInfo.divider
-        return seasons + "\(Int(numberOfSeasons))" + divider + productionStatus
+        let inProduction = seriesData.series?.inProduction ?? false
+        let status = inProduction ? SeriesConstants.inProduction : SeriesConstants.finished
+        let seasons = SeriesConstants.seasons, divider = SeriesConstants.divider
+        return seasons + "\(Int(numberOfSeasons))" + divider + status
     }
 
     var nextEpisodeDate: String {
         let airDate = seriesData.series?.nextEpisodeToAir?.airDate.extractDate()
-        return Constants.SeriesInfo.nextEpisode + (airDate ?? Constants.SeriesInfo.noInfo)
+        return SeriesConstants.nextEpisode + (airDate ?? SeriesConstants.noInfo)
     }
 
-    var seasonText: String { Constants.SeriesInfo.season }
-    var episodeText: String { Constants.SeriesInfo.episode }
+    var seasonText: String { SeriesConstants.season }
+    var episodeText: String { SeriesConstants.episode }
 
     var seasonTFText: String { "\(Int(seasonCounter))" }
     var episodeTFText: String { "\(Int(episodeCounter))" }
-
-
+    var progress: Float { seriesProgress }
 
     func increment(_ counterType: CounterType) {
-        if counterType == .episode {
-            guard episodeCounter < episodesInSeason else { return }
-            episodeCounter += 1
-        } else {
-            guard seasonCounter < numberOfSeasons else { return }
-            seasonCounter += 1
-        }
-        saveProgress()
+        if counterType == .episode { episodeCounter += 1 }
+        else { seasonCounter += 1 }
     }
 
     func decrement(_ counterType: CounterType) {
-        if counterType == .episode {
-            guard episodeCounter > 0 else { return }
-            episodeCounter -= 1
-        } else {
-            guard seasonCounter > 1 else { return }
-            seasonCounter -= 1
-        }
-        saveProgress()
+        if counterType == .episode { episodeCounter -= 1 }
+        else { seasonCounter -= 1 }
     }
 
-    func setSeasonCount(_ text: String?) {
-        guard let counter = Double(text ?? ""), counter > 0 else { return }
-        if counter <= numberOfSeasons {
-            seasonCounter = counter
-        } else {
-            seasonCounter = numberOfSeasons
-        }
-        saveProgress()
-    }
-
-    func setEpisodeCount(_ text: String?) {
-        guard let counter = Double(text ?? ""), counter >= 0 else { return }
-        if counter <= episodesInSeason {
-            episodeCounter = counter
-        } else {
-            episodeCounter = episodesInSeason
-        }
-        saveProgress()
+    func setCount(_ text: String?, _ counterType: CounterType) {
+        guard let counter = Double(text ?? "") else { return }
+        if counterType == .season { seasonCounter = counter }
+        else { episodeCounter = counter }
     }
 }
 
@@ -109,5 +91,15 @@ extension WatchingNowDetailCellViewModel {
                                                     season: seasonCounter, episode: episodeCounter)
         seriesProgress = progressManager.calculateProgress()
         setProgress(seriesProgress: progressManager.currentProgress())
+    }
+
+    private func validateSeason() {
+        if seasonCounter > numberOfSeasons { seasonCounter = numberOfSeasons }
+        else if seasonCounter < 1 { seasonCounter = 1 }
+    }
+
+    private func validateEpisode() {
+        if episodeCounter > episodesInSeason { episodeCounter = episodesInSeason }
+        else if episodeCounter < 0 { episodeCounter = 0 }
     }
 }

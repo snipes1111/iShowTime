@@ -31,13 +31,13 @@ final class SeriesDescriptionCellViewModel: DetailCellViewModel, SeriesDescripti
 
     weak var delegate: CellResizable?
 
-    var ratingIs: String { Constants.SeriesInfo.rating }
+    var ratingIs: String { SeriesConstants.rating }
 
     var seriesIsFavourite: Bool { seriesData.isFavourite }
 
     var scoreRating: String {
         guard let rating = seriesData.series?.voteAverage, rating != 0
-        else { return Constants.SeriesInfo.noRating }
+        else { return SeriesConstants.noRating }
         return String(format: "%.2f", rating)
     }
 
@@ -52,24 +52,24 @@ final class SeriesDescriptionCellViewModel: DetailCellViewModel, SeriesDescripti
 
     var genreAndYear: String {
         guard let genreNames = seriesData.series?.genres
-        else { return Constants.SeriesInfo.noGenre }
+        else { return SeriesConstants.noGenre }
         return genreNames.compactMap { $0.name }.joined(separator: ", ")
     }
 
     var countrySeasonsAndYear: String {
         let countries = seriesData.originCountry + " "
         let seasonsCount = "\(Int(seriesData.series?.numberOfSeasons ?? 1))"
-        let year = seriesData.series?.firstAirDate?.extractYear() ?? Constants.SeriesInfo.noDate
-        let divider = Constants.SeriesInfo.divider
-        return countries + Constants.SeriesInfo.seasons + seasonsCount + divider + year
+        let year = seriesData.series?.firstAirDate?.extractYear() ?? SeriesConstants.noDate
+        let divider = SeriesConstants.divider
+        return countries + SeriesConstants.seasons + seasonsCount + divider + year
     }
 
-    var attributedOverviewText: String { Constants.SeriesInfo.overview }
+    var attributedOverviewText: String { SeriesConstants.overview }
     
     var overview: String {
         guard let overview = seriesData.series?.overview, !overview.isEmpty
-        else { return Constants.SeriesInfo.noOverview }
-        return Constants.SeriesInfo.overview + overview
+        else { return SeriesConstants.noOverview }
+        return SeriesConstants.overview + overview
     }
     
     func heartButtonDidTapped() { setIsFavourite() }

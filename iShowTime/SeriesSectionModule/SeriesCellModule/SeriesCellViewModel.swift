@@ -22,21 +22,21 @@ class SeriesCellViewModel: SeriesCellViewModelProtocol {
 
     let seriesData: SeriesData
 
-    var title: String { seriesData.series?.name ?? Constants.SeriesInfo.unknownTitle }
+    var title: String { seriesData.series?.name ?? SeriesConstants.unknownTitle }
 
     var countryAndYear: String {
-        let year = seriesData.series?.firstAirDate?.extractYear() ?? Constants.SeriesInfo.noDate
-        return seriesData.originCountry + Constants.SeriesInfo.divider + year
+        let year = seriesData.series?.firstAirDate?.extractYear() ?? SeriesConstants.noDate
+        return seriesData.originCountry + SeriesConstants.divider + year
     }
 
     var productionStatus: String {
         let status = seriesData.series?.inProduction ?? false
-        return status ? Constants.SeriesInfo.inProduction : Constants.SeriesInfo.finished
+        return status ? SeriesConstants.inProduction : SeriesConstants.finished
     }
 
     var seasonsCount: String {
         let seasons = "\(Int(seriesData.series?.numberOfSeasons ?? 1))"
-        return Constants.SeriesInfo.seasons + seasons
+        return SeriesConstants.seasons + seasons
     }
 
     var progressIsHidden: Bool { !seriesData.isBeingWatched }
