@@ -31,12 +31,12 @@ final class WatchingNowDetailCellViewModel: DetailCellViewModel, WatchingNowDeta
     private var numberOfEpisodes: Double { seriesData.series?.numberOfEpisodes ?? 1 }
     
     private var episodesInSeason: Double {
-        let currentSeason = seriesData.series?.seasons?.first { $0.seasonNumber == seasonCount }
+        let currentSeason = seriesData.series?.seasons?.first { $0.seasonNumber == seasonCounter }
         return currentSeason?.episodeCount ?? 1
     }
 
-    private lazy var seasonCount: Double = seriesData.currentSeason
-    private lazy var episodeCount: Double = seriesData.currentEpisode
+    private lazy var seasonCounter: Double = seriesData.currentSeason
+    private lazy var episodeCounter: Double = seriesData.currentEpisode
     lazy var seriesProgress: Float = seriesData.currentProgress
 
     var description: String {
@@ -54,78 +54,60 @@ final class WatchingNowDetailCellViewModel: DetailCellViewModel, WatchingNowDeta
     var seasonText: String { Constants.SeriesInfo.season }
     var episodeText: String { Constants.SeriesInfo.episode }
 
-    var seasonTFText: String { "\(Int(seasonCount))" }
-    var episodeTFText: String { "\(Int(episodeCount))" }
+    var seasonTFText: String { "\(Int(seasonCounter))" }
+    var episodeTFText: String { "\(Int(episodeCounter))" }
 
 
 
     func increment(_ counterType: CounterType) {
         if counterType == .episode {
-            guard episodeCount < episodesInSeason else { return }
-            episodeCount += 1
+            guard episodeCounter < episodesInSeason else { return }
+            episodeCounter += 1
         } else {
-            guard seasonCount < numberOfSeasons else { return }
-            seasonCount += 1
+            guard seasonCounter < numberOfSeasons else { return }
+            seasonCounter += 1
         }
-        calculateSeriesProgress()
+        saveProgress()
     }
 
     func decrement(_ counterType: CounterType) {
         if counterType == .episode {
-            guard episodeCount > 0 else { return }
-            episodeCount -= 1
+            guard episodeCounter > 0 else { return }
+            episodeCounter -= 1
         } else {
-            guard seasonCount > 1 else { return }
-            seasonCount -= 1
+            guard seasonCounter > 1 else { return }
+            seasonCounter -= 1
         }
-        calculateSeriesProgress()
+        saveProgress()
     }
 
     func setSeasonCount(_ text: String?) {
         guard let counter = Double(text ?? ""), counter > 0 else { return }
         if counter <= numberOfSeasons {
-            seasonCount = counter
+            seasonCounter = counter
         } else {
-            seasonCount = numberOfSeasons
+            seasonCounter = numberOfSeasons
         }
-        calculateSeriesProgress()
+        saveProgress()
     }
 
     func setEpisodeCount(_ text: String?) {
         guard let counter = Double(text ?? ""), counter >= 0 else { return }
         if counter <= episodesInSeason {
-            episodeCount = counter
+            episodeCounter = counter
         } else {
-            episodeCount = episodesInSeason
+            episodeCounter = episodesInSeason
         }
-        calculateSeriesProgress()
+        saveProgress()
     }
 }
 
 extension WatchingNowDetailCellViewModel {
 
-    private func calculateSeriesProgress() {
-        let seriesWatched = seriesWatchedCount()
-        let totalProgress = (seriesWatched + episodeCount) / numberOfEpisodes
-        seriesProgress = Float(totalProgress)
-        let progress = SeriesProgress(season: seasonCount, episode: episodeCount, progress: seriesProgress)
-        setProgress(seriesProgress: progress)
-    }
-
-    private func seriesWatchedCount() -> Double {
-        guard seasonCount > 1 else { return 0 }
-        let seasons = seasonsWatched()
-        return seasons.compactMap { $0.episodeCount }.reduce(0, +)
-    }
-
-    private func seasonsWatched() -> [Series.Season] {
-        let watchedSeasonsWithoutSpecialSeasons = seriesData.series?.seasons?.filter { season in
-            if let seasonNumber = season.seasonNumber,
-                seasonNumber != 0 && seasonNumber < seasonCount {
-                return true
-            }
-            return false
-        }
-        return watchedSeasonsWithoutSpecialSeasons ?? []
+    private func saveProgress() {
+        let progressManager = SeriesProgressManager(seriesData: seriesData,
+                                                    season: seasonCounter, episode: episodeCounter)
+        seriesProgress = progressManager.calculateProgress()
+        setProgress(seriesProgress: progressManager.currentProgress())
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE0037352B0E31C50006CB92 /* SeriesProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0037342B0E31C50006CB92 /* SeriesProgressManager.swift */; };
 		CE0589C52AD4543300DE987F /* ImageCachingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589C42AD4543300DE987F /* ImageCachingManager.swift */; };
 		CE0589C72AD5AD1D00DE987F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589C62AD5AD1D00DE987F /* Router.swift */; };
 		CE0589D62AD6E92D00DE987F /* SeriesDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589D52AD6E92D00DE987F /* SeriesDescriptionCell.swift */; };
@@ -90,6 +91,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE0037342B0E31C50006CB92 /* SeriesProgressManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesProgressManager.swift; sourceTree = "<group>"; };
 		CE0589C42AD4543300DE987F /* ImageCachingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCachingManager.swift; sourceTree = "<group>"; };
 		CE0589C62AD5AD1D00DE987F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		CE0589D52AD6E92D00DE987F /* SeriesDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDescriptionCell.swift; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 				CE7208672AEA85DB0005C16E /* DataStore */,
 				CE7208682AEA860B0005C16E /* Decoders */,
 				CE3B48D92B07D70D009EB8AF /* SeriesFetcher.swift */,
+				CE0037342B0E31C50006CB92 /* SeriesProgressManager.swift */,
 				CE0589C62AD5AD1D00DE987F /* Router.swift */,
 				CE65E9632ABCC209009E38E8 /* Builder.swift */,
 				CE0589C42AD4543300DE987F /* ImageCachingManager.swift */,
@@ -612,6 +615,7 @@
 				CE7208532AE187E10005C16E /* BaseWatchingNowDetailCell.swift in Sources */,
 				CE6C3D2D2AF3C657004DACF9 /* ShowMoreButton.swift in Sources */,
 				CEE495962AF1435E0086F67A /* FavouritesViewModel.swift in Sources */,
+				CE0037352B0E31C50006CB92 /* SeriesProgressManager.swift in Sources */,
 				CEBB0FBB2AC5EE1500A45074 /* SeriesDecoder.swift in Sources */,
 				CE1A6B4A2AAF4D6B00B495EB /* BaseTabBarController.swift in Sources */,
 				CE7208652AEA7CC40005C16E /* KeyboardManager.swift in Sources */,
