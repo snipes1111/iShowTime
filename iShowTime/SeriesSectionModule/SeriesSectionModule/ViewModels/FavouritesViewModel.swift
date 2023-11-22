@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class FavouritesViewModel: SectionViewModel,
+final class FavouritesViewModel: SectionViewModel,
                            SectionViewModelRepresentableProtocol {
 
     private let dataStoreManager: DataStoreManagerProtocol = DataStoreManger()

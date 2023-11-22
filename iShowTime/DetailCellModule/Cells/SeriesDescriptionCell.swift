@@ -24,6 +24,10 @@ final class SeriesDescriptionCell: BaseSeriesDescriptionCell {
         overviewLabel.text = detailViewModel?.overview
         overviewLabel.addTextAttributes(for: detailViewModel?.attributedOverviewText)
         heartButton.setIsFavourite(detailViewModel?.seriesIsFavourite)
+    }
+
+    override func setupSubviews() {
+        super.setupSubviews()
         heartButton.addAction(UIAction(heartButtonTapped), for: .touchUpInside)
         showMoreButton.addAction(UIAction(buttonTapped), for: .touchUpInside)
     }

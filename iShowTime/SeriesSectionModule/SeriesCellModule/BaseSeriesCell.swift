@@ -14,43 +14,45 @@ class BaseSeriesCell: UITableViewCell {
     var productionStatusLabel: UILabel!
     var seasonsLabel: UILabel!
     var progressView: SeriesProgressView!
+    private var vStack: UIStackView!
+    private var hStack: UIStackView!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupView()
+        commonInit()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    private func commonInit()  {
+        setupSubviews()
+        setupConstraints()
+    }
 }
 
 extension BaseSeriesCell {
-    private func setupView() {
-        setupSubViews()
-        let vStack = VerticalStackView(spacing: 4, arrangedSubviews: [titleLabel,
-                                                                      countryAndYearLabel,
-                                                                      productionStatusLabel,
-                                                                      seasonsLabel,
-                                                                      UIView(),
-                                                                      progressView])
-        vStack.setCustomSpacing(8, after: titleLabel)
-        let hStack = HorizontalStackView(arrangedSubviews: [posterImageView, vStack])
-        contentView.addSubview(hStack)
-        makeConstraints(hStack)
-    }
-
-    private func setupSubViews() {
+    private func setupSubviews() {
         posterImageView = SeriesImageView()
         titleLabel = UILabel(font: Fonts.seriesName, color: Colors.title)
         countryAndYearLabel = UILabel(font: Fonts.seriesInfo, color: Colors.info)
         productionStatusLabel = UILabel(font: Fonts.seriesInfo, color: Colors.info)
         seasonsLabel = UILabel(font: Fonts.seriesInfo, color: Colors.info)
         progressView = SeriesProgressView(height: 15)
+        vStack = VerticalStackView(spacing: 4, arrangedSubviews: [titleLabel,
+                                                                      countryAndYearLabel,
+                                                                      productionStatusLabel,
+                                                                      seasonsLabel,
+                                                                      UIView(),
+                                                                      progressView])
+        hStack = HorizontalStackView(arrangedSubviews: [posterImageView, vStack])
+        contentView.addSubview(hStack)
     }
 
-    private func makeConstraints(_ view: UIView) {
+    private func setupConstraints() {
+        vStack.setCustomSpacing(8, after: titleLabel)
         posterImageView.setWidth(100)
-        view.fillSuperView(contentView, padding: 8)
+        hStack.fillSuperView(contentView, padding: 8)
     }
 }

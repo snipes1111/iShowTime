@@ -18,7 +18,7 @@ protocol SeriesCellViewModelProtocol {
     init(cellSeriesData: SeriesData)
 }
 
-class SeriesCellViewModel: SeriesCellViewModelProtocol {
+final class SeriesCellViewModel: SeriesCellViewModelProtocol {
 
     let seriesData: SeriesData
 

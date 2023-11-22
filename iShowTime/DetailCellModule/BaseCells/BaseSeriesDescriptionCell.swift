@@ -16,6 +16,8 @@ class BaseSeriesDescriptionCell: DetailCell {
     var showMoreButton: UIButton!
     var showMoreButtonStack: UIStackView!
     var heartButton: HeartButton!
+    private var ratingHStack: UIStackView!
+    private var overviewStack: UIStackView!
 
     override func setupSubviews() {
         super.setupSubviews()
@@ -28,23 +30,21 @@ class BaseSeriesDescriptionCell: DetailCell {
         showMoreButton = ShowMoreButton()
         showMoreButtonStack = HorizontalStackView(arrangedSubviews: [showMoreButton, UIView()])
         heartButton = HeartButton()
-
-        let ratingHStack = UIStackView(arrangedSubviews: [ratingIsLabel, ratingScoreLabel])
-        ratingHStack.spacing = 8
-        let overviewStack = VerticalStackView(arrangedSubviews: [overviewLabel, showMoreButtonStack])
+        ratingHStack = HorizontalStackView(arrangedSubviews: [ratingIsLabel, ratingScoreLabel])
+        overviewStack = VerticalStackView(arrangedSubviews: [overviewLabel, showMoreButtonStack])
         vStack.addArrangedSubviews([ratingHStack,
                                     genreLabel,
                                     countrySeasonsAndYearLabel,
                                     overviewStack,
                                     seriesButton])
-        vStack.setCustomSpacing(24, after: overviewStack)
-        setHeartButtonConstraints(equalTo: ratingHStack)
+        addSubview(heartButton)
     }
 
-    private func setHeartButtonConstraints(equalTo view: UIView) {
-        addSubview(heartButton)
+    override func setupConstraints() {
+        super.setupConstraints()
+        vStack.setCustomSpacing(24, after: overviewStack)
         heartButton.translatesAutoresizingMaskIntoConstraints = false
-        heartButton.topAnchor.constraint(equalTo: view.topAnchor, constant: -6).isActive = true
+        heartButton.topAnchor.constraint(equalTo: ratingHStack.topAnchor, constant: -6).isActive = true
         heartButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32).isActive = true
     }
 }

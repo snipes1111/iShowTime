@@ -64,6 +64,6 @@ extension BaseWatchingNowDetailCell {
         let stackViews = items.map {
             VerticalStackView(spacing: 16, distribution: .fillEqually, arrangedSubviews: $0)
         }
-        return HorizontalStackView(arrangedSubviews: stackViews, spacing: 18)
+        return HorizontalStackView(spacing: 18, arrangedSubviews: stackViews)
     }
 }

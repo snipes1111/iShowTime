@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SeriesCell: BaseSeriesCell {
+final class SeriesCell: BaseSeriesCell {
     var viewModel: SeriesCellViewModelProtocol? {
         didSet {
             guard let viewModel = viewModel else { return }
