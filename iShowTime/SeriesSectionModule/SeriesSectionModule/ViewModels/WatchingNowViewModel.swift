@@ -29,6 +29,6 @@ final class WatchingNowViewModel: SectionViewModel,
 extension WatchingNowViewModel: EditableCellViewModelProtocol {
     func deleteRow(at indexPath: IndexPath) {
         dataStoreManager.setIsBeingWatched(seriesData: seriesData[indexPath.item])
-        fetchSeries()
+        seriesData.remove(at: indexPath.item)
     }
 }
