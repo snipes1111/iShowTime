@@ -21,7 +21,7 @@ class HeartButton: UIButton {
 
     func setIsFavourite(_ isFavourite: Bool?) {
         guard let isFavourite = isFavourite else { return }
-        DispatchQueue.main.async { in
+        DispatchQueue.main.async {
             isFavourite ? self.switchToShadedState() : self.switchToBorderedState()
         }
     }
