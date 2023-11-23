@@ -74,10 +74,10 @@ extension SearchSeriesViewModel {
     }
     // Delay task to prevent instant search while typing
     private func createLoadingTask(_ searchText: String) -> Task<Void, Error> {
-        Task.delayed(byTimeInterval: 1.5) { [unowned self] in
-            seriesData = await seriesFetcher.fetchAndDecodeData(searchText)
-            loadingState.value = .finished
-            viewModelDidChange?(self)
+        Task.delayed(byTimeInterval: 1.5) {
+            self.seriesData = await self.seriesFetcher.fetchAndDecodeData(searchText)
+            self.loadingState.value = .finished
+            self.viewModelDidChange?(self)
         }
     }
 }

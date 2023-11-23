@@ -29,11 +29,11 @@ final class LoadingView: UIView {
 
 extension LoadingView {
     func hideWithAnimation() {
-        UIView.animate(withDuration: 0.7) { [unowned self] in
-            alpha = 0
-            spinner.stopAnimating()
-        } completion: { [unowned self] _ in
-            isHidden = true
+        UIView.animate(withDuration: 0.7) {
+            self.alpha = 0
+            self.spinner.stopAnimating()
+        } completion: { _ in
+            self.isHidden = true
         }
     }
 }

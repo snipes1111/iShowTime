@@ -33,12 +33,13 @@ final class SearchSeriesView: BaseSectionView {
     }
 
     private func bindWithLoadingState() {
-        searchViewModel?.loadingState.bind { state in
-            DispatchQueue.main.async { [unowned self] in
-                if state == .loading { spinner.startAnimating() }
-                else { spinner.stopAnimating() }
-                updatePromptLabel()
-                tableView.reloadData()
+        searchViewModel?.loadingState.bind { [weak self] state in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                if state == .loading { self.spinner.startAnimating() }
+                else { self.spinner.stopAnimating() }
+                self.updatePromptLabel()
+                self.tableView.reloadData()
             }
         }
     }

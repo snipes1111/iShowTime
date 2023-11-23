@@ -40,20 +40,20 @@ final class SeriesButton: UIButton {
     }
 
     private func highlight() {
-        DispatchQueue.main.async { [unowned self] in
-            alpha = 0.7
-            setBackgroundImage(UIImage(resource: .buttonTapped), for: .normal)
+        DispatchQueue.main.async {
+            self.alpha = 0.7
+            self.setBackgroundImage(UIImage(resource: .buttonTapped), for: .normal)
             let translation = CGAffineTransform(translationX: 1.0, y: 6)
             let scale = CGAffineTransform(scaleX: 1.0, y: 0.95)
-            transform = CGAffineTransformConcat(translation, scale)
+            self.transform = CGAffineTransformConcat(translation, scale)
         }
     }
 
     private func backToOriginal() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [unowned self] in
-            alpha = 1
-            setBackgroundImage(UIImage(resource: .buttonActive), for: .normal)
-            transform = .identity
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.alpha = 1
+            self.setBackgroundImage(UIImage(resource: .buttonActive), for: .normal)
+            self.transform = .identity
         }
     }
 }

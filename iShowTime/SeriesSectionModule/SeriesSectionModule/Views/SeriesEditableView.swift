@@ -17,10 +17,10 @@ final class SeriesEditableView: BaseSectionView {
 
     private func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
         return UIContextualAction(style: .destructive,
-                                  title: "Delete") { [unowned self] _, _, isDone in
-            guard let viewModel = viewModel as? EditableCellViewModelProtocol else { return }
+                                  title: "Delete") { _, _, isDone in
+            guard let viewModel = self.viewModel as? EditableCellViewModelProtocol else { return }
             viewModel.deleteRow(at: indexPath)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
             isDone(true)
         }
     }

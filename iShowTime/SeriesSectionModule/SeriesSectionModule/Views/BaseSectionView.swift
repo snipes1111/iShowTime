@@ -39,10 +39,11 @@ class BaseSectionView: UIView {
     }
 
     func subscribeToViewModel() {
-        viewModel.viewModelDidChange = { _ in
-            DispatchQueue.main.async { [unowned self] in
-                updatePromptLabel()
-                tableView.reloadData()
+        viewModel.viewModelDidChange = { [weak self] _ in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.updatePromptLabel()
+                self.tableView.reloadData()
             }
         }
     }

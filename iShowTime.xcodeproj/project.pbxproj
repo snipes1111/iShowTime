@@ -310,9 +310,9 @@
 		CE3B48D82B07B66E009EB8AF /* SeriesSectionModule */ = {
 			isa = PBXGroup;
 			children = (
+				CE3B48D72B07B626009EB8AF /* ViewModels */,
 				CE3B48D52B07B5B4009EB8AF /* ViewControlllers */,
 				CE3B48D62B07B5E5009EB8AF /* Views */,
-				CE3B48D72B07B626009EB8AF /* ViewModels */,
 			);
 			path = SeriesSectionModule;
 			sourceTree = "<group>";
@@ -359,9 +359,9 @@
 		CE7208612AE6DDDC0005C16E /* SeriesDetailslModule */ = {
 			isa = PBXGroup;
 			children = (
-				CE7208732AEAC0980005C16E /* Views */,
 				CE0589C82AD6BCCC00DE987F /* ViewModels */,
 				CE7208392AE16D420005C16E /* ViewControllers */,
+				CE7208732AEAC0980005C16E /* Views */,
 			);
 			path = SeriesDetailslModule;
 			sourceTree = "<group>";
