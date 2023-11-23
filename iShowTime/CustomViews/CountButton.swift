@@ -2,20 +2,23 @@
 //  CountButton.swift
 //  iShowTime
 //
-//  Created by user on 20/10/2023.
+//  Created by Mark Kovalchuk on 20/10/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import UIKit
 
-class CountButton: UIButton {
-    enum ButtonType: String {
-        case plus = "plus.circle"
-        case minus = "minus.circle"
+final class CountButton: UIButton {
+
+    enum CountButtonType {
+        case plus
+        case minus
     }
-    convenience init(type: ButtonType) {
+
+    convenience init(countType: CountButtonType) {
         self.init(type: .custom)
-        let image = UIImage(systemName: type.rawValue)
-        tintColor = .black.withAlphaComponent(0.7)
+        let image = UIImage(systemName: countType == .plus ? Images.plusButton : Images.minusButton)
+        tintColor = Colors.countButton
         setBackgroundImage(image, for: .normal)
         setSize(30, 30)
         addTarget(self, action: #selector(tapWithAnimation), for: .touchUpInside)

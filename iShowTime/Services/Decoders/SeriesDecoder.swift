@@ -2,7 +2,8 @@
 //  SeriesDecoder.swift
 //  iShowTime
 //
-//  Created by user on 28/09/2023.
+//  Created by Mark Kovalchuk on 28/09/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import Foundation
@@ -21,24 +22,16 @@ final class SeriesDecoder: JSONDecoder, SeriesDecoderProtocol {
     }
 
     func decodeSeriesFromData(_ data: Data) -> [Series]? {
-        if let page: Page = decode(data) {
-            return page.results
-        }
-        return nil
+        let page: Page? = decode(data)
+        return page?.results
     }
 
     func decodeSeriesDetailsFromData(_ data: Data) -> Series? {
-        if let seriesDetails: Series = decode(data) {
-            return seriesDetails
-        }
-        return nil
+        decode(data)
     }
 
     func decodeCountryList(_ data: Data) -> [Country]? {
-        if let countries: [Country] = decode(data) {
-            return countries
-        }
-        return nil
+         decode(data)
     }
 
     private func decode<T: Codable>(_ data: Data) -> T? {
@@ -47,7 +40,7 @@ final class SeriesDecoder: JSONDecoder, SeriesDecoderProtocol {
             return json
         } catch {
             print("Error to fetch json: \(error)")
+            return nil
         }
-        return nil
     }
 }

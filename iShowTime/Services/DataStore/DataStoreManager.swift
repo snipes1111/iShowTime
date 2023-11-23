@@ -1,45 +1,43 @@
 //
-//  DataManager.swift
+//  DataStoreManager.swift
 //  iShowTime
 //
-//  Created by user on 18/10/2023.
+//  Created by Mark Kovalchuk on 18/10/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import Foundation
 import RealmSwift
 
 protocol DataStoreManagerProtocol {
-    func save(seriesData: SeriesData, countries: String)
-    func setIsFavourite(seriesData: SeriesData, countries: String)
-    func seriesList() -> Results<SeriesData>
+    func watchingSeriesList() -> Results<SeriesData>
     func favouriteSeriesList() -> Results<SeriesData>
     func getSeries(with id: Double) -> SeriesData?
+    func setIsBeingWatched(seriesData: SeriesData)
+    func setIsFavourite(seriesData: SeriesData)
     func setSeriesProgress(seriesData: SeriesData, seriesProgress: SeriesProgress)
-    func checkForDelete(seriesData: SeriesData)
+    func checkForDelete()
 }
 
 class DataStoreManger: DataStoreManagerProtocol {
 
-    static let shared = DataStoreManger()
-    let realm = try! Realm()
+    private let realm = try! Realm()
 
-    func save(seriesData: SeriesData, countries: String) {
+    func setIsBeingWatched(seriesData: SeriesData) {
         try! realm.write {
             seriesData.isBeingWatched.toggle()
-            seriesData.originCountry = countries
             realm.add(seriesData)
         }
     }
 
-    func setIsFavourite(seriesData: SeriesData, countries: String) {
+    func setIsFavourite(seriesData: SeriesData) {
         try! realm.write {
             seriesData.isFavourite.toggle()
-            seriesData.originCountry = countries
             realm.add(seriesData)
         }
     }
 
-    func seriesList() -> Results<SeriesData> {
+    func watchingSeriesList() -> Results<SeriesData> {
         realm.objects(SeriesData.self).where { $0.isBeingWatched == true }
     }
 
@@ -48,7 +46,7 @@ class DataStoreManger: DataStoreManagerProtocol {
     }
 
     func getSeries(with id: Double) -> SeriesData? {
-        realm.objects(SeriesData.self).first { $0.series.id == id }
+        realm.objects(SeriesData.self).first { $0.series?.id == id }
     }
 
     func setSeriesProgress(seriesData: SeriesData, seriesProgress: SeriesProgress) {
@@ -60,10 +58,11 @@ class DataStoreManger: DataStoreManagerProtocol {
         }
     }
 
-    func checkForDelete(seriesData: SeriesData) {
-        if !seriesData.isBeingWatched && !seriesData.isFavourite {
+    func checkForDelete() {
+        let removingItems = realm.objects(SeriesData.self).filter { !$0.isFavourite && !$0.isBeingWatched }
+        removingItems.forEach { item in
             try! realm.write {
-                realm.delete(seriesData)
+                realm.delete(item)
             }
         }
     }

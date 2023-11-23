@@ -2,13 +2,15 @@
 //  AppDelegate.swift
 //  iShowTime
 //
-//  Created by user on 16/05/2023.
+//  Created by Mark Kovalchuk on 16/05/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
+
 
 import UIKit
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

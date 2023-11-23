@@ -2,7 +2,8 @@
 //  APIService.swift
 //  iShowTime
 //
-//  Created by user on 04/10/2023.
+//  Created by Mark Kovalchuk on 04/10/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import Foundation
@@ -25,13 +26,11 @@ final class APIService {
     }
 
     func buildSearchUrlRequest(with searchText: String) -> URLRequest? {
-
         guard let url = buildUrl(for: .searchSeries, and: "query", equals: searchText) else { return nil }
         return buildUrlRequest(url)
     }
 
     func buildCountryListUrlRequest() -> URLRequest? {
-
         guard let url = buildUrl(for: .countryList, and: "language", equals: "en-US") else { return nil }
         return buildUrlRequest(url)
     }
@@ -43,7 +42,7 @@ final class APIService {
     }
 
     func buildImageUrl(_ imagePath: String) -> URL? {
-        let baseUrlString = "https://image.tmdb.org/t/p/w342\(imagePath)"
+        let baseUrlString = "https://image.tmdb.org/t/p/w500\(imagePath)"
         return URL(string: baseUrlString)
     }
 

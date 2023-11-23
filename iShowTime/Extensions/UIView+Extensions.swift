@@ -1,16 +1,17 @@
 //
-//  CustomAnimation.swift
+//  UIView+Extensions.swift
 //  iShowTime
 //
-//  Created by user on 19/09/2023.
+//  Created by Mark Kovalchuk on 19/09/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import UIKit
 
 extension UIView {
 
-    func addSpringAnimation(_ duration: Double) {
-        UIView.animate(withDuration: duration) {
+    func addSpringAnimation() {
+        UIView.animate(withDuration: 0.5) {
             self.transform = CGAffineTransform(scaleX: 0.4, y: 0.4)
             self.transform = .identity
         }
@@ -44,19 +45,17 @@ extension UIView {
         trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -padding).isActive = true
     }
 
-    func fillSuperView(_ superView: UIView, insets: UIEdgeInsets) {
+    func centerInSuperView(_ superView: UIView, sideInsets: CGFloat,
+                           constantY: CGFloat = 0, constantX: CGFloat = 0) {
         translatesAutoresizingMaskIntoConstraints = false
-        topAnchor.constraint(equalTo: superView.topAnchor, constant: insets.top).isActive = true
-        bottomAnchor.constraint(equalTo: superView.bottomAnchor, constant: -insets.bottom).isActive = true
-        leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: insets.left).isActive = true
-        trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -insets.right).isActive = true
-    }
-
-    func centerInSuperView(_ superView: UIView, sideInsets: CGFloat, constant: CGFloat = 0) {
-        translatesAutoresizingMaskIntoConstraints = false
-        leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: sideInsets).isActive = true
-        trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -sideInsets).isActive = true
-        centerYAnchor.constraint(equalTo: superView.centerYAnchor, constant: constant).isActive = true
+        leadingAnchor.constraint(greaterThanOrEqualTo: superView.leadingAnchor,
+                                 constant: sideInsets).isActive = true
+        trailingAnchor.constraint(lessThanOrEqualTo: superView.trailingAnchor,
+                                  constant: -sideInsets).isActive = true
+        centerYAnchor.constraint(equalTo: superView.centerYAnchor,
+                                 constant: constantY).isActive = true
+        centerXAnchor.constraint(equalTo: superView.centerXAnchor,
+                                 constant: constantX).isActive = true
     }
 
     func setSize(_ height: CGFloat, _ width: CGFloat) {
@@ -68,10 +67,5 @@ extension UIView {
     func setWidth(_ width: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         widthAnchor.constraint(equalToConstant: width).isActive = true
-    }
-
-    func setHeight(_ height: CGFloat) {
-        translatesAutoresizingMaskIntoConstraints = false
-        heightAnchor.constraint(equalToConstant: height).isActive = true
     }
 }

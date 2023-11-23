@@ -2,16 +2,17 @@
 //  ShowMoreButton.swift
 //  iShowTime
 //
-//  Created by user on 02/11/2023.
+//  Created by Mark Kovalchuk on 02/11/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import UIKit
 
-class ShowMoreButton: UIButton {
+final class ShowMoreButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        setTitle("Show more ...", for: .normal)
-        titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        setTitle(Constants.Buttons.showMore, for: .normal)
+        titleLabel?.font = Fonts.showMoreButton
         setTitleColor(.black, for: .normal)
         contentHorizontalAlignment = .left
         contentVerticalAlignment = .top

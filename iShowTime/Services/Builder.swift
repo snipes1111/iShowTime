@@ -1,29 +1,23 @@
 //
-//  NavVCBuilder.swift
+//  Builder.swift
 //  iShowTime
 //
-//  Created by user on 08/09/2023.
+//  Created by Mark Kovalchuk on 08/09/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import UIKit
 
 protocol BuilderProtocol {
-    func buildMainTabController() -> MainTabBarController
     func buildSearchViewController() -> UIViewController
     func buildWatchingNowViewController() -> UIViewController
     func buildFavouritesViewController() -> UIViewController
-    func buildSearchSeriesDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController
-    func buildWatchingNowDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController
-    func buildFavouritesDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController
+    func buildSearchDetailViewController(_ seriesData: SeriesData) -> UIViewController
+    func buildWatchingNowDetailViewController(_ seriesData: SeriesData) -> UIViewController
+    func buildFavouritesDetailViewController(_ seriesData: SeriesData) -> UIViewController
 }
 
 final class Builder: BuilderProtocol {
-
-    func buildMainTabController() -> MainTabBarController {
-        let viewController = MainTabBarController()
-        viewController.builder = self
-        return viewController
-    }
 
     func buildSearchViewController() -> UIViewController {
         let viewController = SearchSeriesViewController()
@@ -34,60 +28,60 @@ final class Builder: BuilderProtocol {
         viewController.viewModel = viewModel
         return createNavController(
             viewController: viewController,
-            title: SearchModuleConstants.title,
-            image: TabBarImages.searchImage
+            title: Constants.SectionTitle.search,
+            image: Images.TabBarImages.searchImage
         )
     }
 
     func buildWatchingNowViewController() -> UIViewController {
-        let viewController = WatchingNowViewController()
+        let viewController = SeriesViewController()
         let router = Router(viewController: viewController)
         let viewModel = WatchingNowViewModel(router: router)
-        let view = BaseSectionView(viewModel: viewModel)
+        let view = SeriesEditableView(viewModel: viewModel)
         viewController.mainView = view
         viewController.viewModel = viewModel
         return createNavController(
             viewController: viewController,
-            title: WatchingNowConstants.title,
-            image: TabBarImages.watchingNowImage
+            title: Constants.SectionTitle.watchingNow,
+            image: Images.TabBarImages.watchingNowImage
         )
     }
 
     func buildFavouritesViewController() -> UIViewController {
-        let viewController = FavouritesViewController()
+        let viewController = SeriesViewController()
         let router = Router(viewController: viewController)
         let viewModel = FavouritesViewModel(router: router)
-        let view = FavouritesView(viewModel: viewModel)
+        let view = SeriesEditableView(viewModel: viewModel)
         viewController.mainView = view
         viewController.viewModel = viewModel
         return createNavController(
             viewController: viewController,
-            title: FavouritesConstants.title,
-            image: TabBarImages.favouritesImage
+            title: Constants.SectionTitle.favourites,
+            image: Images.TabBarImages.favouritesImage
         )
     }
 
-    func buildSearchSeriesDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController {
-        let viewController = SeriesDetailViewController(title: seriesName)
-        let viewModel = SearchDetailViewModel(seriesId: seriesId)
-        let view = SearchDetailView(viewModel: viewModel)
+    func buildSearchDetailViewController(_ seriesData: SeriesData) -> UIViewController {
+        let viewController = SeriesDetailViewController(title: seriesData.series?.name)
+        let viewModel = SeriesDetailViewModel(seriesData: seriesData)
+        let view = SeriesDetailView(viewModel: viewModel)
         viewController.mainView = view
         viewController.viewModel = viewModel
         return viewController
     }
 
-    func buildWatchingNowDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController {
-        let viewController = WatchingNowDetailViewController(title: seriesName)
-        let viewModel = WatchingNowDetailViewModel(seriesId: seriesId)
-        let view = WatchingNowDetailView(viewModel: viewModel)
+    func buildWatchingNowDetailViewController(_ seriesData: SeriesData) -> UIViewController {
+        let viewController = WatchingNowDetailViewController(title: seriesData.series?.name)
+        let viewModel = WatchingNowDetailViewModel(seriesData: seriesData)
+        let view = SeriesDetailView(viewModel: viewModel)
         viewController.mainView = view
         viewController.viewModel = viewModel
         return viewController
     }
 
-    func buildFavouritesDetailViewController(_ seriesId: Double, _ seriesName: String) -> UIViewController {
-        let viewController = SeriesDetailViewController(title: seriesName)
-        let viewModel = FavouritesDetailViewModel(seriesId: seriesId)
+    func buildFavouritesDetailViewController(_ seriesData: SeriesData) -> UIViewController {
+        let viewController = SeriesDetailViewController(title: seriesData.series?.name)
+        let viewModel = SeriesDetailViewModel(seriesData: seriesData)
         let view = SeriesDetailView(viewModel: viewModel)
         viewController.mainView = view
         viewController.viewModel = viewModel

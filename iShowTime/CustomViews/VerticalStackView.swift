@@ -2,21 +2,19 @@
 //  VerticalStackView.swift
 //  iShowTime
 //
-//  Created by user on 06/10/2023.
+//  Created by Mark Kovalchuk on 06/10/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import UIKit
 
 final class VerticalStackView: UIStackView {
-    init(spacing: CGFloat = 4, arrangedSubviews: [UIView?], distribution: UIStackView.Distribution = .fill) {
+    init(spacing: CGFloat = 0, distribution: UIStackView.Distribution = .fill, arrangedSubviews: [UIView?]) {
         super.init(frame: .init(x: 0, y: 0, width: 100, height: 100))
-        arrangedSubviews.forEach { subview in
-            guard let subview = subview else { return }
-            addArrangedSubview(subview)
-        }
+        addArrangedSubviews(arrangedSubviews)
         self.distribution = distribution
-        axis = .vertical
         self.spacing = spacing
+        axis = .vertical
     }
 
     required init(coder: NSCoder) {

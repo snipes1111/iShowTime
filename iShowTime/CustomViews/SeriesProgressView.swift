@@ -2,16 +2,17 @@
 //  SeriesProgressView.swift
 //  iShowTime
 //
-//  Created by user on 06/10/2023.
+//  Created by Mark Kovalchuk on 06/10/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import UIKit
 
 final class SeriesProgressView: UIProgressView {
-    init(_ height: CGFloat) {
+    init(height: CGFloat) {
         super.init(frame: .zero)
-        trackTintColor = .lightGray.withAlphaComponent(0.4)
-        progressTintColor = .systemGreen
+        trackTintColor = Colors.trackTintColor
+        progressTintColor = Colors.progressTintColor
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: height).isActive = true
         layer.cornerRadius = height / 2

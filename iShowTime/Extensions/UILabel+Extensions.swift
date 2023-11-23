@@ -2,7 +2,8 @@
 //  UILabel+Extensions.swift
 //  iShowTime
 //
-//  Created by user on 21/09/2023.
+//  Created by Mark Kovalchuk on 21/09/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import UIKit
@@ -21,8 +22,8 @@ extension UILabel {
         let str = str else { return }
         let textRange = (str as NSString).range(of: str)
         let attributedString = NSMutableAttributedString(string: labelText,
-                                                         attributes: Fonts.SearchDetailModule.overviewTextAttributes)
-        attributedString.setAttributes(Fonts.SearchDetailModule.overviewAttributes, range: textRange)
+                                                         attributes: Fonts.DetailCell.overviewTextAttributes)
+        attributedString.setAttributes(Fonts.DetailCell.overviewAttributes, range: textRange)
         attributedText = attributedString
     }
 }

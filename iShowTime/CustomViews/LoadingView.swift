@@ -2,12 +2,13 @@
 //  LoadingView.swift
 //  iShowTime
 //
-//  Created by user on 26/10/2023.
+//  Created by Mark Kovalchuk on 26/10/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import UIKit
 
-class LoadingView: UIView {
+final class LoadingView: UIView {
     private let spinner = SpinnerView()
 
     override init(frame: CGRect) {
@@ -24,13 +25,15 @@ class LoadingView: UIView {
         addSubview(spinner)
         spinner.fillSuperView(self)
     }
+}
 
+extension LoadingView {
     func hideWithAnimation() {
-        UIView.animate(withDuration: 0.7) { [unowned self] in
-            alpha = 0
-            spinner.stopAnimating()
-        } completion: { [unowned self] _ in
-            isHidden = true
+        UIView.animate(withDuration: 0.7) {
+            self.alpha = 0
+            self.spinner.stopAnimating()
+        } completion: { _ in
+            self.isHidden = true
         }
     }
 }

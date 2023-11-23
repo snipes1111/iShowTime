@@ -2,17 +2,17 @@
 //  SpinnerView.swift
 //  iShowTime
 //
-//  Created by user on 14/10/2023.
+//  Created by Mark Kovalchuk on 14/10/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import UIKit
 
-class SpinnerView: UIActivityIndicatorView {
+final class SpinnerView: UIActivityIndicatorView {
     init() {
         super.init(style: .large)
-        color = Colors.spinnerColor
+        color = Colors.spinner
         hidesWhenStopped = true
-        translatesAutoresizingMaskIntoConstraints = false
         startAnimating()
     }
 
