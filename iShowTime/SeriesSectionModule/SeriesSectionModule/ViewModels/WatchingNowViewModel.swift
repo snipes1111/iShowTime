@@ -2,7 +2,8 @@
 //  WatchingNowViewModel.swift
 //  iShowTime
 //
-//  Created by user on 12/09/2023.
+//  Created by Mark Kovalchuk on 12/09/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import Foundation

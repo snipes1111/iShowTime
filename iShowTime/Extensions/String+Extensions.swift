@@ -2,7 +2,8 @@
 //  String+Extensions.swift
 //  iShowTime
 //
-//  Created by user on 05/10/2023.
+//  Created by Mark Kovalchuk on 05/10/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import Foundation
@@ -34,11 +35,14 @@ extension String {
         return "\(day).\(month).\(year)"
     }
 
-    func estimatedLabelHeight(width: CGFloat, font: UIFont) -> CGFloat {
+    func estimatedLabelHeight(width: CGFloat, font: UIFont, attributedText: String? = nil) -> CGFloat {
         let label =  UILabel(frame: CGRect(x: 0, y: 0, width: width, height: .greatestFiniteMagnitude))
         label.numberOfLines = 0
         label.text = self
         label.font = font
+        if let attributedText = attributedText {
+            label.addTextAttributes(for: attributedText)
+        }
         label.sizeToFit()
         return label.frame.height
      }

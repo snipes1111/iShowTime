@@ -1,8 +1,9 @@
 //
-//  SearchDetailSeriesCell.swift
+//  SeriesDescriptionCell.swift
 //  iShowTime
 //
-//  Created by user on 11/10/2023.
+//  Created by Mark Kovalchuk on 11/10/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import UIKit
@@ -42,7 +43,8 @@ final class SeriesDescriptionCell: BaseSeriesDescriptionCell {
     private func setShowMoreButtonStackIsHidden() {
         guard let text = detailViewModel?.overview else { return }
         let estimatedHeight = text.estimatedLabelHeight(width: overviewLabel.bounds.width,
-                                                        font: overviewLabel.font)
+                                                        font: overviewLabel.font,
+                                                        attributedText: detailViewModel?.attributedOverviewText)
         let stackIsHidden = estimatedHeight <= overviewLabel.bounds.height
         showMoreButtonStack.isHidden = stackIsHidden
     }

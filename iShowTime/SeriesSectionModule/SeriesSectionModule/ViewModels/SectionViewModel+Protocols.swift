@@ -1,8 +1,9 @@
 //
-//  SectionViewModel.swift
+//  SectionViewModel+Protocols.swift
 //  iShowTime
 //
-//  Created by user on 26/10/2023.
+//  Created by Mark Kovalchuk on 26/10/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import Foundation

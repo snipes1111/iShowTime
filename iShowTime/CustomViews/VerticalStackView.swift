@@ -2,7 +2,8 @@
 //  VerticalStackView.swift
 //  iShowTime
 //
-//  Created by user on 06/10/2023.
+//  Created by Mark Kovalchuk on 06/10/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import UIKit

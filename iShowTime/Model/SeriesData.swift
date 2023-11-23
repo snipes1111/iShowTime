@@ -2,7 +2,8 @@
 //  SeriesData.swift
 //  iShowTime
 //
-//  Created by user on 03/11/2023.
+//  Created by Mark Kovalchuk on 03/11/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import RealmSwift

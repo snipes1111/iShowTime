@@ -2,7 +2,8 @@
 //  SeriesDescriptionCellViewModel.swift
 //  iShowTime
 //
-//  Created by user on 12/10/2023.
+//  Created by Mark Kovalchuk on 12/10/2023.
+//  Copyright © 2023 Mark Kovalchuk. All rights reserved.
 //
 
 import Foundation
@@ -67,8 +68,10 @@ final class SeriesDescriptionCellViewModel: DetailCellViewModel, SeriesDescripti
     var attributedOverviewText: String { SeriesConstants.overview }
     
     var overview: String {
-        guard let overview = seriesData.series?.overview, !overview.isEmpty
-        else { return SeriesConstants.noOverview }
+        var overview = SeriesConstants.noOverview
+        if let text = seriesData.series?.overview, !text.isEmpty {
+            overview = text
+        }
         return SeriesConstants.overview + overview
     }
     
