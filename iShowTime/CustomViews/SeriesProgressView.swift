@@ -9,13 +9,12 @@
 import UIKit
 
 final class SeriesProgressView: UIProgressView {
-    init(height: CGFloat) {
+    init() {
         super.init(frame: .zero)
         trackTintColor = Colors.trackTintColor
         progressTintColor = Colors.progressTintColor
         translatesAutoresizingMaskIntoConstraints = false
-        heightAnchor.constraint(equalToConstant: height).isActive = true
-        layer.cornerRadius = height / 2
+        layer.cornerRadius = 8
         clipsToBounds = true
     }
 

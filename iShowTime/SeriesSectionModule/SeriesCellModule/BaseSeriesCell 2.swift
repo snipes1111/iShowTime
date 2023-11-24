@@ -40,7 +40,7 @@ extension BaseSeriesCell {
         countryAndYearLabel = UILabel(font: Fonts.seriesInfo, color: Colors.info)
         productionStatusLabel = UILabel(font: Fonts.seriesInfo, color: Colors.info)
         seasonsLabel = UILabel(font: Fonts.seriesInfo, color: Colors.info)
-        progressView = SeriesProgressView()
+        progressView = SeriesProgressView(height: 15)
         vStack = VerticalStackView(spacing: 4, arrangedSubviews: [titleLabel,
                                                                       countryAndYearLabel,
                                                                       productionStatusLabel,
@@ -53,8 +53,7 @@ extension BaseSeriesCell {
 
     private func setupConstraints() {
         vStack.setCustomSpacing(8, after: titleLabel)
-        progressView.setHeight(15)
         posterImageView.setWidth(100)
-        hStack.fillContentView(contentView, padding: 8)
+        hStack.fillSuperView(contentView, padding: 8)
     }
 }

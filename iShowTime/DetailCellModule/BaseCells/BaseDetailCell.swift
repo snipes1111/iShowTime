@@ -16,7 +16,6 @@ class BaseDetailCell: UITableViewCell {
 
     private override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = .clear
         commonInit()
     }
 
@@ -26,15 +25,17 @@ class BaseDetailCell: UITableViewCell {
     }
 
     private func commonInit() {
+        backgroundColor = .clear
         setupSubviews()
         setupConstraints()
+
     }
 
     func setupConstraints() {
         posterImageView.setSize(300, 200)
-        vStack.fillSuperView(contentView, padding: 16)
         vStack.setCustomSpacing(24, after: posterImageView)
         vStack.setCustomSpacing(12, after: nameLabel)
+        vStack.fillContentView(contentView, padding: 24)
     }
 
     func setupSubviews() {

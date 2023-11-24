@@ -28,7 +28,7 @@ class BaseWatchingNowDetailCell: DetailCell {
 
     override func setupConstraints() {
         super.setupConstraints()
-        progressView.setWidth(contentView.bounds.width * 0.8)
+        progressView.setSize(15, contentView.bounds.width * 0.8)
         vStack.setCustomSpacing(16, after: nextEpisodeDateLabel)
         vStack.setCustomSpacing(32, after: progressView)
         vStack.setCustomSpacing(32, after: hStack)
@@ -38,7 +38,7 @@ class BaseWatchingNowDetailCell: DetailCell {
         super.setupSubviews()
         descriptionLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
         nextEpisodeDateLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
-        progressView = SeriesProgressView(height: 15)
+        progressView = SeriesProgressView()
         setupRowWith(&seasonLabel, &seasonMinusButton, &seasonTF, &seasonPlusButton)
         setupRowWith(&episodeLabel, &episodeMinusButton, &episodeTF, &episodePlusButton)
         hStack = createCountingStack()

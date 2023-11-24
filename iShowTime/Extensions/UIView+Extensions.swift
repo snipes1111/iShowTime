@@ -45,6 +45,16 @@ extension UIView {
         trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -padding).isActive = true
     }
 
+    func fillContentView(_ contentView: UIView, padding: CGFloat) {
+        translatesAutoresizingMaskIntoConstraints = false
+        topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding).isActive = true
+        leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding).isActive = true
+        trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding).isActive = true
+        let constraint = bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
+        constraint.priority = .defaultHigh
+        constraint.isActive = true
+    }
+
     func centerInSuperView(_ superView: UIView, sideInsets: CGFloat,
                            constantY: CGFloat = 0, constantX: CGFloat = 0) {
         translatesAutoresizingMaskIntoConstraints = false
@@ -67,5 +77,10 @@ extension UIView {
     func setWidth(_ width: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         widthAnchor.constraint(equalToConstant: width).isActive = true
+    }
+
+    func setHeight(_ height: CGFloat) {
+        translatesAutoresizingMaskIntoConstraints = false
+        heightAnchor.constraint(equalToConstant: height).isActive = true
     }
 }

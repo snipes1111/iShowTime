@@ -22,16 +22,10 @@ extension SeriesDetailView {
 
     func setupTableView() {
         tableView.dataSource = self
-        tableView.delegate = self
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.register(viewModel.cellType.self, forCellReuseIdentifier: DetailCell.identifier)
         addSubview(tableView)
         tableView.fillSuperView(self)
-    }
-}
-
-extension SeriesDetailView: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        UITableView.automaticDimension
     }
 }
 
