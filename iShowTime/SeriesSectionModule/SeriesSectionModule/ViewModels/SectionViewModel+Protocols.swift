@@ -31,8 +31,12 @@ class SectionViewModel: SectionViewModelProtocol {
 
     let router: RouterProtocol
 
-    var seriesData: [SeriesData] = []
-    
+    var seriesData: [SeriesData] = [] {
+        didSet {
+            if seriesData.isEmpty { viewModelDidChange?(self) }
+        }
+    }
+
     var viewModelDidChange: ((SectionViewModelProtocol) -> Void)?
     var numberOfRows: Int { seriesData.count }
     var heightForRow: Int { 165 }
