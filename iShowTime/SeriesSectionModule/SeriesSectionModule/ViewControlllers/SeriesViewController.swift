@@ -9,8 +9,15 @@
 import UIKit
 
 final class SeriesViewController: BaseSectionViewController {
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel.fetchSeries()
+        //add notification to catch series data did change
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name("ReloadDataNotification"), object: nil)
+    }
+
+    @objc func reloadData() {
         viewModel.fetchSeries()
     }
+
 }

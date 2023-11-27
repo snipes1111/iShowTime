@@ -17,7 +17,7 @@ final class SeriesCell: BaseSeriesCell {
             productionStatusLabel.text = viewModel.productionStatus
             seasonsLabel.text = viewModel.seasonsCount
             progressView.isHidden = viewModel.progressIsHidden
-            progressView.progress = viewModel.progress
+            progressView.setProgress(viewModel.progress, animated: false)
             posterImageView.getImage(viewModel.imageUrl)
         }
     }

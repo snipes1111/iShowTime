@@ -29,6 +29,11 @@ class SeriesDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationItem.largeTitleDisplayMode = .never
     }
+    //sent notification to reload data whether the model did change
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.post(name: NSNotification.Name("ReloadDataNotification"), object: nil)
+    }
 
     convenience init(title: String?) {
         self.init(nibName: nil, bundle: nil)

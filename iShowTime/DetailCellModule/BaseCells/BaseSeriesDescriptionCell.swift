@@ -27,7 +27,7 @@ class BaseSeriesDescriptionCell: DetailCell {
         genreLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
         genreLabel.textAlignment = .center
         countrySeasonsAndYearLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
-        overviewLabel = UILabel(font: Fonts.DetailCell.seriesInfo, numberOfLines: 5)
+        overviewLabel = UILabel(font: Fonts.DetailCell.seriesInfo, numberOfLines: 4)
         showMoreButton = ShowMoreButton()
         showMoreButtonStack = HorizontalStackView(arrangedSubviews: [showMoreButton, UIView()])
         heartButton = HeartButton()
