@@ -16,6 +16,7 @@ protocol SeriesCellViewModelProtocol {
     var progressIsHidden: Bool { get }
     var progress: Float { get }
     var imageUrl: String? { get }
+    var imageData: Data? { get }
     init(cellSeriesData: SeriesData)
 }
 
@@ -45,6 +46,8 @@ final class SeriesCellViewModel: SeriesCellViewModelProtocol {
     var progress: Float { seriesData.currentProgress }
 
     var imageUrl: String? { seriesData.series?.posterPath }
+
+    var imageData: Data? { seriesData.imageData }
 
     required init(cellSeriesData: SeriesData) {
         seriesData = cellSeriesData

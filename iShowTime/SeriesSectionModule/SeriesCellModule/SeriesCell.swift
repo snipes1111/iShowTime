@@ -18,7 +18,11 @@ final class SeriesCell: BaseSeriesCell {
             seasonsLabel.text = viewModel.seasonsCount
             progressView.isHidden = viewModel.progressIsHidden
             progressView.setProgress(viewModel.progress, animated: false)
-            posterImageView.getImage(viewModel.imageUrl)
+            if let data = viewModel.imageData {
+                posterImageView.image = UIImage(data: data)
+            } else {
+                posterImageView.getImage(viewModel.imageUrl)
+            }
         }
     }
 }

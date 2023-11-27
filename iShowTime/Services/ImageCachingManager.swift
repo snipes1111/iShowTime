@@ -12,30 +12,38 @@ protocol ImageCachingManagerProtocol {
     func loadImage(with url: String) async -> Data?
 }
 
-final class ImageCachingManager: ImageCachingManagerProtocol {
+protocol CachedImageProtocol {
+    func loadImageFromCache(_ url: String) -> Data?
+}
+
+final class ImageCachingManager: ImageCachingManagerProtocol, CachedImageProtocol {
+
+    static let shared = ImageCachingManager()
 
     private let imageCache = NSCache<AnyObject, AnyObject>()
     private let apiService = APIService()
     private let networkService: NetworkServiceProtocol = NetworkService()
 
+    private init() {}
+
     func loadImage(with url: String) async -> Data? {
-        guard let imagePath = apiService.buildImageUrl(url) else { return nil }
-        if let cacheData = loadImageFromCache(imagePath) {
+        if let cacheData = loadImageFromCache(url) {
             return cacheData
         } else {
-            let data = await downloadAndSaveImage(imagePath)
+            let data = await downloadAndSaveImage(url)
             return data
         }
     }
 
-    private func loadImageFromCache(_ url: URL) -> Data? {
-        let cachedKey = NSString(string: url.absoluteString)
+    func loadImageFromCache(_ url: String) -> Data? {
+        let cachedKey = NSString(string: url)
         return imageCache.object(forKey: cachedKey) as? Data
     }
 
-    private func downloadAndSaveImage(_ url: URL) async -> Data? {
-        guard let data = await networkService.fetchImageData(with: url) else { return nil }
-        let cachedKey = NSString(string: url.absoluteString)
+    private func downloadAndSaveImage(_ url: String) async -> Data? {
+        guard let imagePath = apiService.buildImageUrl(url) else { return nil }
+        guard let data = await networkService.fetchImageData(with: imagePath) else { return nil }
+        let cachedKey = NSString(string: url)
         imageCache.setObject(data as NSData, forKey: cachedKey)
         return data
     }

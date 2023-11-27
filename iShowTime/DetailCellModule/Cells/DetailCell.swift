@@ -22,9 +22,13 @@ class DetailCell: BaseDetailCell {
     }
 
     func updateViews() {
-        posterImageView.getImage(viewModel?.imageUrl)
         nameLabel.text = viewModel?.seriesName
         updateWatchingNowButtonTitle()
+        if let data = viewModel?.imageData {
+            posterImageView.image = UIImage(data: data)
+        } else {
+            posterImageView.getImage(viewModel?.imageUrl)
+        }
     }
 }
 

@@ -38,9 +38,14 @@ final class SeriesDetailView: UIView {
 
     private func setupBackground() {
         if loadingView.isHidden { return }
-        tableView.backDropImageView.getImage(viewModel.backDropImageUrl) { [weak self] _ in
-            guard let self = self else { return }
-            self.loadingView.hideWithAnimation()
+        if let imageData = viewModel.backDropImageData {
+            tableView.backDropImageView.image = UIImage(data: imageData)
+            loadingView.hideWithAnimation()
+        } else {
+            tableView.backDropImageView.getImage(viewModel.backDropImageUrl) { [weak self] _ in
+                guard let self = self else { return }
+                self.loadingView.hideWithAnimation()
+            }
         }
     }
 }

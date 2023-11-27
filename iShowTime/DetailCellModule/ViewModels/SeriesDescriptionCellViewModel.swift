@@ -58,11 +58,10 @@ final class SeriesDescriptionCellViewModel: DetailCellViewModel, SeriesDescripti
     }
 
     var countrySeasonsAndYear: String {
-        let countries = seriesData.originCountry + " "
         let seasonsCount = "\(Int(seriesData.series?.numberOfSeasons ?? 1))"
         let year = seriesData.series?.firstAirDate?.extractYear() ?? SeriesConstants.noDate
         let divider = SeriesConstants.divider
-        return countries + SeriesConstants.seasons + seasonsCount + divider + year
+        return SeriesConstants.seasons + seasonsCount + divider + year
     }
 
     var attributedOverviewText: String { SeriesConstants.overview }

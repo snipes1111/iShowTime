@@ -11,6 +11,8 @@ import Foundation
 
 final class SeriesData: Object {
     @Persisted var seriesObject: Data = Data()
+    @Persisted var imageData: Data?
+    @Persisted var backDropImageData: Data?
     @Persisted var isFavourite: Bool = false
     @Persisted var isBeingWatched: Bool = false
     @Persisted var currentSeason: Double = 1

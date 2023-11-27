@@ -21,7 +21,7 @@ final class SeriesDescriptionCell: BaseSeriesDescriptionCell {
         ratingScoreLabel.text = detailViewModel?.scoreRating
         ratingScoreLabel.textColor = getColor()
         genreLabel.text = detailViewModel?.genreAndYear
-        countrySeasonsAndYearLabel.text = detailViewModel?.countrySeasonsAndYear
+        seasonsAndYearLabel.text = detailViewModel?.countrySeasonsAndYear
         overviewLabel.text = detailViewModel?.overview
         overviewLabel.addTextAttributes(for: detailViewModel?.attributedOverviewText)
         heartButton.setIsFavourite(detailViewModel?.seriesIsFavourite)

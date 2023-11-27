@@ -11,6 +11,7 @@ import Foundation
 protocol SeriesDetailViewModelProtocol {
     var viewModelDidChange: ((SeriesDetailViewModelProtocol?) -> Void)? { get set }
     var backDropImageUrl: String? { get }
+    var backDropImageData: Data? { get }
     var numberOfRows: Int { get }
     var tableViewTopInset: Int { get }
     var cellType: DetailCell.Type { get }
@@ -31,6 +32,7 @@ class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
 
     var viewModelDidChange: ((SeriesDetailViewModelProtocol?) -> Void)?
     var backDropImageUrl: String? { seriesData.series?.backdropPath }
+    var backDropImageData: Data? { seriesData.backDropImageData }
     var numberOfRows: Int { 1 }
     var tableViewTopInset: Int { 0 }
     var cellType: DetailCell.Type { SeriesDescriptionCell.self }

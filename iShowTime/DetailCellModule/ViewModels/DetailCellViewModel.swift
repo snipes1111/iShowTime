@@ -11,6 +11,7 @@ import Foundation
 protocol DetailCellViewModelProtocol {
     var seriesName: String { get }
     var imageUrl: String? { get }
+    var imageData: Data? { get }
     var isBeingWatched: Bool { get }
     init(seriesData: SeriesData)
     func watchingNowButtonPressed()
@@ -23,6 +24,7 @@ class DetailCellViewModel: DetailCellViewModelProtocol {
 
     var seriesName: String { seriesData.series?.name ?? SeriesConstants.unknownTitle }
     var imageUrl: String? { seriesData.series?.posterPath }
+    var imageData: Data? { seriesData.imageData }
     var isBeingWatched: Bool { seriesData.isBeingWatched }
 
     required init(seriesData: SeriesData) {

@@ -22,10 +22,12 @@ protocol DataStoreManagerProtocol {
 class DataStoreManger: DataStoreManagerProtocol {
 
     private let realm = try! Realm()
+    private let imageCacheManager: CachedImageProtocol = ImageCachingManager.shared
 
     func setIsBeingWatched(seriesData: SeriesData) {
         try! realm.write {
             seriesData.isBeingWatched.toggle()
+            setImageData(seriesData: seriesData)
             realm.add(seriesData)
         }
     }
@@ -33,6 +35,7 @@ class DataStoreManger: DataStoreManagerProtocol {
     func setIsFavourite(seriesData: SeriesData) {
         try! realm.write {
             seriesData.isFavourite.toggle()
+            setImageData(seriesData: seriesData)
             realm.add(seriesData)
         }
     }
@@ -65,5 +68,14 @@ class DataStoreManger: DataStoreManagerProtocol {
                 realm.delete(item)
             }
         }
+    }
+
+    private func setImageData(seriesData: SeriesData) {
+        guard seriesData.imageData == nil && seriesData.backDropImageData == nil
+        else { return }
+        let imagePath = seriesData.series?.posterPath ?? ""
+        let backDropPath = seriesData.series?.backdropPath ?? ""
+        seriesData.imageData = imageCacheManager.loadImageFromCache(imagePath)
+        seriesData.backDropImageData = imageCacheManager.loadImageFromCache(backDropPath)
     }
 }

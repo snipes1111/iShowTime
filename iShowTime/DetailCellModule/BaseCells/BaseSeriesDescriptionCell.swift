@@ -12,7 +12,7 @@ class BaseSeriesDescriptionCell: DetailCell {
     var ratingIsLabel: UILabel!
     var ratingScoreLabel: UILabel!
     var genreLabel: UILabel!
-    var countrySeasonsAndYearLabel: UILabel!
+    var seasonsAndYearLabel: UILabel!
     var overviewLabel: UILabel!
     var showMoreButton: UIButton!
     var showMoreButtonStack: UIStackView!
@@ -26,7 +26,8 @@ class BaseSeriesDescriptionCell: DetailCell {
         ratingScoreLabel = UILabel(font: Fonts.DetailCell.seriesRatingScore, numberOfLines: 1)
         genreLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
         genreLabel.textAlignment = .center
-        countrySeasonsAndYearLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
+        seasonsAndYearLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
+        seasonsAndYearLabel.textAlignment = .center
         overviewLabel = UILabel(font: Fonts.DetailCell.seriesInfo, numberOfLines: 4)
         showMoreButton = ShowMoreButton()
         showMoreButtonStack = HorizontalStackView(arrangedSubviews: [showMoreButton, UIView()])
@@ -35,7 +36,7 @@ class BaseSeriesDescriptionCell: DetailCell {
         overviewStack = VerticalStackView(arrangedSubviews: [overviewLabel, showMoreButtonStack])
         vStack.addArrangedSubviews([ratingHStack,
                                     genreLabel,
-                                    countrySeasonsAndYearLabel,
+                                    seasonsAndYearLabel,
                                     overviewStack,
                                     seriesButton])
         addSubview(heartButton)

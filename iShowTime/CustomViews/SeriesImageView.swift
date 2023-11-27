@@ -10,7 +10,7 @@ import UIKit
 
 final class SeriesImageView: UIImageView {
 
-    private let imageCacheManager = ImageCachingManager()
+    private let imageCacheManager: ImageCachingManagerProtocol = ImageCachingManager.shared
 
     init() {
         super.init(frame: .zero)
