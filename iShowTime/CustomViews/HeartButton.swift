@@ -11,12 +11,21 @@ import UIKit
 class HeartButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
+        addBorder()
         addAction(UIAction(performTapAnimation), for: .touchUpInside)
         setSize(35, 40)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    private func addBorder() {
+        let strokeImageView = UIImageView()
+        addSubview(strokeImageView)
+        strokeImageView.fillSuperView(self)
+        strokeImageView.image = Images.heart
+        strokeImageView.tintColor = .black
     }
 
     func setIsFavourite(_ isFavourite: Bool?) {
@@ -26,13 +35,14 @@ class HeartButton: UIButton {
         }
     }
 
-    func switchToShadedState() {
-        setBackgroundImage(UIImage(systemName: Images.heartFilled), for: .normal)
+    private func switchToShadedState() {
+        setBackgroundImage(Images.heartFilled, for: .normal)
         tintColor = .systemPink
+
     }
 
-    func switchToBorderedState() {
-        setBackgroundImage(UIImage(systemName: Images.heart), for: .normal)
+    private func switchToBorderedState() {
+        setBackgroundImage(nil, for: .normal)
         tintColor = .black
     }
 }

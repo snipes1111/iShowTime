@@ -16,8 +16,8 @@ struct Images {
         static let favouritesImage = UIImage(systemName: "film.stack")
     }
 
-    static let minusButton = "minus.circle"
-    static let plusButton = "plus.circle"
-    static let heartFilled = "heart.fill"
-    static let heart = "heart"
+    static let minusButton = UIImage(systemName: "minus.circle")
+    static let plusButton = UIImage(systemName: "plus.circle")
+    static let heartFilled = UIImage(systemName: "heart.fill")
+    static let heart = UIImage(systemName: "heart")
 }

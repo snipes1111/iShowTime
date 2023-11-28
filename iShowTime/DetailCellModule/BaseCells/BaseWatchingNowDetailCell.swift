@@ -28,7 +28,7 @@ class BaseWatchingNowDetailCell: DetailCell {
 
     override func setupConstraints() {
         super.setupConstraints()
-        progressView.setSize(15, contentView.bounds.width * 0.8)
+        progressView.setSize(15, contentView.bounds.width * 0.85)
         vStack.setCustomSpacing(16, after: nextEpisodeDateLabel)
         vStack.setCustomSpacing(32, after: progressView)
         vStack.setCustomSpacing(32, after: hStack)

@@ -79,16 +79,5 @@ extension WatchingNowDetailCell {
         episodeTF.text = detailViewModel?.episodeTFText
         guard let progress = detailViewModel?.progress else { return }
         progressView.setProgress(progress, animated: true)
-        //setProgressColor(progress: progress)
     }
-
-//    private func setProgressColor(progress: Float) {
-//        let color: UIColor
-//        switch progress {
-//        case 0..<0.3: color = UIColor.systemOrange
-//        case 0.3..<0.7: color = UIColor.systemYellow
-//        default: color = UIColor.systemGreen
-//        }
-//        progressView.progressTintColor = color
-//    }
 }

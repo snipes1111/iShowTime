@@ -13,9 +13,10 @@ final class SeriesProgressView: UIProgressView {
     init() {
         super.init(frame: .zero)
         trackTintColor = Colors.trackTintColor
-        progressTintColor = Colors.progressTintColor
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 8
+        layer.borderWidth = 1.0
+        layer.borderColor = UIColor.black.withAlphaComponent(0.7).cgColor
         setCornerRadiusToProgress()
         clipsToBounds = true
     }

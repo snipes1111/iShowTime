@@ -17,7 +17,7 @@ final class CountButton: UIButton {
 
     convenience init(countType: CountButtonType) {
         self.init(type: .custom)
-        let image = UIImage(systemName: countType == .plus ? Images.plusButton : Images.minusButton)
+        let image = countType == .plus ? Images.plusButton : Images.minusButton
         tintColor = Colors.countButton
         setBackgroundImage(image, for: .normal)
         setSize(30, 30)

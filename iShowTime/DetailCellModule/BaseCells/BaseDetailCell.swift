@@ -44,7 +44,7 @@ class BaseDetailCell: UITableViewCell {
         nameLabel = UILabel(font: Fonts.DetailCell.seriesName)
         nameLabel.textAlignment = .center
         seriesButton = SeriesButton()
-        vStack = VerticalStackView(spacing: 10, arrangedSubviews: [posterImageView, nameLabel])
+        vStack = VerticalStackView(spacing: 8, arrangedSubviews: [posterImageView, nameLabel])
         vStack.alignment = .center
         contentView.addSubview(vStack)
     }

@@ -47,6 +47,6 @@ class BaseSeriesDescriptionCell: DetailCell {
         vStack.setCustomSpacing(24, after: overviewStack)
         heartButton.translatesAutoresizingMaskIntoConstraints = false
         heartButton.topAnchor.constraint(equalTo: ratingHStack.topAnchor, constant: -6).isActive = true
-        heartButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32).isActive = true
+        heartButton.leadingAnchor.constraint(equalTo: ratingHStack.trailingAnchor, constant: 12).isActive = true
     }
 }
