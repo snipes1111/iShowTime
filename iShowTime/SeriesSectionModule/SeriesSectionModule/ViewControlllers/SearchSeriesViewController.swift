@@ -20,6 +20,11 @@ final class SearchSeriesViewController: BaseSectionViewController {
         createSearchBar()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchViewModel?.setSearchText(nil)
+    }
+
     private func createSearchBar() {
         searchController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchController

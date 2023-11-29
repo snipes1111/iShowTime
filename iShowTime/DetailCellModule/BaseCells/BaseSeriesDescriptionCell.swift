@@ -24,6 +24,7 @@ class BaseSeriesDescriptionCell: DetailCell {
         super.setupSubviews()
         ratingIsLabel = UILabel(font: Fonts.DetailCell.seriesRating, numberOfLines: 1)
         ratingScoreLabel = UILabel(font: Fonts.DetailCell.seriesRatingScore, numberOfLines: 1)
+        ratingScoreLabel.addShadow()
         genreLabel = UILabel(font: Fonts.DetailCell.seriesInfo)
         genreLabel.textAlignment = .center
         seasonsAndYearLabel = UILabel(font: Fonts.DetailCell.seriesInfo)

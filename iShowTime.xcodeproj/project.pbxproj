@@ -54,6 +54,7 @@
 		CE8126212AEBE62E00693BF5 /* BaseSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8126202AEBE62E00693BF5 /* BaseSectionView.swift */; };
 		CE8126232AEBF34D00693BF5 /* BaseSectionView + TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8126222AEBF34D00693BF5 /* BaseSectionView + TableView.swift */; };
 		CE8126262AEBF78600693BF5 /* BaseSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8126252AEBF78600693BF5 /* BaseSectionViewController.swift */; };
+		CE97870D2B16411D00ECB3FE /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97870C2B16411D00ECB3FE /* UIImage+Extensions.swift */; };
 		CE9CB1452AFBE0AB00E7F4FF /* UIAction+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9CB1442AFBE0AB00E7F4FF /* UIAction+Extensions.swift */; };
 		CE9CB1472AFBFA7D00E7F4FF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9CB1462AFBFA7D00E7F4FF /* Constants.swift */; };
 		CE9EA8D12AD81B9000C261C8 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EA8D02AD81B9000C261C8 /* Page.swift */; };
@@ -72,7 +73,7 @@
 		CED57AB32ADD7BB5006C7981 /* CountryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AB22ADD7BB4006C7981 /* CountryService.swift */; };
 		CED57AB52ADEB635006C7981 /* SeriesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED57AB42ADEB635006C7981 /* SeriesButton.swift */; };
 		CED6AE482ADAE47D002140C1 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED6AE472ADAE47D002140C1 /* SpinnerView.swift */; };
-		CEDA98052B067D0200FBA9C2 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDA98042B067D0200FBA9C2 /* UITableViewCell+Extension.swift */; };
+		CEDA98052B067D0200FBA9C2 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDA98042B067D0200FBA9C2 /* UITableViewCell+Extensions.swift */; };
 		CEE4958E2AEFEE630086F67A /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4958D2AEFEE630086F67A /* ErrorHandler.swift */; };
 		CEE495922AF12C2B0086F67A /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE495912AF12C2B0086F67A /* HeartButton.swift */; };
 		CEE495942AF12E5B0086F67A /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE495932AF12E5B0086F67A /* UIButton+Extensions.swift */; };
@@ -136,6 +137,7 @@
 		CE8126202AEBE62E00693BF5 /* BaseSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSectionView.swift; sourceTree = "<group>"; };
 		CE8126222AEBF34D00693BF5 /* BaseSectionView + TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseSectionView + TableView.swift"; sourceTree = "<group>"; };
 		CE8126252AEBF78600693BF5 /* BaseSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSectionViewController.swift; sourceTree = "<group>"; };
+		CE97870C2B16411D00ECB3FE /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		CE9CB1442AFBE0AB00E7F4FF /* UIAction+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAction+Extensions.swift"; sourceTree = "<group>"; };
 		CE9CB1462AFBFA7D00E7F4FF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CE9EA8D02AD81B9000C261C8 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
@@ -157,7 +159,7 @@
 		CED57AB22ADD7BB4006C7981 /* CountryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryService.swift; sourceTree = "<group>"; };
 		CED57AB42ADEB635006C7981 /* SeriesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesButton.swift; sourceTree = "<group>"; };
 		CED6AE472ADAE47D002140C1 /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
-		CEDA98042B067D0200FBA9C2 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
+		CEDA98042B067D0200FBA9C2 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		CEE4958D2AEFEE630086F67A /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		CEE495912AF12C2B0086F67A /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
 		CEE495932AF12E5B0086F67A /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
@@ -239,7 +241,8 @@
 				CEF503082ACF24C400DFB431 /* String+Extensions.swift */,
 				CE7208502AE186450005C16E /* UIStackView+Extensions.swift */,
 				CE9CB1442AFBE0AB00E7F4FF /* UIAction+Extensions.swift */,
-				CEDA98042B067D0200FBA9C2 /* UITableViewCell+Extension.swift */,
+				CEDA98042B067D0200FBA9C2 /* UITableViewCell+Extensions.swift */,
+				CE97870C2B16411D00ECB3FE /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -611,7 +614,7 @@
 				CE7208652AEA7CC40005C16E /* KeyboardManager.swift in Sources */,
 				CE0589C72AD5AD1D00DE987F /* Router.swift in Sources */,
 				CEBAAE9F2A13E824001F59A6 /* AppDelegate.swift in Sources */,
-				CEDA98052B067D0200FBA9C2 /* UITableViewCell+Extension.swift in Sources */,
+				CEDA98052B067D0200FBA9C2 /* UITableViewCell+Extensions.swift in Sources */,
 				CE72084F2AE182FE0005C16E /* BaseDetailCell.swift in Sources */,
 				CE72083E2AE16DAD0005C16E /* WatchingNowDetailViewController.swift in Sources */,
 				CE54A4B22AF68DAE003D84C2 /* SeriesProgress.swift in Sources */,
@@ -632,6 +635,7 @@
 				CE8126262AEBF78600693BF5 /* BaseSectionViewController.swift in Sources */,
 				CE7208702AEABF3E0005C16E /* SeriesDetailView + Extensions.swift in Sources */,
 				CE9CB1472AFBFA7D00E7F4FF /* Constants.swift in Sources */,
+				CE97870D2B16411D00ECB3FE /* UIImage+Extensions.swift in Sources */,
 				CEF502F92ACDB32400DFB431 /* APIService.swift in Sources */,
 				CE72086E2AEABB6B0005C16E /* TableViewWithBlurBackground.swift in Sources */,
 				CE81261B2AEBD19900693BF5 /* BaseSeriesCell.swift in Sources */,

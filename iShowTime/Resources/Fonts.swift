@@ -20,7 +20,7 @@ struct Fonts {
     struct DetailCell {
         static let seriesName: UIFont = .boldSystemFont(ofSize: 26)
         static let seriesRating: UIFont = .systemFont(ofSize: 20, weight: .semibold)
-        static let seriesRatingScore: UIFont = .systemFont(ofSize: 20, weight: .bold)
+        static let seriesRatingScore: UIFont = .boldSystemFont(ofSize: 22)
         static let seriesInfo: UIFont = .systemFont(ofSize: 20, weight: .light)
         static let seasonAndEpisode: UIFont = .systemFont(ofSize: 18)
         static let overviewTextAttributes = [NSAttributedString.Key.font:

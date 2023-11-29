@@ -10,21 +10,32 @@ import UIKit
 
 final class SeriesProgressView: UIProgressView {
 
-    init() {
+    private let firstColor: UIColor = UIColor(red: 144/255, green: 238/255, blue: 144/255, alpha: 1)
+    private let secondColor: UIColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
+
+    private func updateView() {
+        let bounds = CGRect(origin: .zero, size: .init(width: 100, height: 100))
+        if let gradientImage = UIImage(bounds: bounds, colors: [firstColor, secondColor]) {
+            progressImage = gradientImage
+        }
+    }
+    
+    init(bordered: Bool = false) {
         super.init(frame: .zero)
         trackTintColor = Colors.trackTintColor
-        translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 8
-        layer.borderWidth = 1.0
-        layer.borderColor = UIColor.black.withAlphaComponent(0.7).cgColor
+        if bordered {
+            layer.borderWidth = 1.0
+            layer.borderColor = UIColor.black.withAlphaComponent(0.7).cgColor
+        }
         setCornerRadiusToProgress()
         clipsToBounds = true
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     private func setCornerRadiusToProgress() {
         guard let progressLayer = layer.sublayers?[1] else { return }
         let progressSubview = subviews[1]
@@ -32,18 +43,8 @@ final class SeriesProgressView: UIProgressView {
         progressSubview.clipsToBounds = true
     }
 
-    private func setProgressColor(progress: Float) {
-        let color: UIColor
-        switch progress {
-        case 0..<0.3: color = UIColor.systemOrange
-        case 0.3..<0.7: color = UIColor.systemYellow
-        default: color = UIColor.systemGreen
-        }
-        progressTintColor = color
-    }
-
     override func setProgress(_ progress: Float, animated: Bool) {
         super.setProgress(progress, animated: animated)
-        setProgressColor(progress: progress)
+        updateView()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  UITableViewCell+Extension.swift
+//  UITableViewCell+Extensions.swift
 //  iShowTime
 //
 //  Created by Mark Kovalchuk on 16/11/2023.
