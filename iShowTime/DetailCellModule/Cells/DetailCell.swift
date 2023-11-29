@@ -26,8 +26,6 @@ class DetailCell: BaseDetailCell {
         updateWatchingNowButtonTitle()
         if let data = viewModel?.imageData {
             posterImageView.image = UIImage(data: data)
-        } else {
-            posterImageView.getImage(viewModel?.imageUrl)
         }
     }
 }

@@ -29,7 +29,12 @@ class SeriesFetcher: SeriesFetcherProtocol {
               let series = decoder.decodeSeriesFromData(seriesJSON) else { return [] }
         let seriesIds = series.compactMap { $0.id }
         let detailedSeries = await fetchSeriesDetails(seriesIds)
-        return detailedSeries.map { SeriesData(series: $0) }
+        let seriesData = detailedSeries.map { SeriesData(series: $0) }
+        for series in seriesData {
+            series.imageData = await networkService.fetchImageData(series.series?.posterPath)
+            series.backDropImageData = await networkService.fetchImageData(series.series?.backdropPath)
+        }
+        return seriesData
     }
 
     private func fetchCountries() async {

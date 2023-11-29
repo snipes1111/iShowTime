@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CE0037352B0E31C50006CB92 /* SeriesProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0037342B0E31C50006CB92 /* SeriesProgressManager.swift */; };
-		CE0589C52AD4543300DE987F /* ImageCachingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589C42AD4543300DE987F /* ImageCachingManager.swift */; };
 		CE0589C72AD5AD1D00DE987F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589C62AD5AD1D00DE987F /* Router.swift */; };
 		CE0589D62AD6E92D00DE987F /* SeriesDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0589D52AD6E92D00DE987F /* SeriesDescriptionCell.swift */; };
 		CE1A6B4A2AAF4D6B00B495EB /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A6B492AAF4D6B00B495EB /* BaseTabBarController.swift */; };
@@ -93,7 +92,6 @@
 
 /* Begin PBXFileReference section */
 		CE0037342B0E31C50006CB92 /* SeriesProgressManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesProgressManager.swift; sourceTree = "<group>"; };
-		CE0589C42AD4543300DE987F /* ImageCachingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCachingManager.swift; sourceTree = "<group>"; };
 		CE0589C62AD5AD1D00DE987F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		CE0589D52AD6E92D00DE987F /* SeriesDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDescriptionCell.swift; sourceTree = "<group>"; };
 		CE1A6B492AAF4D6B00B495EB /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
@@ -477,7 +475,6 @@
 				CE0037342B0E31C50006CB92 /* SeriesProgressManager.swift */,
 				CE0589C62AD5AD1D00DE987F /* Router.swift */,
 				CE65E9632ABCC209009E38E8 /* Builder.swift */,
-				CE0589C42AD4543300DE987F /* ImageCachingManager.swift */,
 				CE7208642AEA7CC40005C16E /* KeyboardManager.swift */,
 				CEE4958D2AEFEE630086F67A /* ErrorHandler.swift */,
 			);
@@ -628,7 +625,6 @@
 				CEA1A8D22ABC81270012630D /* UILabel+Extensions.swift in Sources */,
 				CE1A6B672AB08C9D00B495EB /* Series.swift in Sources */,
 				CE2E1FC22AD011BD00E0FC3B /* VerticalStackView.swift in Sources */,
-				CE0589C52AD4543300DE987F /* ImageCachingManager.swift in Sources */,
 				CE81261F2AEBD3B300693BF5 /* SeriesCellViewModel.swift in Sources */,
 				CE7208632AE6DE200005C16E /* SeriesDetailViewModel.swift in Sources */,
 				CE65E9642ABCC209009E38E8 /* Builder.swift in Sources */,

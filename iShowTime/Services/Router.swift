@@ -17,7 +17,7 @@ protocol RouterProtocol {
 
 final class Router: RouterProtocol {
     private let viewController: UIViewController
-    private let builder = Builder()
+    private lazy var builder = Builder()
 
     required init(viewController: UIViewController) {
         self.viewController = viewController

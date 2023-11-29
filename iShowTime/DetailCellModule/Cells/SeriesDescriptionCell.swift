@@ -53,7 +53,6 @@ final class SeriesDescriptionCell: BaseSeriesDescriptionCell {
         super.layoutSubviews()
         setShowMoreButtonStackIsHidden()
     }
-
 }
 
 extension SeriesDescriptionCell {

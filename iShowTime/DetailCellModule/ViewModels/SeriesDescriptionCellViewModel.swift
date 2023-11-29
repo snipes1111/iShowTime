@@ -15,7 +15,7 @@ enum ScoreRatingColor {
     case black
 }
 
-protocol SeriesDescriptionCellViewModelProtocol: DetailCellViewModelProtocol {
+protocol SeriesDescriptionCellViewModelProtocol: AnyObject, DetailCellViewModelProtocol {
     var ratingIs: String { get }
     var scoreRating: String { get }
     var scoreRatingColor: ScoreRatingColor { get }

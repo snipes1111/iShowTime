@@ -10,8 +10,6 @@ import UIKit
 
 final class SeriesImageView: UIImageView {
 
-    private let imageCacheManager: ImageCachingManagerProtocol = ImageCachingManager.shared
-
     init() {
         super.init(frame: .zero)
         contentMode = .scaleAspectFill
@@ -21,20 +19,4 @@ final class SeriesImageView: UIImageView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    func getImage(_ path: String?, completion: ((Bool) -> Void)? = nil) {
-        image = UIImage(resource: .no)
-        guard let path = path else {
-            completion?(false)
-            return
-        }
-            Task {
-                guard let data = await imageCacheManager.loadImage(with: path) else {
-                    completion?(false)
-                    return
-                }
-                image = UIImage(data: data)
-                completion?(true)
-            }
-        }
 }

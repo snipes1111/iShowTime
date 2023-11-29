@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol SeriesCellViewModelProtocol {
+protocol SeriesCellViewModelProtocol: AnyObject {
     var title: String { get }
     var countryAndYear: String { get }
     var productionStatus: String { get }

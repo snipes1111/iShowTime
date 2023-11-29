@@ -12,7 +12,7 @@ protocol NetworkServiceProtocol {
     func fetchSeriesData(_ searchText: String) async -> Data?
     func fetchCountryList() async -> Data?
     func fetchSeriesDetails(_ seriesId: Double) async -> Data?
-    func fetchImageData(with url: URL) async -> Data?
+    func fetchImageData(_ url: String?) async -> Data?
 }
 
 final class NetworkService: NetworkServiceProtocol {
@@ -21,7 +21,7 @@ final class NetworkService: NetworkServiceProtocol {
         case invalidUrl
     }
 
-    private let apiService = APIService()
+    private lazy var apiService = APIService()
     private let errorHandler = ErrorHandler()
 
     func fetchSeriesData(_ searchText: String) async -> Data? {
@@ -36,8 +36,10 @@ final class NetworkService: NetworkServiceProtocol {
         await fetchDataWithErrorHandler(apiService.buildSeriesDetailsRequest(seriesId))
     }
 
-    func fetchImageData(with url: URL) async -> Data? {
-        await fetchDataWithErrorHandler(URLRequest(url: url))
+    func fetchImageData(_ url: String?) async -> Data? {
+        guard let path = url,
+              let imagePath = apiService.buildImageUrl(path) else { return nil }
+        return await fetchDataWithErrorHandler(URLRequest(url: imagePath))
     }
 
     private func fetchData(with urlRequest: URLRequest?) async throws -> Data {

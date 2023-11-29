@@ -19,7 +19,7 @@ protocol DetailCellViewModelProtocol {
 
 class DetailCellViewModel: DetailCellViewModelProtocol {
 
-    private let dataStoreManager: DataStoreManagerProtocol = DataStoreManger()
+    private lazy var dataStoreManager: DataStoreManagerProtocol = DataStoreManger()
     let seriesData: SeriesData
 
     var seriesName: String { seriesData.series?.name ?? SeriesConstants.unknownTitle }
