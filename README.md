@@ -50,7 +50,6 @@ The "Watching Now" section tracks and saves your current progress, while the "Fa
     </details>
     <details>
     <summary>Navigation</summary>
-  <img src="https://github.com/snipes1111/iShowTime/assets/123557658/7d755194-ef28-40d7-97a6-bdadd7f290de">
+  <img src="https://github.com/snipes1111/iShowTime/assets/123557658/988dda9c-6b34-495d-bbd9-a1fb0b53a6ec">
     </details>
   </details>
-
