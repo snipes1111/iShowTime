@@ -33,7 +33,7 @@ class BaseDetailCell: UITableViewCell {
 
     func setupConstraints() {
         posterImageView.setSize(300, 200)
-        vStack.setCustomSpacing(24, after: posterImageView)
+        vStack.setCustomSpacing(12, after: posterImageView)
         vStack.setCustomSpacing(12, after: nameLabel)
         vStack.fillContentView(contentView, padding: 24)
     }

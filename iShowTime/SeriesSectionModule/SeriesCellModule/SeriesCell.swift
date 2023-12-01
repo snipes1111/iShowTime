@@ -20,6 +20,8 @@ final class SeriesCell: BaseSeriesCell {
             progressView.setProgress(viewModel.progress, animated: false)
             if let data = viewModel.imageData {
                 posterImageView.image = UIImage(data: data)
+            } else {
+                posterImageView.image = Images.noImage
             }
         }
     }

@@ -40,7 +40,7 @@ final class SeriesDetailView: UIView {
         if loadingView.isHidden { return }
         if let imageData = viewModel.backDropImageData {
             tableView.backDropImageView.image = UIImage(data: imageData)
-            loadingView.hideWithAnimation()
-        } 
+        }
+        loadingView.hideWithAnimation()
     }
 }

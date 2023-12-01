@@ -20,4 +20,5 @@ struct Images {
     static let plusButton = UIImage(systemName: "plus.circle")
     static let heartFilled = UIImage(systemName: "heart.fill")
     static let heart = UIImage(systemName: "heart")
+    static let noImage = UIImage(resource: .no)
 }
